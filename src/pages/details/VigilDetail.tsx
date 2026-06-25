@@ -221,7 +221,7 @@ export default function VigilDetail() {
                 justifyContent: 'center',
                 boxShadow: isLight ? '0 2px 8px rgba(0,0,0,0.02)' : 'none'
               }}>
-                <span style={{ fontSize: '0.7rem', textTransform: 'uppercase', color: 'var(--text-muted)', fontWeight: 600, marginBottom: '4px' }}>MEWS Risk Score</span>
+                <span style={{ fontSize: '0.7rem', textTransform: 'uppercase', color: 'var(--text-muted)', fontWeight: 600, marginBottom: '4px' }}>NEWS2 Risk Score</span>
                 <div style={{ display: 'flex', alignItems: 'baseline', gap: '12px' }}>
                   <span style={{ fontSize: '2.5rem', fontWeight: 800, color: isAlert ? 'var(--status-danger)' : 'var(--text-primary)', transition: 'color 0.5s' }}>
                     {mewsScore}
