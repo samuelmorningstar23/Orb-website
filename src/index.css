@@ -1,0 +1,270 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Raleway:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600;700&display=swap');
+
+/* ─── Design Tokens — Dark Mode (Default) ─── */
+:root {
+  /* Backgrounds — deep blacks with warm undertone */
+  --bg-primary: #08090d;
+  --bg-secondary: #0f1117;
+  --bg-surface: #161822;
+  --bg-glass: rgba(255, 255, 255, 0.04);
+  --bg-glass-hover: rgba(255, 255, 255, 0.07);
+  --bg-elevated: rgba(22, 24, 34, 0.8);
+
+  /* Text — high contrast, warm tones */
+  --text-primary: #f5f5f7;
+  --text-secondary: #a0a0b8;
+  --text-muted: #6b6b82;
+
+  /* Gold accent system — rich, luxurious, eye-catching */
+  --accent-gold: #FFD700;
+  --accent-amber: #F5A623;
+  --accent-deep: #C8960C;
+  --accent-warm: #FFE566;
+  --accent-glow: rgba(255, 215, 0, 0.10);
+  --accent-glow-strong: rgba(255, 215, 0, 0.22);
+  --btn-primary-text: #000000;
+
+  /* Orb rings */
+  --orb-ring-1: rgba(255, 215, 0, 0.12);
+  --orb-ring-2: rgba(255, 215, 0, 0.22);
+  --orb-ring-3: rgba(255, 215, 0, 0.35);
+
+  /* Status — vivid clinical indicators */
+  --status-ok: #00E676;
+  --status-warn: #FFB300;
+  --status-danger: #FF5252;
+
+  /* Borders — visible depth */
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-glass: rgba(255, 255, 255, 0.09);
+  --border-focus: rgba(255, 215, 0, 0.4);
+
+  /* Radii */
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
+  --radius-xl: 32px;
+  --radius-full: 9999px;
+
+  /* Blur — depth layering */
+  --blur-glass: 40px;
+  --blur-light: 20px;
+
+  /* Typography */
+  --font-family: 'Raleway', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-serif: 'Lora', Georgia, serif;
+  --font-mono: 'Fira Code', 'SF Mono', 'JetBrains Mono', monospace;
+
+  /* Transitions — smooth, premium feel */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Shadows — rich depth system */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.45);
+  --shadow-glow: 0 0 24px rgba(255, 215, 0, 0.08);
+  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* ─── Reset ─── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  overflow-x: hidden !important;
+  max-width: 100vw;
+}
+
+body {
+  font-family: var(--font-family);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.55;
+  letter-spacing: -0.011em;
+  font-weight: 400;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+input, textarea { font-family: inherit; }
+
+/* ─── Aurora glow is now fully canvas-rendered in Aurora.tsx ─── */
+
+
+
+/* ─── Glassmorphism — Premium depth ─── */
+.glass {
+  background: var(--bg-glass);
+  backdrop-filter: blur(var(--blur-glass));
+  -webkit-backdrop-filter: blur(var(--blur-glass));
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-lg);
+}
+
+.glass-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
+  backdrop-filter: blur(32px);
+  -webkit-backdrop-filter: blur(32px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: all var(--transition-base);
+}
+
+.glass-card:hover {
+  border-color: rgba(255, 215, 0, 0.25);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.11) 0%, rgba(255, 255, 255, 0.04) 100%);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.15), var(--shadow-glow);
+}
+
+/* ─── Animations ─── */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes orb-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out both;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.5s ease-out both;
+}
+
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+
+/* ─── Reduced motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.10);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+/* ═══════════════════════════════════════════════════
+   LIGHT MODE — Warm white with violet-purple accent
+   ═══════════════════════════════════════════════════ */
+[data-theme="light"] {
+  --bg-primary: #F5F5F7;
+  --bg-secondary: #EBEBEF;
+  --bg-surface: #FFFFFF;
+  --bg-glass: rgba(255, 255, 255, 0.45);
+  --bg-glass-hover: rgba(255, 255, 255, 0.65);
+  --bg-elevated: rgba(255, 255, 255, 0.94);
+
+  --text-primary: #111215;
+  --text-secondary: #333336;
+  --text-muted: #62626A;
+
+  /* Sierra Blue accent for light mode */
+  --accent-gold: #7AA5C7;
+  --accent-amber: #5D8EB8;
+  --accent-deep: #2C465E;
+  --accent-warm: #A2C1DB;
+  --accent-glow: rgba(122, 165, 199, 0.08);
+  --accent-glow-strong: rgba(122, 165, 199, 0.18);
+  --btn-primary-text: #111215;
+
+  /* Orb rings in Sierra Blue */
+  --orb-ring-1: rgba(122, 165, 199, 0.15);
+  --orb-ring-2: rgba(122, 165, 199, 0.28);
+  --orb-ring-3: rgba(122, 165, 199, 0.45);
+
+  --status-ok: #059669;
+  --status-warn: #D97706;
+  --status-danger: #DC2626;
+
+  --border-subtle: rgba(0, 0, 0, 0.05);
+  --border-glass: rgba(0, 0, 0, 0.06);
+  --border-focus: rgba(122, 165, 199, 0.4);
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.08);
+  --shadow-glow: 0 0 24px rgba(122, 165, 199, 0.15);
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.02);
+}
+
+[data-theme="light"] body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+[data-theme="light"] .glass {
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  box-shadow: var(--shadow-sm);
+}
+
+[data-theme="light"] .glass-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.45) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.60);
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+}
+
+[data-theme="light"] .glass-card:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.55) 100%);
+  border-color: rgba(122, 165, 199, 0.35);
+  box-shadow: 0 12px 40px rgba(31, 38, 135, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9), var(--shadow-glow);
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.10);
+}
+[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.18);
+}
