@@ -70,7 +70,7 @@ export default function HelixDetail() {
     setVerificationLogs([])
 
     const simulatedLogs = [
-      'Scanning patient drug record database...',
+      'Reading the patient medication record...',
       'Cross-checking active medications (Aspirin, KCl)...',
       'Checking allergies: No contraindications found.',
       'Checking drug-drug interaction: Piperacillin-Tazobactam + Aspirin -> No interactions.',
@@ -245,7 +245,7 @@ export default function HelixDetail() {
                   }}
                 >
                   {isVerifying && <span className="spinner" style={{ border: '2px solid rgba(255,215,0,0.2)', borderTop: '2px solid var(--accent-gold)', borderRadius: '50%', width: '12px', height: '12px', display: 'inline-block' }} />}
-                  {isVerifying ? 'Scanning Local Database...' : 'Run Interaction & Dosing Verification Scan'}
+                  {isVerifying ? 'Running safety checks…' : 'Run Interaction & Dosing Verification Scan'}
                 </button>
               )}
 
@@ -275,7 +275,7 @@ export default function HelixDetail() {
                   {isVerifying && (
                     <div style={{ display: 'flex', gap: '8px', alignItems: 'center', color: 'var(--accent-gold)' }}>
                       <span className="spinner" style={{ border: '2px solid rgba(255,215,0,0.2)', borderTop: '2px solid var(--accent-gold)', borderRadius: '50%', width: '10px', height: '10px', display: 'inline-block' }} />
-                      <span>Evaluating parameters...</span>
+                      <span>Evaluating the order…</span>
                     </div>
                   )}
 
@@ -335,7 +335,7 @@ export default function HelixDetail() {
             </div>
             <h3 className="module-detail__card-title">Inventory Controls</h3>
             <p className="module-detail__card-desc">
-              Interfaces directly with pharmacy stock tables, alerting dispensers when critical medications fall below designated buffer counts.
+              Keeps a live view of pharmacy stock levels, alerting dispensers when critical medications fall below designated buffer counts.
             </p>
           </div>
 
@@ -345,9 +345,9 @@ export default function HelixDetail() {
                 <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
               </svg>
             </div>
-            <h3 className="module-detail__card-title">Zero API Cost</h3>
+            <h3 className="module-detail__card-title">Within Your Walls</h3>
             <p className="module-detail__card-desc">
-              All interaction scans are performed via embedded database lookup logic rather than costly third-party medical API integrations, reducing hospital operational spend.
+              Every interaction and dosing check runs on hardware inside your hospital. Nothing leaves the building, there are no per-check fees, and verification stays available even when the network is down.
             </p>
           </div>
         </section>

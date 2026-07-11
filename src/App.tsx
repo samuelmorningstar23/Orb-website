@@ -7,6 +7,10 @@ import LensDetail from './pages/details/LensDetail'
 import RelayDetail from './pages/details/RelayDetail'
 import HelixDetail from './pages/details/HelixDetail'
 import SurgicalSuiteDetail from './pages/details/SurgicalSuiteDetail'
+import PulseDetail from './pages/details/PulseDetail'
+import BridgeDetail from './pages/details/BridgeDetail'
+import ForecastDetail from './pages/details/ForecastDetail'
+import AppointmentsDetail from './pages/details/AppointmentsDetail'
 import RequestDemoModal from './components/RequestDemoModal'
 import './App.css'
 
@@ -32,6 +36,10 @@ function App() {
         <Route path="/relay" element={<RelayDetail />} />
         <Route path="/helix" element={<HelixDetail />} />
         <Route path="/surgical-suite" element={<SurgicalSuiteDetail />} />
+        <Route path="/pulse" element={<PulseDetail />} />
+        <Route path="/bridge" element={<BridgeDetail />} />
+        <Route path="/forecast" element={<ForecastDetail />} />
+        <Route path="/appointments" element={<AppointmentsDetail />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
       <RequestDemoModal />

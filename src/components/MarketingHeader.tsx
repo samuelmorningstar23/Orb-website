@@ -93,13 +93,21 @@ export default function MarketingHeader() {
           >
             Helix
           </NavLink>
-          <NavLink 
-            to="/surgical-suite" 
-            className={({ isActive }) => 
+          <NavLink
+            to="/surgical-suite"
+            className={({ isActive }) =>
               `marketing-header__link ${isActive ? 'marketing-header__link--active' : ''}`
             }
           >
             Surgical
+          </NavLink>
+          <NavLink
+            to="/pulse"
+            className={({ isActive }) =>
+              `marketing-header__link ${isActive ? 'marketing-header__link--active' : ''}`
+            }
+          >
+            Pulse
           </NavLink>
         </nav>
 

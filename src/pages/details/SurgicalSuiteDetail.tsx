@@ -79,6 +79,9 @@ export default function SurgicalSuiteDetail() {
 
   const activeCase = cases.find(c => c.id === activeCaseId) || cases[0]
 
+  // Post-op status accent — a calm blue that reads cleanly on both themes
+  const postOpColor = isLight ? '#0071e3' : '#2997ff'
+
   // Timer simulation for active surgery
   useEffect(() => {
     const interval = setInterval(() => {
@@ -166,12 +169,12 @@ export default function SurgicalSuiteDetail() {
           <span className="module-detail__badge">Operating Room Coordinator</span>
           <h1 className="module-detail__title">Surgical Suite</h1>
           <p className="module-detail__tagline">
-            Complete OR orchestration. Tracks active calendars, checklists, and anesthesia handoffs to keep surgical teams securely in sync.
+            Complete OR orchestration. Tracks live theatre schedules, safety checklists, and anesthesia handoffs to keep surgical teams securely in sync.
           </p>
         </section>
 
         <section className="module-detail__showcase animate-slide-up stagger-1">
-          <div className="module-detail__visual-frame" style={{ minHeight: '480px', padding: '0', display: 'flex' }}>
+          <div className="module-detail__visual-frame" style={{ minHeight: '480px', padding: '0', display: 'flex', alignItems: 'stretch' }}>
             
             {/* Left sidebar: OR Room Selector */}
             <div style={{ 
@@ -211,7 +214,7 @@ export default function SurgicalSuiteDetail() {
                       width: '6px', 
                       height: '6px', 
                       borderRadius: '50%', 
-                      background: c.phase === 'intra-op' ? 'var(--status-danger)' : c.phase === 'pre-op' ? 'var(--status-warn)' : '#2997ff',
+                      background: c.phase === 'intra-op' ? 'var(--status-danger)' : c.phase === 'pre-op' ? 'var(--status-warn)' : postOpColor,
                       display: 'inline-block' 
                     }} />
                   </div>
@@ -241,7 +244,7 @@ export default function SurgicalSuiteDetail() {
                   <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase', display: 'block', fontWeight: 600 }}>Status</span>
                   <span style={{ 
                     fontSize: '0.8rem', 
-                    color: activeCase.phase === 'intra-op' ? 'var(--status-danger)' : activeCase.phase === 'pre-op' ? 'var(--status-warn)' : '#2997ff',
+                    color: activeCase.phase === 'intra-op' ? 'var(--status-danger)' : activeCase.phase === 'pre-op' ? 'var(--status-warn)' : postOpColor,
                     fontWeight: 700 
                   }}>
                     {activeCase.phase === 'intra-op' ? `ACTIVE SURGERY (${formatTimer(activeCase.timer)})` : activeCase.phase.toUpperCase()}

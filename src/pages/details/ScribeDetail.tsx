@@ -17,7 +17,7 @@ export default function ScribeDetail() {
   const [isRecording, setIsRecording] = useState(false)
   const [transcription, setTranscription] = useState('')
   const [showSoap, setShowSoap] = useState(false)
-  const [step, setStep] = useState<'idle' | 'recording' | 'parsing' | 'done'>('idle')
+  const [step, setStep] = useState<'idle' | 'recording' | 'structuring' | 'done'>('idle')
 
   const dictationText = "Patient is a 54-year-old male presenting with acute chest pain radiating to the left arm for the past two hours. Pain is rated 8 out of 10. Vitals show blood pressure 142 over 90, heart rate 88. EKG shows minor ST elevations. Plan is to administer aspirin 325 mg orally, obtain cardiac enzymes, and schedule immediate cardiology consult."
 
@@ -30,7 +30,7 @@ export default function ScribeDetail() {
 
     let wordIndex = 0
     const words = dictationText.split(' ')
-    
+
     const streamWords = setInterval(() => {
       if (wordIndex < words.length) {
         setTranscription(prev => prev + (prev ? ' ' : '') + words[wordIndex])
@@ -38,9 +38,9 @@ export default function ScribeDetail() {
       } else {
         clearInterval(streamWords)
         setIsRecording(false)
-        setStep('parsing')
-        
-        // Simulate LLM structuring the note
+        setStep('structuring')
+
+        // Turn the dictation into a structured clinical note
         setTimeout(() => {
           setStep('done')
           setShowSoap(true)
@@ -66,28 +66,28 @@ export default function ScribeDetail() {
           <span className="module-detail__badge">Hands-Free Transcription</span>
           <h1 className="module-detail__title">Scribe</h1>
           <p className="module-detail__tagline">
-            Fast clinical dictation. Turn spoken doctor-patient conversations into structured SOAP summaries and discharge notes in seconds.
+            Fast clinical dictation. Turn spoken doctor-patient conversations into structured clinical notes and discharge summaries in seconds.
           </p>
         </section>
 
         <section className="module-detail__showcase animate-slide-up stagger-1">
           <div className="module-detail__visual-frame" style={{ minHeight: '420px', padding: '24px', flexDirection: 'column', alignItems: 'stretch' }}>
-            
+
             {/* Header / Trigger */}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', borderBottom: isLight ? '1px solid rgba(0,0,0,0.08)' : '1px solid rgba(255,255,255,0.08)', paddingBottom: '16px' }}>
               <div>
-                <span style={{ fontSize: '0.75rem', textTransform: 'uppercase', color: 'var(--text-muted)', fontWeight: 600 }}>Transcription Engine</span>
-                <h3 style={{ fontSize: '1.25rem', fontWeight: 600, color: 'var(--text-primary)' }}>On-Premises Audio Engine</h3>
+                <span style={{ fontSize: '0.75rem', textTransform: 'uppercase', color: 'var(--text-muted)', fontWeight: 600 }}>Live Capture</span>
+                <h3 style={{ fontSize: '1.25rem', fontWeight: 600, color: 'var(--text-primary)' }}>On-Device Dictation</h3>
               </div>
 
               {/* Dictate Trigger Button */}
-              <button 
-                onClick={startDictation} 
-                disabled={step === 'recording' || step === 'parsing'}
-                style={{ 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  gap: '8px', 
+              <button
+                onClick={startDictation}
+                disabled={step === 'recording' || step === 'structuring'}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
                   background: step === 'recording' ? 'rgba(220, 38, 38, 0.15)' : (isLight ? 'rgba(122, 165, 199, 0.1)' : 'rgba(255, 215, 0, 0.1)'),
                   border: '1px solid',
                   borderColor: step === 'recording' ? (isLight ? '#DC2626' : '#FF5252') : 'var(--accent-gold)',
@@ -96,14 +96,14 @@ export default function ScribeDetail() {
                   borderRadius: '99px',
                   fontSize: '0.8rem',
                   fontWeight: 600,
-                  cursor: (step === 'recording' || step === 'parsing') ? 'not-allowed' : 'pointer',
-                  opacity: (step === 'recording' || step === 'parsing') ? 0.7 : 1
+                  cursor: (step === 'recording' || step === 'structuring') ? 'not-allowed' : 'pointer',
+                  opacity: (step === 'recording' || step === 'structuring') ? 0.7 : 1
                 }}
               >
                 {step === 'recording' && <span className="live-dot" style={{ width: '8px', height: '8px', borderRadius: '50%', background: isLight ? '#DC2626' : '#FF5252' }} />}
                 {step === 'idle' && 'Start Dictation Demo'}
                 {step === 'recording' && 'Listening...'}
-                {step === 'parsing' && 'Structuring SOAP Note...'}
+                {step === 'structuring' && 'Structuring note…'}
                 {step === 'done' && 'Run Demo Again'}
               </button>
             </div>
@@ -122,21 +122,22 @@ export default function ScribeDetail() {
               </div>
             )}
 
-            {/* Transcription Feed & SOAP note output */}
-            <div style={{ flex: 1, display: 'flex', gap: '20px', minHeight: '220px' }}>
-              
-              {/* Raw speech text box */}
-              <div style={{ 
-                flex: 1, 
-                background: isLight ? '#f9fafb' : 'rgba(255,255,255,0.02)', 
-                border: isLight ? '1px solid rgba(0,0,0,0.08)' : '1px solid rgba(255,255,255,0.06)', 
-                borderRadius: '12px', 
+            {/* Dictation feed & structured note output */}
+            <div style={{ flex: 1, display: 'flex', flexWrap: 'wrap', gap: '20px', minHeight: '220px' }}>
+
+              {/* Spoken dictation box */}
+              <div style={{
+                flex: 1,
+                minWidth: '220px',
+                background: isLight ? '#f9fafb' : 'rgba(255,255,255,0.02)',
+                border: isLight ? '1px solid rgba(0,0,0,0.08)' : '1px solid rgba(255,255,255,0.06)',
+                borderRadius: '12px',
                 padding: '16px',
                 display: 'flex',
                 flexDirection: 'column'
               }}>
                 <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)', fontWeight: 600, textTransform: 'uppercase', marginBottom: '8px', display: 'block' }}>
-                  Raw Voice Input (Speech-To-Text)
+                  Spoken Dictation
                 </span>
                 <p style={{ fontSize: '0.85rem', color: transcription ? 'var(--text-primary)' : 'var(--text-muted)', lineHeight: '1.5', fontStyle: transcription ? 'normal' : 'italic' }}>
                   {transcription || "Click 'Start Dictation Demo' above to begin speaking clinical findings..."}
@@ -144,12 +145,13 @@ export default function ScribeDetail() {
                 </p>
               </div>
 
-              {/* Parsed SOAP notes box */}
-              <div style={{ 
-                flex: 1.2, 
-                background: isLight ? '#f9fafb' : 'rgba(255,255,255,0.02)', 
-                border: isLight ? '1px solid rgba(0,0,0,0.08)' : '1px solid rgba(255,255,255,0.06)', 
-                borderRadius: '12px', 
+              {/* Structured clinical note box */}
+              <div style={{
+                flex: 1.2,
+                minWidth: '220px',
+                background: isLight ? '#f9fafb' : 'rgba(255,255,255,0.02)',
+                border: isLight ? '1px solid rgba(0,0,0,0.08)' : '1px solid rgba(255,255,255,0.06)',
+                borderRadius: '12px',
                 padding: '16px',
                 display: 'flex',
                 flexDirection: 'column',
@@ -157,13 +159,13 @@ export default function ScribeDetail() {
                 position: 'relative'
               }}>
                 <span style={{ fontSize: '0.7rem', color: 'var(--accent-gold)', fontWeight: 600, textTransform: 'uppercase', marginBottom: '8px', display: 'block', position: 'absolute', top: '16px', left: '16px' }}>
-                  Structured SOAP Output (MLX Clinical Parser)
+                  Structured Clinical Note
                 </span>
 
-                {step === 'parsing' && (
+                {step === 'structuring' && (
                   <div style={{ textAlign: 'center', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
-                    <div className="spinner" style={{ border: '2px solid rgba(255,215,0,0.2)', borderTop: '2px solid var(--accent-gold)', borderRadius: '50%', width: '16px', height: '16px', display: 'inline-block', marginBottom: '8px' }} />
-                    <div>Structuring clinical categories...</div>
+                    <div className="spinner" style={{ border: isLight ? '2px solid rgba(0,0,0,0.1)' : '2px solid rgba(255,255,255,0.15)', borderTop: '2px solid var(--accent-gold)', borderRadius: '50%', width: '16px', height: '16px', display: 'inline-block', marginBottom: '8px' }} />
+                    <div>Turning speech into a structured note…</div>
                   </div>
                 )}
 
@@ -188,9 +190,9 @@ export default function ScribeDetail() {
                   </div>
                 )}
 
-                {!showSoap && step !== 'parsing' && (
+                {!showSoap && step !== 'structuring' && (
                   <div style={{ textAlign: 'center', color: 'var(--text-muted)', fontSize: '0.8rem', fontStyle: 'italic' }}>
-                    SOAP formatting will render here once dictation is complete.
+                    Your structured clinical note will appear here once dictation is complete.
                   </div>
                 )}
 
@@ -211,9 +213,9 @@ export default function ScribeDetail() {
                 <line x1="8" y1="23" x2="16" y2="23"/>
               </svg>
             </div>
-            <h3 className="module-detail__card-title">Hardware Acceleration</h3>
+            <h3 className="module-detail__card-title">Real-Time, On Device</h3>
             <p className="module-detail__card-desc">
-              Runs natively on the Unified Memory of local hardware server nodes, delivering instant processing speeds.
+              Captured on-device the moment it is spoken and turned into a structured clinical note in seconds — no waiting, no uploads.
             </p>
           </div>
 
@@ -229,7 +231,7 @@ export default function ScribeDetail() {
             </div>
             <h3 className="module-detail__card-title">Clinical Formatting</h3>
             <p className="module-detail__card-desc">
-              Scribe separates raw speech blocks into structured formats (SOAP, Handoff, Discharge) matching healthcare documentation standards, preparing fields directly for EHR insertion.
+              Every dictation is organized into the structured formats your teams already use — clinical notes, handovers, and discharge summaries — ready to drop straight into the record.
             </p>
           </div>
 
@@ -240,9 +242,9 @@ export default function ScribeDetail() {
                 <path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4Z"/>
               </svg>
             </div>
-            <h3 className="module-detail__card-title">AI Transcription Correction</h3>
+            <h3 className="module-detail__card-title">Clean, Confident Text</h3>
             <p className="module-detail__card-desc">
-              Processes the raw text transcript through a secondary correction stage, correcting spelling, formatting numbers, and removing hesitation noises.
+              Names, numbers, and dosages come out clean and correctly formatted, with the hesitations and false starts of natural speech quietly removed.
             </p>
           </div>
 
@@ -255,7 +257,7 @@ export default function ScribeDetail() {
             </div>
             <h3 className="module-detail__card-title">100% Secure & Private</h3>
             <p className="module-detail__card-desc">
-              Traditional speech-to-text systems stream raw patient audio to cloud APIs. Scribe works completely offline inside the hospital walls, preserving confidentiality.
+              Nothing ever leaves the building. Scribe works entirely offline, within your hospital's walls, so patient conversations stay confidential by design.
             </p>
           </div>
         </section>

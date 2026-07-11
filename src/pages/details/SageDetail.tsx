@@ -4,47 +4,37 @@ import MarketingHeader from '../../components/MarketingHeader'
 import Aurora from '../../components/Aurora'
 import './ModuleDetails.css'
 
-interface SampleQuery {
-  question: string
-  steps: string[]
-  citations: string[]
-  answer: string
+type ScenarioKey = 'sepsis' | 'hold'
+
+interface Scenario {
+  label: string
+  exchange: { who: string; text: string }[]
+  action: string
+  rationale: string
+  downstream: string[]
 }
 
-const SAMPLE_QUERIES: Record<string, SampleQuery> = {
-  renal: {
-    question: "Review renal adjustment dosing for Piperacillin-Tazobactam.",
-    steps: [
-      "Vectorizing query with local embedding model...",
-      "Searching local database index for clinical guidelines...",
-      "Found 3 relevant sections from Stanford Antimicrobial Guide 2025.",
-      "Assembling context and preparing clinical recommendation..."
-    ],
-    citations: ["Stanford Antimicrobial Guide 2025 (Sec 12.4)", "Sanford Guide (Renal Dosing)"],
-    answer: "For adult patients with renal impairment, adjust Piperacillin-Tazobactam dosing as follows:\n\n1. CrCl 20-40 mL/min: Reduce to 3.375g IV every 6 hours (Total: 13.5g/day).\n2. CrCl < 20 mL/min: Reduce to 2.25g IV every 6 hours (Total: 9.0g/day).\n3. Hemodialysis: 2.25g IV every 8 hours, with an additional 0.75g post-dialysis dose on dialysis days.\n\nMonitor renal function daily. Avoid concurrent use of other nephrotoxic agents unless essential."
-  },
+const SCENARIOS: Record<ScenarioKey, Scenario> = {
   sepsis: {
-    question: "Draft fluid resuscitation guidelines for pediatric sepsis.",
-    steps: [
-      "Vectorizing query with local embedding model...",
-      "Searching local guideline database...",
-      "Found 2 relevant sections from Surviving Sepsis Campaign 2024.",
-      "Generating clinical response on-premises..."
+    label: 'Sepsis escalation',
+    exchange: [
+      { who: 'Dr. Amin', text: '“BP is dropping and she’s spiking a temperature — let’s start IV antibiotics and prep her for theatre.”' },
+      { who: 'Nurse Okafor', text: '“She’s tachycardic too, 118. I’ll get access in now.”' },
     ],
-    citations: ["Surviving Sepsis Campaign Guidelines 2024", "PALS Sepsis Algorithm"],
-    answer: "For pediatric patients in septic shock:\n\n1. Administer fluid boluses of 10-20 mL/kg of isotonic crystalloid (normal saline or lactated Ringer's) over 5-10 minutes.\n2. Re-assess patient frequently (heart rate, perfusion, blood pressure) for signs of fluid overload (hepatomegaly, rales).\n3. Up to 40-60 mL/kg total may be given in the first hour if shock persists and no fluid overload signs are present.\n4. Initiate vasoactive therapy (epinephrine or norepinephrine) early if shock is fluid-refractory."
+    action: 'Start IV antibiotic · confirm dose',
+    rationale: 'Aligns with your sepsis care bundle for a suspected intra-abdominal source.',
+    downstream: ['Order sent to Helix', 'Theatre team alerted', 'Note filed to Scribe'],
   },
-  interactions: {
-    question: "Check potential drug interactions: Warfarin + Amiodarone.",
-    steps: [
-      "Vectorizing query...",
-      "Searching local vector database...",
-      "Found 4 relevant drug profiles in FDA Labeling & Lexicomp databases.",
-      "Generating report..."
+  hold: {
+    label: 'Medication hold',
+    exchange: [
+      { who: 'Dr. Reyes', text: '“Her potassium’s come back at 5.9 and she’s on ramipril — let’s hold it for now.”' },
+      { who: 'Nurse Bello', text: '“Renal function’s been drifting too. I’ll keep a close eye on her.”' },
     ],
-    citations: ["Lexicomp Drug Interactions Index", "FDA Warfarin Monograph"],
-    answer: "WARNING: High clinical significance interaction detected. Amiodarone inhibits CYP2C9, the primary metabolic pathway for S-warfarin. This leads to increased warfarin serum concentrations and increased risk of bleeding.\n\nManagement Plan:\n1. Anticipate a 30% to 50% decrease in Warfarin dose requirements when initiating Amiodarone.\n2. Monitor INR 2-3 times weekly during the first 2-3 weeks of co-administration.\n3. Educate the patient to report any unusual bruising or bleeding immediately."
-  }
+    action: 'Hold ramipril · flag for review',
+    rationale: 'Raised potassium with declining renal function matches your prescribing guidance.',
+    downstream: ['Hold placed in Helix', 'Pharmacy notified', 'Note filed to Scribe'],
+  },
 }
 
 export default function SageDetail() {
@@ -57,49 +47,52 @@ export default function SageDetail() {
     return () => window.removeEventListener('theme-changed', handleTheme)
   }, [])
 
-  const [activeKey, setActiveKey] = useState<keyof typeof SAMPLE_QUERIES>('renal')
-  const [loadingStep, setLoadingStep] = useState(0)
-  const [currentSteps, setCurrentSteps] = useState<string[]>([])
-  const [outputText, setOutputText] = useState('')
-  const [isTyping, setIsTyping] = useState(false)
+  const [scenarioKey, setScenarioKey] = useState<ScenarioKey>('sepsis')
+  const [line1, setLine1] = useState(false)
+  const [line2, setLine2] = useState(false)
+  const [phase, setPhase] = useState<'observing' | 'proposing' | 'confirmed'>('observing')
+  const [litChips, setLitChips] = useState(0)
+  const [autoConfirm, setAutoConfirm] = useState(false)
 
-  const activeQuery = SAMPLE_QUERIES[activeKey]
+  const scenario = SCENARIOS[scenarioKey]
 
+  // Orchestrate the flow whenever the scenario changes
   useEffect(() => {
-    // Reset simulation
-    setLoadingStep(0)
-    setCurrentSteps([])
-    setOutputText('')
-    setIsTyping(true)
+    setLine1(false)
+    setLine2(false)
+    setPhase('observing')
+    setLitChips(0)
+    setAutoConfirm(false)
 
-    // Simulate RAG steps
-    let stepIdx = 0
-    const stepInterval = setInterval(() => {
-      if (stepIdx < activeQuery.steps.length) {
-        setCurrentSteps(prev => [...prev, activeQuery.steps[stepIdx]])
-        setLoadingStep(stepIdx + 1)
-        stepIdx++
-      } else {
-        clearInterval(stepInterval)
-        
-        // Start streaming the answer
-        let textIdx = 0
-        const textStream = setInterval(() => {
-          if (textIdx < activeQuery.answer.length) {
-            setOutputText(prev => prev + activeQuery.answer.charAt(textIdx))
-            textIdx++
-          } else {
-            clearInterval(textStream)
-            setIsTyping(false)
-          }
-        }, 12)
-        
-        return () => clearInterval(textStream)
-      }
-    }, 800)
+    const timers: number[] = []
+    timers.push(window.setTimeout(() => setLine1(true), 450))
+    timers.push(window.setTimeout(() => setLine2(true), 1500))
+    timers.push(window.setTimeout(() => { setPhase('proposing'); setAutoConfirm(true) }, 2600))
+    // Auto-confirms after ~2.5s if the clinician has not already tapped Confirm
+    timers.push(window.setTimeout(() => setPhase(prev => (prev === 'proposing' ? 'confirmed' : prev)), 2600 + 2600))
 
-    return () => clearInterval(stepInterval)
-  }, [activeKey])
+    return () => timers.forEach(clearTimeout)
+  }, [scenarioKey])
+
+  // Light the downstream chips one by one once the step is confirmed
+  useEffect(() => {
+    if (phase !== 'confirmed') return
+    setLitChips(0)
+    const timers: number[] = []
+    timers.push(window.setTimeout(() => setLitChips(1), 450))
+    timers.push(window.setTimeout(() => setLitChips(2), 1150))
+    timers.push(window.setTimeout(() => setLitChips(3), 1850))
+    return () => timers.forEach(clearTimeout)
+  }, [phase])
+
+  const confirmNow = () => setPhase(prev => (prev === 'proposing' ? 'confirmed' : prev))
+
+  // Demo-surface raw colours (only these branch on isLight)
+  const surfaceBg = isLight ? '#fbfbfd' : '#0a0b10'
+  const borderSubtle = isLight ? 'rgba(0,0,0,0.09)' : 'rgba(255,255,255,0.08)'
+  const bubbleBg = isLight ? 'rgba(0,0,0,0.035)' : 'rgba(255,255,255,0.035)'
+  const cardBg = isLight ? '#ffffff' : 'rgba(255,255,255,0.025)'
+  const chipRestBg = isLight ? 'rgba(0,0,0,0.03)' : 'rgba(255,255,255,0.03)'
 
   return (
     <div className="module-detail">
@@ -115,200 +108,276 @@ export default function SageDetail() {
         </Link>
 
         <section className="module-detail__hero animate-slide-up">
-          <span className="module-detail__badge">Ambient Clinical Intelligence & Reference</span>
+          <span className="module-detail__badge">Ambient Clinical Copilot</span>
           <h1 className="module-detail__title">Sage</h1>
           <p className="module-detail__tagline">
-            Intelligent ambient listening that captures details from patient encounters, paired with zero-latency offline references for drug profiles, dosing guidelines, and hospital protocols.
+            Understands the clinical moment as it unfolds — then turns intent into action, with a clinician’s confirmation on every step.
           </p>
         </section>
 
         <section className="module-detail__showcase animate-slide-up stagger-1">
-          <div className="module-detail__visual-frame" style={{ minHeight: '480px', padding: '0', display: 'flex' }}>
-            
-            {/* Left sidebar: Question Selector */}
-            <div style={{ 
-              width: '32%', 
-              background: isLight ? 'rgba(0,0,0,0.02)' : 'rgba(255,255,255,0.01)', 
-              borderRight: isLight ? '1px solid rgba(0,0,0,0.08)' : '1px solid rgba(255,255,255,0.06)', 
-              padding: '20px', 
-              display: 'flex', 
-              flexDirection: 'column', 
-              gap: '12px'
+          <div className="module-detail__visual-frame" style={{ padding: 0, alignItems: 'stretch', justifyContent: 'flex-start' }}>
+            <div style={{
+              flex: 1,
+              background: surfaceBg,
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '18px',
+              padding: 'clamp(20px, 3vw, 30px)',
+              overflowY: 'auto',
+              minWidth: 0,
             }}>
-              <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: 600, letterSpacing: '0.05em' }}>
-                Select Sample Query
-              </span>
-              <button 
-                onClick={() => setActiveKey('renal')} 
-                style={{ 
-                  textAlign: 'left', 
-                  padding: '12px', 
-                  borderRadius: '10px', 
-                  fontSize: '0.8rem',
-                  border: '1px solid',
-                  borderColor: activeKey === 'renal' ? 'var(--accent-gold)' : (isLight ? 'rgba(0,0,0,0.06)' : 'rgba(255,255,255,0.04)'),
-                  background: activeKey === 'renal' ? (isLight ? 'rgba(122, 165, 199, 0.08)' : 'rgba(255,215,0,0.04)') : 'transparent',
-                  color: activeKey === 'renal' ? 'var(--accent-gold)' : 'var(--text-secondary)',
-                  transition: 'all 0.2s ease',
-                  boxShadow: isLight && activeKey !== 'renal' ? '0 1px 3px rgba(0,0,0,0.02)' : 'none'
-                }}
-              >
-                1. Piperacillin Dosing
-              </button>
-              <button 
-                onClick={() => setActiveKey('sepsis')} 
-                style={{ 
-                  textAlign: 'left', 
-                  padding: '12px', 
-                  borderRadius: '10px', 
-                  fontSize: '0.8rem',
-                  border: '1px solid',
-                  borderColor: activeKey === 'sepsis' ? 'var(--accent-gold)' : (isLight ? 'rgba(0,0,0,0.06)' : 'rgba(255,255,255,0.04)'),
-                  background: activeKey === 'sepsis' ? (isLight ? 'rgba(122, 165, 199, 0.08)' : 'rgba(255,215,0,0.04)') : 'transparent',
-                  color: activeKey === 'sepsis' ? 'var(--accent-gold)' : 'var(--text-secondary)',
-                  transition: 'all 0.2s ease',
-                  boxShadow: isLight && activeKey !== 'sepsis' ? '0 1px 3px rgba(0,0,0,0.02)' : 'none'
-                }}
-              >
-                2. Pediatric Sepsis
-              </button>
-              <button 
-                onClick={() => setActiveKey('interactions')} 
-                style={{ 
-                  textAlign: 'left', 
-                  padding: '12px', 
-                  borderRadius: '10px', 
-                  fontSize: '0.8rem',
-                  border: '1px solid',
-                  borderColor: activeKey === 'interactions' ? 'var(--accent-gold)' : (isLight ? 'rgba(0,0,0,0.06)' : 'rgba(255,255,255,0.04)'),
-                  background: activeKey === 'interactions' ? (isLight ? 'rgba(122, 165, 199, 0.08)' : 'rgba(255,215,0,0.04)') : 'transparent',
-                  color: activeKey === 'interactions' ? 'var(--accent-gold)' : 'var(--text-secondary)',
-                  transition: 'all 0.2s ease',
-                  boxShadow: isLight && activeKey !== 'interactions' ? '0 1px 3px rgba(0,0,0,0.02)' : 'none'
-                }}
-              >
-                3. Drug Interactions
-              </button>
-            </div>
 
-            {/* Right side: RAG Pipeline Visualization */}
-            <div style={{ flex: 1, padding: '24px', display: 'flex', flexDirection: 'column', overflowY: 'auto', background: isLight ? '#ffffff' : '#07080b' }}>
-              
-              {/* Question */}
-              <div style={{ display: 'flex', gap: '10px', marginBottom: '16px' }}>
-                <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--text-muted)' }}>Q:</span>
-                <span style={{ fontSize: '0.9rem', color: 'var(--text-primary)', fontWeight: 500 }}>{activeQuery.question}</span>
+              {/* Surface header: ambient indicator + scenario selector */}
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '9px' }}>
+                  <span className="sage-live" style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--accent-gold)', display: 'inline-block' }} />
+                  <span style={{ fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--text-muted)' }}>
+                    Ambient · listening on the ward
+                  </span>
+                </div>
+                <div style={{ display: 'inline-flex', gap: '4px', padding: '4px', borderRadius: 'var(--radius-full)', background: chipRestBg, border: `1px solid ${borderSubtle}` }}>
+                  {(Object.keys(SCENARIOS) as ScenarioKey[]).map(key => (
+                    <button
+                      key={key}
+                      onClick={() => setScenarioKey(key)}
+                      style={{
+                        padding: '6px 14px',
+                        borderRadius: 'var(--radius-full)',
+                        fontSize: '0.72rem',
+                        fontWeight: 600,
+                        border: 'none',
+                        cursor: 'pointer',
+                        transition: 'all var(--transition-fast)',
+                        background: scenarioKey === key ? 'var(--accent-gold)' : 'transparent',
+                        color: scenarioKey === key ? 'var(--btn-primary-text)' : 'var(--text-muted)',
+                      }}
+                    >
+                      {SCENARIOS[key].label}
+                    </button>
+                  ))}
+                </div>
               </div>
 
-              {/* Pipeline Step Loggers */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginBottom: '20px', borderBottom: isLight ? '1px solid rgba(0,0,0,0.08)' : '1px solid rgba(255,255,255,0.04)', paddingBottom: '16px' }}>
-                {currentSteps.map((step, idx) => (
-                  <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.75rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
-                    <span style={{ color: 'var(--status-ok)' }}>✓</span>
-                    <span>{step}</span>
+              {/* Observed ward exchange */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                {line1 && (
+                  <div className="sage-rise" style={{ display: 'flex', flexDirection: 'column', gap: '3px', maxWidth: '92%' }}>
+                    <span style={{ fontSize: '0.68rem', fontWeight: 700, color: 'var(--text-muted)', letterSpacing: '0.02em' }}>{scenario.exchange[0].who}</span>
+                    <p style={{ fontSize: '0.9rem', lineHeight: 1.45, color: 'var(--text-primary)', background: bubbleBg, border: `1px solid ${borderSubtle}`, borderRadius: '4px 14px 14px 14px', padding: '10px 14px' }}>
+                      {scenario.exchange[0].text}
+                    </p>
                   </div>
-                ))}
-                {loadingStep < activeQuery.steps.length && (
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.75rem', color: 'var(--accent-gold)', fontFamily: 'var(--font-mono)' }}>
-                    <span className="spinner" style={{ border: '2px solid rgba(255,215,0,0.2)', borderTop: '2px solid var(--accent-gold)', borderRadius: '50%', width: '10px', height: '10px', display: 'inline-block' }} />
-                    <span>Processing pipeline...</span>
+                )}
+                {line2 && (
+                  <div className="sage-rise" style={{ display: 'flex', flexDirection: 'column', gap: '3px', maxWidth: '92%' }}>
+                    <span style={{ fontSize: '0.68rem', fontWeight: 700, color: 'var(--text-muted)', letterSpacing: '0.02em' }}>{scenario.exchange[1].who}</span>
+                    <p style={{ fontSize: '0.9rem', lineHeight: 1.45, color: 'var(--text-secondary)', background: bubbleBg, border: `1px solid ${borderSubtle}`, borderRadius: '4px 14px 14px 14px', padding: '10px 14px' }}>
+                      {scenario.exchange[1].text}
+                    </p>
+                  </div>
+                )}
+                {!line2 && line1 && (
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '5px', padding: '2px 4px' }}>
+                    <span className="sage-typing-dot" style={{ animationDelay: '0s' }} />
+                    <span className="sage-typing-dot" style={{ animationDelay: '0.15s' }} />
+                    <span className="sage-typing-dot" style={{ animationDelay: '0.3s' }} />
                   </div>
                 )}
               </div>
 
-              {/* RAG Answer Output */}
-              <div style={{ flex: 1, position: 'relative' }}>
-                {outputText ? (
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                    <div style={{ fontSize: '0.85rem', color: 'var(--text-primary)', whiteSpace: 'pre-line', lineHeight: '1.5', fontFamily: 'var(--font-mono)' }}>
-                      {outputText}
-                      {isTyping && <span className="cursor" style={{ background: 'var(--accent-gold)' }}>&nbsp;</span>}
+              {/* Sage action card */}
+              {phase !== 'observing' && (
+                <div
+                  className="sage-rise"
+                  style={{
+                    marginTop: 'auto',
+                    background: cardBg,
+                    border: '1px solid',
+                    borderColor: phase === 'confirmed' ? 'var(--status-ok)' : 'var(--accent-gold)',
+                    borderRadius: 'var(--radius-lg)',
+                    padding: '18px',
+                    boxShadow: isLight ? '0 6px 24px rgba(31,38,135,0.06)' : '0 8px 30px rgba(0,0,0,0.4)',
+                    transition: 'border-color var(--transition-base)',
+                  }}
+                >
+                  {/* Card header row */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '10px', marginBottom: '10px', flexWrap: 'wrap' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={phase === 'confirmed' ? 'var(--status-ok)' : 'var(--accent-gold)'} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                        <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+                      </svg>
+                      <span style={{ fontSize: '0.66rem', fontWeight: 700, letterSpacing: '0.09em', textTransform: 'uppercase', color: phase === 'confirmed' ? 'var(--status-ok)' : 'var(--accent-gold)' }}>
+                        Sage · proposed action
+                      </span>
                     </div>
-
-                    {/* Citations badges */}
-                    {!isTyping && (
-                      <div style={{ marginTop: '16px', display: 'flex', flexWrap: 'wrap', gap: '8px', alignItems: 'center' }}>
-                        <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: 600 }}>Citations:</span>
-                        {activeQuery.citations.map((c, i) => (
-                          <span key={i} style={{ 
-                            fontSize: '0.65rem', 
-                            background: isLight ? '#f3f4f6' : 'rgba(255,255,255,0.04)', 
-                            border: isLight ? '1px solid rgba(0,0,0,0.08)' : '1px solid rgba(255,255,255,0.08)',
-                            color: 'var(--accent-gold)',
-                            borderRadius: '4px',
-                            padding: '2px 8px'
-                          }}>
-                            {c}
-                          </span>
-                        ))}
-                      </div>
-                    )}
+                    <span style={{
+                      display: 'inline-flex', alignItems: 'center', gap: '6px',
+                      fontSize: '0.68rem', fontWeight: 700,
+                      padding: '3px 10px', borderRadius: 'var(--radius-full)',
+                      color: phase === 'confirmed' ? 'var(--status-ok)' : 'var(--accent-gold)',
+                      background: phase === 'confirmed'
+                        ? (isLight ? 'rgba(5,150,105,0.1)' : 'rgba(0,230,118,0.12)')
+                        : (isLight ? 'rgba(122,165,199,0.12)' : 'rgba(255,215,0,0.1)'),
+                    }}>
+                      {phase === 'confirmed' && (
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M20 6L9 17l-5-5"/>
+                        </svg>
+                      )}
+                      {phase === 'confirmed' ? 'Confirmed' : 'Awaiting confirmation'}
+                    </span>
                   </div>
-                ) : (
-                  loadingStep === activeQuery.steps.length && (
-                    <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontStyle: 'italic' }}>Initializing local model stream...</span>
-                  )
-                )}
-              </div>
 
+                  {/* Action title + rationale */}
+                  <h4 style={{ fontSize: '1.02rem', fontWeight: 700, color: 'var(--text-primary)', letterSpacing: '-0.01em', marginBottom: '5px' }}>
+                    {scenario.action}
+                  </h4>
+                  <p style={{ fontSize: '0.85rem', lineHeight: 1.45, color: 'var(--text-secondary)', marginBottom: '12px' }}>
+                    {scenario.rationale}
+                  </p>
+
+                  {/* Grounded chip */}
+                  <div style={{
+                    display: 'inline-flex', alignItems: 'center', gap: '6px',
+                    fontSize: '0.7rem', fontWeight: 600, color: 'var(--text-secondary)',
+                    padding: '4px 10px', borderRadius: 'var(--radius-full)',
+                    background: chipRestBg, border: `1px solid ${borderSubtle}`,
+                  }}>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--accent-gold)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                    Grounded in your approved references
+                  </div>
+
+                  {/* Confirm control (proposing) or downstream chips (confirmed) */}
+                  {phase === 'proposing' && (
+                    <div style={{ marginTop: '16px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                      <button
+                        onClick={confirmNow}
+                        style={{
+                          alignSelf: 'flex-start',
+                          display: 'inline-flex', alignItems: 'center', gap: '8px',
+                          padding: '9px 20px', borderRadius: 'var(--radius-full)',
+                          fontSize: '0.85rem', fontWeight: 700, cursor: 'pointer',
+                          border: 'none', background: 'var(--accent-gold)', color: 'var(--btn-primary-text)',
+                          boxShadow: 'var(--shadow-glow)', transition: 'transform var(--transition-fast)',
+                        }}
+                      >
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M20 6L9 17l-5-5"/>
+                        </svg>
+                        Confirm
+                      </button>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                        <div style={{ position: 'relative', flex: 1, maxWidth: '180px', height: '3px', borderRadius: 'var(--radius-full)', background: borderSubtle, overflow: 'hidden' }}>
+                          {autoConfirm && <div className="sage-autobar" style={{ position: 'absolute', inset: 0, background: 'var(--accent-gold)', transformOrigin: 'left' }} />}
+                        </div>
+                        <span style={{ fontSize: '0.68rem', color: 'var(--text-muted)' }}>Auto-confirms in a moment</span>
+                      </div>
+                    </div>
+                  )}
+
+                  {phase === 'confirmed' && (
+                    <div style={{ marginTop: '16px', display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                      {scenario.downstream.map((label, i) => {
+                        const lit = i < litChips
+                        return (
+                          <span
+                            key={label}
+                            style={{
+                              display: 'inline-flex', alignItems: 'center', gap: '6px',
+                              fontSize: '0.74rem', fontWeight: 600,
+                              padding: '6px 12px', borderRadius: 'var(--radius-full)',
+                              border: '1px solid',
+                              borderColor: lit ? 'var(--status-ok)' : borderSubtle,
+                              color: lit ? 'var(--status-ok)' : 'var(--text-muted)',
+                              background: lit ? (isLight ? 'rgba(5,150,105,0.08)' : 'rgba(0,230,118,0.08)') : chipRestBg,
+                              opacity: lit ? 1 : 0.55,
+                              transform: lit ? 'translateY(0)' : 'translateY(3px)',
+                              transition: 'all 0.35s ease',
+                            }}
+                          >
+                            {lit ? (
+                              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M20 6L9 17l-5-5"/>
+                              </svg>
+                            ) : (
+                              <span className="sage-mini-spin" style={{ width: '11px', height: '11px', borderRadius: '50%', border: '2px solid rgba(150,150,150,0.25)', borderTopColor: 'var(--text-muted)', display: 'inline-block' }} />
+                            )}
+                            {label}
+                          </span>
+                        )
+                      })}
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
-
           </div>
+
+          {/* Persistent reassurance line under the demo */}
+          <p style={{ textAlign: 'center', marginTop: '20px', fontSize: '0.85rem', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--status-ok)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+            Nothing happens without a clinician’s confirmation.
+          </p>
         </section>
 
         <section className="module-detail__grid">
           <div className="module-detail__card">
             <div className="module-detail__card-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <circle cx="11" cy="11" r="8"/>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="1.5"/>
+                <path d="M7.76 16.24a6 6 0 0 1 0-8.48M16.24 7.76a6 6 0 0 1 0 8.48"/>
+                <path d="M4.93 19.07a10 10 0 0 1 0-14.14M19.07 4.93a10 10 0 0 1 0 14.14"/>
               </svg>
             </div>
-            <h3 className="module-detail__card-title">Local RAG Indexing</h3>
+            <h3 className="module-detail__card-title">Ambient Understanding</h3>
             <p className="module-detail__card-desc">
-              Leverages high-speed vector lookup databases to run local vector queries across hospital operating protocols and clinical guidelines, finding matching medical entries in sub-millisecond lookups.
+              Follows the clinical conversation on the ward and recognises what needs to happen next.
             </p>
           </div>
 
           <div className="module-detail__card">
             <div className="module-detail__card-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-6z"/>
+              </svg>
+            </div>
+            <h3 className="module-detail__card-title">Action, Not Just Advice</h3>
+            <p className="module-detail__card-desc">
+              Prepares the order, the alert, or the note — and routes it to the right place the moment it is confirmed.
+            </p>
+          </div>
+
+          <div className="module-detail__card">
+            <div className="module-detail__card-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                <path d="M9 12l2 2 4-4"/>
               </svg>
             </div>
-            <h3 className="module-detail__card-title">Clinical Model Inference</h3>
+            <h3 className="module-detail__card-title">Clinician in Command</h3>
             <p className="module-detail__card-desc">
-              Powered by advanced clinical language models running directly on local hospital hardware. Optimized for medical questions, drug profiles, and safety guidelines.
+              Every proposed step waits for a clinician’s confirmation. Nothing is automated behind your back.
             </p>
           </div>
 
           <div className="module-detail__card">
             <div className="module-detail__card-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                <polyline points="14 2 14 8 20 8"/>
-                <line x1="16" y1="13" x2="8" y2="13"/>
-                <line x1="16" y1="17" x2="8" y2="17"/>
-                <polyline points="10 9 9 9 8 9"/>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M3 21h18"/>
+                <path d="M6 21V7l6-4 6 4v14"/>
+                <path d="M10 21v-6h4v6"/>
               </svg>
             </div>
-            <h3 className="module-detail__card-title">Grounded Advice</h3>
+            <h3 className="module-detail__card-title">Grounded &amp; Local</h3>
             <p className="module-detail__card-desc">
-              Enforces strict guidelines. Sage extracts relevant clinical document texts first and grounds its outputs in verified, accessible manuals, avoiding AI fabrication.
-            </p>
-          </div>
-
-          <div className="module-detail__card">
-            <div className="module-detail__card-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
-                <line x1="8" y1="21" x2="16" y2="21"/>
-                <line x1="12" y1="17" x2="12" y2="21"/>
-              </svg>
-            </div>
-            <h3 className="module-detail__card-title">Offline Execution</h3>
-            <p className="module-detail__card-desc">
-              Requires no internet connection. Sage processes all tokens internally on hospital hardware, ensuring complete clinical capability even in the event of external network outages.
+              Draws only on your hospital’s approved references, and runs entirely on-site.
             </p>
           </div>
         </section>
@@ -316,7 +385,7 @@ export default function SageDetail() {
         <section className="module-detail__cta-section">
           <h2 className="module-detail__cta-title">Sage</h2>
           <p className="module-detail__cta-desc">
-            Local clinical intelligence. Providing verified medical guidance, offline and securely.
+            From conversation to care, in one confirmed step.
           </p>
           <div className="module-detail__buttons">
             <Link to="/" className="module-detail__btn-primary">
@@ -327,22 +396,33 @@ export default function SageDetail() {
       </main>
 
       <style>{`
-        @keyframes rotate-spinner {
-          to { transform: rotate(360deg); }
+        @keyframes sage-pulse-live {
+          0%, 100% { opacity: 0.35; transform: scale(1); }
+          50% { opacity: 1; transform: scale(1.2); }
         }
-        .spinner {
-          animation: rotate-spinner 0.8s linear infinite;
+        .sage-live { animation: sage-pulse-live 1.6s ease-in-out infinite; }
+
+        @keyframes sage-rise-in {
+          from { opacity: 0; transform: translateY(10px); }
+          to { opacity: 1; transform: translateY(0); }
         }
-        @keyframes blink-cursor {
-          0%, 100% { opacity: 0; }
-          50% { opacity: 1; }
+        .sage-rise { animation: sage-rise-in 0.45s cubic-bezier(0.22, 1, 0.36, 1); }
+
+        @keyframes sage-typing {
+          0%, 60%, 100% { opacity: 0.25; transform: translateY(0); }
+          30% { opacity: 1; transform: translateY(-3px); }
         }
-        .cursor {
-          animation: blink-cursor 1s infinite;
-          display: inline-block;
-          width: 8px;
-          height: 15px;
+        .sage-typing-dot {
+          width: 6px; height: 6px; border-radius: 50%;
+          background: var(--text-muted); display: inline-block;
+          animation: sage-typing 1.1s ease-in-out infinite;
         }
+
+        @keyframes sage-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+        .sage-autobar { animation: sage-fill 2.5s linear forwards; }
+
+        @keyframes sage-spin { to { transform: rotate(360deg); } }
+        .sage-mini-spin { animation: sage-spin 0.8s linear infinite; }
       `}</style>
     </div>
   )

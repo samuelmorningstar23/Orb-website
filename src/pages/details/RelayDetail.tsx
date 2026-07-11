@@ -6,7 +6,7 @@ import './ModuleDetails.css'
 
 interface Message {
   sender: string
-  role: 'doctor' | 'nurse' | 'system'
+  role: 'doctor' | 'nurse' | 'pharmacist' | 'system'
   time: string
   content: string
 }
@@ -58,7 +58,7 @@ export default function RelayDetail() {
       activePatient: 'Multi-Patient',
       messages: [
         { sender: 'Dr. Sarah Jenkins', role: 'doctor', time: '09:05 AM', content: 'Requested approval for Piperacillin order. Let me know if you need CrCl calculations.' },
-        { sender: 'Pharmacist Dave Ross', role: 'pharmacist' as any, time: '09:12 AM', content: 'Got it. Verification approved and stock dispatched.' }
+        { sender: 'Pharmacist Dave Ross', role: 'pharmacist', time: '09:12 AM', content: 'Got it. Verification approved and stock dispatched.' }
       ]
     }
   ])
@@ -68,6 +68,17 @@ export default function RelayDetail() {
   const [customText, setCustomText] = useState('')
 
   const activeChannel = channels.find(c => c.id === activeChannelId) || channels[0]
+
+  // Distinct avatar tint per clinical role (doctor / nurse / pharmacist)
+  const avatarTint = (role: Message['role']) => {
+    if (role === 'doctor') {
+      return { bg: isLight ? 'rgba(122, 165, 199, 0.1)' : 'rgba(41, 151, 255, 0.15)', accent: 'var(--accent-gold)' }
+    }
+    if (role === 'pharmacist') {
+      return { bg: isLight ? 'rgba(139, 92, 246, 0.1)' : 'rgba(167, 139, 250, 0.15)', accent: isLight ? '#7C3AED' : '#A78BFA' }
+    }
+    return { bg: isLight ? 'rgba(5, 150, 105, 0.1)' : 'rgba(0, 230, 118, 0.15)', accent: 'var(--status-ok)' }
+  }
 
   const triggerMockAlert = () => {
     if (isSimulatingAlert) return
@@ -167,12 +178,12 @@ export default function RelayDetail() {
           <span className="module-detail__badge">Clinician Collaboration</span>
           <h1 className="module-detail__title">Relay</h1>
           <p className="module-detail__tagline">
-            Secure clinical messaging built for medical squads. Instantly channels hospital telemetry warnings, streamlines case reviews, and archives clinical agreements.
+            Secure clinical messaging built for medical squads. Instantly channels hospital telemetry warnings, streamlines case reviews, and archives clinical agreements — where Orb notices what matters, and offers to act.
           </p>
         </section>
 
         <section className="module-detail__showcase animate-slide-up stagger-1">
-          <div className="module-detail__visual-frame" style={{ minHeight: '480px', padding: '0', display: 'flex' }}>
+          <div className="module-detail__visual-frame" style={{ minHeight: '480px', padding: '0', display: 'flex', alignItems: 'stretch' }}>
             
             {/* Left sidebar: Active Case Rooms */}
             <div style={{ 
@@ -294,15 +305,15 @@ export default function RelayDetail() {
                       ) : (
                         <div style={{ display: 'flex', gap: '8px', alignItems: 'flex-start', maxWidth: '85%' }}>
                           {/* Mock Avatar */}
-                          <div style={{ 
-                            width: '28px', 
-                            height: '28px', 
-                            borderRadius: '50%', 
-                            background: m.role === 'doctor' ? (isLight ? 'rgba(122, 165, 199, 0.1)' : 'rgba(41, 151, 255, 0.15)') : (isLight ? 'rgba(5, 150, 105, 0.1)' : 'rgba(0, 230, 118, 0.15)'), 
+                          <div style={{
+                            width: '28px',
+                            height: '28px',
+                            borderRadius: '50%',
+                            background: avatarTint(m.role).bg,
                             border: '1px solid',
-                            borderColor: m.role === 'doctor' ? 'var(--accent-gold)' : 'var(--status-ok)', 
-                            color: m.role === 'doctor' ? 'var(--accent-gold)' : 'var(--status-ok)', 
-                            display: 'flex', 
+                            borderColor: avatarTint(m.role).accent,
+                            color: avatarTint(m.role).accent,
+                            display: 'flex',
                             alignItems: 'center', 
                             justifyContent: 'center',
                             fontSize: '0.7rem',
@@ -396,7 +407,7 @@ export default function RelayDetail() {
             </div>
             <h3 className="module-detail__card-title">Local Data Sovereignty</h3>
             <p className="module-detail__card-desc">
-              All messages remain stored exclusively in the localized hospital SQL database. No cloud messaging queues or external relays are ever utilized.
+              Every message stays within your walls, kept on hardware inside your hospital. Nothing is ever routed through the cloud or handed to an outside relay.
             </p>
           </div>
 
@@ -425,7 +436,7 @@ export default function RelayDetail() {
             </div>
             <h3 className="module-detail__card-title">Audit Logging</h3>
             <p className="module-detail__card-desc">
-              Clinical changes and instructions discussed inside rooms are parsed, validated, and logged to provide a strict, unalterable timeline of critical patient actions.
+              Clinical changes and instructions discussed inside rooms are captured, clinician-confirmed, and logged into a strict, unalterable timeline of critical patient actions.
             </p>
           </div>
 

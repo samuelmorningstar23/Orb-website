@@ -6,8 +6,8 @@ import './ModuleDetails.css'
 
 export default function VigilDetail() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const [mewsScore, setMewsScore] = useState(2)
-  const [triageText, setTriageText] = useState('Patient stable. Baseline vitals within normal parameters. Continue standard ward monitoring protocols.')
+  const [warningScore, setWarningScore] = useState(2)
+  const [triageText, setTriageText] = useState('Patient stable. Baseline vitals within normal limits. Continue standard ward monitoring protocols.')
   const [isAlert, setIsAlert] = useState(false)
   const [isLight, setIsLight] = useState(document.documentElement.getAttribute('data-theme') === 'light')
 
@@ -22,11 +22,11 @@ export default function VigilDetail() {
   // Trigger simulated deterioration alert after 4 seconds, clear on unmount
   useEffect(() => {
     const timer = setTimeout(() => {
-      setMewsScore(7)
+      setWarningScore(7)
       setIsAlert(true)
-      
+
       // Stream clinical triage advice
-      let fullText = 'WARNING: Sepsis trajectory suspected. Heart rate increased from 74 to 108 bpm over 2h; temperature elevated to 39.0°C. Recommendation: 1) Initiate sepsis bundle protocol (Sepsis Six), 2) Obtain blood cultures, 3) Notify ICU outreach team, 4) Secure IV access and begin fluid resuscitation.'
+      let fullText = 'WARNING: Sepsis trajectory suspected. Heart rate increased from 74 to 108 bpm over 2h; temperature elevated to 39.0°C. Recommendation: 1) Initiate sepsis care bundle, 2) Obtain blood cultures, 3) Notify ICU outreach team, 4) Secure IV access and begin fluid resuscitation.'
       let currentIdx = 0
       setTriageText('')
       
@@ -204,10 +204,10 @@ export default function VigilDetail() {
               </div>
             </div>
 
-            {/* MEWS Alert Panel & AI Recommendations */}
+            {/* Early Warning Panel & Advisory */}
             <div style={{ display: 'flex', gap: '20px', marginTop: '20px', flexWrap: 'wrap' }}>
-              
-              {/* MEWS Indicator */}
+
+              {/* Early Warning Indicator */}
               <div style={{ 
                 flex: '1', 
                 minWidth: '200px', 
@@ -221,10 +221,10 @@ export default function VigilDetail() {
                 justifyContent: 'center',
                 boxShadow: isLight ? '0 2px 8px rgba(0,0,0,0.02)' : 'none'
               }}>
-                <span style={{ fontSize: '0.7rem', textTransform: 'uppercase', color: 'var(--text-muted)', fontWeight: 600, marginBottom: '4px' }}>NEWS2 Risk Score</span>
+                <span style={{ fontSize: '0.7rem', textTransform: 'uppercase', color: 'var(--text-muted)', fontWeight: 600, marginBottom: '4px' }}>Early Warning Score</span>
                 <div style={{ display: 'flex', alignItems: 'baseline', gap: '12px' }}>
                   <span style={{ fontSize: '2.5rem', fontWeight: 800, color: isAlert ? 'var(--status-danger)' : 'var(--text-primary)', transition: 'color 0.5s' }}>
-                    {mewsScore}
+                    {warningScore}
                   </span>
                   <span style={{ 
                     fontSize: '0.75rem', 
@@ -251,7 +251,7 @@ export default function VigilDetail() {
                 boxShadow: isLight ? '0 2px 8px rgba(0,0,0,0.02)' : 'none'
               }}>
                 <span style={{ fontSize: '0.7rem', textTransform: 'uppercase', color: 'var(--accent-gold)', fontWeight: 600, display: 'block', marginBottom: '8px', letterSpacing: '0.05em' }}>
-                  Sage-Vigil Agent Triage Assessment
+                  Sage · Triage Assessment
                 </span>
                 <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: '1.45', fontFamily: 'var(--font-mono)' }}>
                   {triageText}
@@ -271,9 +271,9 @@ export default function VigilDetail() {
                 <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
               </svg>
             </div>
-            <h3 className="module-detail__card-title">Real-Time Engine</h3>
+            <h3 className="module-detail__card-title">Real-Time Awareness</h3>
             <p className="module-detail__card-desc">
-              Harnesses localized real-time data streaming pipelines. Connects directly to clinical monitors to process vital telemetry without latency.
+              Maintains a live, on-device connection to bedside monitors, reflecting every change in a patient's vital signs the instant it happens — with no delay and nothing leaving your walls.
             </p>
           </div>
 
@@ -285,7 +285,7 @@ export default function VigilDetail() {
             </div>
             <h3 className="module-detail__card-title">Risk Scoring</h3>
             <p className="module-detail__card-desc">
-              Runs automated clinical tracking systems that evaluate patient physiological trends. Instantly isolates and flags shifts from stable stats to high-risk alerts.
+              Continuously reads each patient's physiological trend and translates it into a clear early-warning score, surfacing the shift from stable to high-risk the moment it begins.
             </p>
           </div>
 
@@ -297,7 +297,7 @@ export default function VigilDetail() {
             </div>
             <h3 className="module-detail__card-title">Clinical Triage Synthesis</h3>
             <p className="module-detail__card-desc">
-              Leverages local clinical language models to combine physiological data with historical trends, automatically outputting human-readable assessment summaries and recommendations.
+              Draws on on-device clinical intelligence to weigh physiological data against a patient's own trend, producing clear, human-readable assessments and next-step recommendations.
             </p>
           </div>
 

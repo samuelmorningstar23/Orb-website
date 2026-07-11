@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
 import Aurora from '../components/Aurora'
 import MarketingHeader from '../components/MarketingHeader'
+import AgenticShowcase from '../components/AgenticShowcase'
+import SafetySuite from '../components/SafetySuite'
 import './Landing.css'
 
 export default function Landing() {
@@ -10,7 +12,7 @@ export default function Landing() {
       <MarketingHeader />
 
       <main className="landing-overview__content">
-        
+
         {/* Apple-Style Hero Section */}
         <section className="landing-overview__hero animate-slide-up">
           <div className="landing-overview__hero-headers">
@@ -25,7 +27,7 @@ export default function Landing() {
               <a href="#modules" className="landing-overview__btn-primary">
                 Explore Modules
               </a>
-              <button 
+              <button
                 className="landing-overview__btn-secondary-action"
                 onClick={() => window.dispatchEvent(new CustomEvent('open-demo-modal'))}
               >
@@ -52,6 +54,9 @@ export default function Landing() {
           </div>
         </section>
 
+        {/* Agentic Execution — the v2 headline */}
+        <AgenticShowcase />
+
         {/* Bento Grid Modules Section */}
         <section id="modules" className="landing-overview__bento-section animate-slide-up stagger-2">
           <div className="landing-overview__section-header">
@@ -62,7 +67,7 @@ export default function Landing() {
           </div>
 
           <div className="landing-overview__bento-grid">
-            
+
             {/* Vigil Card (Large) */}
             <div className="landing-overview__bento-card bento-card--large">
               <div className="bento-card__content">
@@ -80,13 +85,13 @@ export default function Landing() {
               </div>
             </div>
 
-            {/* Sage Card (Medium) */}
+            {/* Sage Card — Ambient Clinical Copilot */}
             <div className="landing-overview__bento-card">
               <div className="bento-card__content">
-                <span className="bento-card__badge">Ambient Intelligence & Reference</span>
+                <span className="bento-card__badge">Ambient Clinical Copilot</span>
                 <h3 className="bento-card__title">Sage</h3>
                 <p className="bento-card__desc">
-                  A real-time ambient assistant that listens to bedside consultations, extracts care plans, and provides zero-latency offline reference for drug profiles, dosing guidelines, and hospital protocols.
+                  Understands the clinical conversation on the ward and turns it into action — drafting orders, alerting teams, and filing notes, always confirmed by a clinician.
                 </p>
                 <Link to="/sage" className="bento-card__link">
                   Explore Sage &nbsp;&gt;
@@ -94,13 +99,13 @@ export default function Landing() {
               </div>
             </div>
 
-            {/* Scribe Card (Medium) */}
+            {/* Scribe Card */}
             <div className="landing-overview__bento-card">
               <div className="bento-card__content">
                 <span className="bento-card__badge">Voice Notes</span>
                 <h3 className="bento-card__title">Scribe</h3>
                 <p className="bento-card__desc">
-                  Transcribe notes hands-free and instantly turn patient conversations into structured SOAP summaries.
+                  Transcribe notes hands-free and instantly turn patient conversations into structured clinical summaries.
                 </p>
                 <Link to="/scribe" className="bento-card__link">
                   Explore Scribe &nbsp;&gt;
@@ -108,7 +113,7 @@ export default function Landing() {
               </div>
             </div>
 
-            {/* Lens Card (Medium) */}
+            {/* Lens Card */}
             <div className="landing-overview__bento-card">
               <div className="bento-card__content">
                 <span className="bento-card__badge">On-site Diagnostics</span>
@@ -122,7 +127,7 @@ export default function Landing() {
               </div>
             </div>
 
-            {/* Relay Card (Medium) */}
+            {/* Relay Card */}
             <div className="landing-overview__bento-card">
               <div className="bento-card__content">
                 <span className="bento-card__badge">Clinician Chat Rooms</span>
@@ -136,7 +141,7 @@ export default function Landing() {
               </div>
             </div>
 
-            {/* Helix Card (Medium) */}
+            {/* Helix Card */}
             <div className="landing-overview__bento-card">
               <div className="bento-card__content">
                 <span className="bento-card__badge">Medication Operations</span>
@@ -150,7 +155,7 @@ export default function Landing() {
               </div>
             </div>
 
-            {/* Surgical Suite Card (Medium) */}
+            {/* Surgical Suite Card */}
             <div className="landing-overview__bento-card">
               <div className="bento-card__content">
                 <span className="bento-card__badge">Operating Room Coordinator</span>
@@ -164,18 +169,35 @@ export default function Landing() {
               </div>
             </div>
 
-            {/* Forecast Card (Medium) */}
+            {/* Pulse Card */}
+            <div className="landing-overview__bento-card">
+              <div className="bento-card__content">
+                <span className="bento-card__badge">Environmental & Population Signals</span>
+                <h3 className="bento-card__title">Pulse</h3>
+                <p className="bento-card__desc">
+                  Watches local air quality, weather, and community illness activity — and flags which patients on your wards will feel it first.
+                </p>
+                <Link to="/pulse" className="bento-card__link">
+                  Explore Pulse &nbsp;&gt;
+                </Link>
+              </div>
+            </div>
+
+            {/* Forecast Card */}
             <div className="landing-overview__bento-card">
               <div className="bento-card__content">
                 <span className="bento-card__badge">Discharge & Bed Planning</span>
                 <h3 className="bento-card__title">Forecast</h3>
                 <p className="bento-card__desc">
-                  Analyzes patient charts to help doctors estimate length-of-stay and manage bed planning.
+                  Anticipates length-of-stay and discharge readiness, giving teams a clear bed-availability picture for the days ahead.
                 </p>
+                <Link to="/forecast" className="bento-card__link">
+                  Explore Forecast &nbsp;&gt;
+                </Link>
               </div>
             </div>
 
-            {/* Bridge Card (Medium) */}
+            {/* Bridge Card */}
             <div className="landing-overview__bento-card">
               <div className="bento-card__content">
                 <span className="bento-card__badge">Patient Summary Portal</span>
@@ -183,11 +205,31 @@ export default function Landing() {
                 <p className="bento-card__desc">
                   Clear translation tools that explain complex clinical charts, timelines, and discharge plans in clear, comforting language for patients.
                 </p>
+                <Link to="/bridge" className="bento-card__link">
+                  Explore Bridge &nbsp;&gt;
+                </Link>
+              </div>
+            </div>
+
+            {/* Appointments Card */}
+            <div className="landing-overview__bento-card">
+              <div className="bento-card__content">
+                <span className="bento-card__badge">Scheduling & Follow-up</span>
+                <h3 className="bento-card__title">Appointments</h3>
+                <p className="bento-card__desc">
+                  Keeps every follow-up, review, and clinic slot in order, so no patient falls through the gap between visits.
+                </p>
+                <Link to="/appointments" className="bento-card__link">
+                  Explore Appointments &nbsp;&gt;
+                </Link>
               </div>
             </div>
 
           </div>
         </section>
+
+        {/* Clinical Safety & Interoperability */}
+        <SafetySuite />
 
         {/* Privacy Apple-Style Section */}
         <section className="landing-overview__privacy-section">
@@ -206,7 +248,7 @@ export default function Landing() {
         <footer className="landing-overview__footer">
           <p>© 2026 Orb Hospital OS. All rights reserved.</p>
           <div className="landing-overview__footer-links">
-            <button 
+            <button
               className="landing-overview__footer-btn"
               onClick={() => window.dispatchEvent(new CustomEvent('open-demo-modal'))}
             >

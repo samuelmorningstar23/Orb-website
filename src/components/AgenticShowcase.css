@@ -1,0 +1,359 @@
+/* ─── Agentic Showcase — flagship landing section ─── */
+.agentic {
+  padding: 100px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="light"] .agentic {
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* ─── Header ─── */
+.agentic__header {
+  margin-bottom: 72px;
+  max-width: 720px;
+}
+
+.agentic__eyebrow {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  margin-bottom: 18px;
+}
+
+.agentic__title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.08;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+}
+
+.agentic__lead {
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* ─── Flow rail ─── */
+.agentic__flow {
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 0;
+}
+
+.agentic__unit {
+  display: flex;
+  align-items: stretch;
+  flex: 1 1 0;
+  min-width: 168px;
+}
+
+/* ─── Node card ─── */
+.agentic__node {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 24px 20px;
+  border-radius: var(--radius-md);
+  background: var(--bg-glass);
+  border: 1px solid var(--border-glass);
+  backdrop-filter: blur(var(--blur-light));
+  -webkit-backdrop-filter: blur(var(--blur-light));
+  transition: border-color var(--transition-base), background var(--transition-base),
+    box-shadow var(--transition-base), transform var(--transition-base);
+}
+
+.agentic__node.is-past {
+  border-color: color-mix(in srgb, var(--accent-gold) 32%, transparent);
+}
+
+.agentic__node.is-active {
+  border-color: color-mix(in srgb, var(--accent-gold) 60%, transparent);
+  background: var(--bg-glass-hover);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent-gold) 22%, transparent),
+    0 10px 40px -12px color-mix(in srgb, var(--accent-gold) 40%, transparent);
+  transform: translateY(-3px);
+}
+
+.agentic__node-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  background: color-mix(in srgb, var(--accent-gold) 8%, transparent);
+  transition: color var(--transition-base), background var(--transition-base);
+}
+
+.agentic__node.is-past .agentic__node-icon,
+.agentic__node.is-active .agentic__node-icon {
+  color: var(--accent-gold);
+  background: color-mix(in srgb, var(--accent-gold) 16%, transparent);
+}
+
+.agentic__node-label {
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+
+.agentic__node-caption {
+  font-size: 0.82rem;
+  line-height: 1.4;
+  color: var(--text-secondary);
+}
+
+/* ─── Connecting link with flowing dot ─── */
+.agentic__link {
+  position: relative;
+  flex: 0 0 44px;
+  align-self: center;
+  height: 2px;
+  margin: 0 6px;
+}
+
+.agentic__link-track {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-full);
+  background: var(--border-glass);
+  overflow: hidden;
+}
+
+.agentic__link.is-flowing .agentic__link-track {
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--accent-gold) 55%, transparent),
+    color-mix(in srgb, var(--accent-gold) 12%, transparent)
+  );
+}
+
+/* Moving dot that travels the active link */
+.agentic__link-dot {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 7px;
+  height: 7px;
+  margin-top: -3.5px;
+  border-radius: var(--radius-full);
+  background: var(--accent-gold);
+  box-shadow: 0 0 10px 1px color-mix(in srgb, var(--accent-gold) 65%, transparent);
+  opacity: 0;
+}
+
+.agentic__link.is-flowing .agentic__link-dot {
+  opacity: 1;
+  animation: agentic-travel 1.9s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes agentic-travel {
+  0% { left: 0; opacity: 0; }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}
+
+/* ─── Fan-out into module chips ─── */
+.agentic__fan {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  padding-left: 16px;
+  min-width: 132px;
+}
+
+.agentic__fan-stem {
+  width: 2px;
+  height: 22px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--accent-gold) 50%, transparent),
+    color-mix(in srgb, var(--accent-gold) 8%, transparent)
+  );
+  opacity: 0.35;
+  transition: opacity var(--transition-base);
+}
+
+.agentic__fan.is-open .agentic__fan-stem {
+  opacity: 1;
+}
+
+.agentic__chips {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.agentic__chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  color: var(--text-secondary);
+  background: var(--bg-glass);
+  border: 1px solid var(--border-glass);
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity var(--transition-slow), transform var(--transition-slow),
+    color var(--transition-base), border-color var(--transition-base);
+}
+
+.agentic__fan.is-open .agentic__chip {
+  opacity: 1;
+  transform: translateX(0);
+  color: var(--text-primary);
+  border-color: color-mix(in srgb, var(--accent-gold) 34%, transparent);
+}
+
+/* ─── Reassurance strip ─── */
+.agentic__reassure {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 56px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+[data-theme="light"] .agentic__reassure {
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.agentic__reassure-item {
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--text-secondary);
+}
+
+.agentic__reassure-sep {
+  width: 4px;
+  height: 4px;
+  border-radius: var(--radius-full);
+  background: var(--accent-gold);
+  opacity: 0.5;
+}
+
+/* ─── Responsive: stack vertically ─── */
+@media (max-width: 768px) {
+  .agentic {
+    padding: 72px 0;
+  }
+
+  .agentic__header {
+    margin-bottom: 48px;
+  }
+
+  .agentic__flow {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .agentic__unit {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .agentic__node {
+    width: 100%;
+  }
+
+  /* Turn horizontal connectors into short vertical ones */
+  .agentic__link {
+    flex: 0 0 28px;
+    width: 2px;
+    height: 28px;
+    align-self: center;
+    margin: 6px 0;
+  }
+
+  .agentic__link-dot {
+    top: 0;
+    left: 50%;
+    margin-top: 0;
+    margin-left: -3.5px;
+  }
+
+  .agentic__link.is-flowing .agentic__link-track {
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--accent-gold) 55%, transparent),
+      color-mix(in srgb, var(--accent-gold) 12%, transparent)
+    );
+  }
+
+  .agentic__link.is-flowing .agentic__link-dot {
+    animation: agentic-travel-v 1.9s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+
+  @keyframes agentic-travel-v {
+    0% { top: 0; opacity: 0; }
+    15% { opacity: 1; }
+    85% { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+  }
+
+  .agentic__fan {
+    padding-left: 0;
+    margin-top: 6px;
+    width: 100%;
+  }
+
+  .agentic__chips {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .agentic__chip {
+    flex: 0 0 auto;
+  }
+}
+
+/* ─── Reduced motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  .agentic__node,
+  .agentic__chip,
+  .agentic__fan-stem {
+    transition: none;
+  }
+
+  .agentic__node.is-active {
+    transform: none;
+  }
+
+  .agentic__link.is-flowing .agentic__link-dot {
+    animation: none;
+    opacity: 1;
+    left: 50%;
+  }
+
+  .agentic__chip {
+    opacity: 1;
+    transform: none;
+  }
+}
