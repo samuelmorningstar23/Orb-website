@@ -1,0 +1,141 @@
+/* ─── Trust Posture — Landing Section (for hospital buyers) ─── */
+
+.trust-posture {
+  padding: 100px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ─── Section Header ─── */
+.trust-posture__header {
+  margin-bottom: 56px;
+  max-width: 720px;
+}
+
+.trust-posture__badge {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  letter-spacing: 0.12em;
+  margin-bottom: 18px;
+  display: inline-block;
+}
+
+.trust-posture__title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: var(--text-primary);
+  text-wrap: balance;
+}
+
+/* ─── Grid ─── */
+.trust-posture__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 760px) {
+  .trust-posture__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ─── Card ─── */
+.trust-posture__card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+  backdrop-filter: blur(28px) saturate(160%);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 30px;
+  min-width: 0;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1), 0 12px 40px rgba(0, 0, 0, 0.5);
+  transition: transform var(--transition-base), border-color var(--transition-base), background var(--transition-base), box-shadow var(--transition-base);
+}
+
+.trust-posture__card:hover {
+  transform: translateY(-4px);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.02) 100%);
+  border-color: var(--accent-glow-strong);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2), 0 20px 48px rgba(0, 0, 0, 0.65), var(--shadow-glow);
+}
+
+/* ─── Card Icon Chip ─── */
+.trust-posture__card-icon {
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 13px;
+  color: var(--accent-gold);
+  background: var(--accent-glow);
+  border: 1px solid var(--accent-glow-strong);
+  margin-bottom: 22px;
+  transition: transform var(--transition-base), background var(--transition-base);
+}
+
+.trust-posture__card:hover .trust-posture__card-icon {
+  transform: scale(1.06);
+  background: var(--accent-glow-strong);
+}
+
+.trust-posture__card-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.trust-posture__card-desc {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ─── Honest Compliance-Posture Note ─── */
+.trust-posture__note {
+  margin-top: 28px;
+  max-width: 760px;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  text-wrap: pretty;
+}
+
+/* ─── Light Theme Overrides ─── */
+[data-theme="light"] .trust-posture {
+  border-top-color: rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .trust-posture__card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.45) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.60);
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(30px) saturate(180%);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+}
+
+[data-theme="light"] .trust-posture__card:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.55) 100%);
+  box-shadow: 0 12px 40px rgba(31, 38, 135, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9), var(--shadow-glow);
+}
+
+/* ─── Reduced Motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  .trust-posture__card,
+  .trust-posture__card-icon {
+    transition: none;
+  }
+
+  .trust-posture__card:hover {
+    transform: none;
+  }
+
+  .trust-posture__card:hover .trust-posture__card-icon {
+    transform: none;
+  }
+}

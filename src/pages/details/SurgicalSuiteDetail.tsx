@@ -166,19 +166,19 @@ export default function SurgicalSuiteDetail() {
         </Link>
 
         <section className="module-detail__hero animate-slide-up">
-          <span className="module-detail__badge">Operating Room Coordinator</span>
+          <span className="module-detail__badge">Operating-Room Coordination</span>
           <h1 className="module-detail__title">Surgical Suite</h1>
           <p className="module-detail__tagline">
-            Complete OR orchestration. Tracks live theatre schedules, safety checklists, and anesthesia handoffs to keep surgical teams securely in sync.
+            Keep every operating room moving as one. Tracks live theatre schedules, safety checklists, and anesthesia handoffs to keep surgical teams securely in sync.
           </p>
         </section>
 
         <section className="module-detail__showcase animate-slide-up stagger-1">
-          <div className="module-detail__visual-frame" style={{ minHeight: '480px', padding: '0', display: 'flex', alignItems: 'stretch' }}>
+          <div className="module-detail__visual-frame surg-frame" style={{ minHeight: '480px', padding: '0', display: 'flex', alignItems: 'stretch' }}>
             
             {/* Left sidebar: OR Room Selector */}
-            <div style={{ 
-              width: '32%', 
+            <div className="surg-sidebar" style={{
+              width: '32%',
               background: isLight ? 'rgba(0,0,0,0.02)' : 'rgba(255,255,255,0.01)', 
               borderRight: isLight ? '1px solid rgba(0,0,0,0.08)' : '1px solid rgba(255,255,255,0.06)', 
               padding: '20px', 
@@ -232,7 +232,7 @@ export default function SurgicalSuiteDetail() {
             </div>
 
             {/* Right side: OR Dashboard */}
-            <div style={{ flex: 1, padding: '24px', display: 'flex', flexDirection: 'column', background: isLight ? '#ffffff' : '#07080b', overflowY: 'auto' }}>
+            <div className="surg-dashboard" style={{ flex: 1, padding: '24px', display: 'flex', flexDirection: 'column', background: isLight ? '#ffffff' : '#07080b', overflowY: 'auto' }}>
               
               {/* OR Header */}
               <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: isLight ? '1px solid rgba(0,0,0,0.08)' : '1px solid rgba(255,255,255,0.06)', paddingBottom: '16px', marginBottom: '20px' }}>
@@ -412,7 +412,7 @@ export default function SurgicalSuiteDetail() {
             </div>
             <h3 className="module-detail__card-title">Clinician Rosters</h3>
             <p className="module-detail__card-desc">
-              Coordinates on-call surgical shifts and nursing team allocations locally, keeping personnel details completely private.
+              Coordinates on-call surgical shifts and nursing team allocations locally, so personnel details stay on-site, private by design.
             </p>
           </div>
         </section>
@@ -420,15 +420,35 @@ export default function SurgicalSuiteDetail() {
         <section className="module-detail__cta-section">
           <h2 className="module-detail__cta-title">Surgical Suite</h2>
           <p className="module-detail__cta-desc">
-            Complete OR orchestration. Keeping surgeries coordinated, recorded, and secure.
+            Keep every operating room moving as one. Surgeries stay coordinated, recorded, and secure.
           </p>
           <div className="module-detail__buttons">
-            <Link to="/" className="module-detail__btn-primary">
-              Back to Overview
-            </Link>
+            <button className="module-detail__btn-primary" onClick={() => window.dispatchEvent(new CustomEvent("open-demo-modal"))}>Request a Demo</button>
+            <Link to="/" className="module-detail__btn-secondary">Back to all modules &nbsp;&rarr;</Link>
           </div>
         </section>
       </main>
+
+      {/* Narrow-screen stacking for the split OR-coordination demo */}
+      <style>{`
+        @media (max-width: 640px) {
+          .surg-frame {
+            flex-direction: column !important;
+            aspect-ratio: auto !important;
+            height: auto !important;
+            min-height: 0 !important;
+          }
+          .surg-sidebar {
+            width: 100% !important;
+            border-right: none !important;
+            border-bottom: 1px solid rgba(128, 128, 128, 0.18) !important;
+          }
+          .surg-dashboard {
+            flex: none !important;
+            width: 100% !important;
+          }
+        }
+      `}</style>
     </div>
   )
 }

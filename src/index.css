@@ -194,7 +194,7 @@ input, textarea { font-family: inherit; }
 }
 
 /* ═══════════════════════════════════════════════════
-   LIGHT MODE — Warm white with violet-purple accent
+   LIGHT MODE — Warm white with Sierra Blue accent
    ═══════════════════════════════════════════════════ */
 [data-theme="light"] {
   --bg-primary: #F5F5F7;

@@ -49,6 +49,13 @@ export default function ScribeDetail() {
     }, 120) // dictation typing speed
   }
 
+  // Auto-start the demo on mount so it plays immediately, no click required.
+  useEffect(() => {
+    const kickoff = setTimeout(() => startDictation(), 600)
+    return () => clearTimeout(kickoff)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   return (
     <div className="module-detail">
       <Aurora />
@@ -63,7 +70,7 @@ export default function ScribeDetail() {
         </Link>
 
         <section className="module-detail__hero animate-slide-up">
-          <span className="module-detail__badge">Hands-Free Transcription</span>
+          <span className="module-detail__badge">Hands-Free Documentation</span>
           <h1 className="module-detail__title">Scribe</h1>
           <p className="module-detail__tagline">
             Fast clinical dictation. Turn spoken doctor-patient conversations into structured clinical notes and discharge summaries in seconds.
@@ -101,10 +108,10 @@ export default function ScribeDetail() {
                 }}
               >
                 {step === 'recording' && <span className="live-dot" style={{ width: '8px', height: '8px', borderRadius: '50%', background: isLight ? '#DC2626' : '#FF5252' }} />}
-                {step === 'idle' && 'Start Dictation Demo'}
+                {step === 'idle' && 'Replay'}
                 {step === 'recording' && 'Listening...'}
                 {step === 'structuring' && 'Structuring note…'}
-                {step === 'done' && 'Run Demo Again'}
+                {step === 'done' && 'Replay'}
               </button>
             </div>
 
@@ -140,7 +147,7 @@ export default function ScribeDetail() {
                   Spoken Dictation
                 </span>
                 <p style={{ fontSize: '0.85rem', color: transcription ? 'var(--text-primary)' : 'var(--text-muted)', lineHeight: '1.5', fontStyle: transcription ? 'normal' : 'italic' }}>
-                  {transcription || "Click 'Start Dictation Demo' above to begin speaking clinical findings..."}
+                  {transcription || "Listening for spoken clinical findings…"}
                   {isRecording && <span className="cursor" style={{ background: 'var(--accent-gold)' }}>&nbsp;</span>}
                 </p>
               </div>
@@ -255,9 +262,9 @@ export default function ScribeDetail() {
                 <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
               </svg>
             </div>
-            <h3 className="module-detail__card-title">100% Secure & Private</h3>
+            <h3 className="module-detail__card-title">Private by design, on-site.</h3>
             <p className="module-detail__card-desc">
-              Nothing ever leaves the building. Scribe works entirely offline, within your hospital's walls, so patient conversations stay confidential by design.
+              Patient conversations stay inside your hospital's walls — no cloud egress. Scribe works on-site, so what's spoken in the room stays in the room.
             </p>
           </div>
         </section>
@@ -268,9 +275,8 @@ export default function ScribeDetail() {
             Hands-free dictation. Documenting patient interactions, locally and securely.
           </p>
           <div className="module-detail__buttons">
-            <Link to="/" className="module-detail__btn-primary">
-              Back to Overview
-            </Link>
+            <button className="module-detail__btn-primary" onClick={() => window.dispatchEvent(new CustomEvent("open-demo-modal"))}>Request a Demo</button>
+            <Link to="/" className="module-detail__btn-secondary">Back to all modules &nbsp;&rarr;</Link>
           </div>
         </section>
       </main>

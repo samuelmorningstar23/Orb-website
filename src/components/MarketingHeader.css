@@ -57,8 +57,8 @@
 
 [data-theme="light"] .marketing-header__tag {
   background: var(--accent-glow);
-  color: var(--accent-gold);
-  border-color: rgba(124, 58, 237, 0.15);
+  color: var(--accent-deep);
+  border-color: var(--accent-glow-strong);
 }
 
 .marketing-header__nav {
@@ -137,4 +137,183 @@
 [data-theme="light"] .marketing-header__request-btn {
   border-color: var(--accent-deep);
   color: var(--accent-deep);
+}
+
+/* ─── Modules dropdown (desktop) ─── */
+.marketing-header__modules {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.marketing-header__modules-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.marketing-header__modules-trigger svg {
+  transition: transform var(--transition-fast);
+}
+
+.marketing-header__modules-trigger.is-open,
+.marketing-header__modules-trigger.is-open svg {
+  color: var(--accent-gold);
+}
+
+.marketing-header__modules-trigger.is-open svg {
+  transform: rotate(180deg);
+}
+
+.marketing-header__dropdown {
+  position: absolute;
+  top: calc(100% + 14px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+  padding: 12px;
+  z-index: 1200;
+  animation: header-dropdown-in 0.18s ease-out both;
+}
+
+[data-theme="light"] .marketing-header__dropdown {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 24px 60px rgba(31, 38, 135, 0.14);
+}
+
+@keyframes header-dropdown-in {
+  from { opacity: 0; transform: translate(-50%, -6px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+.marketing-header__dropdown-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(150px, 1fr));
+  gap: 2px;
+}
+
+.marketing-header__dropdown-link {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  padding: 9px 14px;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.marketing-header__dropdown-link:hover {
+  background: var(--bg-glass-hover);
+  color: var(--text-primary);
+}
+
+.marketing-header__dropdown-link.is-active {
+  color: var(--accent-gold);
+}
+
+/* ─── Hamburger (mobile only) ─── */
+.marketing-header__hamburger {
+  display: none;
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  cursor: pointer;
+  padding: 4px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ─── Mobile drawer ─── */
+.marketing-header__drawer {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .marketing-header__hamburger {
+    display: inline-flex;
+  }
+
+  .marketing-header__drawer {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    position: absolute;
+    top: 52px;
+    left: 0;
+    right: 0;
+    max-height: calc(100vh - 52px);
+    overflow-y: auto;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-glass);
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5);
+    padding: 16px 24px 28px;
+    animation: header-drawer-in 0.22s ease-out both;
+  }
+
+  [data-theme="light"] .marketing-header__drawer {
+    background: #f6f7fb;
+    border-bottom-color: rgba(0, 0, 0, 0.08);
+  }
+
+  @keyframes header-drawer-in {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .marketing-header__drawer-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin: 14px 4px 6px;
+  }
+
+  .marketing-header__drawer-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+  }
+
+  .marketing-header__drawer-link {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    padding: 11px 6px;
+    border-radius: var(--radius-sm);
+    transition: color var(--transition-fast);
+  }
+
+  .marketing-header__drawer-link--overview {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    padding: 8px 4px;
+  }
+
+  .marketing-header__drawer-link:active,
+  .marketing-header__drawer-link:hover {
+    color: var(--accent-gold);
+  }
+
+  .marketing-header__drawer-cta {
+    margin-top: 22px;
+    background: var(--accent-gold);
+    color: var(--btn-primary-text);
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 13px;
+    border-radius: var(--radius-full);
+    border: none;
+    cursor: pointer;
+  }
+
+  /* Keep the header row uncluttered on phones — the drawer carries the demo CTA */
+  .marketing-header__request-btn {
+    display: none;
+  }
 }

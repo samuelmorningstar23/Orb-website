@@ -175,24 +175,36 @@ export default function RelayDetail() {
         </Link>
 
         <section className="module-detail__hero animate-slide-up">
-          <span className="module-detail__badge">Clinician Collaboration</span>
+          <span className="module-detail__badge">Secure Clinical Messaging</span>
           <h1 className="module-detail__title">Relay</h1>
           <p className="module-detail__tagline">
-            Secure clinical messaging built for medical squads. Instantly channels hospital telemetry warnings, streamlines case reviews, and archives clinical agreements — where Orb notices what matters, and offers to act.
+            Secure clinical messaging built for clinical teams. Instantly channels hospital telemetry warnings, streamlines case reviews, and archives clinical agreements — where Orb notices what matters, and offers to act.
           </p>
         </section>
 
         <section className="module-detail__showcase animate-slide-up stagger-1">
-          <div className="module-detail__visual-frame" style={{ minHeight: '480px', padding: '0', display: 'flex', alignItems: 'stretch' }}>
-            
+          <style>{`
+            .relay-demo { flex-direction: row; }
+            @media (max-width: 640px) {
+              .relay-demo { flex-direction: column !important; }
+              .relay-demo__sidebar {
+                width: 100% !important;
+                border-right: none !important;
+                border-bottom: 1px solid rgba(128, 128, 128, 0.16) !important;
+              }
+              .relay-demo__thread { min-height: 320px; }
+            }
+          `}</style>
+          <div className="module-detail__visual-frame relay-demo" style={{ minHeight: '480px', padding: '0', display: 'flex', alignItems: 'stretch' }}>
+
             {/* Left sidebar: Active Case Rooms */}
-            <div style={{ 
-              width: '32%', 
-              background: isLight ? 'rgba(0,0,0,0.02)' : 'rgba(255,255,255,0.01)', 
-              borderRight: isLight ? '1px solid rgba(0,0,0,0.08)' : '1px solid rgba(255,255,255,0.06)', 
-              padding: '16px', 
-              display: 'flex', 
-              flexDirection: 'column', 
+            <div className="relay-demo__sidebar" style={{
+              width: '32%',
+              background: isLight ? 'rgba(0,0,0,0.02)' : 'rgba(255,255,255,0.01)',
+              borderRight: isLight ? '1px solid rgba(0,0,0,0.08)' : '1px solid rgba(255,255,255,0.06)',
+              padding: '16px',
+              display: 'flex',
+              flexDirection: 'column',
               gap: '12px'
             }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
@@ -216,7 +228,7 @@ export default function RelayDetail() {
                      fontSize: '0.8rem',
                      border: '1px solid',
                      borderColor: activeChannelId === c.id ? 'var(--accent-gold)' : (isLight ? 'rgba(0,0,0,0.06)' : 'rgba(255,255,255,0.04)'),
-                     background: activeChannelId === c.id ? (isLight ? 'rgba(122, 165, 199, 0.08)' : 'rgba(255,215,0,0.04)') : (isLight ? '#ffffff' : 'rgba(255,255,255,0.01)'),
+                     background: activeChannelId === c.id ? 'var(--accent-glow)' : (isLight ? '#ffffff' : 'rgba(255,255,255,0.01)'),
                      color: activeChannelId === c.id ? 'var(--accent-gold)' : 'var(--text-secondary)',
                      position: 'relative',
                      transition: 'all 0.2s ease',
@@ -229,9 +241,9 @@ export default function RelayDetail() {
                       <span style={{ 
                         width: '6px', 
                         height: '6px', 
-                        borderRadius: '50%', 
-                        background: '#FF5252', 
-                        display: 'inline-block' 
+                        borderRadius: '50%',
+                        background: 'var(--status-danger)',
+                        display: 'inline-block'
                       }} />
                     )}
                   </div>
@@ -243,7 +255,7 @@ export default function RelayDetail() {
             </div>
 
             {/* Right side: Live Chat Conversation */}
-            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', background: isLight ? '#ffffff' : '#07080b' }}>
+            <div className="relay-demo__thread" style={{ flex: 1, display: 'flex', flexDirection: 'column', background: isLight ? '#ffffff' : '#07080b' }}>
               
               {/* Chat Header */}
               <div style={{ 
@@ -420,7 +432,7 @@ export default function RelayDetail() {
             </div>
             <h3 className="module-detail__card-title">Vigil Smart Triggers</h3>
             <p className="module-detail__card-desc">
-              Connects with patient telemetry logic directly. Receives warnings from patient monitors and routes them to active medical squads automatically.
+              Connects with patient telemetry logic directly. Receives warnings from patient monitors and routes them to active clinical teams automatically.
             </p>
           </div>
 
@@ -436,7 +448,7 @@ export default function RelayDetail() {
             </div>
             <h3 className="module-detail__card-title">Audit Logging</h3>
             <p className="module-detail__card-desc">
-              Clinical changes and instructions discussed inside rooms are captured, clinician-confirmed, and logged into a strict, unalterable timeline of critical patient actions.
+              Clinical changes and instructions discussed inside rooms are captured, clinician-confirmed, and logged into a strict, tamper-evident audit trail of critical patient actions.
             </p>
           </div>
 
@@ -448,7 +460,7 @@ export default function RelayDetail() {
             </div>
             <h3 className="module-detail__card-title">Zero ISP Dependency</h3>
             <p className="module-detail__card-desc">
-              Since communication runs entirely on the hospital intranet network, Relay functions seamlessly during commercial internet or ISP failures.
+              Since communication runs entirely on the hospital intranet network, Relay continues operating on your hospital network during commercial internet or ISP outages.
             </p>
           </div>
         </section>
@@ -456,12 +468,11 @@ export default function RelayDetail() {
         <section className="module-detail__cta-section">
           <h2 className="module-detail__cta-title">Relay</h2>
           <p className="module-detail__cta-desc">
-            Secure squad coordination. Linking clinical judgment and alerts, locally and instantly.
+            Secure clinical team coordination. Linking clinical judgment and alerts, locally and instantly.
           </p>
           <div className="module-detail__buttons">
-            <Link to="/" className="module-detail__btn-primary">
-              Back to Overview
-            </Link>
+            <button className="module-detail__btn-primary" onClick={() => window.dispatchEvent(new CustomEvent("open-demo-modal"))}>Request a Demo</button>
+            <Link to="/" className="module-detail__btn-secondary">Back to all modules &nbsp;&rarr;</Link>
           </div>
         </section>
       </main>

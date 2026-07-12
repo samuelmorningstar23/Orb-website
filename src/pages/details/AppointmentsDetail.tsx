@@ -108,7 +108,7 @@ export default function AppointmentsDetail() {
           <span className="module-detail__badge">Scheduling &amp; Follow-up</span>
           <h1 className="module-detail__title">Appointments</h1>
           <p className="module-detail__tagline">
-            Keeps every follow-up, review, and clinic slot in order — so no patient falls through the gap between visits.
+            Keeps every follow-up, review, and clinic slot in order — so follow-ups don't slip between visits.
           </p>
         </section>
 
@@ -290,9 +290,8 @@ export default function AppointmentsDetail() {
             Continuity, kept.
           </p>
           <div className="module-detail__buttons">
-            <Link to="/" className="module-detail__btn-primary">
-              Back to Overview
-            </Link>
+            <button className="module-detail__btn-primary" onClick={() => window.dispatchEvent(new CustomEvent("open-demo-modal"))}>Request a Demo</button>
+            <Link to="/" className="module-detail__btn-secondary">Back to all modules &nbsp;&rarr;</Link>
           </div>
         </section>
       </main>

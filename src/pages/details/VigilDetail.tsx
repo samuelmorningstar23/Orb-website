@@ -21,6 +21,8 @@ export default function VigilDetail() {
 
   // Trigger simulated deterioration alert after 4 seconds, clear on unmount
   useEffect(() => {
+    let streamTimer: ReturnType<typeof setInterval> | undefined
+
     const timer = setTimeout(() => {
       setWarningScore(7)
       setIsAlert(true)
@@ -29,8 +31,8 @@ export default function VigilDetail() {
       let fullText = 'WARNING: Sepsis trajectory suspected. Heart rate increased from 74 to 108 bpm over 2h; temperature elevated to 39.0°C. Recommendation: 1) Initiate sepsis care bundle, 2) Obtain blood cultures, 3) Notify ICU outreach team, 4) Secure IV access and begin fluid resuscitation.'
       let currentIdx = 0
       setTriageText('')
-      
-      const streamTimer = setInterval(() => {
+
+      streamTimer = setInterval(() => {
         if (currentIdx < fullText.length) {
           setTriageText(prev => prev + fullText.charAt(currentIdx))
           currentIdx++
@@ -38,11 +40,12 @@ export default function VigilDetail() {
           clearInterval(streamTimer)
         }
       }, 25)
-
-      return () => clearInterval(streamTimer)
     }, 4500)
 
-    return () => clearTimeout(timer)
+    return () => {
+      clearTimeout(timer)
+      clearInterval(streamTimer)
+    }
   }, [])
 
   // ECG Canvas drawing loop
@@ -157,7 +160,7 @@ export default function VigilDetail() {
         </Link>
 
         <section className="module-detail__hero animate-slide-up">
-          <span className="module-detail__badge">Patient Safety</span>
+          <span className="module-detail__badge">Live Vitals &amp; Early Warning</span>
           <h1 className="module-detail__title">Vigil</h1>
           <p className="module-detail__tagline">
             Tracks vital signs in real time and highlights early changes in patient risk, helping clinicians prevent critical events.
@@ -168,12 +171,12 @@ export default function VigilDetail() {
           <div className="module-detail__visual-frame" style={{ flexDirection: 'column', padding: '24px', alignItems: 'stretch' }}>
             
             {/* Header Vitals Dashboard */}
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', borderBottom: isLight ? '1px solid rgba(0,0,0,0.08)' : '1px solid rgba(255,255,255,0.08)', paddingBottom: '16px' }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', borderBottom: isLight ? '1px solid rgba(0,0,0,0.08)' : '1px solid rgba(255,255,255,0.08)', paddingBottom: '16px' }}>
               <div>
                 <span style={{ fontSize: '0.75rem', textTransform: 'uppercase', color: 'var(--text-muted)', fontWeight: 600 }}>Active Monitor</span>
                 <h3 style={{ fontSize: '1.25rem', fontWeight: 600, color: 'var(--text-primary)' }}>Bed 04 · Raj Patel</h3>
               </div>
-              <div style={{ display: 'flex', gap: '24px' }}>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '24px' }}>
                 <div style={{ textAlign: 'right' }}>
                   <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>Heart Rate</span>
                   <div style={{ fontSize: '1.2rem', fontWeight: 700, color: isAlert ? 'var(--status-danger)' : 'var(--status-ok)', transition: 'color 0.5s' }}>
@@ -240,12 +243,12 @@ export default function VigilDetail() {
               </div>
 
               {/* AI Advisory */}
-              <div style={{ 
-                flex: '2.5', 
-                minWidth: '300px', 
-                background: isLight ? '#ffffff' : 'rgba(255,255,255,0.02)', 
+              <div style={{
+                flex: '2.5',
+                minWidth: '220px',
+                background: isLight ? '#ffffff' : 'rgba(255,255,255,0.02)',
                 border: '1px solid',
-                borderColor: isAlert ? 'var(--accent-gold)' : (isLight ? 'rgba(0,0,0,0.08)' : 'rgba(255,255,255,0.06)'), 
+                borderColor: isAlert ? 'var(--accent-gold)' : (isLight ? 'rgba(0,0,0,0.08)' : 'rgba(255,255,255,0.06)'),
                 borderRadius: '12px', 
                 padding: '16px',
                 boxShadow: isLight ? '0 2px 8px rgba(0,0,0,0.02)' : 'none'
@@ -273,14 +276,15 @@ export default function VigilDetail() {
             </div>
             <h3 className="module-detail__card-title">Real-Time Awareness</h3>
             <p className="module-detail__card-desc">
-              Maintains a live, on-device connection to bedside monitors, reflecting every change in a patient's vital signs the instant it happens — with no delay and nothing leaving your walls.
+              Maintains a live, on-device connection to bedside monitors, reflecting every change in a patient's vital signs the instant it happens — with nothing leaving your walls.
             </p>
           </div>
 
           <div className="module-detail__card">
             <div className="module-detail__card-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="m12 14 4-4"/>
+                <path d="M3.34 19a10 10 0 1 1 17.32 0"/>
               </svg>
             </div>
             <h3 className="module-detail__card-title">Risk Scoring</h3>
@@ -310,7 +314,7 @@ export default function VigilDetail() {
             </div>
             <h3 className="module-detail__card-title">On-Premises Privacy</h3>
             <p className="module-detail__card-desc">
-              Since all assessment calculations occur entirely inside the local server rack, patient monitoring avoids the risks of cloud networks, providing total security.
+              Since all assessment calculations occur entirely inside the local server rack, patient monitoring stays inside your walls, away from the cloud.
             </p>
           </div>
         </section>
@@ -321,9 +325,8 @@ export default function VigilDetail() {
             Continuous vigilance. Protecting patient care, locally and securely.
           </p>
           <div className="module-detail__buttons">
-            <Link to="/" className="module-detail__btn-primary">
-              Back to Overview
-            </Link>
+            <button className="module-detail__btn-primary" onClick={() => window.dispatchEvent(new CustomEvent("open-demo-modal"))}>Request a Demo</button>
+            <Link to="/" className="module-detail__btn-secondary">Back to all modules &nbsp;&rarr;</Link>
           </div>
         </section>
       </main>

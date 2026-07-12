@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import './AgenticShowcase.css'
 
 const STEPS = [
@@ -130,6 +131,13 @@ export default function AgenticShowcase() {
         <span className="agentic__reassure-item">On-device</span>
         <span className="agentic__reassure-sep" aria-hidden="true" />
         <span className="agentic__reassure-item">Fully auditable</span>
+      </div>
+
+      <div className="agentic__cta">
+        <Link to="/sage" className="agentic__cta-primary">See Sage in action &nbsp;&rarr;</Link>
+        <button className="agentic__cta-secondary" onClick={() => window.dispatchEvent(new CustomEvent('open-demo-modal'))}>
+          Request a demo
+        </button>
       </div>
     </section>
   )

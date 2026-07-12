@@ -11,6 +11,9 @@ import PulseDetail from './pages/details/PulseDetail'
 import BridgeDetail from './pages/details/BridgeDetail'
 import ForecastDetail from './pages/details/ForecastDetail'
 import AppointmentsDetail from './pages/details/AppointmentsDetail'
+import CommandCenterDetail from './pages/details/CommandCenterDetail'
+import RevenueIntegrityDetail from './pages/details/RevenueIntegrityDetail'
+import SurgeSimulatorDetail from './pages/details/SurgeSimulatorDetail'
 import RequestDemoModal from './components/RequestDemoModal'
 import './App.css'
 
@@ -40,6 +43,9 @@ function App() {
         <Route path="/bridge" element={<BridgeDetail />} />
         <Route path="/forecast" element={<ForecastDetail />} />
         <Route path="/appointments" element={<AppointmentsDetail />} />
+        <Route path="/command-center" element={<CommandCenterDetail />} />
+        <Route path="/revenue-integrity" element={<RevenueIntegrityDetail />} />
+        <Route path="/surge-simulator" element={<SurgeSimulatorDetail />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
       <RequestDemoModal />

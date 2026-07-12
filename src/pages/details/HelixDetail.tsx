@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import MarketingHeader from '../../components/MarketingHeader'
 import Aurora from '../../components/Aurora'
@@ -61,13 +61,19 @@ export default function HelixDetail() {
   const [activeOrderId, setActiveOrderId] = useState('ord-101')
   const [isVerifying, setIsVerifying] = useState(false)
   const [verificationLogs, setVerificationLogs] = useState<string[]>([])
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  const hasAutoStarted = useRef(false)
 
   const activeOrder = orders.find(o => o.id === activeOrderId) || orders[0]
 
-  const startVerification = () => {
-    if (activeOrder.status !== 'pending' || isVerifying) return
+  const runVerification = () => {
+    if (isVerifying) return
+    if (intervalRef.current) clearInterval(intervalRef.current)
+
+    setActiveOrderId('ord-101')
     setIsVerifying(true)
     setVerificationLogs([])
+    setOrders(prev => prev.map(o => (o.id === 'ord-101' ? { ...o, status: 'pending', logs: [] } : o)))
 
     const simulatedLogs = [
       'Reading the patient medication record...',
@@ -85,8 +91,9 @@ export default function HelixDetail() {
         logIdx++
       } else {
         clearInterval(logInterval)
+        intervalRef.current = null
         setOrders(prev => prev.map(o => {
-          if (o.id === activeOrder.id) {
+          if (o.id === 'ord-101') {
             return {
               ...o,
               status: 'ready',
@@ -101,7 +108,19 @@ export default function HelixDetail() {
         setIsVerifying(false)
       }
     }, 600)
+    intervalRef.current = logInterval
   }
+
+  // Auto-start the verification scan on mount so the demo is alive immediately
+  useEffect(() => {
+    if (hasAutoStarted.current) return
+    hasAutoStarted.current = true
+    runVerification()
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <div className="module-detail">
@@ -125,11 +144,11 @@ export default function HelixDetail() {
         </section>
 
         <section className="module-detail__showcase animate-slide-up stagger-1">
-          <div className="module-detail__visual-frame" style={{ minHeight: '480px', padding: '0', display: 'flex' }}>
-            
+          <div className="module-detail__visual-frame helix-split" style={{ minHeight: '480px', padding: '0', display: 'flex' }}>
+
             {/* Left sidebar: Order List */}
-            <div style={{ 
-              width: '32%', 
+            <div className="helix-queue" style={{
+              width: '32%',
               background: isLight ? 'rgba(0,0,0,0.02)' : 'rgba(255,255,255,0.01)', 
               borderRight: isLight ? '1px solid rgba(0,0,0,0.08)' : '1px solid rgba(255,255,255,0.06)', 
               padding: '20px', 
@@ -182,7 +201,7 @@ export default function HelixDetail() {
             </div>
 
             {/* Right side: Verification Hub */}
-            <div style={{ flex: 1, padding: '24px', display: 'flex', flexDirection: 'column', background: isLight ? '#ffffff' : '#07080b', overflowY: 'auto' }}>
+            <div className="helix-hub" style={{ flex: 1, padding: '24px', display: 'flex', flexDirection: 'column', background: isLight ? '#ffffff' : '#07080b', overflowY: 'auto' }}>
               
               {/* Order Metadata */}
               <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: isLight ? '1px solid rgba(0,0,0,0.08)' : '1px solid rgba(255,255,255,0.06)', paddingBottom: '16px', marginBottom: '20px' }}>
@@ -222,9 +241,9 @@ export default function HelixDetail() {
               </div>
 
               {/* Action Button */}
-              {activeOrder.status === 'pending' && (
+              {activeOrder.id === 'ord-101' && (
                 <button
-                  onClick={startVerification}
+                  onClick={runVerification}
                   disabled={isVerifying}
                   style={{
                     width: '100%',
@@ -245,7 +264,7 @@ export default function HelixDetail() {
                   }}
                 >
                   {isVerifying && <span className="spinner" style={{ border: '2px solid rgba(255,215,0,0.2)', borderTop: '2px solid var(--accent-gold)', borderRadius: '50%', width: '12px', height: '12px', display: 'inline-block' }} />}
-                  {isVerifying ? 'Running safety checks…' : 'Run Interaction & Dosing Verification Scan'}
+                  {isVerifying ? 'Running safety checks…' : 'Run again'}
                 </button>
               )}
 
@@ -309,7 +328,7 @@ export default function HelixDetail() {
             </div>
             <h3 className="module-detail__card-title">Allergy Detection</h3>
             <p className="module-detail__card-desc">
-              Cross-references incoming pharmacy requests against active patient clinical records completely on-device, flagging potential anaphylaxis warnings in microseconds.
+              Cross-references incoming pharmacy requests against active patient clinical records completely on-device, flagging potential allergy conflicts the instant an order is written.
             </p>
           </div>
 
@@ -341,13 +360,14 @@ export default function HelixDetail() {
 
           <div className="module-detail__card">
             <div className="module-detail__card-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                <path d="m9 12 2 2 4-4"/>
               </svg>
             </div>
             <h3 className="module-detail__card-title">Within Your Walls</h3>
             <p className="module-detail__card-desc">
-              Every interaction and dosing check runs on hardware inside your hospital. Nothing leaves the building, there are no per-check fees, and verification stays available even when the network is down.
+              Every interaction and dosing check runs on hardware inside your hospital. Patient data stays on-site — nothing leaves the building — and verification stays available even when the network is down.
             </p>
           </div>
         </section>
@@ -358,9 +378,8 @@ export default function HelixDetail() {
             Local medication tracking. Ensuring bedside drug administration safety, completely offline.
           </p>
           <div className="module-detail__buttons">
-            <Link to="/" className="module-detail__btn-primary">
-              Back to Overview
-            </Link>
+            <button className="module-detail__btn-primary" onClick={() => window.dispatchEvent(new CustomEvent("open-demo-modal"))}>Request a Demo</button>
+            <Link to="/" className="module-detail__btn-secondary">Back to all modules &nbsp;&rarr;</Link>
           </div>
         </section>
       </main>
@@ -371,6 +390,16 @@ export default function HelixDetail() {
         }
         .spinner {
           animation: rotate-spinner 0.8s linear infinite;
+        }
+        @media (max-width: 640px) {
+          .helix-split {
+            flex-direction: column !important;
+          }
+          .helix-queue {
+            width: 100% !important;
+            border-right: none !important;
+            border-bottom: 1px solid rgba(128, 128, 128, 0.18) !important;
+          }
         }
       `}</style>
     </div>

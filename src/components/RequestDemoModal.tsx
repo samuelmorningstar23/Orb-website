@@ -1,10 +1,13 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import './RequestDemoModal.css'
 
-// ─── WEBHOOK CONFIGURATION ───
-// To receive email or chat notifications when an investor requests a demo,
-// paste your Formspree, Slack, Discord, or Zapier webhook URL here:
-const NOTIFICATION_WEBHOOK_URL = ""
+// ─── LEAD DELIVERY CONFIGURATION ───
+// Preferred: paste a Formspree / Slack / Zapier webhook URL to receive submissions as JSON.
+const NOTIFICATION_WEBHOOK_URL = ''
+// Fallback (used only when no webhook is set): the inbox demo requests are emailed to.
+// Submissions open the visitor's mail client addressed here — so leads are never silently dropped.
+// Change this to your public contact inbox.
+const CONTACT_EMAIL = 'christsamuel26@gmail.com'
 
 export default function RequestDemoModal() {
   const [isOpen, setIsOpen] = useState(false)
@@ -14,7 +17,11 @@ export default function RequestDemoModal() {
   const [purpose, setPurpose] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
+  const [sentVia, setSentVia] = useState<'webhook' | 'email' | 'none'>('none')
   const [error, setError] = useState('')
+  const firstFieldRef = useRef<HTMLInputElement>(null)
+
+  const close = () => setIsOpen(false)
 
   useEffect(() => {
     const handleOpen = () => {
@@ -25,6 +32,21 @@ export default function RequestDemoModal() {
     window.addEventListener('open-demo-modal', handleOpen)
     return () => window.removeEventListener('open-demo-modal', handleOpen)
   }, [])
+
+  // Scroll-lock, ESC-to-close, and focus the first field while the dialog is open
+  useEffect(() => {
+    if (!isOpen) return
+    const prevOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setIsOpen(false) }
+    window.addEventListener('keydown', onKey)
+    const t = window.setTimeout(() => firstFieldRef.current?.focus(), 60)
+    return () => {
+      document.body.style.overflow = prevOverflow
+      window.removeEventListener('keydown', onKey)
+      window.clearTimeout(t)
+    }
+  }, [isOpen])
 
   if (!isOpen) return null
 
@@ -43,29 +65,24 @@ export default function RequestDemoModal() {
         const response = await fetch(NOTIFICATION_WEBHOOK_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            name,
-            email,
-            company,
-            purpose,
-            submittedAt: new Date().toISOString(),
-          }),
+          body: JSON.stringify({ name, email, company, purpose, submittedAt: new Date().toISOString() }),
         })
-
-        if (!response.ok) {
-          throw new Error('Failed to submit request. Please try again.')
-        }
+        if (!response.ok) throw new Error('We couldn’t send that just now. Please try again, or email us directly.')
+        setSentVia('webhook')
+      } else if (CONTACT_EMAIL) {
+        // No webhook configured — hand the request to the visitor's mail client so it reaches a real inbox.
+        const subject = encodeURIComponent(`Orb demo request — ${company}`)
+        const body = encodeURIComponent(
+          `Name: ${name}\nEmail: ${email}\nCompany / Hospital group: ${company}\n\nInterest:\n${purpose}`
+        )
+        window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`
+        setSentVia('email')
       } else {
-        // Fallback mock simulation for demo purposes
-        console.log('Demo Request Submitted:', { name, email, company, purpose })
-        await new Promise(resolve => setTimeout(resolve, 1000))
+        setSentVia('none')
       }
 
       setIsSuccess(true)
-      setName('')
-      setEmail('')
-      setCompany('')
-      setPurpose('')
+      setName(''); setEmail(''); setCompany(''); setPurpose('')
     } catch (err: any) {
       setError(err.message || 'Something went wrong. Please try again.')
     } finally {
@@ -74,93 +91,70 @@ export default function RequestDemoModal() {
   }
 
   return (
-    <div className="demo-modal-overlay animate-fade-in" onClick={() => setIsOpen(false)}>
-      <div 
-        className="demo-modal-card glass" 
+    <div className="demo-modal-overlay animate-fade-in" onClick={close}>
+      <div
+        className="demo-modal-card"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="demo-modal-title"
         onClick={e => e.stopPropagation()}
       >
-        <button className="demo-modal-close" onClick={() => setIsOpen(false)}>
+        <button className="demo-modal-close" onClick={close} aria-label="Close">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <line x1="18" y1="6" x2="6" y2="18"/>
-            <line x1="6" y1="6" x2="18" y2="18"/>
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
           </svg>
         </button>
 
         {!isSuccess ? (
           <>
-            <h3 className="demo-modal-title">Request a Demo</h3>
-            <p className="demo-modal-subtitle">Submit details to explore Orb OS in detail.</p>
+            <h3 className="demo-modal-title" id="demo-modal-title">Request a Demo</h3>
+            <p className="demo-modal-subtitle">See Orb run on real clinical workflows — book a walkthrough with the team.</p>
 
             {error && <div className="demo-modal-error">{error}</div>}
 
             <form className="demo-modal-form" onSubmit={handleSubmit}>
               <div className="demo-modal-field">
-                <label>Full Name</label>
-                <input 
-                  type="text" 
-                  placeholder="Jane Doe" 
-                  value={name} 
-                  onChange={e => setName(e.target.value)} 
-                  required
-                />
+                <label htmlFor="dm-name">Full Name</label>
+                <input ref={firstFieldRef} id="dm-name" type="text" placeholder="Jane Doe" value={name} onChange={e => setName(e.target.value)} required />
               </div>
 
               <div className="demo-modal-field">
-                <label>Email Address</label>
-                <input 
-                  type="email" 
-                  placeholder="jane@company.com" 
-                  value={email} 
-                  onChange={e => setEmail(e.target.value)} 
-                  required
-                />
+                <label htmlFor="dm-email">Email Address</label>
+                <input id="dm-email" type="email" placeholder="jane@hospital.org" value={email} onChange={e => setEmail(e.target.value)} required />
               </div>
 
               <div className="demo-modal-field">
-                <label>Company / Hospital Group</label>
-                <input 
-                  type="text" 
-                  placeholder="Mercy Health" 
-                  value={company} 
-                  onChange={e => setCompany(e.target.value)} 
-                  required
-                />
+                <label htmlFor="dm-company">Company / Hospital Group</label>
+                <input id="dm-company" type="text" placeholder="Mercy Health" value={company} onChange={e => setCompany(e.target.value)} required />
               </div>
 
               <div className="demo-modal-field">
-                <label>Purpose of Interest</label>
-                <textarea 
-                  placeholder="Describe your goals (e.g. institutional deployment, seed round investment)" 
-                  value={purpose} 
-                  onChange={e => setPurpose(e.target.value)} 
-                  rows={3}
-                  required
-                />
+                <label htmlFor="dm-purpose">What are you exploring?</label>
+                <textarea id="dm-purpose" placeholder="A few words on your hospital, team, or interest in Orb." value={purpose} onChange={e => setPurpose(e.target.value)} rows={3} required />
               </div>
 
-              <button 
-                type="submit" 
-                className="demo-modal-submit"
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? 'Sending Request...' : 'Submit Request'}
+              <button type="submit" className="demo-modal-submit" disabled={isSubmitting}>
+                {isSubmitting ? 'Sending…' : 'Request a Demo'}
               </button>
             </form>
           </>
         ) : (
           <div className="demo-modal-success animate-fade-in">
             <div className="success-icon">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#00E676" strokeWidth="2.5">
-                <polyline points="20 6 9 17 4 12"/>
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--status-ok)" strokeWidth="2.5">
+                <polyline points="20 6 9 17 4 12" />
               </svg>
             </div>
-            <h3 className="demo-modal-title">Thank You</h3>
+            <h3 className="demo-modal-title">Thank you</h3>
             <p className="demo-modal-subtitle">
-              Your request has been logged successfully. Our founding team will contact you shortly to coordinate details.
+              {sentVia === 'webhook'
+                ? 'Your request is on its way. The team will be in touch shortly.'
+                : sentVia === 'email'
+                  ? <>We’ve opened your email client with the details — press send and the team will reply shortly. Prefer to write directly? Reach us at <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.</>
+                  : <>Thanks for your interest. Please reach the team directly at <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.</>}
             </p>
-            <button className="demo-modal-close-btn" onClick={() => setIsOpen(false)}>
-              Close Window
-            </button>
+            <button className="demo-modal-close-btn" onClick={close}>Close</button>
           </div>
         )}
       </div>

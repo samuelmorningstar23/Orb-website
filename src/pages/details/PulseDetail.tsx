@@ -133,13 +133,18 @@ export default function PulseDetail() {
 
   // After a calm beat, the outside conditions shift and the advisory streams in.
   useEffect(() => {
+    // Hoisted so the effect's own cleanup can clear these even if the component
+    // unmounts after the delay fires while the intervals are still running.
+    let countTimer: ReturnType<typeof setInterval> | undefined
+    let streamTimer: ReturnType<typeof setInterval> | undefined
+
     const timer = setTimeout(() => {
       setElevated(true)
 
       // Ease the air-quality index upward as conditions worsen.
       let current = 38
       const target = 142
-      const countTimer = setInterval(() => {
+      countTimer = setInterval(() => {
         current += Math.ceil((target - current) / 8)
         if (current >= target) {
           current = target
@@ -153,7 +158,7 @@ export default function PulseDetail() {
         'Elevated particulate levels forecast for the next 48h. 3 admitted respiratory patients flagged for proactive review. Consider pre-emptive bronchodilator availability on Ward B.'
       let idx = 0
       setAdvisory('')
-      const streamTimer = setInterval(() => {
+      streamTimer = setInterval(() => {
         if (idx < fullText.length) {
           setAdvisory((prev) => prev + fullText.charAt(idx))
           idx++
@@ -161,14 +166,13 @@ export default function PulseDetail() {
           clearInterval(streamTimer)
         }
       }, 22)
-
-      return () => {
-        clearInterval(countTimer)
-        clearInterval(streamTimer)
-      }
     }, 3000)
 
-    return () => clearTimeout(timer)
+    return () => {
+      clearTimeout(timer)
+      clearInterval(countTimer)
+      clearInterval(streamTimer)
+    }
   }, [])
 
   return (
@@ -370,9 +374,8 @@ export default function PulseDetail() {
           <h2 className="module-detail__cta-title">Pulse</h2>
           <p className="module-detail__cta-desc">Population awareness, translated into bedside action.</p>
           <div className="module-detail__buttons">
-            <Link to="/" className="module-detail__btn-primary">
-              Back to Overview
-            </Link>
+            <button className="module-detail__btn-primary" onClick={() => window.dispatchEvent(new CustomEvent("open-demo-modal"))}>Request a Demo</button>
+            <Link to="/" className="module-detail__btn-secondary">Back to all modules &nbsp;&rarr;</Link>
           </div>
         </section>
       </main>

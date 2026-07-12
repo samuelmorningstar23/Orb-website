@@ -14,7 +14,8 @@ export default function LensDetail() {
     return () => window.removeEventListener('theme-changed', handleTheme)
   }, [])
 
-  const [scanState, setScanState] = useState<'idle' | 'scanning' | 'complete'>('idle')
+  // Starts in 'scanning' so the demo reads as alive from the first frame (it auto-runs on mount)
+  const [scanState, setScanState] = useState<'idle' | 'scanning' | 'complete'>('scanning')
   const [reportText, setReportText] = useState('')
 
   // Keep timer ids so we can clear them if the user navigates away mid-demo
@@ -45,7 +46,9 @@ Suggested next steps for the care team:
 These observations are assistive and must be confirmed by a clinician.`
 
   const startScan = () => {
-    if (scanState === 'scanning') return
+    // Clear any timers from a previous run before replaying (keeps re-runs clean)
+    if (scanTimeoutRef.current) clearTimeout(scanTimeoutRef.current)
+    if (streamIntervalRef.current) clearInterval(streamIntervalRef.current)
     setScanState('scanning')
     setReportText('')
 
@@ -65,6 +68,12 @@ These observations are assistive and must be confirmed by a clinician.`
     }, 3200)
   }
 
+  // Auto-run the analysis → draft-observations animation on mount
+  useEffect(() => {
+    startScan()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   return (
     <div className="module-detail">
       <Aurora />
@@ -79,7 +88,7 @@ These observations are assistive and must be confirmed by a clinician.`
         </Link>
 
         <section className="module-detail__hero animate-slide-up">
-          <span className="module-detail__badge">Bedside Image Intelligence</span>
+          <span className="module-detail__badge">Bedside Image Review</span>
           <h1 className="module-detail__title">Lens</h1>
           <p className="module-detail__tagline">
             Bedside image analysis. Review chest X-rays, ECG traces, and scans on-device to surface draft observations for clinician review — in seconds, at the bedside.
@@ -105,24 +114,33 @@ These observations are assistive and must be confirmed by a clinician.`
               padding: '16px'
             }}>
 
-              {/* Analysis Trigger Overlay */}
-              {scanState === 'idle' && (
-                <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10 }}>
-                  <button
-                    onClick={startScan}
-                    style={{
-                      background: 'var(--accent-gold)',
-                      color: 'var(--btn-primary-text)',
-                      fontWeight: 600,
-                      fontSize: '0.8rem',
-                      padding: '10px 20px',
-                      borderRadius: '99px',
-                      boxShadow: '0 4px 12px var(--accent-glow-strong)'
-                    }}
-                  >
-                    Start Image Analysis Demo
-                  </button>
-                </div>
+              {/* Replay control — the demo auto-runs on mount */}
+              {scanState === 'complete' && (
+                <button
+                  onClick={startScan}
+                  style={{
+                    position: 'absolute',
+                    top: '12px',
+                    right: '12px',
+                    zIndex: 10,
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    background: 'var(--accent-gold)',
+                    color: 'var(--btn-primary-text)',
+                    fontWeight: 600,
+                    fontSize: '0.72rem',
+                    padding: '7px 14px',
+                    borderRadius: '99px',
+                    boxShadow: '0 4px 12px var(--accent-glow-strong)'
+                  }}
+                >
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M23 4v6h-6M1 20v-6h6"/>
+                    <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+                  </svg>
+                  Replay
+                </button>
               )}
 
               {/* The Mock Chest X-ray SVG */}
@@ -288,9 +306,8 @@ These observations are assistive and must be confirmed by a clinician.`
             On-device image analysis. Surfacing draft observations for clinician review — offline, on-site, and secure.
           </p>
           <div className="module-detail__buttons">
-            <Link to="/" className="module-detail__btn-primary">
-              Back to Overview
-            </Link>
+            <button className="module-detail__btn-primary" onClick={() => window.dispatchEvent(new CustomEvent("open-demo-modal"))}>Request a Demo</button>
+            <Link to="/" className="module-detail__btn-secondary">Back to all modules &nbsp;&rarr;</Link>
           </div>
         </section>
       </main>

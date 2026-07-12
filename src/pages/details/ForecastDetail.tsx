@@ -266,7 +266,7 @@ export default function ForecastDetail() {
             </div>
             <h3 className="module-detail__card-title">Grounded in Your Data</h3>
             <p className="module-detail__card-desc">
-              Learns from your hospital's own patient journeys, and keeps every calculation on-site.
+              Designed to learn from your hospital's own patient journeys, with every calculation kept on-site.
             </p>
           </div>
         </section>
@@ -277,9 +277,8 @@ export default function ForecastDetail() {
             Capacity you can see coming.
           </p>
           <div className="module-detail__buttons">
-            <Link to="/" className="module-detail__btn-primary">
-              Back to Overview
-            </Link>
+            <button className="module-detail__btn-primary" onClick={() => window.dispatchEvent(new CustomEvent("open-demo-modal"))}>Request a Demo</button>
+            <Link to="/" className="module-detail__btn-secondary">Back to all modules &nbsp;&rarr;</Link>
           </div>
         </section>
       </main>
