@@ -15,6 +15,7 @@ import CommandCenterDetail from './pages/details/CommandCenterDetail'
 import RevenueIntegrityDetail from './pages/details/RevenueIntegrityDetail'
 import SurgeSimulatorDetail from './pages/details/SurgeSimulatorDetail'
 import RequestDemoModal from './components/RequestDemoModal'
+import ScrollToTop from './components/ScrollToTop'
 import './App.css'
 
 // Theme init (dark default; respects saved/system preference). Standalone —
@@ -30,6 +31,7 @@ try {
 function App() {
   return (
     <BrowserRouter basename={import.meta.env.BASE_URL}>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/vigil" element={<VigilDetail />} />
