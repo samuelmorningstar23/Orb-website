@@ -18,12 +18,22 @@ import RequestDemoModal from './components/RequestDemoModal'
 import ScrollToTop from './components/ScrollToTop'
 import './App.css'
 
-// Theme init (dark default; respects saved/system preference). Standalone —
-// the marketing site shares the visual design tokens but no app logic.
+// Theme init — follow the operating system by default. A theme the visitor
+// picked themselves (via the header toggle) is remembered and wins over the OS.
+// Note: this deliberately tests `prefers-color-scheme: dark`, not `light` — the
+// "no-preference" case must fall back to light rather than silently forcing dark.
 try {
-  const savedTheme = localStorage.getItem('orb-theme')
-  const systemTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
-  document.documentElement.setAttribute('data-theme', savedTheme || systemTheme)
+  const saved = localStorage.getItem('orb-theme')
+  const darkQuery = window.matchMedia('(prefers-color-scheme: dark)')
+  const chosen = saved === 'light' || saved === 'dark' ? saved : null
+  document.documentElement.setAttribute('data-theme', chosen ?? (darkQuery.matches ? 'dark' : 'light'))
+
+  // Keep tracking the OS live, but only while the visitor hasn't chosen for themselves.
+  darkQuery.addEventListener('change', (e) => {
+    if (localStorage.getItem('orb-theme')) return
+    document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light')
+    window.dispatchEvent(new CustomEvent('theme-changed'))
+  })
 } catch (e) {
   console.error('Failed to initialize theme:', e)
 }
