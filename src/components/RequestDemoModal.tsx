@@ -2,12 +2,18 @@ import { useState, useEffect, useRef } from 'react'
 import './RequestDemoModal.css'
 
 // ─── LEAD DELIVERY CONFIGURATION ───
-// Preferred: paste a Formspree / Slack / Zapier webhook URL to receive submissions as JSON.
+// This is a static site with no backend, so it cannot send mail itself.
+//
+// PREFERRED — server-side delivery: paste a form-backend endpoint (Formspree,
+// Web3Forms, Getform, Zapier/Slack webhook). Submissions are POSTed as JSON and
+// the service emails them to CONTACT_EMAIL without the visitor doing anything.
+// This is the only way a request lands in the inbox on its own.
 const NOTIFICATION_WEBHOOK_URL = ''
-// Fallback (used only when no webhook is set): the inbox demo requests are emailed to.
-// Submissions open the visitor's mail client addressed here — so leads are never silently dropped.
-// Change this to your public contact inbox.
-const CONTACT_EMAIL = 'christsamuel26@gmail.com'
+//
+// FALLBACK (active while the endpoint above is blank): hand the filled-in
+// details to the visitor's own mail client, pre-addressed here. Requires the
+// visitor to press send, but it never silently drops a lead.
+const CONTACT_EMAIL = 'support@orbintelligence.co'
 
 export default function RequestDemoModal() {
   const [isOpen, setIsOpen] = useState(false)
