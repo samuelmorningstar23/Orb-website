@@ -259,7 +259,7 @@ export default function Landing() {
         <footer className="landing-overview__footer">
           <div className="landing-overview__footer-top">
             <div className="landing-overview__footer-brand">
-              <span className="landing-overview__footer-wordmark">Orb <span className="landing-overview__footer-tag">OS</span></span>
+              <span className="landing-overview__footer-wordmark">Orb</span>
               <p className="landing-overview__footer-tagline">The local-first, AI-native operating system for the modern hospital.</p>
               <button className="landing-overview__footer-cta" onClick={openDemo}>Request a Demo</button>
             </div>
@@ -287,7 +287,7 @@ export default function Landing() {
           </div>
 
           <div className="landing-overview__footer-bottom">
-            <p>© 2026 Orb Hospital OS. All rights reserved.</p>
+            <p>© 2026 Orb. All rights reserved.</p>
             <p className="landing-overview__footer-fineprint">Interactive figures shown are illustrative.</p>
           </div>
         </footer>

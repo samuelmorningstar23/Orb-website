@@ -78,7 +78,7 @@ export default function MarketingHeader() {
       <div className="marketing-header__container">
         <Link to="/" className="marketing-header__brand" onClick={() => setMobileOpen(false)}>
           <OrbLogo size={24} />
-          <span className="marketing-header__title">Orb <span className="marketing-header__tag">OS</span></span>
+          <span className="marketing-header__title">Orb</span>
         </Link>
 
         <nav className="marketing-header__nav">
