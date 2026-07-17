@@ -2,15 +2,20 @@ import { useState, useEffect, useRef } from 'react'
 import './RequestDemoModal.css'
 
 // ─── LEAD DELIVERY ───
-// This is a static site (GitHub Pages) and cannot send mail itself.
+// This is a static site (GitHub Pages) and cannot send mail itself, so demo
+// requests go through Web3Forms, which emails them to the inbox the access key
+// is registered to.
 //
-// PRIMARY: our PHP mailer on the GoDaddy hosting. It emails CONTACT_EMAIL
-// server-side, so the visitor needs no mail client. Setup: godaddy/README.md.
-const DEMO_ENDPOINT = 'https://api.orbintelligence.co/demo-request.php'
+// The access key is PUBLIC by design — Web3Forms expects it in client-side
+// markup and enforces the allowed domain instead. It is not a secret.
+// Note: Web3Forms rejects server-side calls on the free plan; submissions must
+// come from the browser (which is what happens here).
+const DEMO_ENDPOINT = 'https://api.web3forms.com/submit'
+const WEB3FORMS_ACCESS_KEY = '20e7bb09-6c16-4692-bee8-343422d7ff94'
 //
-// FALLBACK: if that endpoint is unreachable (not deployed yet, offline, CORS),
-// hand the filled-in details to the visitor's own mail client instead, so a
-// lead is never silently dropped.
+// FALLBACK: if Web3Forms is unreachable or rejects the request, hand the
+// filled-in details to the visitor's own mail client, so a lead is never
+// silently dropped.
 const CONTACT_EMAIL = 'support@orbintelligence.co'
 
 export default function RequestDemoModal() {
@@ -67,24 +72,30 @@ export default function RequestDemoModal() {
     setIsSubmitting(true)
     setError('')
 
-    // 1) Preferred: server-side mailer — lands in the inbox with no action from the visitor.
+    // 1) Preferred: Web3Forms — lands in the inbox with no action from the visitor.
     try {
       const res = await fetch(DEMO_ENDPOINT, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, company, purpose, website }),
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: `Demo request — ${company}`,
+          from_name: 'Orb Website',
+          replyto: email, // hitting Reply answers the requester
+          name,
+          email,
+          company,
+          message: purpose,
+          botcheck: website, // Web3Forms' own honeypot convention
+        }),
       })
-      if (res.ok) { succeed('server'); return }
-      // A 4xx means the server rejected the input — surface that rather than masking it.
-      if (res.status >= 400 && res.status < 500) {
-        const detail = await res.json().catch(() => null)
-        setError(detail?.error || 'Please check your details and try again.')
-        setIsSubmitting(false)
-        return
-      }
-      // 5xx → fall through to the mail-client fallback
+      const detail = await res.json().catch(() => null)
+      if (res.ok && detail?.success) { succeed('server'); return }
+      // Rejected (bad key, domain not allowed, validation) → fall through to
+      // mailto rather than dead-ending the visitor, but leave a breadcrumb.
+      console.warn('Web3Forms rejected the submission:', res.status, detail?.message)
     } catch {
-      // Network / DNS / CORS (e.g. endpoint not deployed yet) → fall through
+      // Network / CORS → fall through
     }
 
     // 2) Fallback: hand it to the visitor's mail client, pre-addressed.
