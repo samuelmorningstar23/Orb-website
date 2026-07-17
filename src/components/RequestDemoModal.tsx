@@ -4,7 +4,9 @@ import './RequestDemoModal.css'
 // ─── LEAD DELIVERY ───
 // This is a static site (GitHub Pages) and cannot send mail itself, so demo
 // requests go through Web3Forms, which emails them to the inbox the access key
-// is registered to.
+// is registered to. Change the recipient in the Web3Forms dashboard, not here —
+// there is deliberately no "send to" field in the payload, so a public key
+// can't be used to redirect your mail.
 //
 // The access key is PUBLIC by design — Web3Forms expects it in client-side
 // markup and enforces the allowed domain instead. It is not a secret.
@@ -12,10 +14,8 @@ import './RequestDemoModal.css'
 // come from the browser (which is what happens here).
 const DEMO_ENDPOINT = 'https://api.web3forms.com/submit'
 const WEB3FORMS_ACCESS_KEY = '20e7bb09-6c16-4692-bee8-343422d7ff94'
-//
-// FALLBACK: if Web3Forms is unreachable or rejects the request, hand the
-// filled-in details to the visitor's own mail client, so a lead is never
-// silently dropped.
+// Shown on the success screen and if a submission fails, so a visitor always
+// has a way to reach the team.
 const CONTACT_EMAIL = 'support@orbintelligence.co'
 
 export default function RequestDemoModal() {
@@ -27,7 +27,6 @@ export default function RequestDemoModal() {
   const [website, setWebsite] = useState('') // honeypot — humans leave this empty
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
-  const [sentVia, setSentVia] = useState<'server' | 'email'>('server')
   const [error, setError] = useState('')
   const firstFieldRef = useRef<HTMLInputElement>(null)
 
@@ -56,13 +55,6 @@ export default function RequestDemoModal() {
 
   if (!isOpen) return null
 
-  const succeed = (via: 'server' | 'email') => {
-    setSentVia(via)
-    setIsSuccess(true)
-    setName(''); setEmail(''); setCompany(''); setPurpose(''); setWebsite('')
-    setIsSubmitting(false)
-  }
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!name || !email || !company || !purpose) {
@@ -72,7 +64,6 @@ export default function RequestDemoModal() {
     setIsSubmitting(true)
     setError('')
 
-    // 1) Preferred: Web3Forms — lands in the inbox with no action from the visitor.
     try {
       const res = await fetch(DEMO_ENDPOINT, {
         method: 'POST',
@@ -86,25 +77,23 @@ export default function RequestDemoModal() {
           email,
           company,
           message: purpose,
-          botcheck: website, // Web3Forms' own honeypot convention
+          botcheck: website,
         }),
       })
       const detail = await res.json().catch(() => null)
-      if (res.ok && detail?.success) { succeed('server'); return }
-      // Rejected (bad key, domain not allowed, validation) → fall through to
-      // mailto rather than dead-ending the visitor, but leave a breadcrumb.
-      console.warn('Web3Forms rejected the submission:', res.status, detail?.message)
-    } catch {
-      // Network / CORS → fall through
-    }
 
-    // 2) Fallback: hand it to the visitor's mail client, pre-addressed.
-    const subject = encodeURIComponent(`Orb demo request — ${company}`)
-    const body = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\nCompany / Hospital group: ${company}\n\nInterest:\n${purpose}`
-    )
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`
-    succeed('email')
+      if (res.ok && detail?.success) {
+        setIsSuccess(true)
+        setName(''); setEmail(''); setCompany(''); setPurpose(''); setWebsite('')
+      } else {
+        // Never fail silently — the visitor still gets a way to reach us.
+        setError(`We couldn’t send that just now. Please try again, or email us at ${CONTACT_EMAIL}.`)
+      }
+    } catch {
+      setError(`We couldn’t reach the server. Please check your connection, or email us at ${CONTACT_EMAIL}.`)
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -170,9 +159,7 @@ export default function RequestDemoModal() {
             </div>
             <h3 className="demo-modal-title">Thank you</h3>
             <p className="demo-modal-subtitle">
-              {sentVia === 'server'
-                ? <>Your request has been sent to our team — we’ll be in touch shortly. You can also reach us any time at <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.</>
-                : <>We’ve opened your email client with the details — press send and the team will reply shortly. Prefer to write directly? Reach us at <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.</>}
+              Your request has been sent to our team — we’ll be in touch shortly. You can also reach us any time at <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
             </p>
             <button className="demo-modal-close-btn" onClick={close}>Close</button>
           </div>
