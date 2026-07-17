@@ -1,18 +1,16 @@
 import { useState, useEffect, useRef } from 'react'
 import './RequestDemoModal.css'
 
-// ─── LEAD DELIVERY CONFIGURATION ───
-// This is a static site with no backend, so it cannot send mail itself.
+// ─── LEAD DELIVERY ───
+// This is a static site (GitHub Pages) and cannot send mail itself.
 //
-// PREFERRED — server-side delivery: paste a form-backend endpoint (Formspree,
-// Web3Forms, Getform, Zapier/Slack webhook). Submissions are POSTed as JSON and
-// the service emails them to CONTACT_EMAIL without the visitor doing anything.
-// This is the only way a request lands in the inbox on its own.
-const NOTIFICATION_WEBHOOK_URL = ''
+// PRIMARY: our PHP mailer on the GoDaddy hosting. It emails CONTACT_EMAIL
+// server-side, so the visitor needs no mail client. Setup: godaddy/README.md.
+const DEMO_ENDPOINT = 'https://api.orbintelligence.co/demo-request.php'
 //
-// FALLBACK (active while the endpoint above is blank): hand the filled-in
-// details to the visitor's own mail client, pre-addressed here. Requires the
-// visitor to press send, but it never silently drops a lead.
+// FALLBACK: if that endpoint is unreachable (not deployed yet, offline, CORS),
+// hand the filled-in details to the visitor's own mail client instead, so a
+// lead is never silently dropped.
 const CONTACT_EMAIL = 'support@orbintelligence.co'
 
 export default function RequestDemoModal() {
@@ -21,25 +19,22 @@ export default function RequestDemoModal() {
   const [email, setEmail] = useState('')
   const [company, setCompany] = useState('')
   const [purpose, setPurpose] = useState('')
+  const [website, setWebsite] = useState('') // honeypot — humans leave this empty
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
-  const [sentVia, setSentVia] = useState<'webhook' | 'email' | 'none'>('none')
+  const [sentVia, setSentVia] = useState<'server' | 'email'>('server')
   const [error, setError] = useState('')
   const firstFieldRef = useRef<HTMLInputElement>(null)
 
   const close = () => setIsOpen(false)
 
   useEffect(() => {
-    const handleOpen = () => {
-      setIsOpen(true)
-      setIsSuccess(false)
-      setError('')
-    }
+    const handleOpen = () => { setIsOpen(true); setIsSuccess(false); setError('') }
     window.addEventListener('open-demo-modal', handleOpen)
     return () => window.removeEventListener('open-demo-modal', handleOpen)
   }, [])
 
-  // Scroll-lock, ESC-to-close, and focus the first field while the dialog is open
+  // Scroll-lock, ESC-to-close, and focus the first field while open
   useEffect(() => {
     if (!isOpen) return
     const prevOverflow = document.body.style.overflow
@@ -56,59 +51,57 @@ export default function RequestDemoModal() {
 
   if (!isOpen) return null
 
+  const succeed = (via: 'server' | 'email') => {
+    setSentVia(via)
+    setIsSuccess(true)
+    setName(''); setEmail(''); setCompany(''); setPurpose(''); setWebsite('')
+    setIsSubmitting(false)
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!name || !email || !company || !purpose) {
       setError('Please fill in all fields.')
       return
     }
-
     setIsSubmitting(true)
     setError('')
 
+    // 1) Preferred: server-side mailer — lands in the inbox with no action from the visitor.
     try {
-      if (NOTIFICATION_WEBHOOK_URL) {
-        const response = await fetch(NOTIFICATION_WEBHOOK_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, email, company, purpose, submittedAt: new Date().toISOString() }),
-        })
-        if (!response.ok) throw new Error('We couldn’t send that just now. Please try again, or email us directly.')
-        setSentVia('webhook')
-      } else if (CONTACT_EMAIL) {
-        // No webhook configured — hand the request to the visitor's mail client so it reaches a real inbox.
-        const subject = encodeURIComponent(`Orb demo request — ${company}`)
-        const body = encodeURIComponent(
-          `Name: ${name}\nEmail: ${email}\nCompany / Hospital group: ${company}\n\nInterest:\n${purpose}`
-        )
-        window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`
-        setSentVia('email')
-      } else {
-        setSentVia('none')
+      const res = await fetch(DEMO_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, company, purpose, website }),
+      })
+      if (res.ok) { succeed('server'); return }
+      // A 4xx means the server rejected the input — surface that rather than masking it.
+      if (res.status >= 400 && res.status < 500) {
+        const detail = await res.json().catch(() => null)
+        setError(detail?.error || 'Please check your details and try again.')
+        setIsSubmitting(false)
+        return
       }
-
-      setIsSuccess(true)
-      setName(''); setEmail(''); setCompany(''); setPurpose('')
-    } catch (err: any) {
-      setError(err.message || 'Something went wrong. Please try again.')
-    } finally {
-      setIsSubmitting(false)
+      // 5xx → fall through to the mail-client fallback
+    } catch {
+      // Network / DNS / CORS (e.g. endpoint not deployed yet) → fall through
     }
+
+    // 2) Fallback: hand it to the visitor's mail client, pre-addressed.
+    const subject = encodeURIComponent(`Orb demo request — ${company}`)
+    const body = encodeURIComponent(
+      `Name: ${name}\nEmail: ${email}\nCompany / Hospital group: ${company}\n\nInterest:\n${purpose}`
+    )
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`
+    succeed('email')
   }
 
   return (
     <div className="demo-modal-overlay animate-fade-in" onClick={close}>
-      <div
-        className="demo-modal-card"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="demo-modal-title"
-        onClick={e => e.stopPropagation()}
-      >
+      <div className="demo-modal-card" role="dialog" aria-modal="true" aria-labelledby="demo-modal-title" onClick={e => e.stopPropagation()}>
         <button className="demo-modal-close" onClick={close} aria-label="Close">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <line x1="18" y1="6" x2="6" y2="18" />
-            <line x1="6" y1="6" x2="18" y2="18" />
+            <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
           </svg>
         </button>
 
@@ -140,6 +133,18 @@ export default function RequestDemoModal() {
                 <textarea id="dm-purpose" placeholder="A few words on your hospital, team, or interest in Orb." value={purpose} onChange={e => setPurpose(e.target.value)} rows={3} required />
               </div>
 
+              {/* Honeypot — offscreen rather than display:none, which some bots skip */}
+              <input
+                className="demo-modal-hp"
+                type="text"
+                name="website"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                value={website}
+                onChange={e => setWebsite(e.target.value)}
+              />
+
               <button type="submit" className="demo-modal-submit" disabled={isSubmitting}>
                 {isSubmitting ? 'Sending…' : 'Request a Demo'}
               </button>
@@ -154,11 +159,9 @@ export default function RequestDemoModal() {
             </div>
             <h3 className="demo-modal-title">Thank you</h3>
             <p className="demo-modal-subtitle">
-              {sentVia === 'webhook'
-                ? 'Your request is on its way. The team will be in touch shortly.'
-                : sentVia === 'email'
-                  ? <>We’ve opened your email client with the details — press send and the team will reply shortly. Prefer to write directly? Reach us at <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.</>
-                  : <>Thanks for your interest. Please reach the team directly at <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.</>}
+              {sentVia === 'server'
+                ? <>Your request has been sent to our team — we’ll be in touch shortly. You can also reach us any time at <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.</>
+                : <>We’ve opened your email client with the details — press send and the team will reply shortly. Prefer to write directly? Reach us at <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.</>}
             </p>
             <button className="demo-modal-close-btn" onClick={close}>Close</button>
           </div>

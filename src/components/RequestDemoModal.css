@@ -91,6 +91,17 @@
   gap: 8px;
 }
 
+/* Honeypot — kept out of sight and out of the tab order, but still a real
+   rendered input so naive bots fill it in. Not display:none, which some skip. */
+.demo-modal-hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
 .demo-modal-field label {
   font-size: 0.75rem;
   font-weight: 600;
