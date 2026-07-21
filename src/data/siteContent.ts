@@ -62,9 +62,9 @@ export const ALL_MODULES: ModuleInfo[] = [
     keywords: ['patients', 'families', 'plain language', 'education', 'explanations', 'next steps', 'understanding'],
   },
   {
-    to: '/appointments', label: 'Appointments', badge: 'Scheduling & Follow-up',
+    to: '/slate', label: 'Slate', badge: 'Scheduling & Follow-up',
     blurb: 'Keeps every follow-up, review, and clinic slot in order, so no patient falls through the gap between visits.',
-    keywords: ['scheduling', 'follow-up', 'clinic', 'slots', 'booking', 'visits', 'calendar'],
+    keywords: ['scheduling', 'follow-up', 'clinic', 'slots', 'booking', 'visits', 'calendar', 'appointments'],
   },
   {
     to: '/revenue-integrity', label: 'Revenue Integrity', badge: 'Revenue Integrity',
@@ -101,7 +101,7 @@ export const FEATURED_MODULES: FeaturedModule[] = [
   { ...byPath('/sage'), navLabel: 'Sage', summary: 'The ambient copilot that acts.' },
   { ...byPath('/forecast'), navLabel: 'Forecast', summary: 'Predicts beds, stays, and discharges.' },
   { ...byPath('/bridge'), navLabel: 'Bridge', summary: 'Care explained in plain language.' },
-  { ...byPath('/scribe'), navLabel: 'Scribe', summary: 'Bedside conversation becomes clinical notes.' },
+  { ...byPath('/slate'), navLabel: 'Slate', summary: 'Scheduling that never drops a patient.' },
   { ...byPath('/surge-simulator'), navLabel: 'Surge', summary: 'Rehearse the surge before it hits.' },
 ]
 
@@ -123,7 +123,7 @@ export const PLANS: Plan[] = [
     tagline: 'The clinical core.',
     audience: 'For clinics and small wards',
     desc: 'The essentials of the operating system — an ambient copilot, hands-free notes, secure team messaging, and scheduling that never drops a follow-up.',
-    includes: ['Sage', 'Scribe', 'Relay', 'Appointments'],
+    includes: ['Sage', 'Scribe', 'Relay', 'Slate'],
   },
   {
     id: 'plus',

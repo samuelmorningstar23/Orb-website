@@ -12,7 +12,7 @@ import SurgicalSuiteDetail from './pages/details/SurgicalSuiteDetail'
 import PulseDetail from './pages/details/PulseDetail'
 import BridgeDetail from './pages/details/BridgeDetail'
 import ForecastDetail from './pages/details/ForecastDetail'
-import AppointmentsDetail from './pages/details/AppointmentsDetail'
+import SlateDetail from './pages/details/SlateDetail'
 import CommandCenterDetail from './pages/details/CommandCenterDetail'
 import RevenueIntegrityDetail from './pages/details/RevenueIntegrityDetail'
 import SurgeSimulatorDetail from './pages/details/SurgeSimulatorDetail'
@@ -58,7 +58,9 @@ function App() {
         <Route path="/pulse" element={<PulseDetail />} />
         <Route path="/bridge" element={<BridgeDetail />} />
         <Route path="/forecast" element={<ForecastDetail />} />
-        <Route path="/appointments" element={<AppointmentsDetail />} />
+        <Route path="/slate" element={<SlateDetail />} />
+        {/* Appointments was renamed to Slate — keep old links working */}
+        <Route path="/appointments" element={<Navigate to="/slate" replace />} />
         <Route path="/command-center" element={<CommandCenterDetail />} />
         <Route path="/revenue-integrity" element={<RevenueIntegrityDetail />} />
         <Route path="/surge-simulator" element={<SurgeSimulatorDetail />} />

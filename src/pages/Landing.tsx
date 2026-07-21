@@ -15,7 +15,7 @@ const MODULE_LINKS: { to: string; label: string }[] = [
   { to: '/scribe', label: 'Scribe' }, { to: '/lens', label: 'Lens' }, { to: '/relay', label: 'Relay' },
   { to: '/helix', label: 'Helix' }, { to: '/revenue-integrity', label: 'Revenue Integrity' }, { to: '/surgical-suite', label: 'Surgical Suite' },
   { to: '/pulse', label: 'Pulse' }, { to: '/forecast', label: 'Forecast' }, { to: '/surge-simulator', label: 'Surge Simulator' },
-  { to: '/bridge', label: 'Bridge' }, { to: '/appointments', label: 'Appointments' },
+  { to: '/bridge', label: 'Bridge' }, { to: '/slate', label: 'Slate' },
 ]
 
 export default function Landing() {
@@ -223,13 +223,13 @@ export default function Landing() {
               </div>
             </div>
 
-            {/* Appointments */}
+            {/* Slate */}
             <div className="landing-overview__bento-card">
               <div className="bento-card__content">
                 <span className="bento-card__badge">Scheduling &amp; Follow-up</span>
-                <h3 className="bento-card__title">Appointments</h3>
+                <h3 className="bento-card__title">Slate</h3>
                 <p className="bento-card__desc">Keeps every follow-up, review, and clinic slot in order, so no patient falls through the gap between visits.</p>
-                <Link to="/appointments" className="bento-card__link">Explore Appointments &nbsp;&gt;</Link>
+                <Link to="/slate" className="bento-card__link">Explore Slate &nbsp;&gt;</Link>
               </div>
             </div>
 
