@@ -10,7 +10,7 @@
   inset: 0;
   border-radius: 50%;
   border: 2px solid transparent;
-  border-top-color: var(--accent-gold);
+  border-top-color: var(--accent-ink);
   border-right-color: rgba(255, 215, 0, 0.3);
   animation: orb-spin 3s linear infinite;
 }

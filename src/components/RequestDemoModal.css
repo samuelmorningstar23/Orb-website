@@ -127,7 +127,7 @@
 }
 
 .demo-modal-subtitle a {
-  color: var(--accent-gold);
+  color: var(--accent-ink);
   font-weight: 600;
 }
 [data-theme="light"] .demo-modal-subtitle a {
@@ -138,7 +138,7 @@
 .demo-modal-field textarea:focus {
   outline: none;
   background: rgba(255, 255, 255, 0.06);
-  border-color: var(--accent-gold);
+  border-color: var(--accent-ink);
 }
 
 .demo-modal-submit {
@@ -233,7 +233,7 @@
 [data-theme="light"] .demo-modal-field input:focus,
 [data-theme="light"] .demo-modal-field textarea:focus {
   background: #ffffff;
-  border-color: var(--accent-gold);
+  border-color: var(--accent-ink);
 }
 
 [data-theme="light"] .demo-modal-submit {

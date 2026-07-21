@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import './TrustPosture.css'
 
 type TrustColumn = {
@@ -29,7 +30,7 @@ const columns: TrustColumn[] = [
   },
   {
     title: 'Deployment & continuity',
-    desc: 'Installed on-premise, it operates on-site without a network connection and keeps caring through upstream outages — so care continues even when the network drops.',
+    desc: 'Installed on-premise, Orb keeps working through network and upstream outages — care doesn’t stop when the connection does.',
     icon: (
       <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <rect x="2" y="3" width="20" height="8" rx="2" />
@@ -60,8 +61,9 @@ export default function TrustPosture() {
       </div>
 
       <p className="trust-posture__note">
-        Designed to support the technical safeguards HIPAA and GDPR require. Orb strengthens your
-        compliance posture — it is not a substitute for your own certification.
+        Designed to support the technical safeguards regulations like HIPAA and GDPR require. Orb
+        strengthens your compliance posture — it is not a substitute for your own certification.{' '}
+        <Link to="/security" className="trust-posture__note-link">Read the security overview &rarr;</Link>
       </p>
     </section>
   )

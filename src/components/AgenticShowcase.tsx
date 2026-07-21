@@ -48,7 +48,7 @@ const STEPS = [
   },
 ]
 
-const CHIPS = ['Orders', 'Theatre', 'Notes']
+const CHIPS = ['Orders', 'Surgery', 'Notes']
 
 export default function AgenticShowcase() {
   const [active, setActive] = useState(0)
@@ -74,13 +74,12 @@ export default function AgenticShowcase() {
         <span className="agentic__eyebrow">Agentic by design</span>
         <h2 className="agentic__title">Orb doesn&rsquo;t just watch. It acts.</h2>
         <p className="agentic__lead">
-          Most hospital software shows you information. Orb understands what is happening and carries the
-          next step through &mdash; drafting the order, alerting the team, filing the note &mdash; always
-          waiting for a clinician&rsquo;s confirmation.
+          Most hospital software shows you information. Orb carries the next step through &mdash;
+          drafting the order, alerting the team, filing the note &mdash; the moment a clinician confirms.
         </p>
       </div>
 
-      <div className="agentic__flow" role="img" aria-label="Orb workflow: Understand, Propose, Confirm, then Act — which fans out into Orders, Theatre and Notes.">
+      <div className="agentic__flow" role="img" aria-label="Orb workflow: Understand, Propose, Confirm, then Act — which fans out into Orders, Surgery and Notes.">
         {STEPS.map((step, i) => {
           const isActive = i === active
           const isPast = i < active
@@ -123,14 +122,6 @@ export default function AgenticShowcase() {
             ))}
           </div>
         </div>
-      </div>
-
-      <div className="agentic__reassure">
-        <span className="agentic__reassure-item">Clinician-confirmed</span>
-        <span className="agentic__reassure-sep" aria-hidden="true" />
-        <span className="agentic__reassure-item">On-device</span>
-        <span className="agentic__reassure-sep" aria-hidden="true" />
-        <span className="agentic__reassure-item">Fully auditable</span>
       </div>
 
       <div className="agentic__cta">

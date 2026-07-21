@@ -127,7 +127,7 @@ export default function HelixDetail() {
       <Aurora />
       <MarketingHeader />
 
-      <main className="module-detail__content">
+      <main id="main" className="module-detail__content">
         <Link to="/" className="module-detail__back">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M19 12H5M12 19l-7-7 7-7"/>
@@ -249,7 +249,7 @@ export default function HelixDetail() {
                     width: '100%',
                     background: isLight ? 'rgba(122, 165, 199, 0.1)' : 'rgba(255, 215, 0, 0.1)',
                     border: '1px solid var(--accent-gold)',
-                    color: 'var(--accent-gold)',
+                    color: 'var(--accent-ink)',
                     padding: '12px',
                     borderRadius: '8px',
                     fontSize: '0.85rem',
@@ -292,7 +292,7 @@ export default function HelixDetail() {
                     </div>
                   ))}
                   {isVerifying && (
-                    <div style={{ display: 'flex', gap: '8px', alignItems: 'center', color: 'var(--accent-gold)' }}>
+                    <div style={{ display: 'flex', gap: '8px', alignItems: 'center', color: 'var(--accent-ink)' }}>
                       <span className="spinner" style={{ border: '2px solid rgba(255,215,0,0.2)', borderTop: '2px solid var(--accent-gold)', borderRadius: '50%', width: '10px', height: '10px', display: 'inline-block' }} />
                       <span>Evaluating the order…</span>
                     </div>
@@ -341,7 +341,7 @@ export default function HelixDetail() {
             </div>
             <h3 className="module-detail__card-title">Direct Validation</h3>
             <p className="module-detail__card-desc">
-              Validates dosage values against built-in clinical catalogs and guidelines first, suggesting renal adjustments based on on-site lab telemetry figures.
+              Validates dosage values against built-in clinical catalogs and guidelines first, suggesting renal adjustments based on on-site lab results.
             </p>
           </div>
 

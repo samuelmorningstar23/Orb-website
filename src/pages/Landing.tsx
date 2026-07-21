@@ -3,6 +3,7 @@ import Aurora from '../components/Aurora'
 import MarketingHeader from '../components/MarketingHeader'
 import ProofBand from '../components/ProofBand'
 import AgenticShowcase from '../components/AgenticShowcase'
+import ProductGallery from '../components/ProductGallery'
 import WhyNow from '../components/WhyNow'
 import SafetySuite from '../components/SafetySuite'
 import TrustPosture from '../components/TrustPosture'
@@ -24,17 +25,17 @@ export default function Landing() {
       <Aurora />
       <MarketingHeader />
 
-      <main className="landing-overview__content">
+      <main id="main" className="landing-overview__content">
 
         {/* Hero — leads with the agentic breakthrough */}
         <section className="landing-overview__hero animate-slide-up">
           <div className="landing-overview__hero-headers">
-            <span className="landing-overview__badge">Hospital OS</span>
+            <span className="landing-overview__badge">Local-first</span>
             <h1 className="landing-overview__title">
-              The Hospital<br />Operating System.
+              Hospital<br />Intelligence.
             </h1>
             <p className="landing-overview__subtitle">
-              Intelligence that stays within your walls — and acts on what it sees, the moment a clinician confirms.
+              Same data, better decisions. Orb runs on hardware inside your walls — and acts on what it sees, the moment a clinician confirms.
             </p>
             <div className="landing-overview__hero-actions">
               <button className="landing-overview__btn-primary" onClick={openDemo}>
@@ -69,13 +70,16 @@ export default function Landing() {
         {/* Agentic execution — the v2 headline */}
         <AgenticShowcase />
 
+        {/* Real screenshots — renders only once real images exist */}
+        <ProductGallery />
+
         {/* Why now + platform moat */}
         <WhyNow />
 
         {/* Modules Section */}
         <section id="modules" className="landing-overview__bento-section animate-slide-up stagger-2">
           <div className="landing-overview__section-header">
-            <h2 className="landing-overview__section-title">Fourteen modules. One operating system.</h2>
+            <h2 className="landing-overview__section-title">Fourteen modules. One intelligence.</h2>
             <p className="landing-overview__section-desc">
               Everything a ward, an operating room, and the back office need — one local-first platform, so the more of the hospital Orb runs, the more every confirmed action is worth.
             </p>
@@ -164,7 +168,7 @@ export default function Landing() {
                 <path d="M23 6l-9.5 9.5-5-5L1 18" /><path d="M17 6h6v6" />
               </svg>
               <div className="bento-card__content">
-                <span className="bento-card__badge">Revenue Integrity</span>
+                <span className="bento-card__badge">Coding &amp; Reimbursement</span>
                 <h3 className="bento-card__title">Revenue Integrity</h3>
                 <p className="bento-card__desc">
                   Catches the coding and documentation gaps that quietly cost hospitals millions — turning the care you already deliver into the reimbursement you’re owed. Every suggestion is left to your coders to review.
@@ -188,7 +192,7 @@ export default function Landing() {
               <div className="bento-card__content">
                 <span className="bento-card__badge">Environmental &amp; Population Signals</span>
                 <h3 className="bento-card__title">Pulse</h3>
-                <p className="bento-card__desc">Watches local air quality, weather, and community illness — and flags which patients on your wards will feel it first.</p>
+                <p className="bento-card__desc">Watches local air quality, weather, and community illness — and flags which wards will feel the pressure first.</p>
                 <Link to="/pulse" className="bento-card__link">Explore Pulse &nbsp;&gt;</Link>
               </div>
             </div>
@@ -250,8 +254,9 @@ export default function Landing() {
               Private by<br />architecture.
             </h2>
             <p className="landing-overview__privacy-desc">
-              Unlike cloud tools that send clinical records to outside services, Orb processes all audio, images, and text on hardware inside your hospital. Patient data never leaves your walls — no external egress, no third-party cloud vendor in the loop.
+              Orb processes all audio, images, and text on hardware inside your hospital — no third-party cloud in the loop, and no patient data ever leaving the building. Outbound traffic is limited to an allowlist you control: inbound public feeds like weather and air quality, and appointment reminders routed through the messaging gateway you already run. If the connection drops, Orb keeps working on-site.
             </p>
+            <Link to="/security" className="landing-overview__privacy-link">See the full data boundary &nbsp;&rarr;</Link>
           </div>
         </section>
 
@@ -260,7 +265,7 @@ export default function Landing() {
           <div className="landing-overview__footer-top">
             <div className="landing-overview__footer-brand">
               <span className="landing-overview__footer-wordmark">Orb</span>
-              <p className="landing-overview__footer-tagline">The local-first, AI-native operating system for the modern hospital.</p>
+              <p className="landing-overview__footer-tagline">Local-first hospital intelligence — same data, better decisions.</p>
               <button className="landing-overview__footer-cta" onClick={openDemo}>Request a Demo</button>
             </div>
 
@@ -279,16 +284,22 @@ export default function Landing() {
               </div>
               <div className="landing-overview__footer-col">
                 <span className="landing-overview__footer-col-title">Company</span>
-                <a href="#modules" className="landing-overview__footer-link">Overview</a>
+                <Link to="/about" className="landing-overview__footer-link">About</Link>
+                <Link to="/security" className="landing-overview__footer-link">Security</Link>
                 <button className="landing-overview__footer-linkbtn" onClick={openDemo}>Request a demo</button>
                 <a href="mailto:support@orbintelligence.co" className="landing-overview__footer-link">Contact</a>
+              </div>
+              <div className="landing-overview__footer-col">
+                <span className="landing-overview__footer-col-title">Legal</span>
+                <Link to="/privacy" className="landing-overview__footer-link">Privacy</Link>
+                <Link to="/terms" className="landing-overview__footer-link">Terms</Link>
               </div>
             </nav>
           </div>
 
           <div className="landing-overview__footer-bottom">
             <p>© 2026 Orb. All rights reserved.</p>
-            <p className="landing-overview__footer-fineprint">Interactive figures shown are illustrative.</p>
+            <p className="landing-overview__footer-fineprint">Product visuals are simulated demonstrations using fictional patient data.</p>
           </div>
         </footer>
 

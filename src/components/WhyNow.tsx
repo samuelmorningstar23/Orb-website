@@ -40,7 +40,7 @@ export default function WhyNow() {
       <div className="why-now__moat">
         <span className="why-now__moat-bar" aria-hidden="true" />
         <p className="why-now__moat-text">
-          Orb is the operating system for that moment —{' '}
+          Orb is the intelligence layer for that moment —{' '}
           <strong>modules that compound</strong>, so the more of the hospital it
           runs, the more valuable every confirmed action becomes.
         </p>

@@ -29,6 +29,7 @@ export default function RequestDemoModal() {
   const [isSuccess, setIsSuccess] = useState(false)
   const [error, setError] = useState('')
   const firstFieldRef = useRef<HTMLInputElement>(null)
+  const cardRef = useRef<HTMLDivElement>(null)
 
   const close = () => setIsOpen(false)
 
@@ -38,18 +39,39 @@ export default function RequestDemoModal() {
     return () => window.removeEventListener('open-demo-modal', handleOpen)
   }, [])
 
-  // Scroll-lock, ESC-to-close, and focus the first field while open
+  // Scroll-lock, ESC-to-close, focus the first field, trap Tab inside the
+  // dialog while open, and hand focus back to the opener on close.
   useEffect(() => {
     if (!isOpen) return
+    const openerEl = document.activeElement as HTMLElement | null
     const prevOverflow = document.body.style.overflow
     document.body.style.overflow = 'hidden'
-    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setIsOpen(false) }
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') { setIsOpen(false); return }
+      if (e.key !== 'Tab') return
+      const card = cardRef.current
+      if (!card) return
+      const focusables = Array.from(
+        card.querySelectorAll<HTMLElement>('button, [href], input, textarea, select')
+      ).filter((el) => el.tabIndex !== -1 && el.getAttribute('aria-hidden') !== 'true')
+      if (focusables.length === 0) return
+      const first = focusables[0]
+      const last = focusables[focusables.length - 1]
+      const active = document.activeElement as HTMLElement | null
+      const inside = active !== null && card.contains(active)
+      if (e.shiftKey) {
+        if (!inside || active === first) { e.preventDefault(); last.focus() }
+      } else {
+        if (!inside || active === last) { e.preventDefault(); first.focus() }
+      }
+    }
     window.addEventListener('keydown', onKey)
     const t = window.setTimeout(() => firstFieldRef.current?.focus(), 60)
     return () => {
       document.body.style.overflow = prevOverflow
       window.removeEventListener('keydown', onKey)
       window.clearTimeout(t)
+      openerEl?.focus?.()
     }
   }, [isOpen])
 
@@ -98,7 +120,7 @@ export default function RequestDemoModal() {
 
   return (
     <div className="demo-modal-overlay animate-fade-in" onClick={close}>
-      <div className="demo-modal-card" role="dialog" aria-modal="true" aria-labelledby="demo-modal-title" onClick={e => e.stopPropagation()}>
+      <div className="demo-modal-card" role="dialog" aria-modal="true" aria-labelledby="demo-modal-title" ref={cardRef} onClick={e => e.stopPropagation()}>
         <button className="demo-modal-close" onClick={close} aria-label="Close">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
@@ -125,7 +147,7 @@ export default function RequestDemoModal() {
 
               <div className="demo-modal-field">
                 <label htmlFor="dm-company">Company / Hospital Group</label>
-                <input id="dm-company" type="text" placeholder="Mercy Health" value={company} onChange={e => setCompany(e.target.value)} required />
+                <input id="dm-company" type="text" placeholder="Your hospital or health system" value={company} onChange={e => setCompany(e.target.value)} required />
               </div>
 
               <div className="demo-modal-field">

@@ -88,7 +88,7 @@ export default function RevenueIntegrityDetail() {
       <Aurora />
       <MarketingHeader />
 
-      <main className="module-detail__content">
+      <main id="main" className="module-detail__content">
         <Link to="/" className="module-detail__back">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M19 12H5M12 19l-7-7 7-7" />
@@ -97,7 +97,7 @@ export default function RevenueIntegrityDetail() {
         </Link>
 
         <section className="module-detail__hero animate-slide-up">
-          <span className="module-detail__badge">Revenue Integrity</span>
+          <span className="module-detail__badge">Coding &amp; Reimbursement</span>
           <h1 className="module-detail__title">Revenue Integrity</h1>
           <p className="module-detail__tagline">
             Turns the care you already deliver into the reimbursement you're owed — catching the coding and documentation gaps that quietly cost hospitals millions.
@@ -115,7 +115,7 @@ export default function RevenueIntegrityDetail() {
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <span className="ri-dot" style={{ width: '7px', height: '7px', borderRadius: '50%', background: 'var(--accent-gold)', display: 'inline-block' }} />
-                <span style={{ fontSize: '0.68rem', fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase', color: 'var(--accent-gold)' }}>Suggested for coder review</span>
+                <span style={{ fontSize: '0.68rem', fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase', color: 'var(--accent-ink)' }}>Suggested for coder review</span>
               </div>
             </div>
 

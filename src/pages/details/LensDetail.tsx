@@ -79,7 +79,7 @@ These observations are assistive and must be confirmed by a clinician.`
       <Aurora />
       <MarketingHeader />
 
-      <main className="module-detail__content">
+      <main id="main" className="module-detail__content">
         <Link to="/" className="module-detail__back">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M19 12H5M12 19l-7-7 7-7"/>
@@ -212,7 +212,7 @@ These observations are assistive and must be confirmed by a clinician.`
               justifyContent: 'center',
               overflowY: 'auto'
             }}>
-              <span style={{ fontSize: '0.7rem', color: 'var(--accent-gold)', fontWeight: 600, textTransform: 'uppercase', marginBottom: '8px', display: 'block' }}>
+              <span style={{ fontSize: '0.7rem', color: 'var(--accent-ink)', fontWeight: 600, textTransform: 'uppercase', marginBottom: '8px', display: 'block' }}>
                 Draft Observations · For Clinician Review
               </span>
 

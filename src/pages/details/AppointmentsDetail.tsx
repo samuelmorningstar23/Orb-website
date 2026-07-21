@@ -34,7 +34,7 @@ export default function AppointmentsDetail() {
   const railColor = isLight ? 'rgba(0,0,0,0.06)' : 'rgba(255,255,255,0.06)'
 
   const slots: Slot[] = [
-    { time: '09:00', title: 'Follow-up', patient: 'R. Patel', color: 'var(--accent-gold)' },
+    { time: '09:00', title: 'Follow-up', patient: 'R. Patel', color: 'var(--accent-ink)' },
     { time: '10:30', title: 'Post-op review', patient: 'A. Osei', color: 'var(--status-warn)' },
     { time: '13:00', title: 'Clinic', patient: 'M. Lund', color: 'var(--status-ok)' },
   ]
@@ -79,7 +79,7 @@ export default function AppointmentsDetail() {
             fontWeight: 700,
             letterSpacing: '0.06em',
             textTransform: 'uppercase',
-            color: 'var(--accent-gold)',
+            color: 'var(--accent-ink)',
             background: isLight ? 'rgba(122,165,199,0.12)' : 'rgba(255,215,0,0.10)',
             padding: '3px 8px',
             borderRadius: '99px',
@@ -96,7 +96,7 @@ export default function AppointmentsDetail() {
       <Aurora />
       <MarketingHeader />
 
-      <main className="module-detail__content">
+      <main id="main" className="module-detail__content">
         <Link to="/" className="module-detail__back">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M19 12H5M12 19l-7-7 7-7" />
@@ -170,7 +170,7 @@ export default function AppointmentsDetail() {
               <div style={{ flex: '1.6', minWidth: '260px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
                 {slots.map((s) => renderCard(s, s.time))}
                 <div className={showNew ? 'appt-new appt-new--in' : 'appt-new'}>
-                  {renderCard({ time: '15:45', title: 'Follow-up', patient: 'J. Okafor', color: 'var(--accent-gold)' }, '15:45', {}, true)}
+                  {renderCard({ time: '15:45', title: 'Follow-up', patient: 'J. Okafor', color: 'var(--accent-ink)' }, '15:45', {}, true)}
                 </div>
               </div>
 
@@ -189,7 +189,7 @@ export default function AppointmentsDetail() {
                     justifyContent: 'center',
                   }}
                 >
-                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', fontSize: '0.66rem', textTransform: 'uppercase', letterSpacing: '0.07em', color: 'var(--accent-gold)', fontWeight: 700, marginBottom: '10px' }}>
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', fontSize: '0.66rem', textTransform: 'uppercase', letterSpacing: '0.07em', color: 'var(--accent-ink)', fontWeight: 700, marginBottom: '10px' }}>
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8" />
                     </svg>
@@ -222,7 +222,7 @@ export default function AppointmentsDetail() {
                   </span>
                   <div style={{ lineHeight: 1.3 }}>
                     <div style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--text-primary)' }}>3 reminders sent</div>
-                    <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>Patients &amp; staff up to date</div>
+                    <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>Via your existing messaging gateway</div>
                   </div>
                 </div>
               </div>

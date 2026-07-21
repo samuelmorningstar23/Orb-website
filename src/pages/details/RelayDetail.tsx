@@ -166,7 +166,7 @@ export default function RelayDetail() {
       <Aurora />
       <MarketingHeader />
 
-      <main className="module-detail__content">
+      <main id="main" className="module-detail__content">
         <Link to="/" className="module-detail__back">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M19 12H5M12 19l-7-7 7-7"/>
@@ -178,7 +178,7 @@ export default function RelayDetail() {
           <span className="module-detail__badge">Secure Clinical Messaging</span>
           <h1 className="module-detail__title">Relay</h1>
           <p className="module-detail__tagline">
-            Secure clinical messaging built for clinical teams. Instantly channels hospital telemetry warnings, streamlines case reviews, and archives clinical agreements — where Orb notices what matters, and offers to act.
+            Secure clinical messaging built for clinical teams. Brings ward escalations, case reviews, and clinical agreements into one archived place — where Orb notices what matters, and offers to act.
           </p>
         </section>
 
@@ -393,7 +393,7 @@ export default function RelayDetail() {
                   style={{
                     background: isLight ? 'rgba(122, 165, 199, 0.1)' : 'rgba(255, 215, 0, 0.1)',
                     border: '1px solid var(--accent-gold)',
-                    color: 'var(--accent-gold)',
+                    color: 'var(--accent-ink)',
                     borderRadius: '8px',
                     padding: '8px 16px',
                     fontSize: '0.8rem',
@@ -432,7 +432,7 @@ export default function RelayDetail() {
             </div>
             <h3 className="module-detail__card-title">Vigil Smart Triggers</h3>
             <p className="module-detail__card-desc">
-              Connects with patient telemetry logic directly. Receives warnings from patient monitors and routes them to active clinical teams automatically.
+              Works alongside your existing alarm infrastructure — never in place of it. Escalations raised on the ward land in the right team&rsquo;s channel with the case context attached.
             </p>
           </div>
 

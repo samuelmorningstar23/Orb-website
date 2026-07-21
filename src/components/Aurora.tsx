@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 /*──────────────────────────────────────────────────────────
   STITCH-REPLICA BACKGROUND — WebGL Aurora
@@ -222,6 +222,14 @@ function createProgram(gl: WebGLRenderingContext, vs: WebGLShader, fs: WebGLShad
   return p
 }
 
+// Media queries that put the background into a cheap, single-frame mode:
+// visitors who ask for reduced motion get a still frame, and mobile devices
+// skip the perpetual loops entirely (battery). Both are re-checked live.
+const REDUCE_MQ = '(prefers-reduced-motion: reduce)'
+const MOBILE_MQ = '(max-width: 768px), (pointer: coarse)'
+// Frame time used for the still frame — arcs sit in a pleasant position.
+const STATIC_T = 14.0
+
 export default function Aurora() {
   const glCanvasRef = useRef<HTMLCanvasElement>(null)
   const dotCanvasRef = useRef<HTMLCanvasElement>(null)
@@ -230,19 +238,43 @@ export default function Aurora() {
   const targetLightMode = useRef(0.0)
   const currentLightMode = useRef(0.0)
 
+  // Falls back to a CSS gradient when WebGL is unavailable or the shader
+  // fails to compile — locked-down hospital browsers must never get a void.
+  const [webglFailed, setWebglFailed] = useState(false)
+  const [reduce, setReduce] = useState(() => window.matchMedia(REDUCE_MQ).matches)
+  const [mobile, setMobile] = useState(() => window.matchMedia(MOBILE_MQ).matches)
+
+  useEffect(() => {
+    const reduceQ = window.matchMedia(REDUCE_MQ)
+    const mobileQ = window.matchMedia(MOBILE_MQ)
+    const onReduce = (e: MediaQueryListEvent) => setReduce(e.matches)
+    const onMobile = (e: MediaQueryListEvent) => setMobile(e.matches)
+    reduceQ.addEventListener('change', onReduce)
+    mobileQ.addEventListener('change', onMobile)
+    return () => {
+      reduceQ.removeEventListener('change', onReduce)
+      mobileQ.removeEventListener('change', onMobile)
+    }
+  }, [])
+
+  const animated = !reduce && !mobile
+
   // ─── WebGL Aurora ───
   useEffect(() => {
+    if (webglFailed) return
     const isLight = document.documentElement.getAttribute('data-theme') === 'light'
     targetLightMode.current = isLight ? 1.0 : 0.0
     currentLightMode.current = targetLightMode.current
 
-    const canvas = glCanvasRef.current!
-    const gl = canvas.getContext('webgl', { alpha: true, antialias: false })!
-    if (!gl) { console.error('WebGL not supported'); return }
+    const canvas = glCanvasRef.current
+    if (!canvas) return
+    const gl = canvas.getContext('webgl', { alpha: true, antialias: false })
+    if (!gl) { setWebglFailed(true); return }
 
-    const vs = createShader(gl, gl.VERTEX_SHADER, VERT_SRC)!
-    const fs = createShader(gl, gl.FRAGMENT_SHADER, FRAG_SRC)!
-    const prog = createProgram(gl, vs, fs)!
+    const vs = createShader(gl, gl.VERTEX_SHADER, VERT_SRC)
+    const fs = createShader(gl, gl.FRAGMENT_SHADER, FRAG_SRC)
+    const prog = vs && fs ? createProgram(gl, vs, fs) : null
+    if (!prog) { setWebglFailed(true); return }
 
     const posLoc = gl.getAttribLocation(prog, 'a_pos')
     const resLoc = gl.getUniformLocation(prog, 'u_resolution')
@@ -257,25 +289,21 @@ export default function Aurora() {
       -1, 1, 1, -1, 1, 1,
     ]), gl.STATIC_DRAW)
 
-    let w = 0, h = 0, raf: number
+    let w = 0, h = 0, raf = 0
     const t0 = performance.now()
 
     function resize() {
       w = Math.round(window.innerWidth * 0.5)
       h = Math.round(window.innerHeight * 0.5)
-      canvas.width = w
-      canvas.height = h
-      canvas.style.width = window.innerWidth + 'px'
-      canvas.style.height = window.innerHeight + 'px'
+      canvas!.width = w
+      canvas!.height = h
+      canvas!.style.width = window.innerWidth + 'px'
+      canvas!.style.height = window.innerHeight + 'px'
       gl!.viewport(0, 0, w, h)
+      if (!animated) renderFrame(STATIC_T)
     }
 
-    function loop() {
-      const t = (performance.now() - t0) / 1000
-
-      // Smoothly LERP theme color shift
-      currentLightMode.current += (targetLightMode.current - currentLightMode.current) * 0.08
-
+    function renderFrame(t: number) {
       gl!.useProgram(prog)
       gl!.uniform2f(resLoc, w, h)
       gl!.uniform1f(timeLoc, t)
@@ -286,39 +314,68 @@ export default function Aurora() {
       gl!.vertexAttribPointer(posLoc, 2, gl!.FLOAT, false, 0, 0)
 
       gl!.drawArrays(gl!.TRIANGLES, 0, 6)
+    }
 
+    function loop() {
+      // Smoothly LERP theme color shift
+      currentLightMode.current += (targetLightMode.current - currentLightMode.current) * 0.08
+      renderFrame((performance.now() - t0) / 1000)
       raf = requestAnimationFrame(loop)
     }
 
     const handleThemeChange = () => {
-      const isLight = document.documentElement.getAttribute('data-theme') === 'light'
-      targetLightMode.current = isLight ? 1.0 : 0.0
+      const light = document.documentElement.getAttribute('data-theme') === 'light'
+      targetLightMode.current = light ? 1.0 : 0.0
+      if (!animated) {
+        // No loop running — jump the lerp and redraw the still frame.
+        currentLightMode.current = targetLightMode.current
+        renderFrame(STATIC_T)
+      }
     }
     window.addEventListener('theme-changed', handleThemeChange)
 
+    // Don't burn GPU while the tab is hidden.
+    const handleVisibility = () => {
+      if (!animated) return
+      if (document.hidden) {
+        cancelAnimationFrame(raf)
+      } else {
+        raf = requestAnimationFrame(loop)
+      }
+    }
+    document.addEventListener('visibilitychange', handleVisibility)
+
     window.addEventListener('resize', resize)
     resize()
-    raf = requestAnimationFrame(loop)
+    if (animated) {
+      raf = requestAnimationFrame(loop)
+    } else {
+      renderFrame(STATIC_T)
+    }
 
     return () => {
       window.removeEventListener('theme-changed', handleThemeChange)
       window.removeEventListener('resize', resize)
+      document.removeEventListener('visibilitychange', handleVisibility)
       cancelAnimationFrame(raf)
     }
-  }, [])
+  }, [animated, webglFailed])
 
-  // ─── Dot grid ───
+  // ─── Dot grid ─── (skipped entirely on mobile — not worth the battery)
   useEffect(() => {
-    const canvas = dotCanvasRef.current!
-    const ctx = canvas.getContext('2d')!
-    let dpr = 1, dots: Dot[] = [], w = 0, h = 0, time = 0, raf: number
+    if (mobile) return
+    const canvas = dotCanvasRef.current
+    if (!canvas) return
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+    let dpr = 1, dots: Dot[] = [], w = 0, h = 0, time = 0, raf = 0
 
     function resize() {
       dpr = window.devicePixelRatio || 1
       w = window.innerWidth; h = window.innerHeight
-      canvas.width = w * dpr; canvas.height = h * dpr
-      canvas.style.width = w + 'px'; canvas.style.height = h + 'px'
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+      canvas!.width = w * dpr; canvas!.height = h * dpr
+      canvas!.style.width = w + 'px'; canvas!.style.height = h + 'px'
+      ctx!.setTransform(dpr, 0, 0, dpr, 0, 0)
 
       const cols = Math.ceil(w / DOT_SPACING) + 2
       const rows = Math.ceil(h / DOT_SPACING) + 2
@@ -330,12 +387,13 @@ export default function Aurora() {
           const gx = ox + c * DOT_SPACING, gy = oy + r * DOT_SPACING
           dots.push({ gx, gy, cx: gx, cy: gy })
         }
+      if (reduce) drawFrame(false)
     }
 
-    function loop() {
-      time++
-      ctx.clearRect(0, 0, w, h)
+    function drawFrame(withMouse: boolean) {
+      ctx!.clearRect(0, 0, w, h)
       const mx = mouseRef.current.x, my = mouseRef.current.y
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light'
 
       for (const dot of dots) {
         const nx = cheapNoise(dot.gx * NOISE_SCALE, dot.gy * NOISE_SCALE, time * NOISE_SPEED)
@@ -344,7 +402,7 @@ export default function Aurora() {
 
         const ddx = tx - mx, ddy = ty - my
         const dist = Math.sqrt(ddx * ddx + ddy * ddy)
-        if (dist < MOUSE_RADIUS && dist > 0) {
+        if (withMouse && dist < MOUSE_RADIUS && dist > 0) {
           const f = Math.pow(1 - dist / MOUSE_RADIUS, 3) * MAX_DISPLACE
           tx += (ddx / dist) * f; ty += (ddy / dist) * f
         }
@@ -353,49 +411,87 @@ export default function Aurora() {
         dot.cy += (ty - dot.cy) * LERP_BACK
 
         let a = 0.35
-        if (dist < MOUSE_RADIUS) a = 0.35 + (1 - dist / MOUSE_RADIUS) * 0.55
+        if (withMouse && dist < MOUSE_RADIUS) a = 0.35 + (1 - dist / MOUSE_RADIUS) * 0.55
 
-        ctx.beginPath()
-        ctx.arc(dot.cx, dot.cy, DOT_RADIUS, 0, Math.PI * 2)
-        const isLight = document.documentElement.getAttribute('data-theme') === 'light'
-        ctx.fillStyle = isLight ? `rgba(122, 165, 199, ${a * 0.65})` : `rgba(170,170,170,${a})`
-        ctx.fill()
+        ctx!.beginPath()
+        ctx!.arc(dot.cx, dot.cy, DOT_RADIUS, 0, Math.PI * 2)
+        ctx!.fillStyle = isLight ? `rgba(122, 165, 199, ${a * 0.65})` : `rgba(170,170,170,${a})`
+        ctx!.fill()
       }
+    }
+
+    function loop() {
+      time++
+      drawFrame(true)
       raf = requestAnimationFrame(loop)
     }
 
     const onMM = (e: MouseEvent) => { mouseRef.current.x = e.clientX; mouseRef.current.y = e.clientY }
+    const handleVisibility = () => {
+      if (reduce) return
+      if (document.hidden) {
+        cancelAnimationFrame(raf)
+      } else {
+        raf = requestAnimationFrame(loop)
+      }
+    }
+    const handleThemeChange = () => { if (reduce) drawFrame(false) }
+
     window.addEventListener('resize', resize)
-    window.addEventListener('mousemove', onMM)
-    resize(); raf = requestAnimationFrame(loop)
-    return () => { window.removeEventListener('resize', resize); window.removeEventListener('mousemove', onMM); cancelAnimationFrame(raf) }
-  }, [])
+    document.addEventListener('visibilitychange', handleVisibility)
+    window.addEventListener('theme-changed', handleThemeChange)
+    resize()
+    if (reduce) {
+      // Settle the lerp instantly for the still frame, then draw once.
+      for (const dot of dots) { dot.cx = dot.gx; dot.cy = dot.gy }
+      drawFrame(false)
+    } else {
+      window.addEventListener('mousemove', onMM)
+      raf = requestAnimationFrame(loop)
+    }
+    return () => {
+      window.removeEventListener('resize', resize)
+      window.removeEventListener('mousemove', onMM)
+      document.removeEventListener('visibilitychange', handleVisibility)
+      window.removeEventListener('theme-changed', handleThemeChange)
+      cancelAnimationFrame(raf)
+    }
+  }, [reduce, mobile])
 
   return (
     <>
-      {/* Layer 0: WebGL aurora — SDF-masked volumetric glow */}
-      <canvas
-        ref={glCanvasRef}
-        style={{
-          position: 'fixed',
-          inset: 0,
-          zIndex: 0,
-          pointerEvents: 'none',
-          imageRendering: 'auto',
-        }}
-      />
+      {/* Layer 0: WebGL aurora — SDF-masked volumetric glow.
+          If WebGL is unavailable, a CSS gradient stands in so the page
+          background never silently disappears. */}
+      {webglFailed ? (
+        <div className="aurora-fallback" aria-hidden="true" />
+      ) : (
+        <canvas
+          ref={glCanvasRef}
+          aria-hidden="true"
+          style={{
+            position: 'fixed',
+            inset: 0,
+            zIndex: 0,
+            pointerEvents: 'none',
+            imageRendering: 'auto',
+          }}
+        />
+      )}
 
-      {/* Layer 1: Canvas dot grid with mouse displacement */}
-      <canvas
-        ref={dotCanvasRef}
-        style={{
-          position: 'fixed',
-          inset: 0,
-          zIndex: 1,
-          pointerEvents: 'none',
-        }}
-      />
-
-      </>
+      {/* Layer 1: Canvas dot grid with mouse displacement (desktop only) */}
+      {!mobile && (
+        <canvas
+          ref={dotCanvasRef}
+          aria-hidden="true"
+          style={{
+            position: 'fixed',
+            inset: 0,
+            zIndex: 1,
+            pointerEvents: 'none',
+          }}
+        />
+      )}
+    </>
   )
 }

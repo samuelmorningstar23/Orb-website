@@ -176,7 +176,7 @@ export default function SurgeSimulatorDetail() {
       <Aurora />
       <MarketingHeader />
 
-      <main className="module-detail__content">
+      <main id="main" className="module-detail__content">
         <Link to="/" className="module-detail__back">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M19 12H5M12 19l-7-7 7-7" />
@@ -401,13 +401,13 @@ export default function SurgeSimulatorDetail() {
         }
         .ss-btn:hover {
           color: var(--text-primary);
-          border-color: var(--accent-gold);
+          border-color: var(--accent-ink);
           transform: translateY(-1px);
         }
         .ss-btn--active {
           background: var(--accent-gold);
           color: var(--btn-primary-text);
-          border-color: var(--accent-gold);
+          border-color: var(--accent-ink);
           box-shadow: 0 4px 14px var(--accent-glow);
         }
         [data-theme="light"] .ss-btn {

@@ -180,7 +180,7 @@ export default function PulseDetail() {
       <Aurora />
       <MarketingHeader />
 
-      <main className="module-detail__content">
+      <main id="main" className="module-detail__content">
         <Link to="/" className="module-detail__back">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M19 12H5M12 19l-7-7 7-7" />
@@ -292,7 +292,7 @@ export default function PulseDetail() {
                 style={{
                   fontSize: '0.7rem',
                   textTransform: 'uppercase',
-                  color: 'var(--accent-gold)',
+                  color: 'var(--accent-ink)',
                   fontWeight: 600,
                   display: 'block',
                   marginBottom: '8px',
@@ -365,7 +365,7 @@ export default function PulseDetail() {
             </div>
             <h3 className="module-detail__card-title">Always On-Site</h3>
             <p className="module-detail__card-desc">
-              Runs entirely within the hospital, keeping population insight available even when outside networks are down.
+              Runs entirely within the hospital — if outside feeds drop, it keeps the last-known picture and your hospital&rsquo;s own trends available until they return.
             </p>
           </div>
         </section>

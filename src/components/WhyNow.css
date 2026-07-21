@@ -15,7 +15,7 @@
   font-size: 0.8rem;
   font-weight: 600;
   text-transform: uppercase;
-  color: var(--accent-gold);
+  color: var(--accent-ink);
   letter-spacing: 0.12em;
   margin-bottom: 18px;
   display: inline-block;
@@ -58,7 +58,7 @@
   font-size: 1.5rem;
   font-weight: 500;
   line-height: 1;
-  color: var(--accent-gold);
+  color: var(--accent-ink);
   flex-shrink: 0;
   min-width: 2.4ch;
   font-variant-numeric: tabular-nums;

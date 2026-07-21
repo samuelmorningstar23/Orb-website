@@ -151,7 +151,7 @@ export default function VigilDetail() {
       <Aurora />
       <MarketingHeader />
 
-      <main className="module-detail__content">
+      <main id="main" className="module-detail__content">
         <Link to="/" className="module-detail__back">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M19 12H5M12 19l-7-7 7-7"/>
@@ -253,7 +253,7 @@ export default function VigilDetail() {
                 padding: '16px',
                 boxShadow: isLight ? '0 2px 8px rgba(0,0,0,0.02)' : 'none'
               }}>
-                <span style={{ fontSize: '0.7rem', textTransform: 'uppercase', color: 'var(--accent-gold)', fontWeight: 600, display: 'block', marginBottom: '8px', letterSpacing: '0.05em' }}>
+                <span style={{ fontSize: '0.7rem', textTransform: 'uppercase', color: 'var(--accent-ink)', fontWeight: 600, display: 'block', marginBottom: '8px', letterSpacing: '0.05em' }}>
                   Sage · Triage Assessment
                 </span>
                 <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: '1.45', fontFamily: 'var(--font-mono)' }}>

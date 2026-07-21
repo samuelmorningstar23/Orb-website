@@ -67,7 +67,7 @@
 }
 
 .marketing-header__link--active {
-  color: var(--accent-gold);
+  color: var(--accent-ink);
 }
 
 .marketing-header__actions {
@@ -100,7 +100,7 @@
 
 .marketing-header__request-btn {
   background: transparent;
-  color: var(--accent-gold);
+  color: var(--accent-ink);
   border: 1.5px solid var(--accent-gold);
   font-size: 0.8rem;
   font-weight: 700;
@@ -139,7 +139,7 @@
 
 .marketing-header__modules-trigger.is-open,
 .marketing-header__modules-trigger.is-open svg {
-  color: var(--accent-gold);
+  color: var(--accent-ink);
 }
 
 .marketing-header__modules-trigger.is-open svg {
@@ -193,7 +193,7 @@
 }
 
 .marketing-header__dropdown-link.is-active {
-  color: var(--accent-gold);
+  color: var(--accent-ink);
 }
 
 /* ─── Hamburger (mobile only) ─── */
@@ -278,7 +278,7 @@
 
   .marketing-header__drawer-link:active,
   .marketing-header__drawer-link:hover {
-    color: var(--accent-gold);
+    color: var(--accent-ink);
   }
 
   .marketing-header__drawer-cta {

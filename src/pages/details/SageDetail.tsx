@@ -39,7 +39,7 @@ const SCENARIOS: Record<ScenarioKey, Scenario> = {
     ],
     action: 'Start IV antibiotic · confirm dose',
     rationale: 'Aligns with your sepsis care bundle for a suspected intra-abdominal source.',
-    downstream: ['Order sent to Helix', 'Theatre team alerted', 'Note filed to Scribe'],
+    downstream: ['Order sent to Helix', 'Surgical team alerted', 'Note filed to Scribe'],
   },
   hold: {
     label: 'Medication hold',
@@ -168,7 +168,7 @@ export default function SageDetail() {
       <Aurora />
       <MarketingHeader />
 
-      <main className="module-detail__content">
+      <main id="main" className="module-detail__content">
         <Link to="/" className="module-detail__back">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M19 12H5M12 19l-7-7 7-7" />
@@ -344,7 +344,7 @@ export default function SageDetail() {
                               })}
                             </div>
                             {litChips >= 3 && (
-                              <button onClick={resetAct} className="sage-rise" style={{ marginTop: '14px', fontSize: '0.74rem', fontWeight: 600, color: 'var(--accent-gold)', background: 'transparent', border: 'none', cursor: 'pointer', padding: 0 }}>
+                              <button onClick={resetAct} className="sage-rise" style={{ marginTop: '14px', fontSize: '0.74rem', fontWeight: 600, color: 'var(--accent-ink)', background: 'transparent', border: 'none', cursor: 'pointer', padding: 0 }}>
                                 ↻ Replay
                               </button>
                             )}
@@ -416,7 +416,7 @@ export default function SageDetail() {
         @keyframes sage-typing { 0%,60%,100% { opacity: 0.25; transform: translateY(0); } 30% { opacity: 1; transform: translateY(-3px); } }
         .sage-typing-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--text-muted); display: inline-block; animation: sage-typing 1.1s ease-in-out infinite; }
         @keyframes sage-blink { 0%,100% { opacity: 0; } 50% { opacity: 1; } }
-        .sage-caret { color: var(--accent-gold); animation: sage-blink 1s steps(1) infinite; margin-left: 1px; }
+        .sage-caret { color: var(--accent-ink); animation: sage-blink 1s steps(1) infinite; margin-left: 1px; }
         @keyframes sage-spin { to { transform: rotate(360deg); } }
         .sage-mini-spin { animation: sage-spin 0.8s linear infinite; }
       `}</style>

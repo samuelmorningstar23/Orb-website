@@ -2,12 +2,30 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/src/assets/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Orb — Local-first Hospital Intelligence</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#08090d" />
+    <link rel="preload" href="/fonts/raleway-var.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/lora-var.woff2" as="font" type="font/woff2" crossorigin />
+    <!-- The block between the route-head markers is replaced per route by
+         scripts/prerender.mjs after `vite build`. Edit route titles and
+         descriptions in src/routeMeta.ts, not here. -->
+    <!--route-head-start-->
+    <title>Orb — Hospital Intelligence. Same data, better decisions.</title>
+    <meta name="description" content="Orb is local-first hospital intelligence: AI that runs on hardware inside your hospital, works alongside the systems you already have, and acts the moment a clinician confirms. Patient data never leaves the building." />
+    <link rel="canonical" href="https://orbintelligence.co/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Orb" />
+    <meta property="og:title" content="Orb — Hospital Intelligence. Same data, better decisions." />
+    <meta property="og:description" content="Local-first hospital intelligence. Runs on hardware inside your walls, works alongside your existing systems, and acts the moment a clinician confirms." />
+    <meta property="og:url" content="https://orbintelligence.co/" />
+    <meta property="og:image" content="https://orbintelligence.co/og.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <!--route-head-end-->
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"><!--prerender-outlet--></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

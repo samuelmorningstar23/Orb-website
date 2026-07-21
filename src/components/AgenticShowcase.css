@@ -20,7 +20,7 @@
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--accent-gold);
+  color: var(--accent-ink);
   margin-bottom: 18px;
 }
 
@@ -97,7 +97,7 @@
 
 .agentic__node.is-past .agentic__node-icon,
 .agentic__node.is-active .agentic__node-icon {
-  color: var(--accent-gold);
+  color: var(--accent-ink);
   background: color-mix(in srgb, var(--accent-gold) 16%, transparent);
 }
 
@@ -286,7 +286,7 @@
   border: none;
   cursor: pointer;
   font-family: inherit;
-  color: var(--accent-gold);
+  color: var(--accent-ink);
   font-weight: 600;
   font-size: 0.9rem;
   transition: opacity var(--transition-fast), transform var(--transition-fast);

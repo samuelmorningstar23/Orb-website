@@ -86,7 +86,7 @@ export default function ForecastDetail() {
       <Aurora />
       <MarketingHeader />
 
-      <main className="module-detail__content">
+      <main id="main" className="module-detail__content">
         <Link to="/" className="module-detail__back">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M19 12H5M12 19l-7-7 7-7" />
@@ -113,7 +113,7 @@ export default function ForecastDetail() {
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <span className="fc-dot" style={{ width: '7px', height: '7px', borderRadius: '50%', background: 'var(--accent-gold)', display: 'inline-block' }} />
-                <span style={{ fontSize: '0.68rem', fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase', color: 'var(--accent-gold)' }}>Updating live</span>
+                <span style={{ fontSize: '0.68rem', fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase', color: 'var(--accent-ink)' }}>Updating live</span>
               </div>
             </div>
 
@@ -209,7 +209,7 @@ export default function ForecastDetail() {
                 {/* headline stat */}
                 <div style={{ marginTop: '12px', background: panelBg, border: `1px solid ${panelBorder}`, borderRadius: '12px', padding: '12px 14px', display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: '10px', boxShadow: isLight ? '0 2px 8px rgba(0,0,0,0.02)' : 'none' }}>
                   <span style={{ fontSize: '0.74rem', color: 'var(--text-secondary)', fontWeight: 500 }}>Projected free beds tomorrow</span>
-                  <span style={{ fontSize: '1.9rem', fontWeight: 800, color: 'var(--accent-gold)', lineHeight: 1 }}>8</span>
+                  <span style={{ fontSize: '1.9rem', fontWeight: 800, color: 'var(--accent-ink)', lineHeight: 1 }}>8</span>
                 </div>
               </div>
 

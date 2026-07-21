@@ -61,7 +61,7 @@ export default function ScribeDetail() {
       <Aurora />
       <MarketingHeader />
 
-      <main className="module-detail__content">
+      <main id="main" className="module-detail__content">
         <Link to="/" className="module-detail__back">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M19 12H5M12 19l-7-7 7-7"/>
@@ -165,7 +165,7 @@ export default function ScribeDetail() {
                 justifyContent: 'center',
                 position: 'relative'
               }}>
-                <span style={{ fontSize: '0.7rem', color: 'var(--accent-gold)', fontWeight: 600, textTransform: 'uppercase', marginBottom: '8px', display: 'block', position: 'absolute', top: '16px', left: '16px' }}>
+                <span style={{ fontSize: '0.7rem', color: 'var(--accent-ink)', fontWeight: 600, textTransform: 'uppercase', marginBottom: '8px', display: 'block', position: 'absolute', top: '16px', left: '16px' }}>
                   Structured Clinical Note
                 </span>
 
@@ -187,7 +187,7 @@ export default function ScribeDetail() {
                       <span style={{ color: 'var(--text-primary)' }}>Vitals: BP 142/90, HR 88 bpm. EKG: Minor ST segment elevations detected.</span>
                     </div>
                     <div>
-                      <span style={{ color: isLight ? '#0c62b8' : '#FFD700', fontWeight: 600, textTransform: 'uppercase', display: 'inline-block', width: '90px' }}>Assessment:</span>
+                      <span style={{ color: 'var(--accent-ink)', fontWeight: 600, textTransform: 'uppercase', display: 'inline-block', width: '90px' }}>Assessment:</span>
                       <span style={{ color: 'var(--text-primary)' }}>Acute substernal chest pain. Rule out acute myocardial infarction.</span>
                     </div>
                     <div>

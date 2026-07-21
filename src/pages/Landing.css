@@ -45,7 +45,7 @@
   font-size: 0.8rem;
   font-weight: 600;
   text-transform: uppercase;
-  color: var(--accent-gold);
+  color: var(--accent-ink);
   letter-spacing: 0.12em;
   margin-bottom: 18px;
 }
@@ -108,7 +108,7 @@
 }
 
 .landing-overview__btn-secondary-action {
-  color: var(--accent-gold);
+  color: var(--accent-ink);
   font-size: 0.95rem;
   font-weight: 700;
   transition: opacity var(--transition-fast), transform var(--transition-fast);
@@ -492,7 +492,7 @@
 
 .landing-overview__footer-link:hover,
 .landing-overview__footer-linkbtn:hover {
-  color: var(--accent-gold);
+  color: var(--accent-ink);
 }
 
 .landing-overview__footer-bottom {

@@ -1,0 +1,225 @@
+/* ─── Shared styles for About / Security / Privacy / Terms ───
+   These pages reuse the module-detail layout shell; everything below is
+   specific to company-page content. */
+
+/* Founders */
+.company-founders {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+
+@media (max-width: 860px) {
+  .company-founders { grid-template-columns: 1fr; }
+}
+
+.company-founder {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 36px 28px;
+  text-align: center;
+  transition: transform var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+.company-founder:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 215, 0, 0.30);
+  box-shadow: var(--shadow-glow);
+}
+
+[data-theme="light"] .company-founder {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.5) 100%);
+  border-color: rgba(0, 0, 0, 0.07);
+}
+
+[data-theme="light"] .company-founder:hover {
+  border-color: rgba(122, 165, 199, 0.4);
+}
+
+.company-founder__avatar {
+  width: 84px;
+  height: 84px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--accent-ink);
+  border: 1px solid var(--border-focus);
+  background: radial-gradient(circle at 30% 25%, var(--accent-glow-strong), transparent 70%);
+}
+
+.company-founder__name {
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
+  color: var(--text-primary);
+}
+
+.company-founder__role {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+  margin-bottom: 14px;
+}
+
+.company-founder__bio {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Prose sections (privacy, terms, about story) */
+.company-prose {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.company-prose h2 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  margin: 44px 0 12px;
+  color: var(--text-primary);
+}
+
+.company-prose p,
+.company-prose li {
+  font-size: 0.97rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.company-prose ul {
+  padding-left: 20px;
+  margin-top: 8px;
+}
+
+.company-prose li { margin-bottom: 6px; }
+
+.company-prose a {
+  color: var(--accent-ink);
+  font-weight: 500;
+}
+
+.company-prose .company-prose__updated {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+
+/* Data boundary table */
+.boundary-table-wrap {
+  overflow-x: auto;
+  margin-top: 40px;
+  border: 1px solid var(--border-glass);
+  border-radius: 18px;
+}
+
+.boundary-table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.boundary-table th {
+  text-align: left;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-glass);
+  background: var(--bg-glass);
+}
+
+.boundary-table td {
+  padding: 15px 20px;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-subtle);
+  vertical-align: top;
+  line-height: 1.55;
+}
+
+.boundary-table tr:last-child td { border-bottom: none; }
+
+.boundary-table td:first-child {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.boundary-table__stays {
+  color: var(--status-ok);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Certification status rows */
+.cert-list {
+  margin-top: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cert-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 20px;
+  border: 1px solid var(--border-glass);
+  border-radius: 14px;
+  background: var(--bg-glass);
+}
+
+.cert-row__name {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.cert-row__detail {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.cert-row__status {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--status-warn);
+  white-space: nowrap;
+}
+
+/* Section headers inside company pages */
+.company-section {
+  margin-top: 72px;
+}
+
+.company-section__title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+
+.company-section__lede {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  max-width: 640px;
+}

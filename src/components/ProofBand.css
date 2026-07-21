@@ -15,7 +15,7 @@
   font-size: 0.8rem;
   font-weight: 600;
   text-transform: uppercase;
-  color: var(--accent-gold);
+  color: var(--accent-ink);
   letter-spacing: 0.12em;
   margin-bottom: 16px;
   display: inline-block;
@@ -81,7 +81,7 @@
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-sm);
-  color: var(--accent-gold);
+  color: var(--accent-ink);
   background: var(--accent-glow);
   border: 1px solid var(--accent-glow-strong);
   transition: transform var(--transition-base), background var(--transition-base);

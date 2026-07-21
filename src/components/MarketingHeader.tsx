@@ -75,6 +75,7 @@ export default function MarketingHeader() {
 
   return (
     <header className="marketing-header">
+      <a className="skip-link" href="#main">Skip to content</a>
       <div className="marketing-header__container">
         <Link to="/" className="marketing-header__brand" onClick={() => setMobileOpen(false)}>
           <OrbLogo size={24} />
@@ -113,6 +114,13 @@ export default function MarketingHeader() {
               </div>
             )}
           </div>
+
+          <NavLink to="/about" className={({ isActive }) => `marketing-header__link ${isActive ? 'marketing-header__link--active' : ''}`}>
+            About
+          </NavLink>
+          <NavLink to="/security" className={({ isActive }) => `marketing-header__link ${isActive ? 'marketing-header__link--active' : ''}`}>
+            Security
+          </NavLink>
         </nav>
 
         <div className="marketing-header__actions">
@@ -141,6 +149,8 @@ export default function MarketingHeader() {
       {mobileOpen && (
         <div className="marketing-header__drawer">
           <NavLink to="/" end className="marketing-header__drawer-link marketing-header__drawer-link--overview" onClick={() => setMobileOpen(false)}>Overview</NavLink>
+          <NavLink to="/about" className="marketing-header__drawer-link marketing-header__drawer-link--overview" onClick={() => setMobileOpen(false)}>About</NavLink>
+          <NavLink to="/security" className="marketing-header__drawer-link marketing-header__drawer-link--overview" onClick={() => setMobileOpen(false)}>Security</NavLink>
           <span className="marketing-header__drawer-label">Modules</span>
           <div className="marketing-header__drawer-grid">
             {MODULES.map(m => (
