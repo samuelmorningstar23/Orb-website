@@ -8,7 +8,8 @@ import { useLocation, useNavigationType } from 'react-router-dom'
  * navigation.
  *
  * Two deliberate exceptions:
- *  - a hash link (#modules) should scroll to its anchor, not the top
+ *  - a hash link (#modules, /plans#max) scrolls to its anchor — retried across
+ *    a few frames because the target page may not have rendered it yet
  *  - back/forward (POP) is left to the browser, which restores the previous
  *    position — so returning from a module lands you back in the grid
  */
@@ -17,7 +18,18 @@ export default function ScrollToTop() {
   const navigationType = useNavigationType()
 
   useEffect(() => {
-    if (hash) return
+    if (hash) {
+      const id = hash.slice(1)
+      let attempts = 0
+      let raf = 0
+      const tryScroll = () => {
+        const el = document.getElementById(id)
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        else if (attempts++ < 15) raf = requestAnimationFrame(tryScroll)
+      }
+      raf = requestAnimationFrame(tryScroll)
+      return () => cancelAnimationFrame(raf)
+    }
     if (navigationType === 'POP') return
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' as ScrollBehavior })
   }, [pathname, hash, navigationType])

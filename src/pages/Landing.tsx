@@ -280,6 +280,8 @@ export default function Landing() {
               <div className="landing-overview__footer-col">
                 <span className="landing-overview__footer-col-title">Company</span>
                 <a href="#modules" className="landing-overview__footer-link">Overview</a>
+                <Link to="/plans" className="landing-overview__footer-link">Plans</Link>
+                <Link to="/support" className="landing-overview__footer-link">Support</Link>
                 <button className="landing-overview__footer-linkbtn" onClick={openDemo}>Request a demo</button>
                 <a href="mailto:support@orbintelligence.co" className="landing-overview__footer-link">Contact</a>
               </div>

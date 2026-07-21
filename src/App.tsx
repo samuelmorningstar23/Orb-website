@@ -1,5 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import Landing from './pages/Landing'
+import Plans from './pages/Plans'
+import Support from './pages/Support'
 import VigilDetail from './pages/details/VigilDetail'
 import SageDetail from './pages/details/SageDetail'
 import ScribeDetail from './pages/details/ScribeDetail'
@@ -44,6 +46,8 @@ function App() {
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Landing />} />
+        <Route path="/plans" element={<Plans />} />
+        <Route path="/support" element={<Support />} />
         <Route path="/vigil" element={<VigilDetail />} />
         <Route path="/sage" element={<SageDetail />} />
         <Route path="/scribe" element={<ScribeDetail />} />
