@@ -7,7 +7,7 @@ import { copyFileSync } from 'node:fs'
 // independent from the clinical Orb app (which lives in the Orb Project repo).
 // Port 5174 so it can run alongside the app's dev server (5173) without clashing.
 export default defineConfig({
-  // Served from the root of the custom domain (orbintelligence.co), so assets
+  // Served from the root of the custom domain (orbsuite.com), so assets
   // resolve at '/'. This was '/Orb-website/' while the site lived on the
   // github.io project sub-path — do not reintroduce that while a custom
   // domain is configured, or every asset 404s.

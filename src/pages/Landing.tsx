@@ -6,6 +6,7 @@ import AgenticShowcase from '../components/AgenticShowcase'
 import WhyNow from '../components/WhyNow'
 import SafetySuite from '../components/SafetySuite'
 import TrustPosture from '../components/TrustPosture'
+import { CONTACT_EMAIL } from '../data/siteContent'
 import './Landing.css'
 
 const openDemo = () => window.dispatchEvent(new CustomEvent('open-demo-modal'))
@@ -283,7 +284,7 @@ export default function Landing() {
                 <Link to="/plans" className="landing-overview__footer-link">Plans</Link>
                 <Link to="/support" className="landing-overview__footer-link">Support</Link>
                 <button className="landing-overview__footer-linkbtn" onClick={openDemo}>Request a demo</button>
-                <a href="mailto:support@orbintelligence.co" className="landing-overview__footer-link">Contact</a>
+                <a href={`mailto:${CONTACT_EMAIL}`} className="landing-overview__footer-link">Contact</a>
               </div>
             </nav>
           </div>

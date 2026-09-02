@@ -152,7 +152,22 @@ export const PLANS: Plan[] = [
   },
 ]
 
-export const CONTACT_EMAIL = 'support@orbintelligence.co'
+// ─── Contact & lead delivery ───
+// The site is a static build (GitHub Pages) and cannot send mail itself, so
+// every form on it (demo modal, support page) submits to Web3Forms, which
+// emails the submission to the inbox the access key is registered to. Change
+// the recipient in the Web3Forms dashboard, not here — there is deliberately
+// no "send to" field in the payloads, so a public key can't be used to
+// redirect our mail.
+//
+// The access key is PUBLIC by design — Web3Forms expects it in client-side
+// markup and enforces the allowed domain (orbsuite.com) instead. It is not a
+// secret. Web3Forms rejects server-side calls on the free plan; submissions
+// must come from the browser (which is what happens here).
+export const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit'
+export const WEB3FORMS_ACCESS_KEY = '20e7bb09-6c16-4692-bee8-343422d7ff94'
+
+export const CONTACT_EMAIL = 'support@orbsuite.com'
 
 export const openDemoModal = () =>
   window.dispatchEvent(new CustomEvent('open-demo-modal'))

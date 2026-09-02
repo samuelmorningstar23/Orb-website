@@ -1,22 +1,8 @@
 import { useState, useEffect, useRef } from 'react'
+// Lead delivery (Web3Forms endpoint + key) and the contact address live in
+// siteContent.ts so every form and mailto on the site stays in sync.
+import { CONTACT_EMAIL, WEB3FORMS_ENDPOINT, WEB3FORMS_ACCESS_KEY } from '../data/siteContent'
 import './RequestDemoModal.css'
-
-// ─── LEAD DELIVERY ───
-// This is a static site (GitHub Pages) and cannot send mail itself, so demo
-// requests go through Web3Forms, which emails them to the inbox the access key
-// is registered to. Change the recipient in the Web3Forms dashboard, not here —
-// there is deliberately no "send to" field in the payload, so a public key
-// can't be used to redirect your mail.
-//
-// The access key is PUBLIC by design — Web3Forms expects it in client-side
-// markup and enforces the allowed domain instead. It is not a secret.
-// Note: Web3Forms rejects server-side calls on the free plan; submissions must
-// come from the browser (which is what happens here).
-const DEMO_ENDPOINT = 'https://api.web3forms.com/submit'
-const WEB3FORMS_ACCESS_KEY = '20e7bb09-6c16-4692-bee8-343422d7ff94'
-// Shown on the success screen and if a submission fails, so a visitor always
-// has a way to reach the team.
-const CONTACT_EMAIL = 'support@orbintelligence.co'
 
 export default function RequestDemoModal() {
   const [isOpen, setIsOpen] = useState(false)
@@ -65,7 +51,7 @@ export default function RequestDemoModal() {
     setError('')
 
     try {
-      const res = await fetch(DEMO_ENDPOINT, {
+      const res = await fetch(WEB3FORMS_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
