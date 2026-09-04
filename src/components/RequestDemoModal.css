@@ -17,7 +17,7 @@
   max-width: 460px;
   background: #16181f;
   border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 24px;
+  border-radius: var(--radius-lg);
   padding: 40px;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.4), 0 32px 80px rgba(0, 0, 0, 0.75);
   position: relative;
@@ -142,22 +142,27 @@
 }
 
 .demo-modal-submit {
-  background: var(--accent-gold);
-  color: var(--btn-primary-text);
-  font-weight: 700;
+  background: var(--btn-gradient);
+  color: var(--btn-text);
+  font-weight: 600;
   font-size: 0.95rem;
   padding: 12px;
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-md);
   margin-top: 10px;
-  box-shadow: 0 4px 16px var(--accent-glow);
+  box-shadow: var(--btn-glow), var(--btn-sheen);
   transition: transform var(--transition-fast), filter var(--transition-fast);
   cursor: pointer;
+  letter-spacing: -0.01em;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  font-family: var(--font-family);
   letter-spacing: -0.01em;
 }
 
 .demo-modal-submit:hover {
   transform: translateY(-1px);
   filter: brightness(1.05);
+  background: var(--btn-gradient-hover);
+  box-shadow: var(--btn-glow-hover), var(--btn-sheen);
 }
 
 .demo-modal-submit:disabled {
@@ -196,7 +201,7 @@
   font-weight: 500;
   font-size: 0.85rem;
   padding: 8px 24px;
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-md);
   margin-top: 16px;
   transition: background var(--transition-fast);
   cursor: pointer;

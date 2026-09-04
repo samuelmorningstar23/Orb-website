@@ -19,12 +19,12 @@
   align-items: flex-start;
   text-align: left;
   padding: 28px 26px;
-  border-radius: 20px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
-  backdrop-filter: blur(28px) saturate(160%);
-  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  border-radius: var(--radius-lg);
+  background: var(--glass-sheen);
+  backdrop-filter: blur(var(--blur-light)) saturate(var(--glass-saturate));
+  -webkit-backdrop-filter: blur(var(--blur-light)) saturate(var(--glass-saturate));
   border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1), 0 12px 40px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--elev-2), var(--glass-highlight), var(--glass-edge);
   cursor: pointer;
   transition: transform var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
 }
@@ -32,18 +32,18 @@
 .support-page__channel:hover {
   transform: translateY(-4px);
   border-color: rgba(var(--clay-rgb), 0.35);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2), 0 20px 48px rgba(0, 0, 0, 0.65), var(--shadow-glow);
+  box-shadow: var(--elev-3), var(--glass-highlight), var(--shadow-glow);
 }
 
 [data-theme="light"] .support-page__channel {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.45) 100%);
+  background: var(--glass-sheen);
   border: 1px solid rgba(255, 255, 255, 0.6);
-  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  box-shadow: var(--elev-2), var(--glass-highlight), var(--glass-edge);
 }
 
 [data-theme="light"] .support-page__channel:hover {
   border-color: rgba(var(--clay-rgb), 0.35);
-  box-shadow: 0 12px 40px rgba(31, 38, 135, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9), var(--shadow-glow);
+  box-shadow: var(--elev-3), var(--glass-highlight), var(--shadow-glow);
 }
 
 .support-page__channel-icon {
@@ -201,12 +201,12 @@
   max-width: 560px;
   margin: 0 auto;
   padding: 28px 26px;
-  border-radius: 20px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
-  backdrop-filter: blur(28px) saturate(160%);
-  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  border-radius: var(--radius-lg);
+  background: var(--glass-sheen);
+  backdrop-filter: blur(var(--blur-light)) saturate(var(--glass-saturate));
+  -webkit-backdrop-filter: blur(var(--blur-light)) saturate(var(--glass-saturate));
   border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1), 0 12px 40px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--elev-2), var(--glass-highlight), var(--glass-edge);
   display: flex;
   flex-direction: column;
   gap: 18px;
@@ -214,9 +214,9 @@
 }
 
 [data-theme="light"] .support-page__form {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.45) 100%);
+  background: var(--glass-sheen);
   border: 1px solid rgba(255, 255, 255, 0.6);
-  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  box-shadow: var(--elev-2), var(--glass-highlight), var(--glass-edge);
 }
 
 .support-page__form-row {
@@ -301,22 +301,27 @@
 }
 
 .support-page__form-submit {
-  background: var(--accent-gold);
-  color: var(--btn-primary-text);
-  font-weight: 700;
+  background: var(--btn-gradient);
+  color: var(--btn-text);
+  font-weight: 600;
   font-size: 0.95rem;
   padding: 12px;
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-md);
   margin-top: 4px;
-  box-shadow: 0 4px 16px var(--accent-glow);
+  box-shadow: var(--btn-glow), var(--btn-sheen);
   transition: transform var(--transition-fast), filter var(--transition-fast);
   cursor: pointer;
+  letter-spacing: -0.01em;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  font-family: var(--font-family);
   letter-spacing: -0.01em;
 }
 
 .support-page__form-submit:hover {
   transform: translateY(-1px);
   filter: brightness(1.05);
+  background: var(--btn-gradient-hover);
+  box-shadow: var(--btn-glow-hover), var(--btn-sheen);
 }
 
 .support-page__form-submit:disabled {
@@ -367,7 +372,7 @@
   font-weight: 500;
   font-size: 0.85rem;
   padding: 8px 24px;
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-md);
   margin-top: 8px;
   transition: background var(--transition-fast);
   cursor: pointer;

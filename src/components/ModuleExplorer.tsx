@@ -109,12 +109,12 @@ export default function ModuleExplorer() {
           onPointerEnter={e => { if (e.pointerType === 'mouse') setHovering(true) }}
           onPointerLeave={() => setHovering(false)}
         >
-          <div className="explorer__device">
-            <div className="explorer__device-bar" aria-hidden="true">
-              <span className="explorer__device-dot" /><span className="explorer__device-dot" /><span className="explorer__device-dot" />
-              <span className="explorer__device-title">{active.label} · {active.badge}</span>
+          <div className="explorer__device orb-frame">
+            <div className="orb-frame__bar" aria-hidden="true">
+              <span className="orb-frame__label">{active.label} · {active.badge}</span>
+              <span className="orb-frame__tag">Illustrative data</span>
             </div>
-            <div className="explorer__screen">
+            <div className="explorer__screen orb-frame__screen">
               <AnimatePresence mode="wait" initial={false}>
                 <motion.div
                   key={active.to}

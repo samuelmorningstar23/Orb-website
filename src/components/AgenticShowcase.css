@@ -266,19 +266,24 @@
 }
 
 .agentic__cta-primary {
-  background: var(--accent-gold);
-  color: var(--btn-primary-text);
+  background: var(--btn-gradient);
+  color: var(--btn-text);
   padding: 12px 28px;
-  border-radius: var(--radius-full);
-  font-weight: 700;
+  border-radius: var(--radius-md);
+  font-weight: 600;
   font-size: 0.9rem;
-  box-shadow: 0 4px 16px var(--accent-glow);
+  box-shadow: var(--btn-glow), var(--btn-sheen);
   transition: transform var(--transition-fast), filter var(--transition-fast);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  font-family: var(--font-family);
+  letter-spacing: -0.01em;
 }
 
 .agentic__cta-primary:hover {
   transform: translateY(-1px);
   filter: brightness(1.05);
+  background: var(--btn-gradient-hover);
+  box-shadow: var(--btn-glow-hover), var(--btn-sheen);
 }
 
 .agentic__cta-secondary {
