@@ -3,7 +3,7 @@ import { useIsLightTheme } from './useIsLightTheme'
 import '../../pages/details/ModuleDetails.css'
 
 // Review items surfaced as the encounter is read. Each is a SUGGESTION for a
-// coder to review — captures are supported diagnoses, prompts are gentle nudges
+// coder to review - captures are supported diagnoses, prompts are gentle nudges
 // to tighten documentation before the claim goes out. Nothing bills on its own.
 type ReviewItem =
   | { kind: 'capture'; label: string; evidence: string }
@@ -24,7 +24,7 @@ function easeOutCubic(t: number) {
 }
 
 /**
- * Revenue Integrity — coding & documentation review of a sample encounter.
+ * Revenue Integrity - coding & documentation review of a sample encounter.
  * Suggested captures reveal one by one beside the note they trace back to,
  * while the reimbursement figure eases up to an illustrative total.
  * Self-contained: owns its timers and keyframes, so it can render on the
@@ -76,11 +76,11 @@ export default function RevenueIntegrityShowcase() {
   const panelBorder = isLight ? 'rgba(0,0,0,0.08)' : 'rgba(255,255,255,0.06)'
   const noteBg = isLight ? '#f9fafb' : 'rgba(255,255,255,0.015)'
   const okBg = isLight ? 'rgba(5,150,105,0.10)' : 'rgba(0,230,118,0.10)'
-  const goldTint = isLight ? 'rgba(122,165,199,0.14)' : 'rgba(167,193,217,0.12)'
+  const goldTint = isLight ? 'rgba(var(--clay-rgb), 0.14)' : 'rgba(var(--clay-rgb), 0.12)'
   const softShadow = isLight ? '0 2px 8px rgba(0,0,0,0.02)' : 'none'
 
   // A short, plain-English note snippet. Highlighted phrases are the evidence
-  // the captures trace back to — the through-line of the "auditable" story.
+  // the captures trace back to - the through-line of the "auditable" story.
   const Hi = ({ children }: { children: ReactNode }) => (
     <span style={{ background: goldTint, borderRadius: '4px', padding: '0 3px', color: 'var(--text-primary)', fontWeight: 600 }}>
       {children}
@@ -106,7 +106,7 @@ export default function RevenueIntegrityShowcase() {
         {/* Two-column body */}
         <div style={{ display: 'flex', gap: '20px', flex: 1, flexWrap: 'wrap' }}>
 
-          {/* LEFT — clinical note snippet */}
+          {/* LEFT - clinical note snippet */}
           <div style={{ flex: '1', minWidth: '260px', display: 'flex', flexDirection: 'column' }}>
             <span style={{ fontSize: '0.68rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)', fontWeight: 600, marginBottom: '8px' }}>
               Clinical Note
@@ -118,7 +118,7 @@ export default function RevenueIntegrityShowcase() {
             </div>
           </div>
 
-          {/* RIGHT — suggested capture rows */}
+          {/* RIGHT - suggested capture rows */}
           <div style={{ flex: '1.05', minWidth: '260px', display: 'flex', flexDirection: 'column' }}>
             <span style={{ fontSize: '0.68rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)', fontWeight: 600, marginBottom: '8px' }}>
               Suggested Capture
@@ -186,12 +186,12 @@ export default function RevenueIntegrityShowcase() {
           </div>
         </div>
 
-        {/* Bottom — reimbursement captured counter */}
+        {/* Bottom - reimbursement captured counter */}
         <div style={{ marginTop: '18px', background: panelBg, border: `1px solid ${panelBorder}`, borderRadius: '12px', padding: '14px 16px', display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: '12px', flexWrap: 'wrap', boxShadow: softShadow }}>
           <div>
             <span style={{ fontSize: '0.74rem', color: 'var(--text-secondary)', fontWeight: 500 }}>Reimbursement captured, this encounter</span>
             <div style={{ fontSize: '0.64rem', color: 'var(--text-muted)', fontStyle: 'italic', marginTop: '2px' }}>
-              Illustrative — example figures, not a live claim. Coder confirms before submission.
+              Illustrative: example figures, not a live claim. Coder confirms before submission.
             </div>
           </div>
           <span style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--status-ok)', lineHeight: 1, whiteSpace: 'nowrap' }}>

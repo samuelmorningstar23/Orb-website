@@ -38,7 +38,7 @@ function readinessTone(r: number) {
 }
 
 /**
- * Forecast — capacity outlook panel pairing per-patient discharge readiness
+ * Forecast - capacity outlook panel pairing per-patient discharge readiness
  * bars with a projected bed-availability chart that draws itself in.
  * Self-contained: owns its timers and keyframes, so it can render on the
  * Forecast page and inside the homepage module explorer alike.
@@ -55,7 +55,7 @@ export default function ForecastShowcase() {
   }, [])
 
   // Nudge the "live" patient's discharge readiness upward over time so the
-  // panel feels alive — a patient quietly trending toward going home.
+  // panel feels alive - a patient quietly trending toward going home.
   useEffect(() => {
     const liveIdx = ROSTER.findIndex(p => p.live)
     if (liveIdx < 0) return
@@ -98,7 +98,7 @@ export default function ForecastShowcase() {
         {/* Two-column body */}
         <div style={{ display: 'flex', gap: '20px', flex: 1, flexWrap: 'wrap' }}>
 
-          {/* LEFT — patient readiness list */}
+          {/* LEFT - patient readiness list */}
           <div style={{ flex: '1.15', minWidth: '260px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
             {ROSTER.map((p, i) => {
               const r = readiness[i]
@@ -136,7 +136,7 @@ export default function ForecastShowcase() {
             })}
           </div>
 
-          {/* RIGHT — projected availability chart */}
+          {/* RIGHT - projected availability chart */}
           <div style={{ flex: '1', minWidth: '260px', display: 'flex', flexDirection: 'column' }}>
             <div style={{ flex: 1, background: panelBg, border: `1px solid ${panelBorder}`, borderRadius: '12px', padding: '14px 14px 10px', display: 'flex', flexDirection: 'column', boxShadow: isLight ? '0 2px 8px rgba(0,0,0,0.02)' : 'none' }}>
               <span style={{ fontSize: '0.68rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)', fontWeight: 600, marginBottom: '4px' }}>

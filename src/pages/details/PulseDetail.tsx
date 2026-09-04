@@ -22,7 +22,7 @@ export default function PulseDetail() {
           <span className="module-detail__badge">Environmental &amp; Population Signals</span>
           <h1 className="module-detail__title">Pulse</h1>
           <p className="module-detail__tagline">
-            Sees the pressures building outside your walls — and tells you which patients will feel them first.
+            Sees the pressures building outside your walls, and tells you which patients will feel them first.
           </p>
         </section>
 

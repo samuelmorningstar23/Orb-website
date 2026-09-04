@@ -10,7 +10,7 @@ type Slot = {
 }
 
 /**
- * Slate — day-schedule board where a freshly booked follow-up slides in
+ * Slate - day-schedule board where a freshly booked follow-up slides in
  * beside a smart slot suggestion and a reminders summary. Self-contained:
  * owns its timer and keyframes, so it can render on the Slate page and
  * inside the homepage module explorer alike.
@@ -76,7 +76,7 @@ export default function SlateShowcase() {
             letterSpacing: '0.06em',
             textTransform: 'uppercase',
             color: 'var(--accent)',
-            background: isLight ? 'rgba(122,165,199,0.12)' : 'rgba(167,193,217,0.10)',
+            background: isLight ? 'rgba(var(--clay-rgb), 0.12)' : 'rgba(var(--clay-rgb), 0.10)',
             padding: '3px 8px',
             borderRadius: '99px',
           }}
@@ -156,7 +156,7 @@ export default function SlateShowcase() {
               className="slate-appt-suggest"
               style={{
                 flex: 1,
-                background: isLight ? 'rgba(122,165,199,0.08)' : 'rgba(167,193,217,0.05)',
+                background: isLight ? 'rgba(var(--clay-rgb), 0.08)' : 'rgba(var(--clay-rgb), 0.05)',
                 border: '1px solid var(--accent)',
                 borderRadius: '16px',
                 padding: '18px',
@@ -227,7 +227,7 @@ export default function SlateShowcase() {
           animation: slate-reminder-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
         }
         @keyframes slate-suggest-breathe {
-          0%, 100% { box-shadow: 0 0 0 rgba(167, 193, 217, 0); }
+          0%, 100% { box-shadow: 0 0 0 rgba(var(--clay-rgb), 0); }
           50% { box-shadow: var(--shadow-glow); }
         }
         .slate-appt-suggest {

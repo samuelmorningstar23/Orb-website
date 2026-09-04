@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useIsLightTheme } from './useIsLightTheme'
 import '../../pages/details/ModuleDetails.css'
 
-// What-if scenarios modelled on a copy of the ward — never on the live floor.
+// What-if scenarios modelled on a copy of the ward - never on the live floor.
 // Each carries the three headline outputs and a projected-occupancy curve that
 // redraws when the scenario changes.
 type Scenario = {
@@ -107,7 +107,7 @@ function crossingX(occ: number[]) {
 }
 
 /**
- * Surge Simulator — what-if console that cycles through capacity scenarios
+ * Surge Simulator - what-if console that cycles through capacity scenarios
  * (until the visitor picks one), rolling the three headline outputs and
  * redrawing the projected-occupancy curve against the capacity line.
  * Self-contained: owns its timers and keyframes, so it can render on the
@@ -201,7 +201,7 @@ export default function SurgeSimulatorShowcase() {
         {/* Body: stats + projected occupancy curve */}
         <div style={{ display: 'flex', gap: '18px', flex: 1, flexWrap: 'wrap' }}>
 
-          {/* LEFT — three headline outputs */}
+          {/* LEFT - three headline outputs */}
           <div style={{ flex: '1', minWidth: '220px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
             {stats.map(st => {
               const tone = toneVar(st.tone)
@@ -220,7 +220,7 @@ export default function SurgeSimulatorShowcase() {
             })}
           </div>
 
-          {/* RIGHT — projected occupancy chart */}
+          {/* RIGHT - projected occupancy chart */}
           <div style={{ flex: '1.35', minWidth: '260px', display: 'flex', flexDirection: 'column' }}>
             <div style={{ flex: 1, background: panelBg, border: `1px solid ${panelBorder}`, borderRadius: '12px', padding: '14px 14px 10px', display: 'flex', flexDirection: 'column', boxShadow: panelShadow }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px', gap: '10px' }}>
@@ -249,7 +249,7 @@ export default function SurgeSimulatorShowcase() {
                   <line x1={PAD_L} y1={capY} x2={CHART_W - PAD_R} y2={capY} stroke="var(--text-muted)" strokeWidth="1" strokeDasharray="4 4" opacity="0.7" />
                   <text x={CHART_W - PAD_R} y={capY - 5} textAnchor="end" fontSize="8" fontWeight="700" fill="var(--text-muted)">Capacity</text>
 
-                  {/* redraw per scenario — key replays the draw-in animation */}
+                  {/* redraw per scenario - key replays the draw-in animation */}
                   <path key={`a-${s.key}`} className="surge-simulator-area" d={areaPath} fill="url(#surgeSimulatorArea)" />
                   <path
                     key={`l-${s.key}`}

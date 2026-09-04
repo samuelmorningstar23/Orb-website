@@ -22,7 +22,7 @@ export default function BridgeDetail() {
           <span className="module-detail__badge">Patient Understanding</span>
           <h1 className="module-detail__title">Bridge</h1>
           <p className="module-detail__tagline">
-            Turns the chart into a conversation — explaining care, medications, and next steps in language every patient and family can hold onto.
+            Turns the chart into a conversation, explaining care, medications, and next steps in language every patient and family can hold onto.
           </p>
         </section>
 
@@ -80,7 +80,7 @@ export default function BridgeDetail() {
             </div>
             <h3 className="module-detail__card-title">Private by Design</h3>
             <p className="module-detail__card-desc">
-              Every explanation is prepared inside the hospital — personal details never leave the building.
+              Every explanation is prepared inside the hospital. Personal details never leave the building.
             </p>
           </div>
         </section>

@@ -2,7 +2,7 @@
 // The header's hover cards, the Plans page, and the search index all read from
 // here, so a renamed module or new tier only has to change in one place.
 
-/** Where in the hospital a module lives — drives grouping in the module explorer. */
+/** Where in the hospital a module lives - drives grouping in the module explorer. */
 export type ModuleArea = 'ward' | 'theatre' | 'house' | 'patients' | 'office'
 
 export const AREA_LABELS: Record<ModuleArea, string> = {
@@ -22,24 +22,24 @@ export interface ModuleInfo {
   blurb: string
   keywords: string[]
   area: ModuleArea
-  /** One short line for the explorer panel — the blurb is the longer version. */
+  /** One short line for the explorer panel - the blurb is the longer version. */
   line: string
 }
 
 export const ALL_MODULES: ModuleInfo[] = [
   {
     to: '/sage', label: 'Sage', badge: 'Ambient Clinical Copilot',
-    blurb: 'Ask it anything clinical, or let it follow the conversation on the ward. Sage carries out the next step — the order, the alert, the note — the instant a clinician confirms.',
+    blurb: 'Ask it about a patient or a guideline, or let it follow the conversation on the ward. Sage carries out the next step, the order, the alert, the note, only when a clinician confirms.',
     keywords: ['copilot', 'assistant', 'agentic', 'orders', 'ai', 'ward', 'clinical questions', 'act', 'confirm'],
     area: 'ward',
-    line: 'Ask it anything clinical. It acts the instant a clinician confirms.',
+    line: 'Ask it about a patient or a guideline. It acts only when a clinician confirms.',
   },
   {
     to: '/vigil', label: 'Vigil', badge: 'Live Vitals & Early Warning',
-    blurb: 'Monitors physiological changes and flags early signs of patient risk, so nurses can react before a patient deteriorates.',
+    blurb: 'Scores every patient on NEWS2 continuously and pages the ward the moment a threshold is crossed.',
     keywords: ['vitals', 'monitoring', 'early warning', 'deterioration', 'telemetry', 'alerts', 'nurses', 'risk'],
     area: 'ward',
-    line: 'Flags early signs of deterioration before a patient crashes.',
+    line: 'Scores every patient on NEWS2 continuously and pages the ward the moment a threshold is crossed.',
   },
   {
     to: '/scribe', label: 'Scribe', badge: 'Hands-Free Documentation',
@@ -50,24 +50,24 @@ export const ALL_MODULES: ModuleInfo[] = [
   },
   {
     to: '/lens', label: 'Lens', badge: 'Bedside Image Review',
-    blurb: 'Reviews X-rays, ECGs, and scans at the bedside and surfaces draft observations for a clinician to confirm.',
+    blurb: 'Drafts a first read of X-rays, ECGs, and scans at the bedside for a clinician to correct and sign.',
     keywords: ['imaging', 'x-ray', 'xray', 'ecg', 'scans', 'radiology', 'image review', 'observations'],
     area: 'ward',
-    line: 'Reads X-rays, ECGs, and scans at the bedside for a clinician to confirm.',
+    line: 'Drafts a first read of X-rays, ECGs, and scans for a clinician to correct and sign.',
   },
   {
     to: '/relay', label: 'Relay', badge: 'Secure Clinical Messaging',
-    blurb: 'Secure, case-focused rooms that connect clinical teams and automatically flag deteriorating patients.',
+    blurb: 'Secure case rooms where deterioration alerts land beside the conversation and escalate on their own if nobody answers.',
     keywords: ['messaging', 'chat', 'communication', 'teams', 'secure', 'rooms', 'channels', 'coordination'],
     area: 'ward',
-    line: 'Case-focused secure rooms that flag deteriorating patients on their own.',
+    line: 'Case rooms where deterioration alerts land beside the conversation and escalate on their own if nobody answers.',
   },
   {
     to: '/helix', label: 'Helix', badge: 'Medication Operations',
-    blurb: 'Tracks pharmacy operations, drug histories, and bedside administration — with allergy and interaction checks at the point of order.',
+    blurb: 'Every medication order verified by a named pharmacist, with allergy and interaction checks at the moment it is written.',
     keywords: ['medication', 'pharmacy', 'drugs', 'prescriptions', 'allergy', 'interactions', 'administration'],
     area: 'ward',
-    line: 'Allergy and interaction checks at the moment an order is written.',
+    line: 'Every medication order verified by a named pharmacist, with allergy and interaction checks at the moment it is written.',
   },
   {
     to: '/surgical-suite', label: 'Surgical Suite', badge: 'Operating-Room Coordination',
@@ -78,10 +78,10 @@ export const ALL_MODULES: ModuleInfo[] = [
   },
   {
     to: '/pulse', label: 'Pulse', badge: 'Environmental & Population Signals',
-    blurb: 'Watches local air quality, weather, and community illness — and flags which patients on your wards will feel it first.',
+    blurb: 'Watches local air quality, weather, and community illness, and turns them into prep actions for the patient groups most at risk.',
     keywords: ['environment', 'air quality', 'weather', 'population', 'community illness', 'signals', 'epidemiology'],
     area: 'house',
-    line: 'Air quality, weather, and community illness, mapped to your wards.',
+    line: 'Air quality, weather, and community illness, turned into prep actions for your wards.',
   },
   {
     to: '/forecast', label: 'Forecast', badge: 'Predictive Capacity Planning',
@@ -95,10 +95,10 @@ export const ALL_MODULES: ModuleInfo[] = [
     blurb: 'Explains care, medications, and next steps in plain, reassuring language for patients and families.',
     keywords: ['patients', 'families', 'plain language', 'education', 'explanations', 'next steps', 'understanding'],
     area: 'patients',
-    line: 'Explains care and next steps in plain language for families.',
+    line: 'Explains care and next steps in plain language for patients and their families.',
   },
   {
-    to: '/slate', label: 'Slate', badge: 'Scheduling & Follow-up',
+    to: '/appointments', label: 'Appointments', badge: 'Scheduling & Follow-up',
     blurb: 'Keeps every follow-up, review, and clinic slot in order, so no patient falls through the gap between visits.',
     keywords: ['scheduling', 'follow-up', 'clinic', 'slots', 'booking', 'visits', 'calendar', 'appointments'],
     area: 'patients',
@@ -106,28 +106,28 @@ export const ALL_MODULES: ModuleInfo[] = [
   },
   {
     to: '/revenue-integrity', label: 'Revenue Integrity', badge: 'Revenue Integrity',
-    blurb: 'Catches the coding and documentation gaps that quietly cost hospitals millions — turning care already delivered into the reimbursement you’re owed.',
+    blurb: 'Finds documented conditions that were never coded, with the evidence sentence behind each one.',
     keywords: ['revenue', 'coding', 'billing', 'reimbursement', 'claims', 'roi', 'finance', 'back office'],
     area: 'office',
-    line: 'Catches the coding gaps that quietly cost hospitals millions.',
+    line: 'Finds documented conditions that were never coded, with the evidence sentence behind each one.',
   },
   {
     to: '/command-center', label: 'Command Center', badge: 'House-Wide Command Center',
-    blurb: 'The whole hospital on one screen — census, acuity, and the patients most likely to need you next.',
+    blurb: 'The whole hospital on one screen: census, acuity, and the patients most likely to need you next.',
     keywords: ['command center', 'census', 'acuity', 'overview', 'operations', 'house-wide', 'dashboard'],
     area: 'house',
     line: 'The whole hospital on one screen, pressure visible before it becomes a crisis.',
   },
   {
     to: '/surge-simulator', label: 'Surge Simulator', badge: 'Capacity & Surge Planning',
-    blurb: 'Model a surge, a closure, or a staffing gap before it happens — and see hours-to-overflow while there’s still time to act.',
+    blurb: 'Model a surge, a closure, or a staffing gap before it happens, and see hours-to-overflow while there’s still time to act.',
     keywords: ['surge', 'simulation', 'capacity', 'overflow', 'staffing', 'scenario', 'what-if', 'planning'],
     area: 'house',
     line: 'Model a surge or a closure and see hours-to-overflow while there is still time.',
   },
 ]
 
-// ─── Featured nav items — the six modules that get their own top-bar entry ───
+// ─── Featured nav items - the six modules that get their own top-bar entry ───
 // `summary` is the 5–6 word line shown in the hover card.
 export interface FeaturedModule extends ModuleInfo {
   navLabel: string
@@ -145,7 +145,7 @@ export const FEATURED_MODULES: FeaturedModule[] = [
   { ...byPath('/sage'), navLabel: 'Sage', summary: 'The ambient copilot that acts.' },
   { ...byPath('/forecast'), navLabel: 'Forecast', summary: 'Predicts beds, stays, and discharges.' },
   { ...byPath('/bridge'), navLabel: 'Bridge', summary: 'Care explained in plain language.' },
-  { ...byPath('/slate'), navLabel: 'Slate', summary: 'Scheduling that never drops a patient.' },
+  { ...byPath('/appointments'), navLabel: 'Appointments', summary: 'Scheduling that never drops a patient.' },
   { ...byPath('/surge-simulator'), navLabel: 'Surge', summary: 'Rehearse the surge before it hits.' },
 ]
 
@@ -166,8 +166,8 @@ export const PLANS: Plan[] = [
     name: 'Orb Lite',
     tagline: 'The clinical core.',
     audience: 'For clinics and small wards',
-    desc: 'The essentials of the operating system — an ambient copilot, hands-free notes, secure team messaging, and scheduling that never drops a follow-up.',
-    includes: ['Sage', 'Scribe', 'Relay', 'Slate'],
+    desc: 'The essentials of the operating system: an ambient copilot, hands-free notes, secure team messaging, and scheduling that never drops a follow-up.',
+    includes: ['Sage', 'Scribe', 'Relay', 'Appointments'],
   },
   {
     id: 'plus',
@@ -190,7 +190,7 @@ export const PLANS: Plan[] = [
     name: 'Orb Ultra',
     tagline: 'The complete operating system.',
     audience: 'For hospital groups',
-    desc: 'Every module Orb ships — including operating-room coordination and revenue integrity — with white-glove deployment and priority support.',
+    desc: 'Every module Orb ships, including operating-room coordination and revenue integrity, with white-glove deployment and priority support.',
     includes: ['Everything in Max', 'Surgical Suite', 'Revenue Integrity'],
     extras: ['White-glove on-premise deployment', 'Priority support'],
   },
@@ -200,11 +200,11 @@ export const PLANS: Plan[] = [
 // The site is a static build (GitHub Pages) and cannot send mail itself, so
 // every form on it (demo modal, support page) submits to Web3Forms, which
 // emails the submission to the inbox the access key is registered to. Change
-// the recipient in the Web3Forms dashboard, not here — there is deliberately
+// the recipient in the Web3Forms dashboard, not here - there is deliberately
 // no "send to" field in the payloads, so a public key can't be used to
 // redirect our mail.
 //
-// The access key is PUBLIC by design — Web3Forms expects it in client-side
+// The access key is PUBLIC by design - Web3Forms expects it in client-side
 // markup and enforces the allowed domain (orbsuite.com) instead. It is not a
 // secret. Web3Forms rejects server-side calls on the free plan; submissions
 // must come from the browser (which is what happens here).

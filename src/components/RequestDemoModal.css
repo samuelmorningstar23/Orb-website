@@ -11,7 +11,7 @@
   padding: 24px;
 }
 
-/* Solid, high-contrast surface — must read as a clearly separate panel, not a translucent overlay */
+/* Solid, high-contrast surface - must read as a clearly separate panel, not a translucent overlay */
 .demo-modal-card {
   width: 100%;
   max-width: 460px;
@@ -91,7 +91,7 @@
   gap: 8px;
 }
 
-/* Honeypot — kept out of sight and out of the tab order, but still a real
+/* Honeypot - kept out of sight and out of the tab order, but still a real
    rendered input so naive bots fill it in. Not display:none, which some skip. */
 .demo-modal-hp {
   position: absolute;

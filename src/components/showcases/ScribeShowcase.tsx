@@ -3,7 +3,7 @@ import { useIsLightTheme } from './useIsLightTheme'
 import '../../pages/details/ModuleDetails.css'
 
 /**
- * Scribe — on-device dictation that streams a spoken clinical history word
+ * Scribe - on-device dictation that streams a spoken clinical history word
  * by word, then turns it into a structured SOAP-style note. Self-contained:
  * owns its timers and keyframes, so it can render on the Scribe page and
  * inside the homepage module explorer alike.
@@ -80,7 +80,7 @@ export default function ScribeShowcase() {
               display: 'flex',
               alignItems: 'center',
               gap: '8px',
-              background: step === 'recording' ? 'rgba(220, 38, 38, 0.15)' : (isLight ? 'rgba(122, 165, 199, 0.1)' : 'rgba(167, 193, 217, 0.1)'),
+              background: step === 'recording' ? 'rgba(220, 38, 38, 0.15)' : (isLight ? 'rgba(var(--clay-rgb), 0.1)' : 'rgba(var(--clay-rgb), 0.1)'),
               border: '1px solid',
               borderColor: step === 'recording' ? (isLight ? '#DC2626' : '#FF5252') : 'var(--accent)',
               color: step === 'recording' ? (isLight ? '#DC2626' : '#FF5252') : 'var(--accent)',

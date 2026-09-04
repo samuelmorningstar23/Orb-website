@@ -14,7 +14,7 @@ interface Order {
 }
 
 /**
- * Helix — medication verification hub: a pharmacy queue on the left and, on
+ * Helix - medication verification hub: a pharmacy queue on the left and, on
  * the right, a safety-check run that streams its audit log line by line and
  * auto-starts on mount. Self-contained: owns its order state, timers and
  * keyframes, so it can render on the Helix page and inside the homepage module
@@ -151,7 +151,7 @@ export default function HelixShowcase() {
                 fontSize: '0.8rem',
                 border: '1px solid',
                 borderColor: activeOrderId === o.id ? 'var(--accent)' : (isLight ? 'rgba(0,0,0,0.06)' : 'rgba(255,255,255,0.04)'),
-                background: activeOrderId === o.id ? (isLight ? 'rgba(122, 165, 199, 0.08)' : 'rgba(167, 193, 217, 0.04)') : 'transparent',
+                background: activeOrderId === o.id ? (isLight ? 'rgba(var(--clay-rgb), 0.08)' : 'rgba(var(--clay-rgb), 0.04)') : 'transparent',
                 color: activeOrderId === o.id ? 'var(--accent)' : 'var(--text-secondary)',
                 transition: 'all 0.2s ease',
                 boxShadow: isLight && activeOrderId !== o.id ? '0 1px 3px rgba(0,0,0,0.02)' : 'none'
@@ -165,7 +165,7 @@ export default function HelixShowcase() {
                 <span style={{ fontSize: '0.65rem', color: 'var(--text-muted)' }}>{o.dose}</span>
                 <span style={{ 
                   fontSize: '0.6rem', 
-                  background: o.status === 'pending' ? (isLight ? 'rgba(217,119,6,0.1)' : 'rgba(167, 193, 217, 0.08)') : o.status === 'ready' ? (isLight ? 'rgba(5,150,105,0.1)' : 'rgba(0, 230, 118, 0.08)') : (isLight ? 'rgba(122, 165, 199, 0.1)' : 'rgba(41, 151, 255, 0.08)'),
+                  background: o.status === 'pending' ? (isLight ? 'rgba(217,119,6,0.1)' : 'rgba(var(--clay-rgb), 0.08)') : o.status === 'ready' ? (isLight ? 'rgba(5,150,105,0.1)' : 'rgba(0, 230, 118, 0.08)') : (isLight ? 'rgba(var(--clay-rgb), 0.1)' : 'rgba(41, 151, 255, 0.08)'),
                   color: o.status === 'pending' ? 'var(--status-warn)' : o.status === 'ready' ? 'var(--status-ok)' : 'var(--accent)',
                   padding: '2px 8px',
                   borderRadius: '4px',
@@ -225,7 +225,7 @@ export default function HelixShowcase() {
               disabled={isVerifying}
               style={{
                 width: '100%',
-                background: isLight ? 'rgba(122, 165, 199, 0.1)' : 'rgba(167, 193, 217, 0.1)',
+                background: isLight ? 'rgba(var(--clay-rgb), 0.1)' : 'rgba(var(--clay-rgb), 0.1)',
                 border: '1px solid var(--accent)',
                 color: 'var(--accent)',
                 padding: '12px',
@@ -241,7 +241,7 @@ export default function HelixShowcase() {
                 gap: '10px'
               }}
             >
-              {isVerifying && <span className="helix-spinner" style={{ border: '2px solid rgba(167, 193, 217, 0.2)', borderTop: '2px solid var(--accent)', borderRadius: '50%', width: '12px', height: '12px', display: 'inline-block' }} />}
+              {isVerifying && <span className="helix-spinner" style={{ border: '2px solid rgba(var(--clay-rgb), 0.2)', borderTop: '2px solid var(--accent)', borderRadius: '50%', width: '12px', height: '12px', display: 'inline-block' }} />}
               {isVerifying ? 'Running safety checks…' : 'Run again'}
             </button>
           )}
@@ -271,7 +271,7 @@ export default function HelixShowcase() {
               ))}
               {isVerifying && (
                 <div style={{ display: 'flex', gap: '8px', alignItems: 'center', color: 'var(--accent)' }}>
-                  <span className="helix-spinner" style={{ border: '2px solid rgba(167, 193, 217, 0.2)', borderTop: '2px solid var(--accent)', borderRadius: '50%', width: '10px', height: '10px', display: 'inline-block' }} />
+                  <span className="helix-spinner" style={{ border: '2px solid rgba(var(--clay-rgb), 0.2)', borderTop: '2px solid var(--accent)', borderRadius: '50%', width: '10px', height: '10px', display: 'inline-block' }} />
                   <span>Evaluating the order…</span>
                 </div>
               )}

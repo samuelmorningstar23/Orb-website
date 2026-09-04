@@ -16,7 +16,7 @@ const QUESTIONS = [
   {
     label: 'What were my test results?',
     answer:
-      "Good news — your recent results were reassuring. The numbers your team has been watching have settled back toward where they'd like to see them. There's nothing here to worry about today, and your care team has gone through every result with your recovery in mind.",
+      "Good news: your recent results were reassuring. The numbers your team has been watching have settled back toward where they'd like to see them. There's nothing here to worry about today, and your care team has gone through every result with your recovery in mind.",
   },
 ]
 
@@ -24,7 +24,7 @@ const TIMELINE = ['Admitted', 'Treatment', 'Recovering', 'Going home']
 const CURRENT_STEP = 2
 
 /**
- * Bridge — the patient-facing "your care, in plain language" card: question
+ * Bridge - the patient-facing "your care, in plain language" card: question
  * chips, an answer revealed one word at a time, and a discharge timeline.
  * Self-contained: owns its streaming timer and keyframes, so it can render on
  * the Bridge page and inside the homepage module explorer alike.
@@ -119,7 +119,7 @@ export default function BridgeShowcase() {
                   borderColor: active ? 'var(--accent)' : hairline,
                   color: active ? 'var(--accent)' : 'var(--text-secondary)',
                   background: active
-                    ? (isLight ? 'rgba(122,165,199,0.12)' : 'rgba(167, 193, 217, 0.10)')
+                    ? (isLight ? 'rgba(var(--clay-rgb), 0.12)' : 'rgba(var(--clay-rgb), 0.10)')
                     : innerBg,
                   boxShadow: active ? '0 0 0 3px var(--accent-glow)' : 'none',
                   transition: 'all var(--transition-base)',

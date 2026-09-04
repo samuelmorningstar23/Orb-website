@@ -22,7 +22,7 @@ export default function SageDetail() {
           <span className="module-detail__badge">Ambient Clinical Copilot</span>
           <h1 className="module-detail__title">Sage</h1>
           <p className="module-detail__tagline">
-            Ask it anything clinical — or let it follow the conversation on the ward and turn intent into action, with a clinician’s confirmation on every step.
+            Ask it about a patient or a guideline, or let it follow the conversation on the ward and turn intent into action, with a clinician’s confirmation on every step.
           </p>
         </section>
 
@@ -36,7 +36,7 @@ export default function SageDetail() {
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" /></svg>
             </div>
             <h3 className="module-detail__card-title">Ask Anything, Clinically</h3>
-            <p className="module-detail__card-desc">Put a clinical question to Sage and get a clear, referenced answer in seconds — grounded in your hospital’s approved guidance, for your review.</p>
+            <p className="module-detail__card-desc">Put a clinical question to Sage and get a clear, referenced answer in seconds, grounded in your hospital’s approved guidance, for your review.</p>
           </div>
 
           <div className="module-detail__card">
@@ -44,7 +44,7 @@ export default function SageDetail() {
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="1.5" /><path d="M7.76 16.24a6 6 0 0 1 0-8.48M16.24 7.76a6 6 0 0 1 0 8.48" /><path d="M4.93 19.07a10 10 0 0 1 0-14.14M19.07 4.93a10 10 0 0 1 0 14.14" /></svg>
             </div>
             <h3 className="module-detail__card-title">Understands the Moment</h3>
-            <p className="module-detail__card-desc">Follows the clinical conversation on the ward and recognises what needs to happen next — without anyone stopping to type.</p>
+            <p className="module-detail__card-desc">Follows the clinical conversation on the ward and recognises what needs to happen next, without anyone stopping to type.</p>
           </div>
 
           <div className="module-detail__card">
@@ -52,7 +52,7 @@ export default function SageDetail() {
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 11l3 3L22 4" /><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" /></svg>
             </div>
             <h3 className="module-detail__card-title">Acts Only on Confirmation</h3>
-            <p className="module-detail__card-desc">Prepares the order, the alert, or the note — and carries it out the instant a clinician confirms. Never before, never on its own.</p>
+            <p className="module-detail__card-desc">Prepares the order, the alert, or the note, and carries it out the instant a clinician confirms. Never before, never on its own.</p>
           </div>
 
           <div className="module-detail__card">

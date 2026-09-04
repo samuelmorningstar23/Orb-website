@@ -80,7 +80,7 @@ export default function HelixDetail() {
             </div>
             <h3 className="module-detail__card-title">Within Your Walls</h3>
             <p className="module-detail__card-desc">
-              Every interaction and dosing check runs on hardware inside your hospital. Patient data stays on-site — nothing leaves the building — and verification stays available even when the network is down.
+              Every interaction and dosing check runs on hardware inside your hospital. Patient data stays on-site, nothing leaves the building, and verification stays available even when the network is down.
             </p>
           </div>
         </section>

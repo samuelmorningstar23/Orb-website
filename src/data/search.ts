@@ -14,7 +14,7 @@ export interface SearchEntry {
   /** Route to navigate to on selection (mutually exclusive with `action`). */
   to?: string
   action?: SearchAction
-  /** Long-form answer text — only present on `answer` entries. */
+  /** Long-form answer text - only present on `answer` entries. */
   answer?: string
   keywords: string[]
   body?: string
@@ -89,17 +89,17 @@ const ACTION_ENTRIES: SearchEntry[] = [
 export const ANSWER_ENTRIES: SearchEntry[] = [
   {
     id: 'qa-what-is-orb', kind: 'answer', title: 'What is Orb?', to: '/',
-    answer: 'Orb is the local-first, AI-native operating system for the modern hospital — fourteen modules covering the ward, the operating room, and the back office. It watches, understands, and acts the moment a clinician confirms, and all of it runs on hardware inside your hospital.',
+    answer: 'Orb is the local-first, AI-native operating system for the modern hospital: fourteen modules covering the ward, the operating room, and the back office. It watches, understands, and acts the moment a clinician confirms, and all of it runs on hardware inside your hospital.',
     keywords: ['what', 'orb', 'about', 'hospital', 'operating', 'system', 'platform', 'company', 'product', 'os'],
   },
   {
     id: 'qa-privacy', kind: 'answer', title: 'Does patient data leave the hospital?', to: '/support',
-    answer: 'No. Orb processes all audio, images, and text on hardware inside your hospital. Patient data never leaves your walls — no external egress, and no third-party cloud vendor in the loop.',
+    answer: 'No. Orb processes all audio, images, and text on hardware inside your hospital, and patient data never leaves the building. The one outbound exception is Pulse, which sends a map coordinate to public weather, air-quality, and drug-recall feeds: it carries no patient data, every call is logged, and it can be blocked at the firewall with no loss of clinical function.',
     keywords: ['data', 'privacy', 'leave', 'cloud', 'egress', 'private', 'phi', 'patient', 'stored', 'store', 'send', 'external', 'sovereignty', 'local'],
   },
   {
     id: 'qa-compliance', kind: 'answer', title: 'Is Orb HIPAA and GDPR compliant?', to: '/support',
-    answer: 'Orb is designed to support the technical safeguards HIPAA and GDPR require: on-premise processing, role-based access, and a tamper-evident audit trail. It strengthens your compliance posture — it is not a substitute for your own certification.',
+    answer: 'Orb is designed to support the technical safeguards HIPAA and GDPR require: on-premise processing, role-based access, and a tamper-evident audit trail. It strengthens your compliance posture. It is not a substitute for your own certification.',
     keywords: ['hipaa', 'gdpr', 'compliance', 'compliant', 'regulation', 'certified', 'legal', 'audit', 'safeguards', 'security'],
   },
   {
@@ -109,27 +109,27 @@ export const ANSWER_ENTRIES: SearchEntry[] = [
   },
   {
     id: 'qa-integration', kind: 'answer', title: 'Does Orb replace our EHR?', to: '/support',
-    answer: 'No — Orb runs alongside the systems you already have, exchanging information through the standards they already speak. It complements your record of truth; it is not a rip-and-replace.',
+    answer: 'No. Orb runs alongside the systems you already have, exchanging information through the standards they already speak. It complements your record of truth; it is not a rip-and-replace.',
     keywords: ['ehr', 'emr', 'integrate', 'integration', 'replace', 'stack', 'systems', 'epic', 'cerner', 'interoperability', 'hl7', 'fhir'],
   },
   {
     id: 'qa-safety', kind: 'answer', title: 'Can Orb act without a clinician?', to: '/sage',
-    answer: 'No. Orb drafts the next step — the order, the alert, the note — but nothing is carried out until a clinician confirms it. Every confirmed action lands in a tamper-evident audit trail.',
+    answer: 'No. Orb drafts the next step: the order, the alert, the note. But nothing is carried out until a clinician confirms it. Every confirmed action lands in a tamper-evident audit trail.',
     keywords: ['safety', 'autonomous', 'clinician', 'confirm', 'confirmation', 'human', 'loop', 'act', 'safe', 'oversight', 'approve'],
   },
   {
     id: 'qa-pricing', kind: 'answer', title: 'How much does Orb cost?', to: '/plans',
-    answer: 'Orb comes in four plans — Lite, Plus, Max, and Ultra — sized from a single clinic to a hospital group. Pricing is tailored to your deployment; request a demo and the team will scope it with you.',
+    answer: 'Orb comes in four plans: Lite, Plus, Max, and Ultra, sized from a single clinic to a hospital group. Pricing is tailored to your deployment; request a demo and the team will scope it with you.',
     keywords: ['cost', 'price', 'pricing', 'much', 'pay', 'plans', 'subscription', 'license', 'expensive', 'budget'],
   },
   {
     id: 'qa-modules-count', kind: 'answer', title: 'How many modules does Orb have?', to: '/#modules',
-    answer: `Fourteen — ${ALL_MODULES.map(m => m.label).join(', ')}. They share one local-first platform, so every module makes the others more useful.`,
+    answer: `Fourteen: ${ALL_MODULES.map(m => m.label).join(', ')}. They share one local-first platform, so every module makes the others more useful.`,
     keywords: ['many', 'modules', 'count', 'number', 'which', 'list', 'included', 'features', 'apps'],
   },
   {
     id: 'qa-demo', kind: 'answer', title: 'How do I see Orb in action?', to: '/support',
-    answer: 'Request a demo — the team will walk you through Orb running on real clinical workflows, sized to your wards and your stack.',
+    answer: 'Request a demo. The team will walk you through Orb running on real clinical workflows, sized to your wards and your stack.',
     keywords: ['demo', 'see', 'try', 'trial', 'walkthrough', 'test', 'evaluate', 'poc', 'pilot', 'action'],
   },
   {
@@ -139,12 +139,12 @@ export const ANSWER_ENTRIES: SearchEntry[] = [
   },
   {
     id: 'qa-who-for', kind: 'answer', title: 'Who is Orb for?', to: '/',
-    answer: 'Hospitals and clinics — from a single ward to a whole group. Nurses get early warning, clinicians get an ambient copilot, operations get capacity foresight, and the back office gets revenue integrity.',
+    answer: 'Hospitals and clinics, from a single ward to a whole group. Nurses get early warning, clinicians get an ambient copilot, operations get capacity foresight, and the back office gets revenue integrity.',
     keywords: ['who', 'for', 'audience', 'customers', 'hospitals', 'clinics', 'users', 'buyer', 'nurses', 'doctors'],
   },
   {
     id: 'qa-contact', kind: 'answer', title: 'How do I contact the Orb team?', to: '/support',
-    answer: `Email ${CONTACT_EMAIL} any time, or request a demo from any page — every request reaches a human on the team.`,
+    answer: `Email ${CONTACT_EMAIL} any time, or request a demo from any page. Every request reaches a human on the team.`,
     keywords: ['contact', 'reach', 'email', 'talk', 'human', 'team', 'phone', 'sales', 'touch'],
   },
 ]

@@ -9,7 +9,7 @@ import './details/ModuleDetails.css'
 import './Security.css'
 
 /**
- * The security brief — written for the CISO and procurement reader. Everything
+ * The security brief - written for the CISO and procurement reader. Everything
  * here is ported from claims the homepage used to make; nothing is new.
  */
 const FACTS = [
@@ -19,11 +19,11 @@ const FACTS = [
   },
   {
     title: 'What leaves the building',
-    body: 'Nothing clinical. Audio, images, and text are processed on-site — no cloud egress of patient data, no third-party vendor in the loop.',
+    body: 'Nothing clinical. Audio, images, and text are processed on-site. No cloud egress of patient data, no third-party AI vendor in the loop. One outbound exception: Orb Pulse sends a map coordinate to public weather, air-quality, and drug-recall feeds. It carries no patient data, every call is logged, and it can be blocked at the firewall with no loss of clinical function.',
   },
   {
     title: 'When the network drops',
-    body: 'Care continues. Orb operates without an upstream connection and keeps working through outages.',
+    body: 'Care continues. Orb needs no internet connection to run, and a printable downtime snapshot per patient covers the hour the appliance itself is down.',
   },
 ]
 
@@ -64,7 +64,7 @@ export default function Security() {
         <Reveal as="section" className="security-page__audit" amount={0.4}>
           <h2 className="security-page__audit-title">What Orb records</h2>
           <p className="security-page__audit-body">
-            Every recommendation and every confirmed action is written to a tamper-evident audit trail, so a reviewer can see what was proposed, who confirmed it, and when. Role-based access is built in, not bolted on. Nothing acts without a human&rsquo;s yes.
+            Every recommendation and every confirmed action is written to a tamper-evident audit trail, so a reviewer can see what was proposed, who confirmed it, and when. Role-based access is built in, not bolted on. Nothing is ordered, charted, or filed without a clinician&rsquo;s yes.
           </p>
         </Reveal>
 

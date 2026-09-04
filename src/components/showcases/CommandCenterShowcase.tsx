@@ -23,7 +23,7 @@ function toneStyles(p: Pressure, isLight: boolean) {
 }
 
 /**
- * Command Center — house-wide view with live census counters, an acuity
+ * Command Center - house-wide view with live census counters, an acuity
  * heatmap of ward tiles and a deterioration watchlist that gains an entry the
  * moment Ward A escalates. Self-contained: owns its timers and keyframes, so
  * it can render on the Command Center page and inside the homepage module
@@ -33,7 +33,7 @@ export default function CommandCenterShowcase() {
   const isLight = useIsLightTheme()
   // When true, Ward A tips from amber to red and a new watchlist entry appears.
   const [escalated, setEscalated] = useState(false)
-  // Live top-strip counters — nudged over time so the header feels alive.
+  // Live top-strip counters - nudged over time so the header feels alive.
   const [census, setCensus] = useState(284)
   const [admissions, setAdmissions] = useState(37)
   const [dischargesPending, setDischargesPending] = useState(12)
@@ -113,7 +113,7 @@ export default function CommandCenterShowcase() {
           </div>
         </div>
 
-        {/* Top strip — live counters */}
+        {/* Top strip - live counters */}
         <div style={{ display: 'flex', gap: '12px', marginBottom: '16px', flexWrap: 'wrap' }}>
           {counters.map(c => (
             <div key={c.label} style={{ flex: '1', minWidth: '96px', background: panelBg, border: `1px solid ${panelBorder}`, borderRadius: '12px', padding: '10px 14px', boxShadow: cardShadow }}>
@@ -123,10 +123,10 @@ export default function CommandCenterShowcase() {
           ))}
         </div>
 
-        {/* Body — ward grid + watchlist */}
+        {/* Body - ward grid + watchlist */}
         <div style={{ display: 'flex', gap: '16px', flex: 1, flexWrap: 'wrap' }}>
 
-          {/* LEFT — acuity heatmap of ward tiles */}
+          {/* LEFT - acuity heatmap of ward tiles */}
           <div style={{ flex: '1.4', minWidth: '240px', display: 'flex', flexDirection: 'column' }}>
             <span style={{ fontSize: '0.64rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)', fontWeight: 600, marginBottom: '8px' }}>Acuity Heatmap</span>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '10px', flex: 1 }}>
@@ -158,7 +158,7 @@ export default function CommandCenterShowcase() {
             </div>
           </div>
 
-          {/* RIGHT — deterioration watchlist */}
+          {/* RIGHT - deterioration watchlist */}
           <div style={{ flex: '1', minWidth: '240px', display: 'flex', flexDirection: 'column' }}>
             <span style={{ fontSize: '0.64rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)', fontWeight: 600, marginBottom: '8px' }}>Deterioration Watchlist</span>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '9px' }}>

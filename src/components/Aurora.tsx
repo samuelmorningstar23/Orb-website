@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 
 /*──────────────────────────────────────────────────────────
-  STITCH-REPLICA BACKGROUND — WebGL Aurora
+  STITCH-REPLICA BACKGROUND - WebGL Aurora
 
   Stitch uses a raymarched SDF-masked nebula shader (via Unicorn Studio).
   We replicate the key elements with a simplified WebGL approach:
@@ -61,7 +61,7 @@ const FRAG_SRC = `
     return mix(mix(a, b, f.x), mix(c, d, f.x), f.y);
   }
 
-  // FBM — fractional Brownian motion for organic texture
+  // FBM - fractional Brownian motion for organic texture
   float fbm(vec2 p) {
     float val = 0.0;
     float amp = 0.5;
@@ -83,12 +83,12 @@ const FRAG_SRC = `
     vec2 uv = gl_FragCoord.xy / u_resolution;
     float aspect = u_resolution.x / u_resolution.y;
     vec2 p = vec2(uv.x * aspect, uv.y);
-    // ~8x faster base time — crescents complete visible sweeps in ~8-15s
+    // ~8x faster base time - crescents complete visible sweeps in ~8-15s
     float t = u_time * 0.6;
 
     vec3 col = vec3(0.0);
 
-    // ═══ ARC 1: Primary — sweeps horizontally across upper-middle ═══
+    // ═══ ARC 1: Primary - sweeps horizontally across upper-middle ═══
     // Multi-frequency drift for non-repetitive, organic motion
     vec2 c1 = vec2(
       0.5 * aspect + sin(t * 0.17) * 0.35 * aspect + sin(t * 0.07 + 1.0) * 0.15 * aspect,
@@ -107,12 +107,12 @@ const FRAG_SRC = `
     float mask1 = smoothstep(-0.02, 0.08, d1);
     glow1 *= mask1;
 
-    vec3 dark1 = mix(vec3(0.30, 0.52, 0.80), vec3(0.48, 0.66, 0.88), n1);
+    vec3 dark1 = mix(vec3(0.62, 0.30, 0.18), vec3(0.86, 0.50, 0.34), n1);
     vec3 blue1 = mix(vec3(0.48, 0.68, 0.88), vec3(0.55, 0.75, 0.95), n1);
     vec3 col1 = mix(dark1, blue1, u_light_mode);
     col += col1 * glow1 * 0.55;
 
-    // ═══ ARC 2: Secondary — offset right, counter-phase ═══
+    // ═══ ARC 2: Secondary - offset right, counter-phase ═══
     vec2 c2 = vec2(
       0.7 * aspect + cos(t * 0.14 + 3.0) * 0.30 * aspect + sin(t * 0.06) * 0.12 * aspect,
       1.65 + sin(t * 0.19 + 1.5) * 0.15 + cos(t * 0.08 + 0.5) * 0.06
@@ -127,12 +127,12 @@ const FRAG_SRC = `
     float mask2 = smoothstep(-0.02, 0.06, d2);
     glow2 *= mask2;
 
-    vec3 dark2 = mix(vec3(0.25, 0.46, 0.74), vec3(0.42, 0.62, 0.85), n2);
+    vec3 dark2 = mix(vec3(0.55, 0.26, 0.15), vec3(0.78, 0.44, 0.29), n2);
     vec3 blue2 = mix(vec3(0.42, 0.62, 0.85), vec3(0.52, 0.72, 0.92), n2);
     vec3 col2 = mix(dark2, blue2, u_light_mode);
     col += col2 * glow2 * 0.4;
 
-    // ═══ ARC 3: Bottom accent — rises from bottom, counter-drift ═══
+    // ═══ ARC 3: Bottom accent - rises from bottom, counter-drift ═══
     vec2 c3 = vec2(
       0.5 * aspect + sin(t * 0.11 + 4.0) * 0.25 * aspect + cos(t * 0.05 + 1.0) * 0.10 * aspect,
       -0.55 + cos(t * 0.16 + 2.5) * 0.12 + sin(t * 0.07) * 0.05
@@ -147,12 +147,12 @@ const FRAG_SRC = `
     float mask3 = smoothstep(-0.02, 0.05, d3);
     glow3 *= mask3;
 
-    vec3 dark3 = mix(vec3(0.22, 0.40, 0.66), vec3(0.36, 0.56, 0.78), n3);
+    vec3 dark3 = mix(vec3(0.45, 0.21, 0.12), vec3(0.66, 0.36, 0.23), n3);
     vec3 blue3 = mix(vec3(0.45, 0.65, 0.88), vec3(0.55, 0.75, 0.95), n3);
     vec3 col3 = mix(dark3, blue3, u_light_mode);
     col += col3 * glow3 * 0.3;
 
-    // ═══ ARC 4: Accent arc — sweeps from left ═══
+    // ═══ ARC 4: Accent arc - sweeps from left ═══
     vec2 c4 = vec2(
       -0.1 * aspect + cos(t * 0.2 + 1.0) * 0.20 * aspect + sin(t * 0.09 + 3.0) * 0.08 * aspect,
       1.4 + sin(t * 0.15 + 1.5) * 0.12 + cos(t * 0.06 + 4.0) * 0.05
@@ -167,12 +167,12 @@ const FRAG_SRC = `
     float mask4 = smoothstep(-0.01, 0.04, d4);
     glow4 *= mask4;
 
-    vec3 dark4 = vec3(0.55, 0.72, 0.88);
+    vec3 dark4 = vec3(0.88, 0.56, 0.40);
     vec3 blue4 = vec3(0.52, 0.72, 0.92);
     vec3 col4 = mix(dark4, blue4, u_light_mode);
     col += col4 * glow4 * 0.2;
 
-    // ═══ Center darkening — keep text area readable ═══
+    // ═══ Center darkening - keep text area readable ═══
     float centerDist = length(vec2(uv.x - 0.5, (uv.y - 0.45) * 1.3));
     float centerDark = smoothstep(0.0, 0.5, centerDist);
     col *= mix(0.3, 1.0, centerDark);
@@ -373,7 +373,7 @@ export default function Aurora() {
 
   return (
     <>
-      {/* Layer 0: WebGL aurora — SDF-masked volumetric glow */}
+      {/* Layer 0: WebGL aurora - SDF-masked volumetric glow */}
       <canvas
         ref={glCanvasRef}
         style={{

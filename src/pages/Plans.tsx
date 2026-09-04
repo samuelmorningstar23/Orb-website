@@ -22,7 +22,7 @@ export default function Plans() {
           <span className="module-detail__badge">Plans</span>
           <h1 className="module-detail__title">One platform.<br />Four sizes.</h1>
           <p className="module-detail__tagline">
-            Every plan runs the same local-first operating system inside your walls — pick how much of the hospital it covers, and grow tier by tier.
+            Every plan runs the same local-first operating system inside your walls. Pick how much of the hospital it covers, and grow tier by tier.
           </p>
         </section>
 
@@ -60,7 +60,7 @@ export default function Plans() {
         </section>
 
         <p className="plans-page__note">
-          Pricing is scoped to your wards, beds, and hardware — the team sizes it with you during the demo. Every plan is deployed on-premise, with no patient data leaving your walls.
+          Pricing is scoped to your wards, beds, and hardware. The team sizes it with you during the demo. Every plan is deployed on-premise, with no patient data leaving your walls.
         </p>
 
         <section className="module-detail__cta-section">

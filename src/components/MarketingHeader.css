@@ -297,7 +297,7 @@
   white-space: nowrap;
 }
 
-/* All-modules grid — labels stacked side by side */
+/* All-modules grid - labels stacked side by side */
 .nav-panel__module-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(126px, auto));
@@ -444,7 +444,7 @@
 }
 
 @media (max-width: 768px) {
-  /* Keep the header row uncluttered on phones — the drawer carries the demo CTA */
+  /* Keep the header row uncluttered on phones - the drawer carries the demo CTA */
   .marketing-header__request-btn {
     display: none;
   }

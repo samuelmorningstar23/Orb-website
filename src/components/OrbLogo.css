@@ -11,7 +11,7 @@
   border-radius: 50%;
   border: 2px solid transparent;
   border-top-color: var(--accent);
-  border-right-color: rgba(167, 193, 217, 0.3);
+  border-right-color: rgba(var(--clay-rgb), 0.3);
   animation: orb-spin 3s linear infinite;
 }
 

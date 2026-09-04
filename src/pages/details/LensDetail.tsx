@@ -22,7 +22,7 @@ export default function LensDetail() {
           <span className="module-detail__badge">Bedside Image Review</span>
           <h1 className="module-detail__title">Lens</h1>
           <p className="module-detail__tagline">
-            Bedside image analysis. Review chest X-rays, ECG traces, and scans on-device to surface draft observations for clinician review — in seconds, at the bedside.
+            Bedside image analysis. Review chest X-rays, ECG traces, and scans on-device to surface draft observations for clinician review, in seconds, at the bedside.
           </p>
         </section>
 
@@ -43,7 +43,7 @@ export default function LensDetail() {
             </div>
             <h3 className="module-detail__card-title">On-Device Image Intelligence</h3>
             <p className="module-detail__card-desc">
-              On-device image intelligence reviews clinical images — chest X-rays, ECG traces, and scans — on hardware inside your hospital, in real time.
+              On-device image intelligence reviews clinical images (chest X-rays, ECG traces, and scans) on hardware inside your hospital, in real time.
             </p>
           </div>
 
@@ -72,7 +72,7 @@ export default function LensDetail() {
             </div>
             <h3 className="module-detail__card-title">Structured Draft Notes</h3>
             <p className="module-detail__card-desc">
-              Organizes draft observations into familiar Observations, Impression, and next-step sections — ready for a radiologist or physician to confirm, edit, or sign off.
+              Organizes draft observations into familiar Observations, Impression, and next-step sections, ready for a radiologist or physician to confirm, edit, or sign off.
             </p>
           </div>
 
@@ -85,7 +85,7 @@ export default function LensDetail() {
             </div>
             <h3 className="module-detail__card-title">On-Site by Default</h3>
             <p className="module-detail__card-desc">
-              Medical images and the observations drawn from them never leave the building. Everything stays on hardware inside your hospital — nothing is sent to the cloud.
+              Medical images and the observations drawn from them never leave the building. Everything stays on hardware inside your hospital. Nothing is sent to the cloud.
             </p>
           </div>
         </section>
@@ -93,7 +93,7 @@ export default function LensDetail() {
         <section className="module-detail__cta-section">
           <h2 className="module-detail__cta-title">Lens</h2>
           <p className="module-detail__cta-desc">
-            On-device image analysis. Surfacing draft observations for clinician review — offline, on-site, and secure.
+            On-device image analysis. Surfacing draft observations for clinician review: offline, on-site, and secure.
           </p>
           <div className="module-detail__buttons">
             <button className="module-detail__btn-primary" onClick={() => window.dispatchEvent(new CustomEvent("open-demo-modal"))}>Request a Demo</button>

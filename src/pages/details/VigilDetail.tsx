@@ -39,7 +39,7 @@ export default function VigilDetail() {
             </div>
             <h3 className="module-detail__card-title">Real-Time Awareness</h3>
             <p className="module-detail__card-desc">
-              Maintains a live, on-device connection to bedside monitors, reflecting every change in a patient's vital signs the instant it happens — with nothing leaving your walls.
+              Maintains a live, on-device connection to bedside monitors, reflecting every change in a patient's vital signs the instant it happens, with nothing leaving your walls.
             </p>
           </div>
 

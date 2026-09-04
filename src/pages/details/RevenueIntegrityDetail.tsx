@@ -22,7 +22,7 @@ export default function RevenueIntegrityDetail() {
           <span className="module-detail__badge">Revenue Integrity</span>
           <h1 className="module-detail__title">Revenue Integrity</h1>
           <p className="module-detail__tagline">
-            Turns the care you already deliver into the reimbursement you're owed — catching the coding and documentation gaps that quietly cost hospitals millions.
+            Finds documented conditions that were never coded, with the evidence sentence behind each one, so the care you already deliver becomes the reimbursement you're owed.
           </p>
         </section>
 
@@ -40,7 +40,7 @@ export default function RevenueIntegrityDetail() {
             </div>
             <h3 className="module-detail__card-title">Automated Coding Support</h3>
             <p className="module-detail__card-desc">
-              Reads the care already documented and suggests accurate, well-supported codes — every one presented for your coders to review and confirm.
+              Reads the care already documented and suggests accurate, well-supported codes, every one presented for your coders to review and confirm.
             </p>
           </div>
 
@@ -54,7 +54,7 @@ export default function RevenueIntegrityDetail() {
             </div>
             <h3 className="module-detail__card-title">Documentation Integrity</h3>
             <p className="module-detail__card-desc">
-              Flags the gaps that quietly cause under-coding — an unspecified acuity, a missing detail — before the claim goes out, while the record can still be clarified.
+              Flags the gaps that quietly cause under-coding (an unspecified acuity, a missing detail) before the claim goes out, while the record can still be clarified.
             </p>
           </div>
 
@@ -67,7 +67,7 @@ export default function RevenueIntegrityDetail() {
             </div>
             <h3 className="module-detail__card-title">Revenue Leakage, Caught</h3>
             <p className="module-detail__card-desc">
-              Surfaces missed charges and unbilled services across encounters — the small, repeated losses that add up to real money over a year.
+              Surfaces missed charges and unbilled services across encounters: the small, repeated losses that add up to real money over a year.
             </p>
           </div>
 
@@ -80,7 +80,7 @@ export default function RevenueIntegrityDetail() {
             </div>
             <h3 className="module-detail__card-title">Auditable &amp; On-Site</h3>
             <p className="module-detail__card-desc">
-              Every suggestion traces back to the note that supports it, and the whole review stays inside your walls — patient data never leaves the building.
+              Every suggestion traces back to the note that supports it, and the whole review stays inside your walls. Patient data never leaves the building.
             </p>
           </div>
         </section>

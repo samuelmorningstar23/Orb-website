@@ -22,7 +22,7 @@ export default function SurgeSimulatorDetail() {
           <span className="module-detail__badge">Capacity &amp; Surge Planning</span>
           <h1 className="module-detail__title">Surge Simulator</h1>
           <p className="module-detail__tagline">
-            Ask &lsquo;what if&rsquo; before it happens — model a surge, a ward closure, or a staffing gap and see
+            Ask &lsquo;what if&rsquo; before it happens. Model a surge, a ward closure, or a staffing gap and see
             hours-to-overflow and the beds you&rsquo;ll need, while there&rsquo;s still time to act.
           </p>
         </section>
@@ -42,7 +42,7 @@ export default function SurgeSimulatorDetail() {
             </div>
             <h3 className="module-detail__card-title">What-If Modeling</h3>
             <p className="module-detail__card-desc">
-              Test surges, closures and staffing changes on a model of your hospital — never on the ward. Try the bad day
+              Test surges, closures and staffing changes on a model of your hospital, never on the ward. Try the bad day
               as many times as you like, without ever touching the live floor.
             </p>
           </div>
@@ -57,7 +57,7 @@ export default function SurgeSimulatorDetail() {
             </div>
             <h3 className="module-detail__card-title">Hours to Overflow</h3>
             <p className="module-detail__card-desc">
-              Know how long until capacity breaks under each scenario — a countdown you can watch, so you act while there
+              Know how long until capacity breaks under each scenario: a countdown you can watch, so you act while there
               are still hours on the clock, not minutes.
             </p>
           </div>
@@ -72,7 +72,7 @@ export default function SurgeSimulatorDetail() {
             </div>
             <h3 className="module-detail__card-title">Staffing Gaps, Early</h3>
             <p className="module-detail__card-desc">
-              See the nurse and bed shortfall before the shift, not during it — with enough lead time to move people,
+              See the nurse and bed shortfall before the shift, not during it, with enough lead time to move people,
               open capacity, or call in cover calmly.
             </p>
           </div>
@@ -87,7 +87,7 @@ export default function SurgeSimulatorDetail() {
             </div>
             <h3 className="module-detail__card-title">Plan on Your Terms</h3>
             <p className="module-detail__card-desc">
-              Runs on-site, in seconds, whenever you need to think ahead — every scenario stays inside your walls, ready
+              Runs on-site, in seconds, whenever you need to think ahead. Every scenario stays inside your walls, ready
               the moment a question comes up in the huddle.
             </p>
           </div>

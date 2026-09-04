@@ -1,4 +1,4 @@
-/* ─── Support page — contact channels + FAQ ─── */
+/* ─── Support page - contact channels + FAQ ─── */
 
 .support-page__channels {
   display: grid;
@@ -31,7 +31,7 @@
 
 .support-page__channel:hover {
   transform: translateY(-4px);
-  border-color: rgba(167, 193, 217, 0.35);
+  border-color: rgba(var(--clay-rgb), 0.35);
   box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2), 0 20px 48px rgba(0, 0, 0, 0.65), var(--shadow-glow);
 }
 
@@ -42,7 +42,7 @@
 }
 
 [data-theme="light"] .support-page__channel:hover {
-  border-color: rgba(122, 165, 199, 0.35);
+  border-color: rgba(var(--clay-rgb), 0.35);
   box-shadow: 0 12px 40px rgba(31, 38, 135, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9), var(--shadow-glow);
 }
 
@@ -176,7 +176,7 @@
   color: var(--accent-deep);
 }
 
-/* ─── Contact form — "Still stuck? Write to us" ─── */
+/* ─── Contact form - "Still stuck? Write to us" ─── */
 .support-page__form-section {
   margin-top: 72px;
   text-align: center;
@@ -280,7 +280,7 @@
   border-color: var(--accent);
 }
 
-/* Honeypot — kept out of sight and out of the tab order, but still a real
+/* Honeypot - kept out of sight and out of the tab order, but still a real
    rendered input so naive bots fill it in. Not display:none, which some skip. */
 .support-page__hp {
   position: absolute;

@@ -18,7 +18,7 @@ interface Channel {
 }
 
 /**
- * Relay — secure clinical messaging: case-room channels on the left, a live
+ * Relay - secure clinical messaging: case-room channels on the left, a live
  * conversation on the right, and a simulated Vigil telemetry alert that lands
  * in the cardiology room a couple of seconds after mount. Self-contained: owns
  * its channel state, timers and responsive rules, so it can render on the
@@ -70,7 +70,7 @@ export default function RelayShowcase() {
   // Distinct avatar tint per clinical role (doctor / nurse / pharmacist)
   const avatarTint = (role: Message['role']) => {
     if (role === 'doctor') {
-      return { bg: isLight ? 'rgba(122, 165, 199, 0.1)' : 'rgba(41, 151, 255, 0.15)', accent: 'var(--accent)' }
+      return { bg: isLight ? 'rgba(var(--clay-rgb), 0.1)' : 'rgba(41, 151, 255, 0.15)', accent: 'var(--accent)' }
     }
     if (role === 'pharmacist') {
       return { bg: isLight ? 'rgba(139, 92, 246, 0.1)' : 'rgba(167, 139, 250, 0.15)', accent: isLight ? '#7C3AED' : '#A78BFA' }
@@ -357,7 +357,7 @@ export default function RelayShowcase() {
             <button 
               type="submit"
               style={{
-                background: isLight ? 'rgba(122, 165, 199, 0.1)' : 'rgba(167, 193, 217, 0.1)',
+                background: isLight ? 'rgba(var(--clay-rgb), 0.1)' : 'rgba(var(--clay-rgb), 0.1)',
                 border: '1px solid var(--accent)',
                 color: 'var(--accent)',
                 borderRadius: '8px',

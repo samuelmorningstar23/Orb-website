@@ -8,10 +8,10 @@ import { useLocation, useNavigationType } from 'react-router-dom'
  * navigation.
  *
  * Two deliberate exceptions:
- *  - a hash link (#modules, /plans#max) scrolls to its anchor — retried across
+ *  - a hash link (#modules, /plans#max) scrolls to its anchor - retried across
  *    a few frames because the target page may not have rendered it yet
  *  - back/forward (POP) is left to the browser, which restores the previous
- *    position — so returning from a module lands you back in the grid
+ *    position - so returning from a module lands you back in the grid
  */
 export default function ScrollToTop() {
   const { pathname, hash } = useLocation()

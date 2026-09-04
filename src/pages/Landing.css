@@ -341,7 +341,7 @@
   text-wrap: balance;
 }
 
-/* The orb hands off as you scroll — keep it from catching pointer events while faded */
+/* The orb hands off as you scroll - keep it from catching pointer events while faded */
 .landing-overview__orb-showcase {
   pointer-events: none;
 }

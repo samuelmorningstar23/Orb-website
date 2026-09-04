@@ -141,7 +141,7 @@ export default function SearchOverlay({ open, onClose, onOpen }: SearchOverlayPr
             ref={inputRef}
             type="text"
             className="search-overlay__input"
-            placeholder="Search Orb — or ask a question…"
+            placeholder="Search Orb, or ask a question…"
             value={query}
             onChange={e => setQuery(e.target.value)}
             onKeyDown={onInputKeyDown}
@@ -232,7 +232,7 @@ export default function SearchOverlay({ open, onClose, onOpen }: SearchOverlayPr
 
           {hasQuery && !answer && results.length === 0 && (
             <p className="search-overlay__empty">
-              No matches for “{query.trim()}”. Try a module name like <em>Sage</em>, a page like <em>plans</em> — or ask a question.
+              No matches for “{query.trim()}”. Try a module name like <em>Sage</em>, a page like <em>plans</em>, or ask a question.
             </p>
           )}
         </div>

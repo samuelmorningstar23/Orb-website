@@ -26,7 +26,7 @@ export const SHOWCASES: Record<string, ComponentType> = {
   '/pulse': PulseShowcase,
   '/forecast': ForecastShowcase,
   '/bridge': BridgeShowcase,
-  '/slate': SlateShowcase,
+  '/appointments': SlateShowcase,
   '/revenue-integrity': RevenueIntegrityShowcase,
   '/command-center': CommandCenterShowcase,
   '/surge-simulator': SurgeSimulatorShowcase,

@@ -22,7 +22,7 @@ export default function ForecastDetail() {
           <span className="module-detail__badge">Predictive Capacity Planning</span>
           <h1 className="module-detail__title">Forecast</h1>
           <p className="module-detail__tagline">
-            Anticipates length of stay, discharge readiness, and bed pressure — so the whole hospital can plan a day ahead, not a day behind.
+            Anticipates length of stay, discharge readiness, and bed pressure, so the whole hospital can plan a day ahead, not a day behind.
           </p>
         </section>
 

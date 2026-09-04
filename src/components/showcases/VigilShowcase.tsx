@@ -3,7 +3,7 @@ import { useIsLightTheme } from './useIsLightTheme'
 import '../../pages/details/ModuleDetails.css'
 
 /**
- * Vigil — live vitals monitor with an ECG trace and an early-warning score
+ * Vigil - live vitals monitor with an ECG trace and an early-warning score
  * that climbs into a simulated sepsis alert. Self-contained: owns its timers,
  * canvas loop, and keyframes, so it can render on the Vigil page and inside
  * the homepage module explorer alike.
@@ -76,7 +76,7 @@ export default function VigilShowcase() {
       ctx.fillRect(0, 0, width, height)
 
       // Grid lines
-      ctx.strokeStyle = light ? 'rgba(61, 118, 168, 0.06)' : 'rgba(167, 193, 217, 0.05)'
+      ctx.strokeStyle = light ? 'rgba(61, 118, 168, 0.06)' : 'rgba(var(--clay-rgb), 0.05)'
       ctx.lineWidth = 1
       for (let x = 0; x < width; x += 30) {
         ctx.beginPath()

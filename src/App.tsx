@@ -23,9 +23,9 @@ import RequestDemoModal from './components/RequestDemoModal'
 import ScrollToTop from './components/ScrollToTop'
 import './App.css'
 
-// Theme init — follow the operating system by default. A theme the visitor
+// Theme init - follow the operating system by default. A theme the visitor
 // picked themselves (via the header toggle) is remembered and wins over the OS.
-// Note: this deliberately tests `prefers-color-scheme: dark`, not `light` — the
+// Note: this deliberately tests `prefers-color-scheme: dark`, not `light` - the
 // "no-preference" case must fall back to light rather than silently forcing dark.
 try {
   const saved = localStorage.getItem('orb-theme')
@@ -43,7 +43,7 @@ try {
   console.error('Failed to initialize theme:', e)
 }
 
-// Every route fades in and out. Opacity only — a transform on this wrapper
+// Every route fades in and out. Opacity only - a transform on this wrapper
 // would break position: fixed for the aurora canvas and overlays beneath it.
 function Page({ children }: { children: ReactNode }) {
   const reduce = useReducedMotion()
@@ -78,9 +78,9 @@ function AnimatedRoutes() {
         <Route path="/pulse" element={<Page><PulseDetail /></Page>} />
         <Route path="/bridge" element={<Page><BridgeDetail /></Page>} />
         <Route path="/forecast" element={<Page><ForecastDetail /></Page>} />
-        <Route path="/slate" element={<Page><SlateDetail /></Page>} />
-        {/* Appointments was renamed to Slate — keep old links working */}
-        <Route path="/appointments" element={<Navigate to="/slate" replace />} />
+        <Route path="/appointments" element={<Page><SlateDetail /></Page>} />
+        {/* The module was briefly called Slate; keep those links working */}
+        <Route path="/slate" element={<Navigate to="/appointments" replace />} />
         <Route path="/command-center" element={<Page><CommandCenterDetail /></Page>} />
         <Route path="/revenue-integrity" element={<Page><RevenueIntegrityDetail /></Page>} />
         <Route path="/surge-simulator" element={<Page><SurgeSimulatorDetail /></Page>} />

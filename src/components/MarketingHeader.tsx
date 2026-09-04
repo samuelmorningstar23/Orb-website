@@ -305,7 +305,7 @@ export default function MarketingHeader() {
         </div>
       </div>
 
-      {/* The one shared glass card — morphs between triggers */}
+      {/* The one shared glass card - morphs between triggers */}
       {activeItem && activeItem.panel && (
         <div
           className="nav-flyout"

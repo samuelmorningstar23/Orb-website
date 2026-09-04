@@ -22,7 +22,7 @@ export default function RelayDetail() {
           <span className="module-detail__badge">Secure Clinical Messaging</span>
           <h1 className="module-detail__title">Relay</h1>
           <p className="module-detail__tagline">
-            Secure clinical messaging built for clinical teams. Instantly channels hospital telemetry warnings, streamlines case reviews, and archives clinical agreements — where Orb notices what matters, and offers to act.
+            Secure clinical messaging built for clinical teams. Instantly channels hospital telemetry warnings, streamlines case reviews, and archives clinical agreements, where Orb notices what matters, and offers to act.
           </p>
         </section>
 

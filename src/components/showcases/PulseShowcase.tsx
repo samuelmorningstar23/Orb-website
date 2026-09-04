@@ -116,7 +116,7 @@ function SignalTile({
 }
 
 /**
- * Pulse — regional environmental and population signal board whose outlook
+ * Pulse - regional environmental and population signal board whose outlook
  * shifts from stable to elevated and streams a ward-level clinical advisory.
  * Self-contained: owns its timers and keyframes, so it can render on the
  * Pulse page and inside the homepage module explorer alike.

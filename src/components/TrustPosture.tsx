@@ -19,7 +19,7 @@ const columns: TrustColumn[] = [
   },
   {
     title: 'Fits your stack',
-    desc: 'Orb runs alongside the systems you already have, exchanging information through the standards they already speak. It complements your record of truth — it is not a rip-and-replace.',
+    desc: 'Orb runs alongside the systems you already have, exchanging information through the standards they already speak. It complements your record of truth. It is not a rip-and-replace.',
     icon: (
       <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
@@ -29,7 +29,7 @@ const columns: TrustColumn[] = [
   },
   {
     title: 'Deployment & continuity',
-    desc: 'Installed on-premise, it operates on-site without a network connection and keeps caring through upstream outages — so care continues even when the network drops.',
+    desc: 'Installed on-premise, it operates on-site without a network connection and keeps caring through upstream outages, so care continues even when the network drops.',
     icon: (
       <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <rect x="2" y="3" width="20" height="8" rx="2" />
@@ -61,7 +61,7 @@ export default function TrustPosture() {
 
       <p className="trust-posture__note">
         Designed to support the technical safeguards HIPAA and GDPR require. Orb strengthens your
-        compliance posture — it is not a substitute for your own certification.
+        compliance posture. It is not a substitute for your own certification.
       </p>
     </section>
   )

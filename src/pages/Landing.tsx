@@ -11,7 +11,7 @@ import { ALL_MODULES, CONTACT_EMAIL, openDemoModal } from '../data/siteContent'
 import './Landing.css'
 
 /**
- * Homepage — five beats: the promise, Orb acting, the modules running live,
+ * Homepage - five beats: the promise, Orb acting, the modules running live,
  * the proof, and one call to action. Detail lives on the module and security
  * pages; this page's job is to make someone want to see it.
  */
@@ -34,15 +34,15 @@ export default function Landing() {
 
       <main className="landing-overview__content">
 
-        {/* Beat 1 — the promise */}
-        <section className="landing-overview__hero animate-slide-up" ref={heroRef}>
+        {/* Beat 1 - the promise */}
+        <section className="landing-overview__hero" ref={heroRef}>
           <div className="landing-overview__hero-headers">
             <span className="landing-overview__badge">Hospital OS</span>
             <h1 className="landing-overview__title">
               The Hospital<br />Operating System.
             </h1>
             <p className="landing-overview__subtitle">
-              Intelligence that stays within your walls — and acts on what it sees, the moment a clinician confirms.
+              Intelligence that stays within your walls, and acts on what it sees the moment a clinician confirms.
             </p>
             <div className="landing-overview__hero-actions">
               <button className="landing-overview__btn-primary" onClick={openDemoModal}>
@@ -70,16 +70,16 @@ export default function Landing() {
           </motion.div>
         </section>
 
-        {/* Beat 2 — Orb acts (scroll-driven flow) */}
+        {/* Beat 2 - Orb acts (scroll-driven flow) */}
         <AgenticShowcase />
 
-        {/* Beat 3 — the modules, running */}
+        {/* Beat 3 - the modules, running */}
         <ModuleExplorer />
 
-        {/* Beat 4 — the proof, stated once */}
+        {/* Beat 4 - the proof, stated once */}
         <ProofBand />
 
-        {/* Beat 5 — one call to action */}
+        {/* Beat 5 - one call to action */}
         <Reveal as="section" className="landing-overview__cta" amount={0.4}>
           <h2 className="landing-overview__cta-title">See Orb on your wards.</h2>
           <p className="landing-overview__cta-desc">

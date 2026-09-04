@@ -6,7 +6,7 @@ type Mode = 'ask' | 'act'
 
 // ─── Ask mode (conversational copilot) ───
 interface QA { q: string; a: string; sources: string[] }
-const GREETING = 'Ask me anything clinical. I answer from your hospital’s approved references — always for your review, never as the final word.'
+const GREETING = 'Ask me anything clinical. I answer from your hospital’s approved references, always for your review, never as the final word.'
 const QUESTIONS: QA[] = [
   {
     q: 'First-line antibiotic for suspected neutropenic sepsis?',
@@ -15,7 +15,7 @@ const QUESTIONS: QA[] = [
   },
   {
     q: 'Max paracetamol dose if the patient is under 50 kg?',
-    a: 'Under 50 kg, cap paracetamol at 15 mg/kg per dose and 60 mg/kg (or 3 g) in 24 hours — whichever is lower. Reduce further with hepatic impairment, malnutrition, or chronic alcohol use.',
+    a: 'Under 50 kg, cap paracetamol at 15 mg/kg per dose and 60 mg/kg (or 3 g) in 24 hours, whichever is lower. Reduce further with hepatic impairment, malnutrition, or chronic alcohol use.',
     sources: ['Trust Formulary', 'BNF reference set'],
   },
   {
@@ -32,7 +32,7 @@ const SCENARIOS: Record<ScenarioKey, Scenario> = {
   sepsis: {
     label: 'Sepsis escalation',
     exchange: [
-      { who: 'Dr. Amin', text: '“BP is dropping and she’s spiking a temperature — let’s start IV antibiotics and prep her for theatre.”' },
+      { who: 'Dr. Amin', text: '“BP is dropping and she’s spiking a temperature. Let’s start IV antibiotics and prep her for theatre.”' },
       { who: 'Nurse Okafor', text: '“She’s tachycardic too, 118. I’ll get access in now.”' },
     ],
     action: 'Start IV antibiotic · confirm dose',
@@ -42,7 +42,7 @@ const SCENARIOS: Record<ScenarioKey, Scenario> = {
   hold: {
     label: 'Medication hold',
     exchange: [
-      { who: 'Dr. Reyes', text: '“Her potassium’s come back at 5.9 and she’s on ramipril — let’s hold it for now.”' },
+      { who: 'Dr. Reyes', text: '“Her potassium’s come back at 5.9 and she’s on ramipril. Let’s hold it for now.”' },
       { who: 'Nurse Bello', text: '“Renal function’s been drifting too. I’ll keep a close eye on her.”' },
     ],
     action: 'Hold ramipril · flag for review',
@@ -54,7 +54,7 @@ const SCENARIOS: Record<ScenarioKey, Scenario> = {
 interface ChatMsg { id: number; role: 'user' | 'sage'; text: string; sources?: string[]; done: boolean }
 
 /**
- * Sage — ambient clinical copilot with two modes behind a toggle: "Ask Sage"
+ * Sage - ambient clinical copilot with two modes behind a toggle: "Ask Sage"
  * streams referenced answers to suggested clinical questions, and "Sage in
  * action" follows a ward conversation, proposes an action and carries it out
  * only once a clinician confirms. Self-contained: owns its mode toggle,
@@ -153,7 +153,7 @@ export default function SageShowcase() {
   const surfaceBg = isLight ? '#fbfbfd' : '#0a0b10'
   const borderSubtle = isLight ? 'rgba(0,0,0,0.09)' : 'rgba(255,255,255,0.08)'
   const bubbleBg = isLight ? 'rgba(0,0,0,0.035)' : 'rgba(255,255,255,0.04)'
-  const userBubbleBg = isLight ? 'rgba(122,165,199,0.14)' : 'rgba(167, 193, 217, 0.10)'
+  const userBubbleBg = isLight ? 'rgba(var(--clay-rgb), 0.14)' : 'rgba(var(--clay-rgb), 0.10)'
   const cardBg = isLight ? '#ffffff' : 'rgba(255,255,255,0.03)'
   const chipRestBg = isLight ? 'rgba(0,0,0,0.03)' : 'rgba(255,255,255,0.03)'
 
@@ -287,7 +287,7 @@ export default function SageShowcase() {
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z" /><path d="M2 17l10 5 10-5M2 12l10 5 10-5" /></svg>
                         Sage · proposed action
                       </span>
-                      <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '0.66rem', fontWeight: 700, padding: '3px 10px', borderRadius: 'var(--radius-full)', color: phase === 'confirmed' ? 'var(--status-ok)' : 'var(--accent)', background: phase === 'confirmed' ? (isLight ? 'rgba(5,150,105,0.1)' : 'rgba(0,230,118,0.12)') : (isLight ? 'rgba(122,165,199,0.12)' : 'rgba(167, 193, 217, 0.1)') }}>
+                      <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '0.66rem', fontWeight: 700, padding: '3px 10px', borderRadius: 'var(--radius-full)', color: phase === 'confirmed' ? 'var(--status-ok)' : 'var(--accent)', background: phase === 'confirmed' ? (isLight ? 'rgba(5,150,105,0.1)' : 'rgba(0,230,118,0.12)') : (isLight ? 'rgba(var(--clay-rgb), 0.12)' : 'rgba(var(--clay-rgb), 0.1)') }}>
                         {phase === 'confirmed' && <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5" /></svg>}
                         {phase === 'confirmed' ? 'Confirmed' : 'Awaiting your confirmation'}
                       </span>
@@ -305,7 +305,7 @@ export default function SageShowcase() {
                           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5" /></svg>
                           Confirm
                         </button>
-                        <span style={{ marginLeft: '12px', fontSize: '0.72rem', color: 'var(--text-muted)' }}>Tap to carry it out — it won’t proceed on its own.</span>
+                        <span style={{ marginLeft: '12px', fontSize: '0.72rem', color: 'var(--text-muted)' }}>Tap to carry it out. It won’t proceed on its own.</span>
                       </div>
                     )}
 
@@ -339,10 +339,10 @@ export default function SageShowcase() {
         </div>
       </div>
 
-      {/* Mode-aware safety note — it reads `mode`, so it lives with the showcase */}
+      {/* Mode-aware safety note - it reads `mode`, so it lives with the showcase */}
       <p style={{ textAlign: 'center', marginTop: '18px', fontSize: '0.85rem', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--status-ok)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></svg>
-        {mode === 'ask' ? 'Answers are decision support for a clinician to review — never the final word.' : 'Nothing happens without a clinician’s confirmation.'}
+        {mode === 'ask' ? 'Answers are decision support for a clinician to review, never the final word.' : 'Nothing happens without a clinician’s confirmation.'}
       </p>
 
       {/* Keyframes scoped to this showcase, so they don't leak into the page */}

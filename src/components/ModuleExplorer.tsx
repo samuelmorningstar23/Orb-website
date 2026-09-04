@@ -62,7 +62,7 @@ export default function ModuleExplorer() {
         <span className="explorer__eyebrow">Fourteen modules</span>
         <h2 className="explorer__title">One operating system, module by module.</h2>
         <p className="explorer__lead">
-          Pick a module to watch it work. Every demo is the real interface running illustrative data.
+          Pick a module to watch it work. Every demo runs on illustrative data, never a real patient.
         </p>
       </Reveal>
 

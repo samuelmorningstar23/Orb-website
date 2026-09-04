@@ -10,7 +10,7 @@ export default function RequestDemoModal() {
   const [email, setEmail] = useState('')
   const [company, setCompany] = useState('')
   const [purpose, setPurpose] = useState('')
-  const [website, setWebsite] = useState('') // honeypot — humans leave this empty
+  const [website, setWebsite] = useState('') // honeypot - humans leave this empty
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
   const [error, setError] = useState('')
@@ -56,7 +56,7 @@ export default function RequestDemoModal() {
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
           access_key: WEB3FORMS_ACCESS_KEY,
-          subject: `Demo request — ${company}`,
+          subject: `Demo request: ${company}`,
           from_name: 'Orb Website',
           replyto: email, // hitting Reply answers the requester
           name,
@@ -72,7 +72,7 @@ export default function RequestDemoModal() {
         setIsSuccess(true)
         setName(''); setEmail(''); setCompany(''); setPurpose(''); setWebsite('')
       } else {
-        // Never fail silently — the visitor still gets a way to reach us.
+        // Never fail silently - the visitor still gets a way to reach us.
         setError(`We couldn’t send that just now. Please try again, or email us at ${CONTACT_EMAIL}.`)
       }
     } catch {
@@ -94,7 +94,7 @@ export default function RequestDemoModal() {
         {!isSuccess ? (
           <>
             <h3 className="demo-modal-title" id="demo-modal-title">Request a Demo</h3>
-            <p className="demo-modal-subtitle">See Orb run on real clinical workflows — book a walkthrough with the team.</p>
+            <p className="demo-modal-subtitle">See Orb run on real clinical workflows. Book a walkthrough with the team.</p>
 
             {error && <div className="demo-modal-error">{error}</div>}
 
@@ -119,7 +119,7 @@ export default function RequestDemoModal() {
                 <textarea id="dm-purpose" placeholder="A few words on your hospital, team, or interest in Orb." value={purpose} onChange={e => setPurpose(e.target.value)} rows={3} required />
               </div>
 
-              {/* Honeypot — offscreen rather than display:none, which some bots skip */}
+              {/* Honeypot - offscreen rather than display:none, which some bots skip */}
               <input
                 className="demo-modal-hp"
                 type="text"
@@ -145,7 +145,7 @@ export default function RequestDemoModal() {
             </div>
             <h3 className="demo-modal-title">Thank you</h3>
             <p className="demo-modal-subtitle">
-              Your request has been sent to our team — we’ll be in touch shortly. You can also reach us any time at <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
+              Your request has been sent to our team. We’ll be in touch shortly. You can also reach us any time at <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
             </p>
             <button className="demo-modal-close-btn" onClick={close}>Close</button>
           </div>

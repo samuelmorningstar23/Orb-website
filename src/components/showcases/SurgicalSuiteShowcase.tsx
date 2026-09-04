@@ -15,7 +15,7 @@ interface SurgeryCase {
 }
 
 /**
- * Surgical Suite — operating-room coordination board with a room selector,
+ * Surgical Suite - operating-room coordination board with a room selector,
  * staff assignments and a WHO safety checklist that walks a pre-op case into
  * active surgery. Self-contained: owns its case state, surgery timer and the
  * narrow-screen stacking styles, so it can render on the Surgical Suite page
@@ -77,7 +77,7 @@ export default function SurgicalSuiteShowcase() {
 
   const activeCase = cases.find(c => c.id === activeCaseId) || cases[0]
 
-  // Post-op status accent — a calm blue that reads cleanly on both themes
+  // Post-op status accent - a calm blue that reads cleanly on both themes
   const postOpColor = isLight ? '#0071e3' : '#2997ff'
 
   // Timer simulation for active surgery
@@ -180,7 +180,7 @@ export default function SurgicalSuiteShowcase() {
                 fontSize: '0.8rem',
                 border: '1px solid',
                 borderColor: activeCaseId === c.id ? 'var(--accent)' : (isLight ? 'rgba(0,0,0,0.06)' : 'rgba(255,255,255,0.04)'),
-                background: activeCaseId === c.id ? (isLight ? 'rgba(122, 165, 199, 0.08)' : 'rgba(167,193,217,0.04)') : 'transparent',
+                background: activeCaseId === c.id ? (isLight ? 'rgba(var(--clay-rgb), 0.08)' : 'rgba(var(--clay-rgb), 0.04)') : 'transparent',
                 color: activeCaseId === c.id ? 'var(--accent)' : 'var(--text-secondary)',
                 transition: 'all 0.2s ease',
                 boxShadow: isLight && activeCaseId !== c.id ? '0 1px 3px rgba(0,0,0,0.02)' : 'none'

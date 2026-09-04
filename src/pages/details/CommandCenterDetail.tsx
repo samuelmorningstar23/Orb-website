@@ -22,7 +22,7 @@ export default function CommandCenterDetail() {
           <span className="module-detail__badge">House-Wide Command Center</span>
           <h1 className="module-detail__title">Command Center</h1>
           <p className="module-detail__tagline">
-            The whole hospital on one screen — every ward, every bed, every patient tipping the wrong way — so the people running the house see pressure before it becomes a crisis.
+            The whole hospital on one screen: every ward, every bed, every patient tipping the wrong way, so the people running the house see pressure before it becomes a crisis.
           </p>
         </section>
 
@@ -42,7 +42,7 @@ export default function CommandCenterDetail() {
             </div>
             <h3 className="module-detail__card-title">House-Wide Census</h3>
             <p className="module-detail__card-desc">
-              Live occupancy and flow across every ward, held together in a single view — so you always know where the beds are and where they aren't.
+              Live occupancy and flow across every ward, held together in a single view, so you always know where the beds are and where they aren't.
             </p>
           </div>
 
@@ -57,7 +57,7 @@ export default function CommandCenterDetail() {
             </div>
             <h3 className="module-detail__card-title">Acuity Heatmap</h3>
             <p className="module-detail__card-desc">
-              See where clinical pressure is concentrating at a glance, as wards shift from steady to stretched — the whole house color-coded in real time.
+              See where clinical pressure is concentrating at a glance, as wards shift from steady to stretched, the whole house color-coded in real time.
             </p>
           </div>
 
@@ -69,7 +69,7 @@ export default function CommandCenterDetail() {
             </div>
             <h3 className="module-detail__card-title">Deterioration Watchlist</h3>
             <p className="module-detail__card-desc">
-              The patients most likely to need you next, surfaced early and kept in front of the team — so the right people move before the situation turns.
+              The patients most likely to need you next, surfaced early and kept in front of the team, so the right people move before the situation turns.
             </p>
           </div>
 
@@ -83,7 +83,7 @@ export default function CommandCenterDetail() {
             </div>
             <h3 className="module-detail__card-title">One Pane of Glass</h3>
             <p className="module-detail__card-desc">
-              Beds, flow, theatre status and risk brought into a single, on-site view — everything running the house needs, and nothing leaving your walls.
+              Beds, flow, theatre status and risk brought into a single, on-site view: everything running the house needs, and nothing leaving your walls.
             </p>
           </div>
         </section>

@@ -15,7 +15,7 @@ export default function Support() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
-  const [website, setWebsite] = useState('') // honeypot — humans leave this empty
+  const [website, setWebsite] = useState('') // honeypot - humans leave this empty
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
   const [error, setError] = useState('')
@@ -37,7 +37,7 @@ export default function Support() {
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
           access_key: WEB3FORMS_ACCESS_KEY,
-          subject: `Support message — ${name}`,
+          subject: `Support message: ${name}`,
           from_name: 'Orb Website',
           replyto: email, // hitting Reply answers the sender
           name,
@@ -52,7 +52,7 @@ export default function Support() {
         setIsSuccess(true)
         setName(''); setEmail(''); setMessage(''); setWebsite('')
       } else {
-        // Never fail silently — the visitor still gets a way to reach us.
+        // Never fail silently - the visitor still gets a way to reach us.
         setError(`We couldn’t send that just now. Please try again, or email us at ${CONTACT_EMAIL}.`)
       }
     } catch {
@@ -91,7 +91,7 @@ export default function Support() {
               </svg>
             </div>
             <h3 className="support-page__channel-title">Email us</h3>
-            <p className="support-page__channel-desc">Questions, issues, or feedback — straight to the team’s inbox.</p>
+            <p className="support-page__channel-desc">Questions, issues, or feedback. Straight to the team’s inbox.</p>
             <span className="support-page__channel-action">{CONTACT_EMAIL}</span>
           </a>
 
@@ -113,7 +113,7 @@ export default function Support() {
               </svg>
             </div>
             <h3 className="support-page__channel-title">Ask Orb</h3>
-            <p className="support-page__channel-desc">Search the site or ask a question — answers come back instantly.</p>
+            <p className="support-page__channel-desc">Search the site or ask a question. Answers come back instantly.</p>
             <span className="support-page__channel-action">Open search (⌘K) &rarr;</span>
           </button>
         </section>
@@ -143,7 +143,7 @@ export default function Support() {
         <section className="support-page__form-section animate-slide-up stagger-3" id="write-to-us">
           <h2 className="support-page__form-title">Still stuck? Write to us</h2>
           <p className="support-page__form-desc">
-            Send a message right here — a real person will get back to you, usually within one business day.
+            Send a message right here. A real person will get back to you, usually within one business day.
           </p>
 
           {isSuccess ? (
@@ -154,7 +154,7 @@ export default function Support() {
                 </svg>
               </div>
               <h3>Message sent</h3>
-              <p>Thanks — it’s on its way to the team. We’ll reply to your email, usually within one business day.</p>
+              <p>Thanks, it’s on its way to the team. We’ll reply to your email, usually within one business day.</p>
               <button className="support-page__form-again" onClick={() => setIsSuccess(false)}>Send another message</button>
             </div>
           ) : (
@@ -174,10 +174,10 @@ export default function Support() {
 
               <div className="support-page__form-field">
                 <label htmlFor="sp-message">How can we help?</label>
-                <textarea id="sp-message" rows={5} placeholder="Tell us what’s happening — the more detail, the faster we can help." value={message} onChange={e => setMessage(e.target.value)} required />
+                <textarea id="sp-message" rows={5} placeholder="Tell us what’s happening. The more detail, the faster we can help." value={message} onChange={e => setMessage(e.target.value)} required />
               </div>
 
-              {/* Honeypot — offscreen rather than display:none, which some bots skip */}
+              {/* Honeypot - offscreen rather than display:none, which some bots skip */}
               <input
                 className="support-page__hp"
                 type="text"

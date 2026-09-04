@@ -20,9 +20,9 @@ export default function SlateDetail() {
 
         <section className="module-detail__hero animate-slide-up">
           <span className="module-detail__badge">Scheduling &amp; Follow-up</span>
-          <h1 className="module-detail__title">Slate</h1>
+          <h1 className="module-detail__title">Appointments</h1>
           <p className="module-detail__tagline">
-            Keeps every follow-up, review, and clinic slot in order — so follow-ups don't slip between visits.
+            Keeps every follow-up, review, and clinic slot in order, so follow-ups don't slip between visits.
           </p>
         </section>
 
@@ -85,7 +85,7 @@ export default function SlateDetail() {
         </section>
 
         <section className="module-detail__cta-section">
-          <h2 className="module-detail__cta-title">Slate</h2>
+          <h2 className="module-detail__cta-title">Appointments</h2>
           <p className="module-detail__cta-desc">
             Continuity, kept.
           </p>

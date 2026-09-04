@@ -3,7 +3,7 @@ import { useIsLightTheme } from './useIsLightTheme'
 import '../../pages/details/ModuleDetails.css'
 
 /**
- * Lens — bedside chest X-ray review: a scanning sweep reads the image, then
+ * Lens - bedside chest X-ray review: a scanning sweep reads the image, then
  * a flagged region and streamed draft observations appear for clinician
  * review. Self-contained: owns its timers and keyframes, so it can render on
  * the Lens page and inside the homepage module explorer alike.
@@ -91,7 +91,7 @@ These observations are assistive and must be confirmed by a clinician.`
           padding: '16px'
         }}>
 
-          {/* Replay control — the demo auto-runs on mount */}
+          {/* Replay control - the demo auto-runs on mount */}
           {scanState === 'complete' && (
             <button
               onClick={startScan}

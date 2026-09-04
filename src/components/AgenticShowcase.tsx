@@ -76,12 +76,12 @@ export default function AgenticShowcase() {
         <span className="agentic__eyebrow">Agentic by design</span>
         <h2 className="agentic__title">Orb doesn&rsquo;t just watch. It acts.</h2>
         <p className="agentic__lead">
-          Most hospital software shows you information. Orb carries the next step through &mdash; the order,
-          the alert, the note &mdash; and waits for a clinician&rsquo;s confirmation before it does.
+          Most hospital software shows you information. Orb carries the next step through: the order,
+          the alert, the note. It waits for a clinician&rsquo;s confirmation before it does.
         </p>
       </div>
 
-      <div className="agentic__flow" role="img" aria-label="Orb workflow: Understand, Propose, Confirm, then Act — which fans out into Orders, Theatre and Notes.">
+      <div className="agentic__flow" role="img" aria-label="Orb workflow: Understand, Propose, Confirm, then Act, which fans out into Orders, Theatre and Notes.">
         {STEPS.map((step, i) => {
           const isActive = i === active
           const isPast = i < active

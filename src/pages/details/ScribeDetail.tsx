@@ -42,7 +42,7 @@ export default function ScribeDetail() {
             </div>
             <h3 className="module-detail__card-title">Real-Time, On Device</h3>
             <p className="module-detail__card-desc">
-              Captured on-device the moment it is spoken and turned into a structured clinical note in seconds — no waiting, no uploads.
+              Captured on-device the moment it is spoken and turned into a structured clinical note in seconds. No waiting, no uploads.
             </p>
           </div>
 
@@ -58,7 +58,7 @@ export default function ScribeDetail() {
             </div>
             <h3 className="module-detail__card-title">Clinical Formatting</h3>
             <p className="module-detail__card-desc">
-              Every dictation is organized into the structured formats your teams already use — clinical notes, handovers, and discharge summaries — ready to drop straight into the record.
+              Every dictation is organized into the structured formats your teams already use: clinical notes, handovers, and discharge summaries, ready to drop straight into the record.
             </p>
           </div>
 
@@ -84,7 +84,7 @@ export default function ScribeDetail() {
             </div>
             <h3 className="module-detail__card-title">Private by design, on-site.</h3>
             <p className="module-detail__card-desc">
-              Patient conversations stay inside your hospital's walls — no cloud egress. Scribe works on-site, so what's spoken in the room stays in the room.
+              Patient conversations stay inside your hospital's walls: no cloud egress. Scribe works on-site, so what's spoken in the room stays in the room.
             </p>
           </div>
         </section>
