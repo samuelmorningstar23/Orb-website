@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom'
 import MarketingHeader from '../../components/MarketingHeader'
 import Aurora from '../../components/Aurora'
 import ScreensCapture from '../../components/captures/ScreensCapture'
+import FlowCapture from '../../components/captures/FlowCapture'
+import { WALKTHROUGHS } from '../../data/liveViews'
 import News2Live from '../../components/captures/News2Live'
 import { SHOWCASES } from '../../components/showcases'
 import { modulePage, type IconName } from '../../data/modulePages'
@@ -47,6 +49,7 @@ const Icon = ({ name }: { name: IconName }) => (
 export default function ModulePage({ route }: { route: string }) {
   const page = modulePage(route)
   const Showcase = SHOWCASES[route]
+  const walkthrough = WALKTHROUGHS[route]
 
   return (
     <div className="module-detail">
@@ -71,8 +74,16 @@ export default function ModulePage({ route }: { route: string }) {
           <section className="module-detail__showcase animate-slide-up stagger-1">
             <Showcase />
             <p className="module-detail__capture-note">
-              {page.captureNote ?? 'Captured from a running Orb appliance on seeded demo patients. Nothing here is a mock-up.'}
+              {page.captureNote ?? 'This is the Orb front end itself, running in your browser on a recording of the appliance and seeded demo patients. Click anything.'}
             </p>
+          </section>
+        )}
+
+        {walkthrough && (
+          <section className="module-detail__showcase module-detail__showcase--walk">
+            <h2 className="module-detail__more-title">The walkthrough, step by step</h2>
+            <FlowCapture flows={walkthrough.flows} labels={walkthrough.labels} label={`${page.title} walkthrough`} />
+            <p className="module-detail__capture-note">Captured from a running appliance, with a caption per step.</p>
           </section>
         )}
 

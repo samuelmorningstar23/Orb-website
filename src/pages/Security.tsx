@@ -4,6 +4,8 @@ import MarketingHeader from '../components/MarketingHeader'
 import SafetySuite from '../components/SafetySuite'
 import TrustPosture from '../components/TrustPosture'
 import FlowCapture from '../components/captures/FlowCapture'
+import LiveDemo from '../components/captures/LiveDemo'
+import { LIVE_VIEWS } from '../data/liveViews'
 import { Reveal, Stagger, StaggerItem } from '../components/motion/Reveal'
 import { openDemoModal } from '../data/siteContent'
 import './details/ModuleDetails.css'
@@ -51,8 +53,13 @@ export default function Security() {
         </section>
 
         <section className="module-detail__showcase animate-slide-up stagger-1">
+          <LiveDemo views={LIVE_VIEWS['/security']} label="The admin screens, live" />
+          <p className="module-detail__capture-note">The admin side of the product, running in your browser on a recording of the appliance: Trust Center, Flight Recorder and Model Governance.</p>
+        </section>
+
+        <section className="module-detail__showcase">
           <FlowCapture flows={['show-your-work']} label="The admin screens, captured from the product" />
-          <p className="module-detail__capture-note">Trust Center, Flight Recorder, Model Governance and the Pilot Scorecard, captured from a running appliance on demo data.</p>
+          <p className="module-detail__capture-note">The same screens as a captioned walkthrough, including the Pilot Scorecard.</p>
         </section>
 
         <Stagger className="security-page__facts" as="section" amount={0.3}>

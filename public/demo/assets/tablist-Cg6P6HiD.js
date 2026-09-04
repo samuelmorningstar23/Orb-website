@@ -1,0 +1,1 @@
+function e(e,t,n,r){return i=>{let a=e.indexOf(t);if(a===-1)return;let o=-1;switch(i.key){case`ArrowDown`:case`ArrowRight`:o=(a+1)%e.length;break;case`ArrowUp`:case`ArrowLeft`:o=(a-1+e.length)%e.length;break;case`Home`:o=0;break;case`End`:o=e.length-1;break;default:return}i.preventDefault();let s=e[o];n(s),document.getElementById(r(s))?.focus()}}export{e as t};

@@ -6,7 +6,7 @@ import { SHOWCASES } from './showcases'
 import { Reveal, EASE } from './motion/Reveal'
 import './ModuleExplorer.css'
 
-const AUTO_ADVANCE_MS = 8000
+const AUTO_ADVANCE_MS = 14000
 
 /** Modules in rail order: grouped by where they live in the hospital. */
 const ORDERED: ModuleInfo[] = AREA_ORDER.flatMap(area => ALL_MODULES.filter(m => m.area === area))
@@ -59,10 +59,10 @@ export default function ModuleExplorer() {
   return (
     <section className="explorer" id="modules" ref={sectionRef} aria-label="Explore the modules">
       <Reveal className="explorer__header">
-        <span className="explorer__eyebrow">{ORDERED.length} modules, captured</span>
+        <span className="explorer__eyebrow">{ORDERED.length} modules, running</span>
         <h2 className="explorer__title">One operating system, module by module.</h2>
         <p className="explorer__lead">
-          Pick a module. Every screen is a capture of a running Orb appliance on seeded demo patients, not a mock-up.
+          Pick a module. What runs in the frame is the Orb front end itself, in your browser, on a recording of the appliance and seeded demo patients.
         </p>
       </Reveal>
 
