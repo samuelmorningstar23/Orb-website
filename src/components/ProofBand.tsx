@@ -11,7 +11,7 @@ type Principle = {
 const principles: Principle[] = [
   {
     label: 'Clinician-confirmed',
-    line: "Nothing is ordered, charted, or filed without a clinician's yes.",
+    line: 'Nothing is ordered, charted or filed without a named person’s yes, and the audit row records who and when.',
     icon: (
       <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M20 6 9 17l-5-5" />
@@ -20,7 +20,7 @@ const principles: Principle[] = [
   },
   {
     label: 'On your hardware',
-    line: 'Patient data never leaves the building.',
+    line: 'The appliance and the models live in the hospital. The one outbound call is Pulse, and it carries a map coordinate, not a patient.',
     icon: (
       <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <rect x="2" y="4" width="20" height="12" rx="2" />
@@ -30,8 +30,8 @@ const principles: Principle[] = [
     ),
   },
   {
-    label: 'Auditable by design',
-    line: 'Actions recorded to a tamper-evident trail.',
+    label: 'A hash chain over the audit log',
+    line: 'SHA-256 over every audit row. Alter or delete one and the chain breaks; the Trust Center shows the check.',
     icon: (
       <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
@@ -41,8 +41,8 @@ const principles: Principle[] = [
     ),
   },
   {
-    label: 'Built on clinical standards',
-    line: 'NEWS2, I-PASS, Sepsis Six, and the WHO surgical checklist.',
+    label: 'Rules where a rule exists',
+    line: 'NEWS2 (RCP 2017), Sepsis Six, I-PASS and the WHO surgical checklist are deterministic. A model is used only where no rule can reach.',
     icon: (
       <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <rect x="8" y="2" width="8" height="4" rx="1" />
@@ -57,9 +57,9 @@ export default function ProofBand() {
   return (
     <section className="proof-band" aria-label="How Orb earns trust">
       <div className="proof-band__header">
-        <span className="proof-band__eyebrow">Trusted by design</span>
+        <span className="proof-band__eyebrow">What you can check</span>
         <p className="proof-band__lede">
-          Orb earns trust the way hospitals demand it: not with promises, but with architecture.
+          None of this is a promise. Each line is a screen in the product, and the demo runs on the real thing.
         </p>
       </div>
 

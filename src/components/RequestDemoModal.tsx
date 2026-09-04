@@ -94,7 +94,7 @@ export default function RequestDemoModal() {
         {!isSuccess ? (
           <>
             <h3 className="demo-modal-title" id="demo-modal-title">Request a Demo</h3>
-            <p className="demo-modal-subtitle">See Orb run on real clinical workflows. Book a walkthrough with the team.</p>
+            <p className="demo-modal-subtitle">A walkthrough of the running product on demo patients, on a call. Tell us the wards and the beds and we size it.</p>
 
             {error && <div className="demo-modal-error">{error}</div>}
 

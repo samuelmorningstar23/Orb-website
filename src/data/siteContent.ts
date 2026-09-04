@@ -1,6 +1,9 @@
 // ─── Single source of truth for nav, plans, and search content ───
-// The header's hover cards, the Plans page, and the search index all read from
-// here, so a renamed module or new tier only has to change in one place.
+// The header's hover cards, the Plans page, the explorer and the search index
+// all read from here, so a renamed module only has to change in one place.
+//
+// Voice: plain declaratives, specific, the caveat in the same sentence as the
+// claim. Every line describes something a visitor can see in the captures.
 
 /** Where in the hospital a module lives - drives grouping in the module explorer. */
 export type ModuleArea = 'ward' | 'theatre' | 'house' | 'patients' | 'office'
@@ -28,107 +31,107 @@ export interface ModuleInfo {
 
 export const ALL_MODULES: ModuleInfo[] = [
   {
-    to: '/sage', label: 'Sage', badge: 'Ambient Clinical Copilot',
-    blurb: 'Ask it about a patient or a guideline, or let it follow the conversation on the ward. Sage carries out the next step, the order, the alert, the note, only when a clinician confirms.',
-    keywords: ['copilot', 'assistant', 'agentic', 'orders', 'ai', 'ward', 'clinical questions', 'act', 'confirm'],
+    to: '/vigil', label: 'Vigil', badge: 'Vitals and early warning',
+    blurb: 'Every patient scored on NEWS2 as the vitals arrive, the ward ordered by that score, and each point on the score explained. The Sepsis Six clock starts when the score crosses the line.',
+    keywords: ['vitals', 'monitoring', 'early warning', 'deterioration', 'news2', 'alerts', 'nurses', 'risk', 'sepsis'],
     area: 'ward',
-    line: 'Ask it about a patient or a guideline. It acts only when a clinician confirms.',
+    line: 'The ward ordered by NEWS2, each point explained, the Sepsis Six clock already running.',
   },
   {
-    to: '/vigil', label: 'Vigil', badge: 'Live Vitals & Early Warning',
-    blurb: 'Scores every patient on NEWS2 continuously and pages the ward the moment a threshold is crossed.',
-    keywords: ['vitals', 'monitoring', 'early warning', 'deterioration', 'telemetry', 'alerts', 'nurses', 'risk'],
+    to: '/sage', label: 'Sage', badge: 'Clinical questions, answered on the appliance',
+    blurb: 'Ask about a guideline or a patient and get an answer from a model that runs inside the hospital, with the guidance it read listed underneath. It refuses charts outside your department and never places an order itself.',
+    keywords: ['copilot', 'assistant', 'questions', 'guideline', 'ai', 'ward', 'clinical questions', 'medgemma', 'local model'],
     area: 'ward',
-    line: 'Scores every patient on NEWS2 continuously and pages the ward the moment a threshold is crossed.',
+    line: 'A clinical question answered by a model inside the hospital, with its sources shown.',
   },
   {
-    to: '/scribe', label: 'Scribe', badge: 'Hands-Free Documentation',
-    blurb: 'Turns spoken bedside conversations into structured clinical notes and discharge summaries, hands-free.',
-    keywords: ['documentation', 'notes', 'dictation', 'transcription', 'discharge summary', 'voice', 'slate', 'writing'],
+    to: '/scribe', label: 'Scribe', badge: 'Dictation to a signed note',
+    blurb: 'Type or dictate the consultation. The local model drafts a SOAP note, a second pass checks it against what was said, and the clinician signs by name. Signing is what queues the medications for a pharmacist.',
+    keywords: ['documentation', 'notes', 'dictation', 'transcription', 'discharge summary', 'voice', 'soap', 'sign'],
     area: 'ward',
-    line: 'Turns bedside conversation into structured notes, hands-free.',
+    line: 'Dictation to a verified, signed SOAP note, on the appliance.',
   },
   {
-    to: '/lens', label: 'Lens', badge: 'Bedside Image Review',
-    blurb: 'Drafts a first read of X-rays, ECGs, and scans at the bedside for a clinician to correct and sign.',
-    keywords: ['imaging', 'x-ray', 'xray', 'ecg', 'scans', 'radiology', 'image review', 'observations'],
+    to: '/lens', label: 'Lens', badge: 'A first read of an image',
+    blurb: 'Upload an X-ray, an ECG or a photo of a wound. The local model drafts a first read for the clinician to correct, keep or discard. The image never leaves the building.',
+    keywords: ['imaging', 'x-ray', 'xray', 'ecg', 'scans', 'radiology', 'image review', 'photo', 'wound'],
     area: 'ward',
-    line: 'Drafts a first read of X-rays, ECGs, and scans for a clinician to correct and sign.',
+    line: 'A first read of an X-ray, ECG or photo, drafted on site for a clinician to correct.',
   },
   {
-    to: '/relay', label: 'Relay', badge: 'Secure Clinical Messaging',
-    blurb: 'Secure case rooms where deterioration alerts land beside the conversation and escalate on their own if nobody answers.',
-    keywords: ['messaging', 'chat', 'communication', 'teams', 'secure', 'rooms', 'channels', 'coordination'],
+    to: '/relay', label: 'Relay', badge: 'Case rooms for the team',
+    blurb: 'One room per patient. Vigil posts its alerts into the room beside the conversation, and a message about the wrong patient is delivered with a warning rather than blocked.',
+    keywords: ['messaging', 'chat', 'communication', 'teams', 'secure', 'rooms', 'channels', 'coordination', 'wrong patient'],
     area: 'ward',
-    line: 'Case rooms where deterioration alerts land beside the conversation and escalate on their own if nobody answers.',
+    line: 'One room per patient, alerts posted inline, a wrong-patient message flagged rather than blocked.',
   },
   {
-    to: '/helix', label: 'Helix', badge: 'Medication Operations',
-    blurb: 'Every medication order verified by a named pharmacist, with allergy and interaction checks at the moment it is written.',
-    keywords: ['medication', 'pharmacy', 'drugs', 'prescriptions', 'allergy', 'interactions', 'administration'],
+    to: '/helix', label: 'Helix', badge: 'Pharmacy and medication safety',
+    blurb: 'The allergy interlock stops an order set at the item that would harm the patient. Medications a model extracted from a note wait in a pharmacist’s queue until a named pharmacist verifies them.',
+    keywords: ['medication', 'pharmacy', 'drugs', 'prescriptions', 'allergy', 'interactions', 'administration', 'emar', 'pharmacist'],
     area: 'ward',
-    line: 'Every medication order verified by a named pharmacist, with allergy and interaction checks at the moment it is written.',
+    line: 'The allergy interlock, and a pharmacist’s queue for anything a model extracted.',
   },
   {
-    to: '/surgical-suite', label: 'Surgical Suite', badge: 'Operating-Room Coordination',
-    blurb: 'Live theatre schedules, safety checklists, and emergency alerts that keep operating rooms coordinated.',
-    keywords: ['surgery', 'operating room', 'theatre', 'or', 'checklists', 'schedules', 'perioperative'],
+    to: '/surgical-suite', label: 'Surgical Suite', badge: 'Theatre lists and checklists',
+    blurb: 'The week’s list, the day’s theatre, and active cases moving through the WHO surgical checklist, with the risk flag beside each patient.',
+    keywords: ['surgery', 'operating room', 'theatre', 'or', 'checklists', 'schedules', 'perioperative', 'who checklist'],
     area: 'theatre',
-    line: 'Live theatre schedules, checklists, and alerts in one view.',
+    line: 'The week, the day and the active cases, checklist step by step.',
   },
   {
-    to: '/pulse', label: 'Pulse', badge: 'Environmental & Population Signals',
-    blurb: 'Watches local air quality, weather, and community illness, and turns them into prep actions for the patient groups most at risk.',
-    keywords: ['environment', 'air quality', 'weather', 'population', 'community illness', 'signals', 'epidemiology'],
+    to: '/pulse', label: 'Pulse', badge: 'Outside signals',
+    blurb: 'Weather, air quality, flu surveillance and drug recalls from public feeds, read against the ward. The only outbound call Orb makes carries a map coordinate and no patient.',
+    keywords: ['environment', 'air quality', 'weather', 'population', 'community illness', 'signals', 'recalls', 'flu'],
     area: 'house',
-    line: 'Air quality, weather, and community illness, turned into prep actions for your wards.',
+    line: 'Weather, air quality, flu and recalls from public feeds; the one outbound call carries no patient.',
   },
   {
-    to: '/forecast', label: 'Forecast', badge: 'Predictive Capacity Planning',
-    blurb: 'Anticipates length-of-stay and discharge readiness, giving teams a clear bed-availability picture for the days ahead.',
-    keywords: ['capacity', 'beds', 'length of stay', 'discharge', 'planning', 'prediction', 'availability'],
+    to: '/forecast', label: 'Forecast', badge: 'Census and capacity ahead',
+    blurb: 'Seven-day census against capacity, the discharge board and admission patterns. The forecasting model ships untrained and the screen says so; the bed arithmetic and the discharge board are live today.',
+    keywords: ['capacity', 'beds', 'length of stay', 'discharge', 'planning', 'prediction', 'availability', 'census'],
     area: 'house',
-    line: 'A clear bed-availability picture for the days ahead.',
+    line: 'Census against capacity for the week ahead, with the model’s status stated on screen.',
   },
   {
-    to: '/bridge', label: 'Bridge', badge: 'Patient Understanding',
-    blurb: 'Explains care, medications, and next steps in plain, reassuring language for patients and families.',
-    keywords: ['patients', 'families', 'plain language', 'education', 'explanations', 'next steps', 'understanding'],
-    area: 'patients',
-    line: 'Explains care and next steps in plain language for patients and their families.',
-  },
-  {
-    to: '/appointments', label: 'Appointments', badge: 'Scheduling & Follow-up',
-    blurb: 'Keeps every follow-up, review, and clinic slot in order, so no patient falls through the gap between visits.',
-    keywords: ['scheduling', 'follow-up', 'clinic', 'slots', 'booking', 'visits', 'calendar', 'appointments'],
-    area: 'patients',
-    line: 'Every follow-up and clinic slot kept in order.',
-  },
-  {
-    to: '/revenue-integrity', label: 'Revenue Integrity', badge: 'Revenue Integrity',
-    blurb: 'Finds documented conditions that were never coded, with the evidence sentence behind each one.',
-    keywords: ['revenue', 'coding', 'billing', 'reimbursement', 'claims', 'roi', 'finance', 'back office'],
-    area: 'office',
-    line: 'Finds documented conditions that were never coded, with the evidence sentence behind each one.',
-  },
-  {
-    to: '/command-center', label: 'Command Center', badge: 'House-Wide Command Center',
-    blurb: 'The whole hospital on one screen: census, acuity, and the patients most likely to need you next.',
-    keywords: ['command center', 'census', 'acuity', 'overview', 'operations', 'house-wide', 'dashboard'],
+    to: '/command-center', label: 'Command Center', badge: 'The whole house on one screen',
+    blurb: 'Census, critical patients, sepsis bundle compliance and downtime readiness, with the ward acuity map and the active deteriorations by name.',
+    keywords: ['command center', 'census', 'acuity', 'overview', 'operations', 'house-wide', 'dashboard', 'heatmap'],
     area: 'house',
-    line: 'The whole hospital on one screen, pressure visible before it becomes a crisis.',
+    line: 'Census, acuity, bundle compliance and downtime readiness, one screen.',
   },
   {
-    to: '/surge-simulator', label: 'Surge Simulator', badge: 'Capacity & Surge Planning',
-    blurb: 'Model a surge, a closure, or a staffing gap before it happens, and see hours-to-overflow while there’s still time to act.',
+    to: '/surge-simulator', label: 'Surge Simulator', badge: 'What-if on the live census',
+    blurb: 'Twenty admissions tonight, eight beds closed, a flu surge at 1.5x. The simulator answers with peak occupancy, hours to overflow, beds short and the nurses you would need, with its assumptions listed.',
     keywords: ['surge', 'simulation', 'capacity', 'overflow', 'staffing', 'scenario', 'what-if', 'planning'],
     area: 'house',
-    line: 'Model a surge or a closure and see hours-to-overflow while there is still time.',
+    line: 'A surge or a closure modelled on the live census: hours to overflow and nurses needed.',
+  },
+  {
+    to: '/bridge', label: 'Bridge', badge: 'The patient’s own view',
+    blurb: 'A patient signs in with the code issued at admission and sees their care team, vitals in plain words, medications, results and documents, and can download their record as FHIR. Questions get a plain answer that points back to the nurse or doctor.',
+    keywords: ['patients', 'families', 'plain language', 'portal', 'explanations', 'next steps', 'fhir', 'record'],
+    area: 'patients',
+    line: 'The patient’s own portal: vitals in plain words, results, documents, a FHIR download.',
+  },
+  {
+    to: '/appointments', label: 'Appointments', badge: 'Follow-ups and reviews',
+    blurb: 'Follow-ups, medication reviews and post-discharge checks in day columns, each with the patient’s risk band, so the critical ones are not scheduled like the rest.',
+    keywords: ['scheduling', 'follow-up', 'clinic', 'slots', 'booking', 'visits', 'calendar', 'appointments', 'review'],
+    area: 'patients',
+    line: 'Follow-ups and reviews by day, with the risk band beside each name.',
+  },
+  {
+    to: '/revenue-integrity', label: 'Revenue Integrity', badge: 'Coding from the notes on the chart',
+    blurb: 'Pick a patient and press Analyze. Orb reads the notes already on the chart and lists the codes they support and the documentation gaps that block them, each with the sentence it came from.',
+    keywords: ['revenue', 'coding', 'billing', 'reimbursement', 'claims', 'finance', 'back office', 'documentation'],
+    area: 'office',
+    line: 'The codes the chart already supports, and the gaps that block them, sentence by sentence.',
   },
 ]
 
 // ─── Featured nav items - the six modules that get their own top-bar entry ───
-// `summary` is the 5–6 word line shown in the hover card.
+// `summary` is the short line shown in the hover card.
 export interface FeaturedModule extends ModuleInfo {
   navLabel: string
   summary: string
@@ -141,15 +144,18 @@ const byPath = (to: string): ModuleInfo => {
 }
 
 export const FEATURED_MODULES: FeaturedModule[] = [
-  { ...byPath('/relay'), navLabel: 'Relay', summary: 'Secure messaging for clinical teams.' },
-  { ...byPath('/sage'), navLabel: 'Sage', summary: 'The ambient copilot that acts.' },
-  { ...byPath('/forecast'), navLabel: 'Forecast', summary: 'Predicts beds, stays, and discharges.' },
-  { ...byPath('/bridge'), navLabel: 'Bridge', summary: 'Care explained in plain language.' },
-  { ...byPath('/appointments'), navLabel: 'Appointments', summary: 'Scheduling that never drops a patient.' },
-  { ...byPath('/surge-simulator'), navLabel: 'Surge', summary: 'Rehearse the surge before it hits.' },
+  { ...byPath('/vigil'), navLabel: 'Vigil', summary: 'NEWS2 on every patient, explained.' },
+  { ...byPath('/sage'), navLabel: 'Sage', summary: 'Clinical questions answered on site.' },
+  { ...byPath('/helix'), navLabel: 'Helix', summary: 'Allergy interlock and pharmacist queue.' },
+  { ...byPath('/scribe'), navLabel: 'Scribe', summary: 'Dictation to a signed note.' },
+  { ...byPath('/bridge'), navLabel: 'Bridge', summary: 'The patient’s own view of their care.' },
+  { ...byPath('/command-center'), navLabel: 'Command', summary: 'The whole house on one screen.' },
 ]
 
 // ─── Plans ───
+// There are no tiers that withhold safety features. Orb is bought as a pilot
+// first, then per bed for the whole hospital. Numbers are agreed in the demo;
+// none are published here until the founder decides to.
 export interface Plan {
   id: string
   name: string
@@ -162,37 +168,29 @@ export interface Plan {
 
 export const PLANS: Plan[] = [
   {
-    id: 'lite',
-    name: 'Orb Lite',
-    tagline: 'The clinical core.',
-    audience: 'For clinics and small wards',
-    desc: 'The essentials of the operating system: an ambient copilot, hands-free notes, secure team messaging, and scheduling that never drops a follow-up.',
-    includes: ['Sage', 'Scribe', 'Relay', 'Appointments'],
+    id: 'pilot',
+    name: 'The pilot',
+    tagline: 'One ward, thirteen weeks.',
+    audience: 'Where every hospital starts',
+    desc: 'Orb runs on one ward beside the current process. The first weeks are shadow mode: it scores, drafts and flags while nobody acts on it, and every call is checked against what the ward actually did. Then it goes live on that ward, with the numbers in hand.',
+    includes: ['Every module from day one', 'The appliance, installed inside the hospital', 'Shadow mode, then live, with a scorecard the board can read', 'A weekly review with the clinical champion'],
   },
   {
-    id: 'plus',
-    name: 'Orb Plus',
-    tagline: 'Eyes at every bedside.',
-    audience: 'For growing hospitals',
-    desc: 'Everything in Lite, plus live vitals with early warning, bedside image review, medication safety checks, and plain-language explanations for patients.',
-    includes: ['Everything in Lite', 'Vigil', 'Lens', 'Helix', 'Bridge'],
+    id: 'hospital',
+    name: 'The hospital',
+    tagline: 'The whole house, per bed.',
+    audience: 'After the pilot',
+    desc: 'Priced per bed per month and scoped in the demo from your wards, beds and hardware. No plan withholds a safety feature: the allergy interlock, NEWS2 and the audit chain are in every deployment.',
+    includes: ['Every clinical module on every ward', 'Front desk, billing, insurance, procurement, housekeeping, workforce', 'Updates and support for the life of the contract'],
+    extras: ['ABDM and NABH support as each is certified'],
   },
   {
-    id: 'max',
-    name: 'Orb Max',
-    tagline: 'Run the whole house.',
-    audience: 'For full-house operations',
-    desc: 'Everything in Plus, plus the house-wide command center, predictive capacity planning, surge rehearsal, and environmental signals for the days ahead.',
-    includes: ['Everything in Plus', 'Command Center', 'Forecast', 'Surge Simulator', 'Pulse'],
-  },
-  {
-    id: 'ultra',
-    name: 'Orb Ultra',
-    tagline: 'The complete operating system.',
+    id: 'group',
+    name: 'The group',
+    tagline: 'One appliance per site.',
     audience: 'For hospital groups',
-    desc: 'Every module Orb ships, including operating-room coordination and revenue integrity, with white-glove deployment and priority support.',
-    includes: ['Everything in Max', 'Surgical Suite', 'Revenue Integrity'],
-    extras: ['White-glove on-premise deployment', 'Priority support'],
+    desc: 'Each hospital keeps its own appliance and its own data. A view across sites is on the roadmap and not in the product today, and we say so in the demo rather than on a slide.',
+    includes: ['Everything in the hospital plan, per site', 'One contract, one support line', 'A named engineer for the rollout'],
   },
 ]
 

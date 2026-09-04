@@ -13,7 +13,7 @@ const ORDERED: ModuleInfo[] = AREA_ORDER.flatMap(area => ALL_MODULES.filter(m =>
 
 /**
  * The homepage's centrepiece: a rail of modules on the left, and on the right a
- * device frame running the selected module's real showcase. It walks through
+ * device frame stepping through captures of the selected module. It walks through
  * the modules on its own until the visitor touches it, then follows them.
  */
 export default function ModuleExplorer() {
@@ -59,10 +59,10 @@ export default function ModuleExplorer() {
   return (
     <section className="explorer" id="modules" ref={sectionRef} aria-label="Explore the modules">
       <Reveal className="explorer__header">
-        <span className="explorer__eyebrow">Fourteen modules</span>
+        <span className="explorer__eyebrow">{ORDERED.length} modules, captured</span>
         <h2 className="explorer__title">One operating system, module by module.</h2>
         <p className="explorer__lead">
-          Pick a module to watch it work. Every demo runs on illustrative data, never a real patient.
+          Pick a module. Every screen is a capture of a running Orb appliance on seeded demo patients, not a mock-up.
         </p>
       </Reveal>
 

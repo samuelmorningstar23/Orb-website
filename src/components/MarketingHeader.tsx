@@ -196,7 +196,7 @@ export default function MarketingHeader() {
     if (item.panel === 'plans') {
       return (
         <div className="nav-panel nav-panel--plans">
-          <span className="nav-panel__eyebrow">One platform, four sizes</span>
+          <span className="nav-panel__eyebrow">A pilot first, then the hospital</span>
           <div className="nav-panel__plan-list">
             {PLANS.map(p => (
               <Link key={p.id} to={`/plans#${p.id}`} className="nav-panel__plan" onClick={closeNow}>
@@ -214,7 +214,7 @@ export default function MarketingHeader() {
     if (item.panel === 'modules') {
       return (
         <div className="nav-panel nav-panel--modules">
-          <span className="nav-panel__eyebrow">Fourteen modules. One operating system.</span>
+          <span className="nav-panel__eyebrow">Every module, captured from the product.</span>
           <div className="nav-panel__module-grid">
             {ALL_MODULES.map(m => (
               <Link key={m.to} to={m.to} className="nav-panel__module-link" onClick={closeNow}>

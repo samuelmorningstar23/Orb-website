@@ -5,22 +5,10 @@ import Landing from './pages/Landing'
 import Plans from './pages/Plans'
 import Support from './pages/Support'
 import Security from './pages/Security'
-import VigilDetail from './pages/details/VigilDetail'
-import SageDetail from './pages/details/SageDetail'
-import ScribeDetail from './pages/details/ScribeDetail'
-import LensDetail from './pages/details/LensDetail'
-import RelayDetail from './pages/details/RelayDetail'
-import HelixDetail from './pages/details/HelixDetail'
-import SurgicalSuiteDetail from './pages/details/SurgicalSuiteDetail'
-import PulseDetail from './pages/details/PulseDetail'
-import BridgeDetail from './pages/details/BridgeDetail'
-import ForecastDetail from './pages/details/ForecastDetail'
-import SlateDetail from './pages/details/SlateDetail'
-import CommandCenterDetail from './pages/details/CommandCenterDetail'
-import RevenueIntegrityDetail from './pages/details/RevenueIntegrityDetail'
-import SurgeSimulatorDetail from './pages/details/SurgeSimulatorDetail'
+import ModulePage from './pages/details/ModulePage'
 import RequestDemoModal from './components/RequestDemoModal'
 import ScrollToTop from './components/ScrollToTop'
+import { MODULE_PAGES } from './data/modulePages'
 import './App.css'
 
 // Theme init - follow the operating system by default. A theme the visitor
@@ -68,22 +56,12 @@ function AnimatedRoutes() {
         <Route path="/plans" element={<Page><Plans /></Page>} />
         <Route path="/support" element={<Page><Support /></Page>} />
         <Route path="/security" element={<Page><Security /></Page>} />
-        <Route path="/vigil" element={<Page><VigilDetail /></Page>} />
-        <Route path="/sage" element={<Page><SageDetail /></Page>} />
-        <Route path="/scribe" element={<Page><ScribeDetail /></Page>} />
-        <Route path="/lens" element={<Page><LensDetail /></Page>} />
-        <Route path="/relay" element={<Page><RelayDetail /></Page>} />
-        <Route path="/helix" element={<Page><HelixDetail /></Page>} />
-        <Route path="/surgical-suite" element={<Page><SurgicalSuiteDetail /></Page>} />
-        <Route path="/pulse" element={<Page><PulseDetail /></Page>} />
-        <Route path="/bridge" element={<Page><BridgeDetail /></Page>} />
-        <Route path="/forecast" element={<Page><ForecastDetail /></Page>} />
-        <Route path="/appointments" element={<Page><SlateDetail /></Page>} />
+        {/* Every module page is the same layout over its own data and its own captures. */}
+        {MODULE_PAGES.map(p => (
+          <Route key={p.route} path={p.route} element={<Page><ModulePage route={p.route} /></Page>} />
+        ))}
         {/* The module was briefly called Slate; keep those links working */}
         <Route path="/slate" element={<Navigate to="/appointments" replace />} />
-        <Route path="/command-center" element={<Page><CommandCenterDetail /></Page>} />
-        <Route path="/revenue-integrity" element={<Page><RevenueIntegrityDetail /></Page>} />
-        <Route path="/surge-simulator" element={<Page><SurgeSimulatorDetail /></Page>} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </AnimatePresence>

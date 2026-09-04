@@ -20,16 +20,15 @@ export default function Plans() {
 
         <section className="module-detail__hero animate-slide-up">
           <span className="module-detail__badge">Plans</span>
-          <h1 className="module-detail__title">One platform.<br />Four sizes.</h1>
+          <h1 className="module-detail__title">A pilot first.<br />Then the hospital.</h1>
           <p className="module-detail__tagline">
-            Every plan runs the same local-first operating system inside your walls. Pick how much of the hospital it covers, and grow tier by tier.
+            There are no tiers that withhold safety features. Orb is bought as a thirteen-week pilot on one ward, then per bed for the whole hospital, and the numbers are agreed on a call with your census in front of us.
           </p>
         </section>
 
         <section className="plans-page__grid animate-slide-up stagger-1">
           {PLANS.map(plan => (
-            <article key={plan.id} id={plan.id} className={`plans-page__card ${plan.id === 'max' ? 'plans-page__card--popular' : ''}`}>
-              {plan.id === 'max' && <span className="plans-page__popular-badge">Most popular</span>}
+            <article key={plan.id} id={plan.id} className="plans-page__card">
               <span className="plans-page__audience">{plan.audience}</span>
               <h2 className="plans-page__name">{plan.name}</h2>
               <p className="plans-page__tagline">{plan.tagline}</p>
@@ -54,22 +53,22 @@ export default function Plans() {
                 ))}
               </ul>
 
-              <button className="plans-page__cta" onClick={openDemoModal}>Request a Demo</button>
+              <button className="plans-page__cta" onClick={openDemoModal}>Request a demo</button>
             </article>
           ))}
         </section>
 
         <p className="plans-page__note">
-          Pricing is scoped to your wards, beds, and hardware. The team sizes it with you during the demo. Every plan is deployed on-premise, with no patient data leaving your walls.
+          Pricing is per bed per month, scoped from your wards, beds and hardware on the demo call. Every deployment is an appliance inside the hospital, and no patient data leaves it.
         </p>
 
         <section className="module-detail__cta-section">
-          <h2 className="module-detail__cta-title">Not sure where to start?</h2>
+          <h2 className="module-detail__cta-title">Start with one ward.</h2>
           <p className="module-detail__cta-desc">
-            Most hospitals begin with a single ward on Lite or Plus, then grow into the house-wide tiers as teams adopt it.
+            The pilot runs beside your current process on one ward, in shadow mode first, and produces a scorecard the board can read before anyone commits the house.
           </p>
           <div className="module-detail__buttons">
-            <button className="module-detail__btn-primary" onClick={openDemoModal}>Request a Demo</button>
+            <button className="module-detail__btn-primary" onClick={openDemoModal}>Request a demo</button>
             <Link to="/support" className="module-detail__btn-secondary">Talk to support &nbsp;&rarr;</Link>
           </div>
         </section>

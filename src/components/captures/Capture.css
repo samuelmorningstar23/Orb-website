@@ -1,0 +1,201 @@
+/* ─── Real-screen capture player ───
+   Sits inside .module-detail__visual-frame (16:9 on module pages) and inside
+   the homepage explorer's device screen (16:10), where the frame rules are
+   overridden to fill. The frames are 3:2 captures of the app; they are cropped
+   from the bottom (the sidebar footer and empty space) so the header, the
+   patient and the numbers stay in view. Tall full-page captures letterbox. */
+
+.cap {
+  display: block;
+  padding: 0;
+  outline: none;
+}
+
+.cap:focus-visible {
+  box-shadow: var(--shadow-lg), 0 0 0 3px var(--border-focus);
+}
+
+.cap__stage {
+  position: absolute;
+  inset: 0;
+  background: #1c1b19;
+}
+
+.cap--contain .cap__stage {
+  background: #101010;
+}
+
+.cap__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.cap--contain .cap__img {
+  object-fit: contain;
+  object-position: top center;
+}
+
+/* "Real screen" mark, top left. Mono, tiny, never in the way. */
+.cap__badge {
+  position: absolute;
+  top: 12px;
+  left: 14px;
+  padding: 4px 9px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.86);
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  pointer-events: none;
+}
+
+/* View switcher, top right (Ask Sage / the refusal, the ward / the nurse). */
+.cap__tabs {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  display: flex;
+  gap: 4px;
+  padding: 3px;
+  border-radius: var(--radius-full);
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.cap__tab {
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.78);
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.cap__tab:hover { color: #fff; }
+
+.cap__tab.is-active {
+  background: var(--clay-400);
+  color: #1A0F0A;
+}
+
+/* Caption strip along the bottom, over a gradient so the frame keeps its size. */
+.cap__strip {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto;
+  align-items: end;
+  gap: 6px 16px;
+  padding: 44px 18px 14px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.62) 38%, rgba(0, 0, 0, 0.84) 100%);
+  color: #fff;
+}
+
+.cap__text { min-width: 0; }
+
+.cap__group {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--clay-200);
+  margin-bottom: 4px;
+}
+
+.cap__caption {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.4;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.94);
+  text-wrap: pretty;
+}
+
+.cap__controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cap__count {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-right: 4px;
+}
+
+.cap__btn {
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.cap__btn:hover { background: rgba(255, 255, 255, 0.22); }
+.cap__btn:active { transform: scale(0.94); }
+
+.cap__dots {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 6px;
+}
+
+.cap__dot {
+  width: 22px;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.28);
+  transition: background var(--transition-fast);
+}
+
+.cap__dot.is-active { background: var(--clay-300); }
+
+.cap__progress {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 100%;
+  background: var(--clay-400);
+  transform-origin: left center;
+  opacity: 0.9;
+}
+
+@media (max-width: 640px) {
+  .cap__strip { padding: 36px 12px 10px; grid-template-columns: 1fr; }
+  .cap__controls { justify-self: start; }
+  .cap__caption { font-size: 0.88rem; }
+  .cap__tabs { top: 8px; right: 8px; }
+  .cap__tab { padding: 4px 9px; font-size: 0.72rem; }
+  .cap__badge { display: none; }
+}
+
+/* Narrow screens: the frame is nearly square there, so show the whole capture
+   (letterboxed under the caption) instead of cropping the right-hand panels. */
+@media (max-width: 640px) {
+  .cap__img { object-fit: contain; object-position: top center; }
+  .cap__stage { background: #101010; }
+}

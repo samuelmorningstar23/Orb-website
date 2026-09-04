@@ -3,6 +3,7 @@ import Aurora from '../components/Aurora'
 import MarketingHeader from '../components/MarketingHeader'
 import SafetySuite from '../components/SafetySuite'
 import TrustPosture from '../components/TrustPosture'
+import FlowCapture from '../components/captures/FlowCapture'
 import { Reveal, Stagger, StaggerItem } from '../components/motion/Reveal'
 import { openDemoModal } from '../data/siteContent'
 import './details/ModuleDetails.css'
@@ -15,15 +16,15 @@ import './Security.css'
 const FACTS = [
   {
     title: 'Where it runs',
-    body: 'On-premise, on hardware you control. All processing happens inside the hospital.',
+    body: 'On an appliance inside the hospital, on hardware you control. The database, the models and the audit log are all on it.',
   },
   {
     title: 'What leaves the building',
-    body: 'Nothing clinical. Audio, images, and text are processed on-site. No cloud egress of patient data, no third-party AI vendor in the loop. One outbound exception: Orb Pulse sends a map coordinate to public weather, air-quality, and drug-recall feeds. It carries no patient data, every call is logged, and it can be blocked at the firewall with no loss of clinical function.',
+    body: 'Nothing clinical. Audio, images and text are processed on the appliance by models that live there; there is no cloud model and no AI vendor in the loop. The one outbound call is Pulse, which sends a map coordinate to public weather, air-quality, flu and drug-recall feeds. It carries no patient data, every call is logged, and the firewall can block it with no loss of clinical function.',
   },
   {
     title: 'When the network drops',
-    body: 'Care continues. Orb needs no internet connection to run, and a printable downtime snapshot per patient covers the hour the appliance itself is down.',
+    body: 'Care continues. Orb needs no internet connection to run. A printable downtime pack per patient is kept fresh on the appliance and covers the hour the appliance itself is down; the Command Center shows how many packs are current.',
   },
 ]
 
@@ -43,10 +44,15 @@ export default function Security() {
 
         <section className="module-detail__hero animate-slide-up">
           <span className="module-detail__badge">Security brief</span>
-          <h1 className="module-detail__title">Private by architecture.</h1>
+          <h1 className="module-detail__title">What leaves the building: nothing.</h1>
           <p className="module-detail__tagline">
-            Everything Orb does happens on hardware inside your hospital. This page is the version of that claim your security and procurement teams can check.
+            Everything Orb does happens on an appliance inside the hospital. This page is the version of that claim your security and procurement teams can check, with the admin screens it is checked on.
           </p>
+        </section>
+
+        <section className="module-detail__showcase animate-slide-up stagger-1">
+          <FlowCapture flows={['show-your-work']} label="The admin screens, captured from the product" />
+          <p className="module-detail__capture-note">Trust Center, Flight Recorder, Model Governance and the Pilot Scorecard, captured from a running appliance on demo data.</p>
         </section>
 
         <Stagger className="security-page__facts" as="section" amount={0.3}>
@@ -64,14 +70,14 @@ export default function Security() {
         <Reveal as="section" className="security-page__audit" amount={0.4}>
           <h2 className="security-page__audit-title">What Orb records</h2>
           <p className="security-page__audit-body">
-            Every recommendation and every confirmed action is written to a tamper-evident audit trail, so a reviewer can see what was proposed, who confirmed it, and when. Role-based access is built in, not bolted on. Nothing is ordered, charted, or filed without a clinician&rsquo;s yes.
+            Every model answer, every refusal and every confirmed action is written to an audit log sealed by a SHA-256 hash chain, so a reviewer can see what was proposed, who confirmed it and when, and whether any row was altered since. The Flight Recorder in the admin screens is that log. Role-based access is part of the same record, and an administrator sign-in requires a second factor.
           </p>
         </Reveal>
 
         <section className="module-detail__cta-section">
           <h2 className="module-detail__cta-title">Talk to us about your environment.</h2>
           <p className="module-detail__cta-desc">
-            We will walk your security team through deployment, data flow, and access controls on a call.
+            We walk your security team through the appliance, the data flow and the access controls on a call, with the admin screens open.
           </p>
           <div className="module-detail__buttons">
             <button className="module-detail__btn-primary" onClick={openDemoModal}>Request a demo</button>

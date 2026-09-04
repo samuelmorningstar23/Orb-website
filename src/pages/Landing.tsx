@@ -11,9 +11,9 @@ import { ALL_MODULES, CONTACT_EMAIL, openDemoModal } from '../data/siteContent'
 import './Landing.css'
 
 /**
- * Homepage - five beats: the promise, Orb acting, the modules running live,
- * the proof, and one call to action. Detail lives on the module and security
- * pages; this page's job is to make someone want to see it.
+ * Homepage - five beats: the promise, how Orb acts, the modules captured from
+ * the product, the proof, and one call to action. Detail lives on the module
+ * and security pages; this page's job is to make someone want to see it.
  */
 export default function Landing() {
   const heroRef = useRef<HTMLElement>(null)
@@ -42,7 +42,7 @@ export default function Landing() {
               The Hospital<br />Operating System.
             </h1>
             <p className="landing-overview__subtitle">
-              Intelligence that stays within your walls, and acts on what it sees the moment a clinician confirms.
+              The record, the ward monitor, the pharmacy and the front desk on one appliance inside the hospital. The models run there too, so nothing about a patient leaves the building.
             </p>
             <div className="landing-overview__hero-actions">
               <button className="landing-overview__btn-primary" onClick={openDemoModal}>
@@ -83,7 +83,7 @@ export default function Landing() {
         <Reveal as="section" className="landing-overview__cta" amount={0.4}>
           <h2 className="landing-overview__cta-title">See Orb on your wards.</h2>
           <p className="landing-overview__cta-desc">
-            A walkthrough on real clinical workflows, sized to your hospital. No slides.
+            A walkthrough of the running product on demo patients, on a call sized to your hospital. No slides.
           </p>
           <div className="landing-overview__cta-actions">
             <button className="landing-overview__btn-primary" onClick={openDemoModal}>Request a demo</button>
@@ -96,7 +96,7 @@ export default function Landing() {
           <div className="landing-overview__footer-top">
             <div className="landing-overview__footer-brand">
               <span className="landing-overview__footer-wordmark">Orb</span>
-              <p className="landing-overview__footer-tagline">The local-first, AI-native operating system for the modern hospital.</p>
+              <p className="landing-overview__footer-tagline">The hospital operating system that runs inside the hospital.</p>
             </div>
 
             <nav className="landing-overview__footer-cols">
@@ -125,7 +125,7 @@ export default function Landing() {
 
           <div className="landing-overview__footer-bottom">
             <p>© 2026 Orb. All rights reserved.</p>
-            <p className="landing-overview__footer-fineprint">Interactive figures shown are illustrative.</p>
+            <p className="landing-overview__footer-fineprint">Every screen on this site is a capture of a running Orb appliance on seeded demo patients. No real patient appears here.</p>
           </div>
         </footer>
 

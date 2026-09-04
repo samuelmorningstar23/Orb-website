@@ -7,7 +7,7 @@ const STEPS = [
   {
     key: 'understand',
     label: 'Understand',
-    caption: 'Reads the moment across the ward',
+    caption: 'Reads the chart, the vitals and the note as they change',
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="11" cy="11" r="7" />
@@ -18,7 +18,7 @@ const STEPS = [
   {
     key: 'propose',
     label: 'Propose',
-    caption: 'Drafts the next step, grounded in your references',
+    caption: 'Drafts the order, the alert or the note, with the guideline it used',
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 20h9" />
@@ -29,7 +29,7 @@ const STEPS = [
   {
     key: 'confirm',
     label: 'Confirm',
-    caption: 'Waits for a clinician to approve',
+    caption: 'A named clinician approves, or the draft goes nowhere',
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M9 11l3 3L22 4" />
@@ -40,7 +40,7 @@ const STEPS = [
   {
     key: 'act',
     label: 'Act',
-    caption: 'Carries it through, end to end',
+    caption: 'The order is placed, the pharmacist is queued, the audit row is sealed',
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
@@ -49,7 +49,7 @@ const STEPS = [
   },
 ]
 
-const CHIPS = ['Orders', 'Theatre', 'Notes']
+const CHIPS = ['Orders', 'Pharmacy', 'Notes']
 
 export default function AgenticShowcase() {
   const [active, setActive] = useState(0)
@@ -73,15 +73,16 @@ export default function AgenticShowcase() {
   return (
     <section className="agentic" ref={ref}>
       <div className="agentic__header">
-        <span className="agentic__eyebrow">Agentic by design</span>
-        <h2 className="agentic__title">Orb doesn&rsquo;t just watch. It acts.</h2>
+        <span className="agentic__eyebrow">How it acts</span>
+        <h2 className="agentic__title">Orb drafts. A clinician confirms. Then it acts.</h2>
         <p className="agentic__lead">
-          Most hospital software shows you information. Orb carries the next step through: the order,
-          the alert, the note. It waits for a clinician&rsquo;s confirmation before it does.
+          Orb reads the chart and drafts the next step: an order set, an alert, a note. Nothing happens until
+          a named person confirms it, and what they confirm goes through the same allergy interlock, dose guard
+          and pharmacist queue as anything typed by hand.
         </p>
       </div>
 
-      <div className="agentic__flow" role="img" aria-label="Orb workflow: Understand, Propose, Confirm, then Act, which fans out into Orders, Theatre and Notes.">
+      <div className="agentic__flow" role="img" aria-label="Orb workflow: Understand, Propose, Confirm, then Act, which fans out into Orders, Pharmacy and Notes.">
         {STEPS.map((step, i) => {
           const isActive = i === active
           const isPast = i < active
@@ -127,7 +128,7 @@ export default function AgenticShowcase() {
       </div>
 
       <div className="agentic__cta">
-        <Link to="/sage" className="agentic__cta-primary">See Sage in action &nbsp;&rarr;</Link>
+        <Link to="/helix" className="agentic__cta-primary">See the allergy interlock &nbsp;&rarr;</Link>
       </div>
     </section>
   )
