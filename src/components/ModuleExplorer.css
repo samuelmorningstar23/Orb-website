@@ -337,6 +337,9 @@
   .explorer__screen {
     aspect-ratio: 4 / 3;
     min-height: 360px;
+    /* min-height must not widen the box past the stage (it did: 480 px on a 342 px stage) */
+    width: 100%;
+    max-width: 100%;
   }
 
   .explorer__caption {
