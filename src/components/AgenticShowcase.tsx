@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useMotionValueEvent, useReducedMotion, useScroll } from 'framer-motion'
 import './AgenticShowcase.css'
 
 const STEPS = [
@@ -53,30 +54,30 @@ const CHIPS = ['Orders', 'Theatre', 'Notes']
 export default function AgenticShowcase() {
   const [active, setActive] = useState(0)
 
-  // Gently advance the active node through the flow on a calm loop.
+  const ref = useRef<HTMLElement>(null)
+  const reduce = useReducedMotion()
+
+  // The flow is driven by scroll: as the section travels up from the bottom of
+  // the viewport into place, Understand → Propose → Confirm → Act light up in
+  // turn and the fan opens once it is seated. Reduced motion shows the end state.
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start 92%', 'start 28%'] })
+  const stepFor = (v: number) => Math.min(STEPS.length - 1, Math.floor(v * (STEPS.length + 0.6)))
+  useMotionValueEvent(scrollYProgress, 'change', v => { if (!reduce) setActive(stepFor(v)) })
   useEffect(() => {
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (reduce) {
-      setActive(STEPS.length - 1)
-      return
-    }
-    const timer = setInterval(() => {
-      setActive((prev) => (prev + 1) % STEPS.length)
-    }, 1900)
-    return () => clearInterval(timer)
-  }, [])
+    if (reduce) { setActive(STEPS.length - 1); return }
+    setActive(stepFor(scrollYProgress.get()))
+  }, [reduce, scrollYProgress])
 
   const actReached = active === STEPS.length - 1
 
   return (
-    <section className="agentic">
+    <section className="agentic" ref={ref}>
       <div className="agentic__header">
         <span className="agentic__eyebrow">Agentic by design</span>
         <h2 className="agentic__title">Orb doesn&rsquo;t just watch. It acts.</h2>
         <p className="agentic__lead">
-          Most hospital software shows you information. Orb understands what is happening and carries the
-          next step through &mdash; drafting the order, alerting the team, filing the note &mdash; always
-          waiting for a clinician&rsquo;s confirmation.
+          Most hospital software shows you information. Orb carries the next step through &mdash; the order,
+          the alert, the note &mdash; and waits for a clinician&rsquo;s confirmation before it does.
         </p>
       </div>
 
@@ -125,19 +126,8 @@ export default function AgenticShowcase() {
         </div>
       </div>
 
-      <div className="agentic__reassure">
-        <span className="agentic__reassure-item">Clinician-confirmed</span>
-        <span className="agentic__reassure-sep" aria-hidden="true" />
-        <span className="agentic__reassure-item">On-device</span>
-        <span className="agentic__reassure-sep" aria-hidden="true" />
-        <span className="agentic__reassure-item">Fully auditable</span>
-      </div>
-
       <div className="agentic__cta">
         <Link to="/sage" className="agentic__cta-primary">See Sage in action &nbsp;&rarr;</Link>
-        <button className="agentic__cta-secondary" onClick={() => window.dispatchEvent(new CustomEvent('open-demo-modal'))}>
-          Request a demo
-        </button>
       </div>
     </section>
   )

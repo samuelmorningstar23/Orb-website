@@ -2,7 +2,7 @@ import { useState, useEffect, useLayoutEffect, useRef, useCallback } from 'react
 import { Link, useLocation } from 'react-router-dom'
 import OrbLogo from './OrbLogo'
 import SearchOverlay from './SearchOverlay'
-import { ALL_MODULES, FEATURED_MODULES, PLANS, openDemoModal, type FeaturedModule } from '../data/siteContent'
+import { ALL_MODULES, PLANS, openDemoModal, type FeaturedModule } from '../data/siteContent'
 import './MarketingHeader.css'
 
 // ─── Top-bar model ───
@@ -16,10 +16,12 @@ type NavItem =
   | { id: string; label: string; to: string; panel: 'module'; module: FeaturedModule }
   | { id: string; label: string; to: string; panel: null }
 
+// Four items a first-time visitor can act on. Module names live in the
+// Modules card and the explorer, not in the top bar.
 const NAV_ITEMS: NavItem[] = [
-  { id: 'plans', label: 'Plans', to: '/plans', panel: 'plans' },
-  ...FEATURED_MODULES.map<NavItem>(m => ({ id: m.to, label: m.navLabel, to: m.to, panel: 'module', module: m })),
   { id: 'modules', label: 'Modules', to: '/#modules', panel: 'modules' },
+  { id: 'plans', label: 'Plans', to: '/plans', panel: 'plans' },
+  { id: 'security', label: 'Security', to: '/security', panel: null },
   { id: 'support', label: 'Support', to: '/support', panel: null },
 ]
 
@@ -221,7 +223,7 @@ export default function MarketingHeader() {
             ))}
           </div>
           <Link to="/#modules" className="nav-panel__footer-link" onClick={closeNow}>
-            See them on the overview {arrow}
+            Watch them run on the overview {arrow}
           </Link>
         </div>
       )
@@ -336,6 +338,7 @@ export default function MarketingHeader() {
             ))}
           </div>
 
+          <Link to="/security" className="marketing-header__drawer-link marketing-header__drawer-link--overview" onClick={() => setMobileOpen(false)}>Security</Link>
           <Link to="/support" className="marketing-header__drawer-link marketing-header__drawer-link--overview" onClick={() => setMobileOpen(false)}>Support</Link>
 
           <button className="marketing-header__drawer-cta" onClick={openDemo}>Request a Demo</button>

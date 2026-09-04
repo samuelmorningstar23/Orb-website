@@ -15,19 +15,40 @@
   --text-secondary: #a0a0b8;
   --text-muted: #6b6b82;
 
-  /* Gold accent system — rich, luxurious, eye-catching */
-  --accent-gold: #FFD700;
-  --accent-amber: #F5A623;
-  --accent-deep: #C8960C;
-  --accent-warm: #FFE566;
-  --accent-glow: rgba(255, 215, 0, 0.10);
-  --accent-glow-strong: rgba(255, 215, 0, 0.22);
-  --btn-primary-text: #000000;
+  /* ─── Sierra Blue scale — the single brand accent in both themes ─── */
+  --sierra-50: #F3F7FB;
+  --sierra-100: #E1EBF4;
+  --sierra-200: #C4D8E9;
+  --sierra-300: #A7C1D9;
+  --sierra-400: #7AA5C7;
+  --sierra-500: #5D8EB8;
+  --sierra-600: #3F6F97;
+  --sierra-700: #2C465E;
+
+  /* Frosted white — translucent surfaces that sit over the aurora */
+  --frost: rgba(255, 255, 255, 0.72);
+  --frost-strong: rgba(255, 255, 255, 0.88);
+  --frost-border: rgba(255, 255, 255, 0.65);
+
+  /* Semantic accent roles (dark): pale Sierra reads clearly on near-black */
+  --accent: var(--sierra-300);            /* links, icons, labels, eyebrows */
+  --accent-strong: var(--sierra-200);     /* hover / emphasis */
+  --accent-soft: rgba(167, 193, 217, 0.14); /* fills, selected-state tint */
+  --accent-glow: rgba(167, 193, 217, 0.12);
+  --accent-glow-strong: rgba(167, 193, 217, 0.26);
+  --btn-primary-bg: var(--sierra-300);
+  --btn-primary-text: #0B1018;
+
+  /* Legacy names — kept so every existing rule keeps working */
+  --accent-gold: var(--accent);
+  --accent-amber: var(--sierra-400);
+  --accent-deep: var(--sierra-400);
+  --accent-warm: var(--accent-strong);
 
   /* Orb rings */
-  --orb-ring-1: rgba(255, 215, 0, 0.12);
-  --orb-ring-2: rgba(255, 215, 0, 0.22);
-  --orb-ring-3: rgba(255, 215, 0, 0.35);
+  --orb-ring-1: rgba(167, 193, 217, 0.14);
+  --orb-ring-2: rgba(167, 193, 217, 0.26);
+  --orb-ring-3: rgba(167, 193, 217, 0.40);
 
   /* Status — vivid clinical indicators */
   --status-ok: #00E676;
@@ -37,7 +58,7 @@
   /* Borders — visible depth */
   --border-subtle: rgba(255, 255, 255, 0.06);
   --border-glass: rgba(255, 255, 255, 0.09);
-  --border-focus: rgba(255, 215, 0, 0.4);
+  --border-focus: rgba(167, 193, 217, 0.45);
 
   /* Radii */
   --radius-sm: 12px;
@@ -64,7 +85,7 @@
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
   --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.35);
   --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.45);
-  --shadow-glow: 0 0 24px rgba(255, 215, 0, 0.08);
+  --shadow-glow: 0 0 24px rgba(167, 193, 217, 0.10);
   --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
@@ -129,7 +150,7 @@ input, textarea { font-family: inherit; }
 }
 
 .glass-card:hover {
-  border-color: rgba(255, 215, 0, 0.25);
+  border-color: rgba(167, 193, 217, 0.30);
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.11) 0%, rgba(255, 255, 255, 0.04) 100%);
   box-shadow: 0 12px 48px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.15), var(--shadow-glow);
 }
@@ -194,7 +215,7 @@ input, textarea { font-family: inherit; }
 }
 
 /* ═══════════════════════════════════════════════════
-   LIGHT MODE — Warm white with Sierra Blue accent
+   LIGHT MODE — Frosted white with Sierra Blue accent
    ═══════════════════════════════════════════════════ */
 [data-theme="light"] {
   --bg-primary: #F5F5F7;
@@ -208,14 +229,21 @@ input, textarea { font-family: inherit; }
   --text-secondary: #333336;
   --text-muted: #62626A;
 
-  /* Sierra Blue accent for light mode */
-  --accent-gold: #7AA5C7;
-  --accent-amber: #5D8EB8;
-  --accent-deep: #2C465E;
-  --accent-warm: #A2C1DB;
-  --accent-glow: rgba(122, 165, 199, 0.08);
-  --accent-glow-strong: rgba(122, 165, 199, 0.18);
+  /* Semantic accent roles (light): deep Sierra for text so labels stay legible,
+     mid Sierra with dark text for buttons, frosted white for surfaces */
+  --accent: var(--sierra-600);
+  --accent-strong: var(--sierra-700);
+  --accent-soft: rgba(122, 165, 199, 0.16);
+  --accent-glow: rgba(122, 165, 199, 0.10);
+  --accent-glow-strong: rgba(122, 165, 199, 0.22);
+  --btn-primary-bg: var(--sierra-400);
   --btn-primary-text: #111215;
+
+  /* Legacy names (light) */
+  --accent-gold: var(--sierra-400);
+  --accent-amber: var(--sierra-500);
+  --accent-deep: var(--sierra-700);
+  --accent-warm: var(--sierra-300);
 
   /* Orb rings in Sierra Blue */
   --orb-ring-1: rgba(122, 165, 199, 0.15);

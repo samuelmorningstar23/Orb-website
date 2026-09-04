@@ -137,8 +137,8 @@
 }
 
 .search-overlay__quick-link--gold {
-  color: var(--accent-gold);
-  border-color: var(--accent-gold);
+  color: var(--accent);
+  border-color: var(--accent);
 }
 
 [data-theme="light"] .search-overlay__quick-link--gold {
@@ -183,7 +183,7 @@
 
 .search-overlay__answer.is-active,
 .search-overlay__answer:hover {
-  border-color: var(--accent-gold);
+  border-color: var(--accent);
 }
 
 [data-theme="light"] .search-overlay__answer.is-active,
@@ -197,7 +197,7 @@
   gap: 8px;
   font-size: 0.85rem;
   font-weight: 700;
-  color: var(--accent-gold);
+  color: var(--accent);
   margin-bottom: 7px;
 }
 
@@ -260,7 +260,7 @@
 }
 
 .search-overlay__result.is-active .search-overlay__result-icon {
-  color: var(--accent-gold);
+  color: var(--accent);
   border-color: var(--accent-glow-strong);
 }
 

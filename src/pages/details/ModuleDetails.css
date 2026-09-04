@@ -24,7 +24,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: var(--accent-gold);
+  color: var(--accent);
   font-size: 0.9rem;
   font-weight: 500;
   margin-bottom: 40px;
@@ -50,7 +50,7 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--accent-gold);
+  color: var(--accent);
   margin-bottom: 16px;
   display: inline-block;
 }
@@ -134,7 +134,7 @@
 .module-detail__card:hover {
   transform: translateY(-4px);
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.02) 100%);
-  border-color: rgba(255, 215, 0, 0.35);
+  border-color: rgba(167, 193, 217, 0.40);
   box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2), 0 20px 48px rgba(0, 0, 0, 0.65), var(--shadow-glow);
 }
 
@@ -160,7 +160,7 @@
 }
 
 .module-detail__card-icon {
-  color: var(--accent-gold);
+  color: var(--accent);
   margin-bottom: 24px;
 }
 
@@ -230,7 +230,7 @@
 }
 
 .module-detail__btn-secondary {
-  color: var(--accent-gold);
+  color: var(--accent);
   font-weight: 500;
   font-size: 0.95rem;
   display: inline-flex;

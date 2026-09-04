@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+import { Stagger, StaggerItem } from './motion/Reveal'
 import './ProofBand.css'
 
 type Principle = {
@@ -62,17 +64,21 @@ export default function ProofBand() {
         </p>
       </div>
 
-      <div className="proof-band__tiles">
+      <Stagger className="proof-band__tiles">
         {principles.map((p) => (
-          <div className="proof-band__tile" key={p.label}>
+          <StaggerItem className="proof-band__tile" key={p.label}>
             <span className="proof-band__tile-icon">{p.icon}</span>
             <div className="proof-band__tile-text">
               <span className="proof-band__tile-label">{p.label}</span>
               <span className="proof-band__tile-line">{p.line}</span>
             </div>
-          </div>
+          </StaggerItem>
         ))}
-      </div>
+      </Stagger>
+
+      <Link to="/security" className="proof-band__more">
+        Read the security brief <span aria-hidden="true">&rarr;</span>
+      </Link>
 
       {/*
         ── OWNER: drop REAL proof here once available ──

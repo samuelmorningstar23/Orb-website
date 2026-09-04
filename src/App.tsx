@@ -1,7 +1,10 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
+import type { ReactNode } from 'react'
 import Landing from './pages/Landing'
 import Plans from './pages/Plans'
 import Support from './pages/Support'
+import Security from './pages/Security'
 import VigilDetail from './pages/details/VigilDetail'
 import SageDetail from './pages/details/SageDetail'
 import ScribeDetail from './pages/details/ScribeDetail'
@@ -40,32 +43,58 @@ try {
   console.error('Failed to initialize theme:', e)
 }
 
+// Every route fades in and out. Opacity only — a transform on this wrapper
+// would break position: fixed for the aurora canvas and overlays beneath it.
+function Page({ children }: { children: ReactNode }) {
+  const reduce = useReducedMotion()
+  return (
+    <motion.div
+      initial={reduce ? false : { opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={reduce ? undefined : { opacity: 0 }}
+      transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+    >
+      {children}
+    </motion.div>
+  )
+}
+
+function AnimatedRoutes() {
+  const location = useLocation()
+  return (
+    <AnimatePresence mode="wait" initial={false}>
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<Page><Landing /></Page>} />
+        <Route path="/plans" element={<Page><Plans /></Page>} />
+        <Route path="/support" element={<Page><Support /></Page>} />
+        <Route path="/security" element={<Page><Security /></Page>} />
+        <Route path="/vigil" element={<Page><VigilDetail /></Page>} />
+        <Route path="/sage" element={<Page><SageDetail /></Page>} />
+        <Route path="/scribe" element={<Page><ScribeDetail /></Page>} />
+        <Route path="/lens" element={<Page><LensDetail /></Page>} />
+        <Route path="/relay" element={<Page><RelayDetail /></Page>} />
+        <Route path="/helix" element={<Page><HelixDetail /></Page>} />
+        <Route path="/surgical-suite" element={<Page><SurgicalSuiteDetail /></Page>} />
+        <Route path="/pulse" element={<Page><PulseDetail /></Page>} />
+        <Route path="/bridge" element={<Page><BridgeDetail /></Page>} />
+        <Route path="/forecast" element={<Page><ForecastDetail /></Page>} />
+        <Route path="/slate" element={<Page><SlateDetail /></Page>} />
+        {/* Appointments was renamed to Slate — keep old links working */}
+        <Route path="/appointments" element={<Navigate to="/slate" replace />} />
+        <Route path="/command-center" element={<Page><CommandCenterDetail /></Page>} />
+        <Route path="/revenue-integrity" element={<Page><RevenueIntegrityDetail /></Page>} />
+        <Route path="/surge-simulator" element={<Page><SurgeSimulatorDetail /></Page>} />
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+    </AnimatePresence>
+  )
+}
+
 function App() {
   return (
     <BrowserRouter basename={import.meta.env.BASE_URL}>
       <ScrollToTop />
-      <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/plans" element={<Plans />} />
-        <Route path="/support" element={<Support />} />
-        <Route path="/vigil" element={<VigilDetail />} />
-        <Route path="/sage" element={<SageDetail />} />
-        <Route path="/scribe" element={<ScribeDetail />} />
-        <Route path="/lens" element={<LensDetail />} />
-        <Route path="/relay" element={<RelayDetail />} />
-        <Route path="/helix" element={<HelixDetail />} />
-        <Route path="/surgical-suite" element={<SurgicalSuiteDetail />} />
-        <Route path="/pulse" element={<PulseDetail />} />
-        <Route path="/bridge" element={<BridgeDetail />} />
-        <Route path="/forecast" element={<ForecastDetail />} />
-        <Route path="/slate" element={<SlateDetail />} />
-        {/* Appointments was renamed to Slate — keep old links working */}
-        <Route path="/appointments" element={<Navigate to="/slate" replace />} />
-        <Route path="/command-center" element={<CommandCenterDetail />} />
-        <Route path="/revenue-integrity" element={<RevenueIntegrityDetail />} />
-        <Route path="/surge-simulator" element={<SurgeSimulatorDetail />} />
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
+      <AnimatedRoutes />
       <RequestDemoModal />
     </BrowserRouter>
   )

@@ -107,9 +107,9 @@ const FRAG_SRC = `
     float mask1 = smoothstep(-0.02, 0.08, d1);
     glow1 *= mask1;
 
-    vec3 gold1 = mix(vec3(1.0, 0.62, 0.0), vec3(1.0, 0.78, 0.2), n1);
+    vec3 dark1 = mix(vec3(0.30, 0.52, 0.80), vec3(0.48, 0.66, 0.88), n1);
     vec3 blue1 = mix(vec3(0.48, 0.68, 0.88), vec3(0.55, 0.75, 0.95), n1);
-    vec3 col1 = mix(gold1, blue1, u_light_mode);
+    vec3 col1 = mix(dark1, blue1, u_light_mode);
     col += col1 * glow1 * 0.55;
 
     // ═══ ARC 2: Secondary — offset right, counter-phase ═══
@@ -127,9 +127,9 @@ const FRAG_SRC = `
     float mask2 = smoothstep(-0.02, 0.06, d2);
     glow2 *= mask2;
 
-    vec3 gold2 = mix(vec3(0.9, 0.55, 0.0), vec3(1.0, 0.7, 0.12), n2);
+    vec3 dark2 = mix(vec3(0.25, 0.46, 0.74), vec3(0.42, 0.62, 0.85), n2);
     vec3 blue2 = mix(vec3(0.42, 0.62, 0.85), vec3(0.52, 0.72, 0.92), n2);
-    vec3 col2 = mix(gold2, blue2, u_light_mode);
+    vec3 col2 = mix(dark2, blue2, u_light_mode);
     col += col2 * glow2 * 0.4;
 
     // ═══ ARC 3: Bottom accent — rises from bottom, counter-drift ═══
@@ -147,9 +147,9 @@ const FRAG_SRC = `
     float mask3 = smoothstep(-0.02, 0.05, d3);
     glow3 *= mask3;
 
-    vec3 gold3 = mix(vec3(0.75, 0.42, 0.0), vec3(0.9, 0.58, 0.08), n3);
+    vec3 dark3 = mix(vec3(0.22, 0.40, 0.66), vec3(0.36, 0.56, 0.78), n3);
     vec3 blue3 = mix(vec3(0.45, 0.65, 0.88), vec3(0.55, 0.75, 0.95), n3);
-    vec3 col3 = mix(gold3, blue3, u_light_mode);
+    vec3 col3 = mix(dark3, blue3, u_light_mode);
     col += col3 * glow3 * 0.3;
 
     // ═══ ARC 4: Accent arc — sweeps from left ═══
@@ -167,9 +167,9 @@ const FRAG_SRC = `
     float mask4 = smoothstep(-0.01, 0.04, d4);
     glow4 *= mask4;
 
-    vec3 gold4 = vec3(1.0, 0.75, 0.15);
+    vec3 dark4 = vec3(0.55, 0.72, 0.88);
     vec3 blue4 = vec3(0.52, 0.72, 0.92);
-    vec3 col4 = mix(gold4, blue4, u_light_mode);
+    vec3 col4 = mix(dark4, blue4, u_light_mode);
     col += col4 * glow4 * 0.2;
 
     // ═══ Center darkening — keep text area readable ═══
@@ -184,7 +184,7 @@ const FRAG_SRC = `
     // Strong alpha at peak to block out the white background and show the exact color
     float light_alpha = clamp(light_glow * 1.8, 0.12, 0.95);
 
-    // ═══ Dark Mode: rich multi-colored gold/amber auroras ═══
+    // ═══ Dark Mode: deep Sierra Blue auroras on near-black ═══
     vec3 dark_color = col / (1.0 + col);
     float dark_alpha = max(max(dark_color.r, dark_color.g), dark_color.b);
     dark_alpha = clamp(dark_alpha * 2.0, 0.0, 1.0);

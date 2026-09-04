@@ -102,7 +102,7 @@
 
 .marketing-header__request-btn {
   background: transparent;
-  color: var(--accent-gold);
+  color: var(--accent);
   border: 1.5px solid var(--accent-gold);
   font-size: 0.8rem;
   font-weight: 700;
@@ -227,7 +227,7 @@
   gap: 6px;
   font-size: 0.85rem;
   font-weight: 600;
-  color: var(--accent-gold);
+  color: var(--accent);
   transition: opacity var(--transition-fast), transform var(--transition-fast);
 }
 
@@ -327,7 +327,7 @@
   gap: 6px;
   font-size: 0.78rem;
   font-weight: 600;
-  color: var(--accent-gold);
+  color: var(--accent);
   padding-top: 10px;
   border-top: 1px solid var(--border-subtle);
   transition: opacity var(--transition-fast);
@@ -427,7 +427,7 @@
 
   .marketing-header__drawer-link:active,
   .marketing-header__drawer-link:hover {
-    color: var(--accent-gold);
+    color: var(--accent);
   }
 
   .marketing-header__drawer-cta {

@@ -15,7 +15,7 @@
   font-size: 0.8rem;
   font-weight: 600;
   text-transform: uppercase;
-  color: var(--accent-gold);
+  color: var(--accent);
   letter-spacing: 0.12em;
   margin-bottom: 16px;
   display: inline-block;
@@ -81,7 +81,7 @@
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-sm);
-  color: var(--accent-gold);
+  color: var(--accent);
   background: var(--accent-glow);
   border: 1px solid var(--accent-glow-strong);
   transition: transform var(--transition-base), background var(--transition-base);
@@ -146,4 +146,25 @@
   .proof-band__tile:hover .proof-band__tile-icon {
     transform: none;
   }
+}
+
+/* Link out to the full security brief (v4) */
+.proof-band__more {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 28px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--accent);
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.proof-band__more:hover {
+  opacity: 0.85;
+  transform: translateX(2px);
+}
+
+.proof-band__lede {
+  text-wrap: balance;
 }
