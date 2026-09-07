@@ -11,10 +11,14 @@ export type SendResult = { ok: true } | { ok: false; error: string }
 export const isEmail = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim())
 
 export async function sendForm(fields: Record<string, string>, honeypot: string): Promise<SendResult> {
-  // A bot filled the hidden field. Say nothing and do nothing.
-  if (honeypot.trim()) return { ok: true }
-
-  const body: Record<string, string> = { access_key: WEB3FORMS_ACCESS_KEY, from_name: 'Orb Website' }
+  // The hidden field is passed through as botcheck and Web3Forms decides. The
+  // client must not drop the message itself: if a browser ever autofills that
+  // field, silently swallowing a real enquiry is far worse than a little spam.
+  const body: Record<string, string> = {
+    access_key: WEB3FORMS_ACCESS_KEY,
+    from_name: 'Orb Website',
+    botcheck: honeypot.trim(),
+  }
   for (const [k, v] of Object.entries(fields)) body[k] = v.trim()
 
   const ctrl = new AbortController()
