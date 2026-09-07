@@ -12,8 +12,8 @@
 
   /* Text - high contrast, warm tones */
   --text-primary: #f5f5f7;
-  --text-secondary: #a0a0b8;
-  --text-muted: #6b6b82;
+  --text-secondary: #b6b6c8;
+  --text-muted: #8a8aa0;
 
   /* ─── Sierra Blue scale - the single brand accent in both themes ─── */
   --sierra-50: #F3F7FB;
@@ -239,8 +239,8 @@ input, textarea { font-family: inherit; }
   --bg-elevated: rgba(255, 255, 255, 0.94);
 
   --text-primary: #111215;
-  --text-secondary: #333336;
-  --text-muted: #62626A;
+  --text-secondary: #2A2A2E;
+  --text-muted: #4E4E57;
 
   /* Semantic accent roles (light): deep clay for text (5.1:1) and buttons
      (warm white on clay-600, 5.3:1); frosted white surfaces over the Sierra atmosphere */

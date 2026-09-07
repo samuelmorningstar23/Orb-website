@@ -25,7 +25,7 @@
   align-items: center;
   gap: 8px;
   color: var(--accent);
-  font-size: 0.9rem;
+  font-size: 0.94rem;
   font-weight: 500;
   margin-bottom: 40px;
   transition: opacity var(--transition-fast), transform var(--transition-fast);
@@ -46,7 +46,7 @@
 }
 
 .module-detail__badge {
-  font-size: 0.8rem;
+  font-size: 0.84rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -219,7 +219,7 @@
   padding: 12px 28px;
   border-radius: 999px;
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 0.94rem;
   box-shadow: 0 4px 16px var(--accent-glow);
   transition: transform var(--transition-fast), filter var(--transition-fast);
 }
@@ -252,7 +252,7 @@
 /* ─── Captures (real screens) ─── */
 .module-detail__capture-note {
   margin: 14px 4px 0;
-  font-size: 0.82rem;
+  font-size: 0.86rem;
   color: var(--text-muted);
   text-align: center;
 }
@@ -288,7 +288,7 @@
 .mp__eyebrow {
   display: inline-block;
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.8rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--accent);
@@ -322,7 +322,7 @@
 
 .mp__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 20px; }
 .mp__actions--center { justify-content: center; margin-top: 28px; }
-.mp__area { font-size: 0.92rem; color: var(--text-muted); max-width: 34ch; }
+.mp__area { font-size: 0.96rem; color: var(--text-muted); max-width: 34ch; }
 
 .mp__hero-demo {
   border-radius: 24px;
@@ -342,7 +342,7 @@
 
 .mp__hero-demo .wg { border-radius: 16px; }
 
-.mp__demo-note { margin: 12px 6px 2px; font-size: 0.82rem; color: var(--text-muted); }
+.mp__demo-note { margin: 12px 6px 2px; font-size: 0.86rem; color: var(--text-muted); }
 
 .mp__h2 {
   font-family: var(--font-serif);
@@ -419,7 +419,7 @@
    as one piece. Class names are unchanged; only their look. */
 .module-detail__badge {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.8rem;
   letter-spacing: 0.14em;
   font-weight: 500;
 }
@@ -484,5 +484,5 @@
 }
 
 /* The strip note under the eyebrow, and a smaller CTA line on module pages. */
-.mp__strip-note { margin: 6px 0 0; font-size: 0.92rem; color: var(--text-muted); }
+.mp__strip-note { margin: 6px 0 0; font-size: 0.96rem; color: var(--text-muted); }
 .mp__cta-title { font-size: clamp(1.8rem, 3.6vw, 2.9rem); }
