@@ -3,7 +3,7 @@ import Aurora from '../components/Aurora'
 import MarketingHeader from '../components/MarketingHeader'
 import SafetySuite from '../components/SafetySuite'
 import TrustPosture from '../components/TrustPosture'
-import FlowCapture from '../components/captures/FlowCapture'
+import ScreenGallery from '../components/captures/ScreenGallery'
 import Widget from '../components/widget/Widget'
 import { WIDGET_FLOWS } from '../data/widgetFlows'
 import { Reveal, Stagger, StaggerItem } from '../components/motion/Reveal'
@@ -58,8 +58,15 @@ export default function Security() {
         </section>
 
         <section className="module-detail__showcase">
-          <FlowCapture flows={['show-your-work']} label="The admin screens, captured from the product" />
-          <p className="module-detail__capture-note">The screens themselves, captured from a running appliance, including the Pilot Scorecard.</p>
+          <ScreenGallery
+            label="The admin screens"
+            shots={[
+              { name: 'admin-trust', label: 'Trust Center', caption: 'Compliance posture aggregated from the running system. Amber is amber, and an all-green screen should be trusted less.' },
+              { name: 'admin-flight', label: 'Flight Recorder', caption: 'A SHA-256 hash chain over every audit row, with its verification state on the page.' },
+              { name: 'admin-models', label: 'Model Governance', caption: 'Every model with its version and validation state, including the one that says untrained.' },
+              { name: 'admin-scorecard', label: 'Pilot Scorecard', caption: 'How a pilot is measured: shadow-mode episodes, adjudication and outcomes, with the denominators shown.' },
+            ]}
+          />
         </section>
 
         <Stagger className="security-page__facts" as="section" amount={0.3}>

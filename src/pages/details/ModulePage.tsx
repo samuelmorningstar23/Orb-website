@@ -3,10 +3,9 @@ import MarketingHeader from '../../components/MarketingHeader'
 import Aurora from '../../components/Aurora'
 import Widget from '../../components/widget/Widget'
 import News2Live from '../../components/captures/News2Live'
+import ScreenGallery from '../../components/captures/ScreenGallery'
 import { Reveal, Stagger, StaggerItem } from '../../components/motion/Reveal'
-import { useIsLightTheme } from '../../components/showcases/useIsLightTheme'
 import { WIDGET_FLOWS } from '../../data/widgetFlows'
-import { SCREENS } from '../../data/orbCaptures'
 import { modulePage } from '../../data/modulePages'
 import { ALL_MODULES, openDemoModal } from '../../data/siteContent'
 import './ModuleDetails.css'
@@ -21,8 +20,7 @@ export default function ModulePage({ route }: { route: string }) {
   const page = modulePage(route)
   const info = ALL_MODULES.find(m => m.to === route)
   const flows = WIDGET_FLOWS[route]
-  const isLight = useIsLightTheme()
-  const more = (page.moreScreens ?? []).filter(n => SCREENS[n])
+  const shots = page.shots ?? []
 
   return (
     <div className="module-detail mp">
@@ -50,7 +48,7 @@ export default function ModulePage({ route }: { route: string }) {
           {flows && (
             <div className="mp__hero-demo">
               <Widget flows={flows} label={`${page.title}, one workflow`} />
-              <p className="mp__demo-note">{page.captureNote ?? (more.length ? 'An animation of the workflow. The screens themselves are below.' : 'An animation of the workflow, on seeded demo patients.')}</p>
+              <p className="mp__demo-note">{page.captureNote ?? (shots.length ? 'An animation of the workflow. The screens themselves are below.' : 'An animation of the workflow, on seeded demo patients.')}</p>
             </div>
           )}
         </section>
@@ -72,20 +70,13 @@ export default function ModulePage({ route }: { route: string }) {
 
         {page.tryNews2 && <News2Live />}
 
-        {more.length > 0 && (
+        {shots.length > 0 && (
           <section className="mp__strip" aria-label={`Screens of ${page.title}`}>
             <Reveal className="mp__facts-head">
               <span className="mp__eyebrow">The real screens</span>
-              <p className="mp__strip-note">Captured from a running appliance on seeded demo patients.</p>
+              <p className="mp__strip-note">Captured from a running appliance on seeded demo patients, at the size they run at.</p>
             </Reveal>
-            <div className="mp__film">
-              {more.map(n => (
-                <figure key={n} className={'mp__still' + (page.tallScreens?.includes(n) ? ' mp__still--tall' : '')}>
-                  <img src={isLight ? SCREENS[n].light : SCREENS[n].dark} alt={page.moreCaptions?.[n] ?? SCREENS[n].title} loading="lazy" draggable={false} />
-                  <figcaption>{page.moreCaptions?.[n] ?? SCREENS[n].title}</figcaption>
-                </figure>
-              ))}
-            </div>
+            <ScreenGallery shots={shots} label={`${page.title} screens`} />
           </section>
         )}
 

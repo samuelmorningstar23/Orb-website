@@ -13,6 +13,7 @@
 
   display: grid;
   grid-template-rows: auto 1fr auto;
+  min-width: 0;
   margin: 0;
   border-radius: 18px;
   overflow: hidden;
@@ -101,6 +102,7 @@
 /* ─── Screen ─── */
 .wg__screen {
   padding: 18px 18px 20px;
+  min-width: 0;
   min-height: 252px;
   display: flex;
   flex-direction: column;
@@ -123,7 +125,7 @@
 
 .wg__head-sub { font-size: 12.5px; color: var(--text-muted); }
 
-.wg__blocks { display: flex; flex-direction: column; gap: 14px; }
+.wg__blocks { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
 
 .wg__label {
   display: block;
@@ -158,7 +160,7 @@
 .wg__tile.is-ok .wg__tile-value { color: var(--wg-ok); }
 
 /* ─── Rows ─── */
-.wg__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.wg__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
 
 .wg__row {
   display: flex;
@@ -247,7 +249,7 @@
 .wg__banner.is-accent { border-left-color: var(--accent); background: var(--accent-soft); }
 
 /* ─── Chat ─── */
-.wg__chat { display: flex; flex-direction: column; gap: 9px; }
+.wg__chat { display: flex; flex-direction: column; gap: 9px; min-width: 0; }
 
 .wg__msg {
   display: flex;
@@ -258,6 +260,7 @@
   border-radius: 14px;
   background: var(--wg-inset);
   border: 1px solid var(--wg-line);
+  min-width: 0;
 }
 
 .wg__msg.is-you { align-self: flex-end; background: var(--accent-soft); border-color: transparent; }
@@ -303,13 +306,14 @@
 /* ─── Checklist ─── */
 .wg__check-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px 14px; }
 
-.wg__check { display: flex; align-items: center; gap: 9px; font-size: 13px; min-width: 0; }
-.wg__check-text { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.wg__check { display: flex; align-items: flex-start; gap: 9px; font-size: 13px; min-width: 0; }
+.wg__check-text { min-width: 0; }
 
 .wg__check-mark {
   flex: none;
   width: 15px;
   height: 15px;
+  margin-top: 2px;
   border-radius: 50%;
   border: 1.5px solid var(--text-muted);
   opacity: 0.5;
@@ -361,7 +365,7 @@
 .wg__meter.is-critical .wg__meter-value { color: var(--wg-critical); }
 
 /* ─── Lines ─── */
-.wg__line-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 7px; }
+.wg__line-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 7px; min-width: 0; }
 
 .wg__line {
   position: relative;
@@ -464,3 +468,7 @@
 }
 
 .wg__row-sub { white-space: nowrap; }
+
+/* A still on the module wall: no player chrome, shorter screen. */
+.wg--still .wg__screen { min-height: 0; padding-bottom: 12px; }
+.wg--still .wg__bar { background: transparent; }

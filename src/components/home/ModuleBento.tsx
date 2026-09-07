@@ -1,68 +1,74 @@
 import { Link } from 'react-router-dom'
 import { ALL_MODULES } from '../../data/siteContent'
-import { SCREENS } from '../../data/orbCaptures'
-import { useIsLightTheme } from '../showcases/useIsLightTheme'
+import { WIDGET_FLOWS } from '../../data/widgetFlows'
+import { WidgetStill } from '../widget/Widget'
 import { Reveal } from '../motion/Reveal'
 import './ModuleBento.css'
 
 /**
- * Every module as a tile showing its real screen, in the visitor's theme.
- * Sizes follow the story: the ward and Sage get the room, the rest fill in.
+ * The module wall: one card per module, each showing the moment its workflow
+ * turns on, drawn at a size you can actually read. Equal cards on purpose. A
+ * wall of shrunken screenshots looked busy and said nothing; this says one
+ * thing per module and leaves the real screens for the module's own page.
  */
-type Size = 'xl' | 'lg' | 'md' | 'sm'
-
-const TILES: { to: string; screen: string; size: Size }[] = [
-  { to: '/vigil', screen: 'vigil-patient-chart', size: 'xl' },
-  { to: '/sage', screen: 'sage-panel', size: 'lg' },
-  { to: '/helix', screen: 'pharmacy-verify-queue', size: 'md' },
-  { to: '/scribe', screen: 'scribe', size: 'md' },
-  { to: '/relay', screen: 'relay-case-room', size: 'md' },
-  { to: '/bridge', screen: 'bridge-patient-portal', size: 'md' },
-  { to: '/command-center', screen: 'command-center', size: 'md' },
-  { to: '/forecast', screen: 'forecast-census', size: 'md' },
-  { to: '/surge-simulator', screen: 'capacity-simulator', size: 'sm' },
-  { to: '/surgical-suite', screen: 'surgical-suite-schedule', size: 'sm' },
-  { to: '/pulse', screen: 'pulse-environmental', size: 'sm' },
-  { to: '/appointments', screen: 'appointments', size: 'sm' },
-  { to: '/revenue-integrity', screen: 'revenue-integrity', size: 'md' },
-  { to: '/lens', screen: 'lens', size: 'md' },
+const TILES: { to: string; step: number }[] = [
+  { to: '/vigil', step: 3 },
+  { to: '/sage', step: 4 },
+  { to: '/helix', step: 3 },
+  { to: '/scribe', step: 4 },
+  { to: '/relay', step: 3 },
+  { to: '/bridge', step: 2 },
+  { to: '/command-center', step: 1 },
+  { to: '/forecast', step: 1 },
+  { to: '/surge-simulator', step: 2 },
+  { to: '/surgical-suite', step: 2 },
+  { to: '/pulse', step: 2 },
+  { to: '/appointments', step: 1 },
+  { to: '/revenue-integrity', step: 2 },
+  { to: '/lens', step: 2 },
 ]
 
 const OPS = ['Front Desk', 'Billing', 'Payments', 'Insurance and TPA', 'Procurement', 'Housekeeping', 'Workforce', 'Equipment', 'Diet and Kitchen', 'NABH', 'ABDM']
 
 export default function ModuleBento() {
-  const isLight = useIsLightTheme()
   return (
-    <section className="bento" id="modules" aria-label="The modules">
-      <Reveal className="bento__header">
-        <span className="bento__eyebrow">{TILES.length} modules, one record</span>
-        <h2 className="bento__title">Pick one. Each page runs it.</h2>
-        <p className="bento__lead">Every tile is a real screen of a running Orb appliance on seeded demo patients, in the theme you are reading in. Each page behind a tile walks that module’s workflow.</p>
+    <section className="wall" id="modules" aria-label="The modules">
+      <Reveal className="wall__header">
+        <span className="wall__eyebrow">{TILES.length} modules, one record</span>
+        <h2 className="wall__title">Pick one. Each page walks its workflow.</h2>
+        <p className="wall__lead">
+          Every card is a moment from that module, drawn from the product’s own screens on seeded demo patients. The screens themselves sit on each module’s page.
+        </p>
       </Reveal>
 
-      <div className="bento__grid">
+      <div className="wall__grid">
         {TILES.map(t => {
           const m = ALL_MODULES.find(x => x.to === t.to)
-          const shot = SCREENS[t.screen]
-          if (!m || !shot) return null
+          const flow = WIDGET_FLOWS[t.to]?.[0]
+          if (!m || !flow) return null
           return (
-            <Link key={t.to} to={t.to} className={`bento__tile bento__tile--${t.size}`}>
-              <img className="bento__img" src={isLight ? shot.light : shot.dark} alt="" loading="lazy" draggable={false} />
-              <span className="bento__label">
-                <span className="bento__name">{m.label}</span>
-                <span className="bento__badge">{m.badge}</span>
+            <Link key={t.to} to={t.to} className="wall__card">
+              <span className="wall__preview">
+                <WidgetStill flow={flow} step={t.step} />
               </span>
-              <span className="bento__open" aria-hidden="true">Open &rarr;</span>
+              <span className="wall__meta">
+                <span className="wall__name">{m.label}</span>
+                <span className="wall__line">{m.badge}</span>
+                <span className="wall__go" aria-hidden="true">Open<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg></span>
+              </span>
             </Link>
           )
         })}
-        <Link to="/plans" className="bento__tile bento__tile--md bento__tile--ops">
-          <img className="bento__img" src={isLight ? SCREENS['module-billing'].light : SCREENS['module-billing'].dark} alt="" loading="lazy" draggable={false} />
-          <span className="bento__label">
-            <span className="bento__name">The rest of the house</span>
-            <span className="bento__badge">{OPS.join(' · ')}</span>
+
+        <Link to="/plans" className="wall__card wall__card--ops">
+          <span className="wall__meta">
+            <span className="wall__name">The rest of the house</span>
+            <span className="wall__line">Running behind the same record, on the same appliance.</span>
+            <span className="wall__ops">
+              {OPS.map(o => <span key={o} className="wall__op">{o}</span>)}
+            </span>
+            <span className="wall__go" aria-hidden="true">Plans<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg></span>
           </span>
-          <span className="bento__open" aria-hidden="true">Plans &rarr;</span>
         </Link>
       </div>
     </section>

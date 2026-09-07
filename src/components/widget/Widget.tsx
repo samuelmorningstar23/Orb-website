@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, LayoutGroup, motion, useInView, useReducedMotion } from 'framer-motion'
-import type { Block, Tone, WidgetFlow } from '../../data/widgetFlows'
+import type { Block, Scene, Tone, WidgetFlow } from '../../data/widgetFlows'
 import './Widget.css'
 
 /**
@@ -231,6 +231,65 @@ function BlockView({ b, reduce }: { b: Block; reduce: boolean }) {
   }
 }
 
+function SceneView({ scene, reduce, flowId }: { scene: Scene; reduce: boolean; flowId: string }) {
+  return (
+    <LayoutGroup id={`${flowId}-scene`}>
+      {scene.head && (
+        <div className="wg__head">
+          <AnimatePresence mode="popLayout" initial={false}>
+            <motion.h4
+              key={scene.head}
+              className="wg__head-title"
+              initial={reduce ? false : { opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={reduce ? undefined : { opacity: 0, y: -6 }}
+              transition={{ duration: 0.3, ease: EASE }}
+            >
+              {scene.head}
+            </motion.h4>
+          </AnimatePresence>
+          {scene.sub && <span className="wg__head-sub">{scene.sub}</span>}
+        </div>
+      )}
+
+      <div className="wg__blocks">
+        <AnimatePresence initial={false} mode="popLayout">
+          {scene.blocks.map(b => (
+            <motion.div
+              key={b.id}
+              layout={!reduce}
+              initial={reduce ? false : { opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={reduce ? undefined : { opacity: 0, y: -8 }}
+              transition={{ duration: 0.4, ease: EASE }}
+            >
+              <BlockView b={b} reduce={reduce} />
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      </div>
+    </LayoutGroup>
+  )
+}
+
+/**
+ * A still of one step, with no caption and no controls: used on the module wall,
+ * where fifteen of these sit side by side and none of them should be moving.
+ */
+export function WidgetStill({ flow, step = 0 }: { flow: WidgetFlow; step?: number }) {
+  const scene = (flow.steps[step] ?? flow.steps[0]).scene
+  return (
+    <div className="wg wg--still" aria-hidden="true">
+      <div className="wg__bar">
+        <span className="wg__app"><i className="wg__live" />{flow.app}</span>
+      </div>
+      <div className="wg__screen">
+        <SceneView scene={scene} reduce flowId={flow.id} />
+      </div>
+    </div>
+  )
+}
+
 interface WidgetProps {
   flows: WidgetFlow[]
   label: string
@@ -286,42 +345,7 @@ export default function Widget({ flows, label, size = 'default' }: WidgetProps) 
       </div>
 
       <motion.div className="wg__screen" layout={!reduce}>
-        <LayoutGroup id={`${flow.id}-scene`}>
-          {current.scene.head && (
-            <div className="wg__head">
-              <AnimatePresence mode="popLayout" initial={false}>
-                <motion.h4
-                  key={current.scene.head}
-                  className="wg__head-title"
-                  initial={reduce ? false : { opacity: 0, y: 6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={reduce ? undefined : { opacity: 0, y: -6 }}
-                  transition={{ duration: 0.3, ease: EASE }}
-                >
-                  {current.scene.head}
-                </motion.h4>
-              </AnimatePresence>
-              {current.scene.sub && <span className="wg__head-sub">{current.scene.sub}</span>}
-            </div>
-          )}
-
-          <div className="wg__blocks">
-            <AnimatePresence initial={false} mode="popLayout">
-              {current.scene.blocks.map(b => (
-                <motion.div
-                  key={b.id}
-                  layout={!reduce}
-                  initial={reduce ? false : { opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={reduce ? undefined : { opacity: 0, y: -8 }}
-                  transition={{ duration: 0.4, ease: EASE }}
-                >
-                  <BlockView b={b} reduce={reduce} />
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </div>
-        </LayoutGroup>
+        <SceneView scene={current.scene} reduce={reduce} flowId={flow.id} />
       </motion.div>
 
       <figcaption className="wg__cap">

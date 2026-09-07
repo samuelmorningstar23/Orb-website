@@ -10,6 +10,9 @@ export type IconName =
 
 export interface ModuleCard { icon: IconName; title: string; desc: string }
 
+/** One real capture: the key into SCREENS, a short tab label, and what it shows. */
+export interface ModuleShot { name: string; label: string; caption: string }
+
 export interface ModulePageData {
   route: string
   title: string
@@ -21,10 +24,8 @@ export interface ModulePageData {
   captureNote?: string
   /** Render the live NEWS2 widget under the cards. */
   tryNews2?: boolean
-  /** A second capture strip of real screens. */
-  moreScreens?: string[]
-  moreCaptions?: Record<string, string>
-  tallScreens?: string[]
+  /** The real captures for this module, shown one at a time under the facts. */
+  shots?: ModuleShot[]
 }
 
 export const MODULE_PAGES: ModulePageData[] = [
@@ -40,16 +41,15 @@ export const MODULE_PAGES: ModulePageData[] = [
       { icon: 'chat', title: 'Sage’s assessment, labelled', desc: 'A short assessment from the local model, marked as a model’s. The score itself never comes from a model.' },
     ],
     ctaLine: 'The score the ward already trusts, computed on every observation and explained on the chart.',
+    shots: [
+      { name: 'vigil-patient-board', label: 'The board', caption: 'The ward ordered by NEWS2, with the vitals that drive each score and the alerts already raised.' },
+      { name: 'vigil-patient-chart', label: 'A chart', caption: 'One patient: live vitals, the Sepsis Six clock, the clinical course and the labs.' },
+      { name: 'vigil-news2-explained', label: 'Why this score', caption: 'Every parameter and the points it contributes, so the number can be checked by hand.' },
+      { name: 'vigil-patient-story', label: 'Patient story', caption: 'Alerts, notes, doses, handovers and bundles in one timeline.' },
+      { name: 'nurse-my-shift', label: 'The nurse’s shift', caption: 'What is due now, with how late each item is.' },
+      { name: 'nurse-observations-news2-live', label: 'Recording obs', caption: 'The score and its escalation sentence appear before the nurse saves.' },
+    ],
     tryNews2: true,
-    moreScreens: ['vigil-patient-board', 'vigil-patient-chart', 'vigil-news2-explained', 'vigil-patient-story', 'nurse-my-shift', 'nurse-observations-news2-live'],
-    moreCaptions: {
-      'vigil-patient-board': 'The board: NEWS2 first, the vitals that drive it, the alerts already raised.',
-      'vigil-patient-chart': 'The chart: live vitals, the Sepsis Six clock, the clinical course and the labs.',
-      'vigil-news2-explained': 'Why this score: every parameter and the points it contributes.',
-      'vigil-patient-story': 'Patient Story: alerts, notes, doses, handovers and bundles in one timeline.',
-      'nurse-my-shift': 'Nurse mode: what is due now, with how late each item is.',
-      'nurse-observations-news2-live': 'Recording observations: the score and its escalation appear before the nurse saves.',
-    },
   },
   {
     route: '/sage',
@@ -63,8 +63,9 @@ export const MODULE_PAGES: ModulePageData[] = [
       { icon: 'check', title: 'It drafts. A person signs.', desc: 'Sage never places an order or files a note itself. What it drafts meets the same gates as anything typed by hand.' },
     ],
     ctaLine: 'A clinical answer with its sources, from a model that never leaves the hospital.',
-    moreScreens: ['sage-panel'],
-    moreCaptions: { 'sage-panel': 'Sage: the conversation view, with fast and careful modes.' },
+    shots: [
+      { name: 'sage-panel', label: 'Sage', caption: 'Sage on open: recent conversations, the quick starts, and the modes an answer can come back in.' },
+    ],
   },
   {
     route: '/scribe',
@@ -78,8 +79,9 @@ export const MODULE_PAGES: ModulePageData[] = [
       { icon: 'pill', title: 'A signed note feeds the pharmacy', desc: 'Medications it names are extracted and queued. They are not orders until a pharmacist verifies them.' },
     ],
     ctaLine: 'From a dictated consultation to a signed, verified note without the note leaving the building.',
-    moreScreens: ['scribe'],
-    moreCaptions: { scribe: 'Scribe before a transcript: dictate, or type.' },
+    shots: [
+      { name: 'handoff-ipass', label: 'An I-PASS handover', caption: 'A handover drafted from what is already on the chart, for a clinician to check and sign.' },
+    ],
   },
   {
     route: '/lens',
@@ -106,11 +108,10 @@ export const MODULE_PAGES: ModulePageData[] = [
       { icon: 'pill', title: 'Orders typed in chat are gated', desc: 'A medication order typed as a message meets the same safety gate as an order form.' },
     ],
     ctaLine: 'The team’s conversation, with the ward’s alerts and safeguards inside it.',
-    moreScreens: ['relay-case-rooms', 'relay-case-room'],
-    moreCaptions: {
-      'relay-case-rooms': 'Case rooms for the department, by recency or urgency.',
-      'relay-case-room': 'A room: Vigil’s alerts inline, and the Sage panel on the right.',
-    },
+    shots: [
+      { name: 'relay-case-rooms', label: 'Case rooms', caption: 'The department’s rooms, by recency or urgency, with each patient’s NEWS2 band.' },
+      { name: 'relay-case-room', label: 'A room', caption: 'One room: Vigil’s alerts posted inline with the vitals that caused them.' },
+    ],
   },
   {
     route: '/helix',
@@ -124,14 +125,12 @@ export const MODULE_PAGES: ModulePageData[] = [
       { icon: 'lock', title: 'Overrides belong to prescribers', desc: 'A nurse cannot clear an allergy block at the bedside, and the override is recorded in the prescriber’s name.' },
     ],
     ctaLine: 'Medication safety that holds at the order, at the pharmacy and at the bedside.',
-    moreScreens: ['orders-sepsis-six', 'pharmacy-verify-queue', 'nurse-administer-medication', 'pharmacy-helix-overview', 'pharmacy-formulary'],
-    moreCaptions: {
-      'orders-sepsis-six': 'Sepsis Six for a patient allergic to ceftriaxone: eight items cleared, one STOPPED.',
-      'pharmacy-verify-queue': 'The verification queue: dose, route, frequency, source and safety line.',
-      'nurse-administer-medication': 'Administering a dose, with the allergy on the sheet.',
-      'pharmacy-helix-overview': 'The pharmacy overview.',
-      'pharmacy-formulary': 'The formulary.',
-    },
+    shots: [
+      { name: 'orders-sepsis-six', label: 'Order sets', caption: 'Order sets are applied to a named patient. The gates are patient-specific, so nothing is shown until Orb knows whose chart this is.' },
+      { name: 'pharmacy-verify-queue', label: 'Verification queue', caption: 'Dose, route, frequency, source and safety line, with AI EXTRACTED and NOT SCREENED said out loud.' },
+      { name: 'nurse-administer-medication', label: 'At the bedside', caption: 'Administering a dose: the charted allergy is on the sheet, and the drug name has to be typed to confirm.' },
+      { name: 'pharmacy-formulary', label: 'Formulary', caption: 'The formulary with stock levels, so low and out-of-stock items are visible where they are prescribed.' },
+    ],
   },
   {
     route: '/surgical-suite',
@@ -210,14 +209,11 @@ export const MODULE_PAGES: ModulePageData[] = [
       { icon: 'chat', title: 'Questions get a plain answer', desc: 'It points them to their nurse or doctor, does not give medical advice, and says so.' },
     ],
     ctaLine: 'The patient sees their own care, in plain language.',
-    moreScreens: ['bridge-patient-portal', 'bridge-medications', 'bridge-labs', 'bridge-documents'],
-    tallScreens: ['bridge-patient-portal'],
-    moreCaptions: {
-      'bridge-patient-portal': 'The portal, top to bottom.',
-      'bridge-medications': 'My medications.',
-      'bridge-labs': 'My results.',
-      'bridge-documents': 'My documents.',
-    },
+    shots: [
+      { name: 'bridge-patient-portal', label: 'The portal', caption: 'What the patient sees: their team, their status, their vitals and their follow-up.' },
+      { name: 'bridge-medications', label: 'Medications', caption: 'Their medications, with dose, route, frequency and status.' },
+      { name: 'bridge-documents', label: 'Documents', caption: 'Their notes and reports, to read and to take away.' },
+    ],
   },
   {
     route: '/appointments',
