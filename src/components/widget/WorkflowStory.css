@@ -89,6 +89,7 @@
 
 .wstory__act-num {
   font-family: var(--font-mono);
+  font-weight: 600;
   font-size: 0.8rem;
   letter-spacing: 0.08em;
   color: var(--accent);
@@ -106,6 +107,7 @@
 
 .wstory__act-hint {
   grid-column: 2;
+  font-weight: 600;
   font-size: 0.84rem;
   line-height: 1.35;
   color: var(--text-muted);

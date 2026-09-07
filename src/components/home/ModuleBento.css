@@ -12,6 +12,7 @@
 .chapters__eyebrow {
   display: inline-block;
   font-family: var(--font-mono);
+  font-weight: 600;
   font-size: 0.8rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;

@@ -66,6 +66,7 @@
 
 .wg__who {
   font-family: var(--font-mono);
+  font-weight: 600;
   font-size: 11px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -123,13 +124,15 @@
   margin: 0;
 }
 
-.wg__head-sub { font-size: 12.5px; color: var(--text-muted); }
+.wg__head-sub { font-weight: 600;
+  font-size: 12.5px; color: var(--text-muted); }
 
 .wg__blocks { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
 
 .wg__label {
   display: block;
   font-family: var(--font-mono);
+  font-weight: 600;
   font-size: 11px;
   letter-spacing: 0.11em;
   text-transform: uppercase;
@@ -137,7 +140,8 @@
   margin-bottom: 8px;
 }
 
-.wg__note { display: block; margin-top: 8px; font-size: 12px; color: var(--text-muted); }
+.wg__note { display: block; margin-top: 8px; font-weight: 600;
+  font-size: 12px; color: var(--text-muted); }
 
 /* ─── Tiles ─── */
 .wg__tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
@@ -154,7 +158,8 @@
 }
 
 .wg__tile-value { font-family: var(--font-mono); font-size: 24px; font-weight: 600; line-height: 1.1; letter-spacing: -0.02em; }
-.wg__tile-label { font-size: 12px; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.wg__tile-label { font-weight: 600;
+  font-size: 12px; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .wg__tile.is-critical .wg__tile-value { color: var(--wg-critical); }
 .wg__tile.is-warn .wg__tile-value { color: var(--wg-warn); }
 .wg__tile.is-ok .wg__tile-value { color: var(--wg-ok); }
@@ -192,17 +197,20 @@
 .wg__score.is-critical { background: color-mix(in srgb, var(--wg-critical) 16%, transparent); color: var(--wg-critical); }
 .wg__score.is-warn { background: color-mix(in srgb, var(--wg-warn) 18%, transparent); color: var(--wg-warn); }
 .wg__score.is-ok { background: color-mix(in srgb, var(--wg-ok) 16%, transparent); color: var(--wg-ok); }
-.wg__score.is-muted { background: var(--wg-inset); color: var(--text-muted); font-size: 12px; }
+.wg__score.is-muted { background: var(--wg-inset); color: var(--text-muted); font-weight: 600;
+  font-size: 12px; }
 
 .wg__row-main { display: flex; flex-direction: column; min-width: 0; flex: 1; }
 .wg__row-title { font-size: 13.5px; font-weight: 600; letter-spacing: -0.005em; }
-.wg__row-sub { font-size: 12px; color: var(--text-muted); overflow: hidden; text-overflow: ellipsis; }
+.wg__row-sub { font-weight: 600;
+  font-size: 12px; color: var(--text-muted); overflow: hidden; text-overflow: ellipsis; }
 
 .wg__tag {
   flex: none;
   padding: 3px 9px;
   border-radius: var(--radius-full);
   font-family: var(--font-mono);
+  font-weight: 600;
   font-size: 11px;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -229,6 +237,7 @@
 
 .wg__banner-tag {
   font-family: var(--font-mono);
+  font-weight: 600;
   font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -236,7 +245,8 @@
 }
 
 .wg__banner-title { font-size: 14px; font-weight: 700; letter-spacing: -0.01em; }
-.wg__banner-body { font-size: 12.5px; color: var(--text-secondary); text-wrap: pretty; }
+.wg__banner-body { font-weight: 600;
+  font-size: 12.5px; color: var(--text-secondary); text-wrap: pretty; }
 
 .wg__banner.is-critical { border-left-color: var(--wg-critical); background: color-mix(in srgb, var(--wg-critical) 8%, transparent); }
 .wg__banner.is-critical .wg__banner-tag, .wg__banner.is-critical .wg__banner-title { color: var(--wg-critical); }
@@ -264,14 +274,17 @@
 }
 
 .wg__msg.is-you { align-self: flex-end; background: var(--accent-soft); border-color: transparent; }
-.wg__msg-text { font-size: 13.5px; text-wrap: pretty; }
-.wg__msg-meta { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-muted); }
+.wg__msg-text { font-weight: 600;
+  font-size: 13.5px; text-wrap: pretty; }
+.wg__msg-meta { font-family: var(--font-mono); font-weight: 600;
+  font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-muted); }
 
 .wg__msg-badge {
   align-self: flex-start;
   padding: 2px 8px;
   border-radius: var(--radius-full);
   font-family: var(--font-mono);
+  font-weight: 600;
   font-size: 11px;
   letter-spacing: 0.07em;
   text-transform: uppercase;
@@ -297,7 +310,8 @@
   gap: 1px;
 }
 
-.wg__field-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
+.wg__field-label { font-family: var(--font-mono); font-weight: 600;
+  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
 .wg__field-value { font-family: var(--font-mono); font-size: 19px; font-weight: 600; letter-spacing: -0.02em; }
 .wg__field.is-critical .wg__field-value { color: var(--wg-critical); }
 .wg__field.is-warn .wg__field-value { color: var(--wg-warn); }
@@ -306,7 +320,8 @@
 /* ─── Checklist ─── */
 .wg__check-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px 14px; }
 
-.wg__check { display: flex; align-items: flex-start; gap: 9px; font-size: 13px; min-width: 0; }
+.wg__check { display: flex; align-items: flex-start; gap: 9px; font-weight: 600;
+  font-size: 13px; min-width: 0; }
 .wg__check-text { min-width: 0; }
 
 .wg__check-mark {
@@ -370,6 +385,7 @@
 .wg__line {
   position: relative;
   padding-left: 16px;
+  font-weight: 600;
   font-size: 13px;
   color: var(--text-secondary);
   text-wrap: pretty;
@@ -419,7 +435,8 @@
 
 .wg__ctrl { display: flex; align-items: center; gap: 12px; }
 
-.wg__count { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; color: var(--text-muted); flex: none; }
+.wg__count { font-family: var(--font-mono); font-weight: 600;
+  font-size: 11px; letter-spacing: 0.08em; color: var(--text-muted); flex: none; }
 
 .wg__dots { display: flex; gap: 5px; flex: 1; }
 
@@ -454,7 +471,8 @@
 }
 
 @media (max-width: 560px) {
-  .wg { font-size: 13px; }
+  .wg { font-weight: 600;
+  font-size: 13px; }
   .wg__screen { padding: 15px 14px 17px; min-height: 250px; }
   .wg--tall .wg__screen { min-height: 300px; }
   .wg__tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px; }
@@ -463,8 +481,10 @@
   .wg__check-list { grid-template-columns: 1fr; }
   .wg__who { display: none; }
   .wg__tabs { margin-left: auto; }
-  .wg__tab { padding: 4px 9px; font-size: 11.5px; }
-  .wg__caption { font-size: 13px; min-height: 3.6em; }
+  .wg__tab { padding: 4px 9px; font-weight: 600;
+  font-size: 11.5px; }
+  .wg__caption { font-weight: 600;
+  font-size: 13px; min-height: 3.6em; }
 }
 
 .wg__row-sub { white-space: nowrap; }

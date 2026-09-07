@@ -7,6 +7,7 @@
 .plans__eyebrow {
   display: inline-block;
   font-family: var(--font-mono);
+  font-weight: 600;
   font-size: 0.8rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -70,6 +71,7 @@
 .plans__glance-title {
   display: block;
   font-family: var(--font-mono);
+  font-weight: 600;
   font-size: 0.8rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -90,8 +92,10 @@
 .plans__glance-label { font-size: 0.98rem; font-weight: 600; letter-spacing: -0.01em; }
 .plans__glance-figs { text-align: right; display: flex; flex-direction: column; }
 .plans__glance-inr { font-family: var(--font-mono); font-size: 1.02rem; font-weight: 600; letter-spacing: -0.02em; white-space: nowrap; }
-.plans__glance-usd { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); white-space: nowrap; }
-.plans__glance-sub { grid-column: 1 / -1; font-size: 0.84rem; color: var(--text-muted); }
+.plans__glance-usd { font-family: var(--font-mono); font-weight: 600;
+  font-size: 0.8rem; color: var(--text-muted); white-space: nowrap; }
+.plans__glance-sub { grid-column: 1 / -1; font-weight: 600;
+  font-size: 0.84rem; color: var(--text-muted); }
 
 /* ─── The path: three stages, one band ─── */
 .plans__path {
@@ -139,6 +143,7 @@
 
 .plans__stage-step {
   font-family: var(--font-mono);
+  font-weight: 600;
   font-size: 0.8rem;
   letter-spacing: 0.14em;
   color: var(--accent);
@@ -164,7 +169,8 @@
 .plans__stage-unit { font-size: 0.88rem; color: var(--text-secondary); }
 
 .plans__stage-body { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
-.plans__stage-when { font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); }
+.plans__stage-when { font-family: var(--font-mono); font-weight: 600;
+  font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); }
 .plans__stage-desc { font-size: 0.97rem; line-height: 1.6; color: var(--text-secondary); text-wrap: pretty; }
 
 .plans__stage-points { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 22px; }
@@ -188,6 +194,7 @@
   align-items: center;
   gap: 6px;
   font-family: var(--font-mono);
+  font-weight: 600;
   font-size: 0.8rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -201,7 +208,7 @@
 /* ─── The price list ─── */
 .plans__prices {
   display: grid;
-  grid-template-columns: minmax(0, 0.6fr) minmax(0, 1.4fr);
+  grid-template-columns: minmax(0, 0.44fr) minmax(0, 1.56fr);
   gap: clamp(28px, 4vw, 60px);
   align-items: start;
   margin-bottom: clamp(48px, 7vh, 90px);
@@ -223,6 +230,10 @@
 .plans__table-wrap { overflow-x: auto; }
 .plans__table { width: 100%; border-collapse: collapse; min-width: 560px; }
 
+/* Bolder text is wider, and the two number columns and the charge column do not
+   wrap, so without this the first column loses and its notes run to four lines. */
+.plans__table thead th:first-child, .plans__table tbody th { width: 42%; }
+
 .plans__table thead th {
   text-align: left;
   font-family: var(--font-mono);
@@ -230,7 +241,7 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text-muted);
-  font-weight: 500;
+  font-weight: 600;
   padding: 0 0 10px;
   border-bottom: 1px solid var(--border-glass);
 }
@@ -257,8 +268,10 @@
 [data-theme="light"] .plans__table th,
 [data-theme="light"] .plans__table td { border-bottom-color: rgba(20, 18, 15, 0.09); }
 
-.plans__row-note { display: block; margin-top: 4px; font-size: 0.84rem; font-weight: 400; color: var(--text-muted); max-width: 36ch; text-wrap: pretty; }
-.plans__table .plans__num { text-align: right; white-space: nowrap; padding-right: 0; padding-left: 20px; }
+.plans__row-note { display: block; margin-top: 4px; font-size: 0.84rem; font-weight: 600; color: var(--text-muted); max-width: 36ch; text-wrap: pretty; }
+.plans__table .plans__num { text-align: right; padding-right: 0; padding-left: 20px; }
+.plans__table .plans__num { white-space: nowrap; }
+.plans__table tbody tr:last-child .plans__num { white-space: normal; }
 .plans__inr { font-family: var(--font-mono); font-size: 0.95rem; color: var(--text-primary); font-weight: 600; }
 .plans__usd { font-family: var(--font-mono); font-size: 0.86rem; color: var(--text-muted); }
 
@@ -328,7 +341,8 @@
 
 [data-theme="light"] .plans__wcard { background: rgba(255, 255, 255, 0.62); border-color: rgba(20, 18, 15, 0.08); }
 
-.plans__wcard-when { display: block; font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+.plans__wcard-when { display: block; font-family: var(--font-mono); font-weight: 600;
+  font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
 .plans__wcard-title { font-family: var(--font-serif); font-size: 1.15rem; font-weight: 600; letter-spacing: -0.015em; margin: 0 0 6px; }
 .plans__wcard-body { margin: 0; font-size: 0.92rem; line-height: 1.55; color: var(--text-secondary); text-wrap: pretty; }
 

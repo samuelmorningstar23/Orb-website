@@ -295,6 +295,7 @@
   background: rgba(255, 82, 82, 0.1);
   border: 1px solid rgba(255, 82, 82, 0.2);
   color: #FF5252;
+  font-weight: 600;
   font-size: 0.84rem;
   padding: 10px 14px;
   border-radius: 10px;

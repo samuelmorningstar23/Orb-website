@@ -127,7 +127,9 @@ body {
   overflow-x: hidden;
   line-height: 1.55;
   letter-spacing: -0.011em;
-  font-weight: 400;
+  /* Raleway at 400 is thin on a screen, and thinnest exactly where the text is
+     smallest. 500 is the floor for anything that inherits. */
+  font-weight: 500;
 }
 
 #root {

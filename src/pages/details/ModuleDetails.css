@@ -288,6 +288,7 @@
 .mp__eyebrow {
   display: inline-block;
   font-family: var(--font-mono);
+  font-weight: 600;
   font-size: 0.8rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -421,7 +422,7 @@
   font-family: var(--font-mono);
   font-size: 0.8rem;
   letter-spacing: 0.14em;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .module-detail__title {
