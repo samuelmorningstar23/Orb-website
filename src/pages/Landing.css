@@ -13,9 +13,9 @@
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: 1024px;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 clamp(20px, 3.5vw, 40px) 0;
 }
 
 /* ─── Hero Section ─── */
@@ -344,4 +344,30 @@
 /* The orb hands off as you scroll - keep it from catching pointer events while faded */
 .landing-overview__orb-showcase {
   pointer-events: none;
+}
+
+/* ─── Redesign: chapters section + a larger closing call to action ─── */
+.chapters {
+  padding: clamp(64px, 9vh, 120px) 0 0;
+}
+
+.chapters__header {
+  max-width: 760px;
+  margin-bottom: 8px;
+}
+
+.landing-overview__cta {
+  padding: clamp(80px, 12vh, 150px) 0;
+}
+
+.landing-overview__cta-title {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(2.6rem, 6vw, 5rem);
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.landing-overview__cta-desc {
+  font-size: clamp(1.05rem, 1.5vw, 1.25rem);
 }

@@ -2,7 +2,8 @@ import { useState, useEffect, useLayoutEffect, useRef, useCallback } from 'react
 import { Link, useLocation } from 'react-router-dom'
 import OrbLogo from './OrbLogo'
 import SearchOverlay from './SearchOverlay'
-import { ALL_MODULES, PLANS, openDemoModal, type FeaturedModule } from '../data/siteContent'
+import { ALL_MODULES, openDemoModal, type FeaturedModule } from '../data/siteContent'
+import { STAGES } from '../data/plans'
 import './MarketingHeader.css'
 
 // ─── Top-bar model ───
@@ -19,7 +20,7 @@ type NavItem =
 // Four items a first-time visitor can act on. Module names live in the
 // Modules card and the explorer, not in the top bar.
 const NAV_ITEMS: NavItem[] = [
-  { id: 'modules', label: 'Modules', to: '/#modules', panel: 'modules' },
+  { id: 'modules', label: 'Modules', to: '/modules', panel: 'modules' },
   { id: 'plans', label: 'Plans', to: '/plans', panel: 'plans' },
   { id: 'security', label: 'Security', to: '/security', panel: null },
   { id: 'support', label: 'Support', to: '/support', panel: null },
@@ -196,12 +197,12 @@ export default function MarketingHeader() {
     if (item.panel === 'plans') {
       return (
         <div className="nav-panel nav-panel--plans">
-          <span className="nav-panel__eyebrow">One platform, four sizes</span>
+          <span className="nav-panel__eyebrow">A pilot first, then the hospital</span>
           <div className="nav-panel__plan-list">
-            {PLANS.map(p => (
+            {STAGES.map(p => (
               <Link key={p.id} to={`/plans#${p.id}`} className="nav-panel__plan" onClick={closeNow}>
                 <span className="nav-panel__plan-name">{p.name}</span>
-                <span className="nav-panel__plan-tag">{p.tagline}</span>
+                <span className="nav-panel__plan-tag">{p.price} {p.unit}</span>
               </Link>
             ))}
           </div>
@@ -214,7 +215,7 @@ export default function MarketingHeader() {
     if (item.panel === 'modules') {
       return (
         <div className="nav-panel nav-panel--modules">
-          <span className="nav-panel__eyebrow">Fourteen modules. One operating system.</span>
+          <span className="nav-panel__eyebrow">Every module, captured from the product.</span>
           <div className="nav-panel__module-grid">
             {ALL_MODULES.map(m => (
               <Link key={m.to} to={m.to} className="nav-panel__module-link" onClick={closeNow}>
@@ -326,7 +327,7 @@ export default function MarketingHeader() {
 
           <span className="marketing-header__drawer-label">Plans</span>
           <div className="marketing-header__drawer-grid">
-            {PLANS.map(p => (
+            {STAGES.map(p => (
               <Link key={p.id} to={`/plans#${p.id}`} className="marketing-header__drawer-link" onClick={() => setMobileOpen(false)}>{p.name}</Link>
             ))}
           </div>

@@ -1,4 +1,5 @@
-import { ALL_MODULES, PLANS, CONTACT_EMAIL } from './siteContent'
+import { ALL_MODULES, CONTACT_EMAIL } from './siteContent'
+import { STAGES } from './plans'
 
 // ─── Site search: keyword lookup + lightweight question answering ───
 // Everything is indexed client-side (the site is static), so search works
@@ -37,31 +38,31 @@ const MODULE_ENTRIES: SearchEntry[] = ALL_MODULES.map(m => ({
   body: m.blurb,
 }))
 
-const PLAN_ENTRIES: SearchEntry[] = PLANS.map(p => ({
+const PLAN_ENTRIES: SearchEntry[] = STAGES.map(p => ({
   id: `plan-${p.id}`,
   kind: 'plan',
   title: p.name,
-  subtitle: `${p.tagline} ${p.audience}.`,
+  subtitle: `${p.price} ${p.unit}. ${p.when}.`,
   to: `/plans#${p.id}`,
-  keywords: ['plan', 'pricing', 'tier', 'edition', p.id, p.name.toLowerCase()],
-  body: `${p.desc} ${p.includes.join(' ')}`,
+  keywords: ['plan', 'pricing', 'price', 'cost', 'per bed', p.id, p.name.toLowerCase()],
+  body: `${p.desc} ${p.points.join(' ')}`,
 }))
 
 const PAGE_ENTRIES: SearchEntry[] = [
   {
     id: 'page-home', kind: 'page', title: 'Overview', subtitle: 'The Hospital Operating System', to: '/',
     keywords: ['home', 'overview', 'orb', 'start', 'landing'],
-    body: 'The local-first, AI-native operating system for the modern hospital. Intelligence that stays within your walls.',
+    body: 'The hospital operating system that runs inside the hospital: the record, the ward monitor, the pharmacy and the front desk on one appliance.',
   },
   {
-    id: 'page-modules', kind: 'page', title: 'All Modules', subtitle: 'Fourteen modules. One operating system.', to: '/#modules',
+    id: 'page-modules', kind: 'page', title: 'All modules', subtitle: 'Every module as a real screen', to: '/modules',
     keywords: ['modules', 'products', 'features', 'catalog', 'list'],
     body: ALL_MODULES.map(m => m.label).join(' '),
   },
   {
-    id: 'page-plans', kind: 'page', title: 'Plans', subtitle: 'Lite, Plus, Max, and Ultra', to: '/plans',
+    id: 'page-plans', kind: 'page', title: 'Plans', subtitle: 'A pilot first, then per bed', to: '/plans',
     keywords: ['plans', 'pricing', 'price', 'cost', 'tiers', 'editions', 'compare', 'buy', 'subscription'],
-    body: 'Compare Orb Lite, Orb Plus, Orb Max, and Orb Ultra.',
+    body: 'A thirteen-week pilot on one ward, then per-bed pricing for the hospital. No tier withholds a safety feature.',
   },
   {
     id: 'page-support', kind: 'page', title: 'Support', subtitle: 'Help, contact, and common questions', to: '/support',
@@ -74,7 +75,7 @@ const ACTION_ENTRIES: SearchEntry[] = [
   {
     id: 'action-demo', kind: 'action', title: 'Request a Demo', subtitle: 'Book a walkthrough with the team', action: 'demo',
     keywords: ['demo', 'request', 'walkthrough', 'trial', 'book', 'meeting', 'sales', 'see it'],
-    body: 'See Orb run on real clinical workflows.',
+    body: 'A walkthrough of the running product on demo patients.',
   },
   {
     id: 'action-mail', kind: 'action', title: `Email ${CONTACT_EMAIL}`, subtitle: 'Write to the Orb team directly', action: 'mail',
@@ -89,62 +90,62 @@ const ACTION_ENTRIES: SearchEntry[] = [
 export const ANSWER_ENTRIES: SearchEntry[] = [
   {
     id: 'qa-what-is-orb', kind: 'answer', title: 'What is Orb?', to: '/',
-    answer: 'Orb is the local-first, AI-native operating system for the modern hospital: fourteen modules covering the ward, the operating room, and the back office. It watches, understands, and acts the moment a clinician confirms, and all of it runs on hardware inside your hospital.',
-    keywords: ['what', 'orb', 'about', 'hospital', 'operating', 'system', 'platform', 'company', 'product', 'os'],
+    answer: 'Orb is a hospital operating system that runs on an appliance inside the hospital: the patient record, the ward monitor (NEWS2 on every patient), the pharmacy, orders, notes, the front desk, billing and the admin screens, on one database. The models that answer questions and draft notes run on the same appliance, so nothing about a patient leaves the building.',
+    keywords: ['what', 'orb', 'about', 'hospital', 'operating', 'system', 'platform', 'company', 'product', 'os', 'appliance'],
   },
   {
-    id: 'qa-privacy', kind: 'answer', title: 'Does patient data leave the hospital?', to: '/support',
-    answer: 'No. Orb processes all audio, images, and text on hardware inside your hospital, and patient data never leaves the building. The one outbound exception is Pulse, which sends a map coordinate to public weather, air-quality, and drug-recall feeds: it carries no patient data, every call is logged, and it can be blocked at the firewall with no loss of clinical function.',
+    id: 'qa-privacy', kind: 'answer', title: 'Does patient data leave the hospital?', to: '/security',
+    answer: 'No. The database, the models and the audit log are on the appliance, and there is no cloud model in the loop. The one outbound call is Pulse, which sends a map coordinate to public weather, air-quality, flu and drug-recall feeds: it carries no patient data, every call is logged, and the firewall can block it.',
     keywords: ['data', 'privacy', 'leave', 'cloud', 'egress', 'private', 'phi', 'patient', 'stored', 'store', 'send', 'external', 'sovereignty', 'local'],
   },
   {
-    id: 'qa-compliance', kind: 'answer', title: 'Is Orb HIPAA and GDPR compliant?', to: '/support',
-    answer: 'Orb is designed to support the technical safeguards HIPAA and GDPR require: on-premise processing, role-based access, and a tamper-evident audit trail. It strengthens your compliance posture. It is not a substitute for your own certification.',
-    keywords: ['hipaa', 'gdpr', 'compliance', 'compliant', 'regulation', 'certified', 'legal', 'audit', 'safeguards', 'security'],
+    id: 'qa-compliance', kind: 'answer', title: 'Is Orb compliant with DPDP, ABDM, NABH, HIPAA or GDPR?', to: '/security',
+    answer: 'Orb is built for India first: the technical safeguards the DPDP Act asks for, ABDM support (in progress and not yet certified), and the evidence NABH inspects. The same architecture, on-site processing, role-based access and a hash-chained audit log, covers what HIPAA and GDPR require. None of it substitutes for your own certification.',
+    keywords: ['hipaa', 'gdpr', 'dpdp', 'abdm', 'nabh', 'compliance', 'compliant', 'regulation', 'certified', 'legal', 'audit', 'safeguards', 'security'],
   },
   {
-    id: 'qa-offline', kind: 'answer', title: 'Does Orb work during internet outages?', to: '/support',
-    answer: 'Yes. Orb is installed on-premise and operates on-site without a network connection, so wards keep monitoring, messaging, and documenting straight through upstream or ISP outages.',
+    id: 'qa-offline', kind: 'answer', title: 'Does Orb work during internet outages?', to: '/security',
+    answer: 'Yes. Orb needs no internet connection to run, because everything it uses is on the appliance. For the hour the appliance itself is down, a printable downtime pack per patient is kept fresh, and the Command Center shows how many packs are current.',
     keywords: ['offline', 'outage', 'internet', 'network', 'connection', 'isp', 'down', 'downtime', 'continuity', 'work'],
   },
   {
-    id: 'qa-integration', kind: 'answer', title: 'Does Orb replace our EHR?', to: '/support',
-    answer: 'No. Orb runs alongside the systems you already have, exchanging information through the standards they already speak. It complements your record of truth; it is not a rip-and-replace.',
-    keywords: ['ehr', 'emr', 'integrate', 'integration', 'replace', 'stack', 'systems', 'epic', 'cerner', 'interoperability', 'hl7', 'fhir'],
+    id: 'qa-integration', kind: 'answer', title: 'Does Orb replace our EHR?', to: '/security',
+    answer: 'Yes. Orb is the system of record: admissions, orders, notes, pharmacy, billing and the front desk run on one database. Where a hospital already has an HIS, Orb imports from it and exports records as FHIR, so there is no second record to keep in step.',
+    keywords: ['ehr', 'emr', 'his', 'integrate', 'integration', 'replace', 'stack', 'systems', 'interoperability', 'hl7', 'fhir', 'record'],
   },
   {
-    id: 'qa-safety', kind: 'answer', title: 'Can Orb act without a clinician?', to: '/sage',
-    answer: 'No. Orb drafts the next step: the order, the alert, the note. But nothing is carried out until a clinician confirms it. Every confirmed action lands in a tamper-evident audit trail.',
-    keywords: ['safety', 'autonomous', 'clinician', 'confirm', 'confirmation', 'human', 'loop', 'act', 'safe', 'oversight', 'approve'],
+    id: 'qa-safety', kind: 'answer', title: 'Can Orb act without a clinician?', to: '/helix',
+    answer: 'No. Orb drafts the order set, the alert or the note, and a named person confirms it. What they confirm goes through the same allergy interlock, dose guard and pharmacist queue as anything typed by hand, and every confirmed action lands in the hash-chained audit log.',
+    keywords: ['safety', 'autonomous', 'clinician', 'confirm', 'confirmation', 'human', 'loop', 'act', 'safe', 'oversight', 'approve', 'agentic'],
   },
   {
     id: 'qa-pricing', kind: 'answer', title: 'How much does Orb cost?', to: '/plans',
-    answer: 'Orb comes in four plans: Lite, Plus, Max, and Ultra, sized from a single clinic to a hospital group. Pricing is tailored to your deployment; request a demo and the team will scope it with you.',
-    keywords: ['cost', 'price', 'pricing', 'much', 'pay', 'plans', 'subscription', 'license', 'expensive', 'budget'],
+    answer: 'Orb is bought as a thirteen-week pilot on one ward, then per bed per month for the whole hospital. The figure is agreed on the demo call with your wards, beds and hardware in front of us, and no tier withholds a safety feature.',
+    keywords: ['cost', 'price', 'pricing', 'much', 'pay', 'plans', 'subscription', 'license', 'expensive', 'budget', 'bed'],
   },
   {
-    id: 'qa-modules-count', kind: 'answer', title: 'How many modules does Orb have?', to: '/#modules',
-    answer: `Fourteen: ${ALL_MODULES.map(m => m.label).join(', ')}. They share one local-first platform, so every module makes the others more useful.`,
-    keywords: ['many', 'modules', 'count', 'number', 'which', 'list', 'included', 'features', 'apps'],
+    id: 'qa-modules-count', kind: 'answer', title: 'Which modules does Orb have?', to: '/#modules',
+    answer: `On this site: ${ALL_MODULES.map(m => m.label).join(', ')}. The same appliance also runs the front desk, billing, payments, insurance and TPA, procurement, housekeeping, workforce, equipment, diet and kitchen, NABH evidence and the admin screens (Trust Center, Flight Recorder, Model Governance, Pilot Scorecard).`,
+    keywords: ['many', 'modules', 'count', 'number', 'which', 'list', 'included', 'features', 'apps', 'billing', 'front desk'],
   },
   {
     id: 'qa-demo', kind: 'answer', title: 'How do I see Orb in action?', to: '/support',
-    answer: 'Request a demo. The team will walk you through Orb running on real clinical workflows, sized to your wards and your stack.',
+    answer: 'Every screen on this site is a capture of the running product on demo patients. For the live version, request a demo: a walkthrough on a call, sized to your wards, with the product open rather than slides.',
     keywords: ['demo', 'see', 'try', 'trial', 'walkthrough', 'test', 'evaluate', 'poc', 'pilot', 'action'],
   },
   {
-    id: 'qa-deployment', kind: 'answer', title: 'How is Orb deployed?', to: '/support',
-    answer: 'Orb is installed on-premise, on hardware you control, inside your network. Deployment is handled with your IT team, and the system runs entirely on-site from day one.',
-    keywords: ['deploy', 'deployment', 'install', 'installation', 'premise', 'premises', 'hardware', 'setup', 'hosted', 'server', 'infrastructure'],
+    id: 'qa-deployment', kind: 'answer', title: 'How is Orb deployed?', to: '/plans',
+    answer: 'On an appliance installed inside the hospital, on your network, with your IT team. The pilot runs on one ward for thirteen weeks, in shadow mode first, and produces a scorecard before the rest of the house is committed.',
+    keywords: ['deploy', 'deployment', 'install', 'installation', 'premise', 'premises', 'hardware', 'setup', 'hosted', 'server', 'infrastructure', 'appliance'],
   },
   {
     id: 'qa-who-for', kind: 'answer', title: 'Who is Orb for?', to: '/',
-    answer: 'Hospitals and clinics, from a single ward to a whole group. Nurses get early warning, clinicians get an ambient copilot, operations get capacity foresight, and the back office gets revenue integrity.',
-    keywords: ['who', 'for', 'audience', 'customers', 'hospitals', 'clinics', 'users', 'buyer', 'nurses', 'doctors'],
+    answer: 'Hospitals, starting with one ward. Nurses get the score and what is due now, doctors get the chart and a model that answers on site, pharmacists get a verification queue, administrators get the Trust Center and the audit log, and patients get Bridge.',
+    keywords: ['who', 'for', 'audience', 'customers', 'hospitals', 'clinics', 'users', 'buyer', 'nurses', 'doctors', 'pharmacists', 'patients'],
   },
   {
     id: 'qa-contact', kind: 'answer', title: 'How do I contact the Orb team?', to: '/support',
-    answer: `Email ${CONTACT_EMAIL} any time, or request a demo from any page. Every request reaches a human on the team.`,
+    answer: `Email ${CONTACT_EMAIL} any time, or request a demo from any page. A person reads every message.`,
     keywords: ['contact', 'reach', 'email', 'talk', 'human', 'team', 'phone', 'sales', 'touch'],
   },
 ]

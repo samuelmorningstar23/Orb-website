@@ -1,0 +1,140 @@
+/* ─── The three-act conveyor ───
+   Three separate cards on one row. When an act ends the row slides left, the
+   finished card runs off the side of the page, and the next arrives from the
+   other side. It only ever moves forwards. */
+
+.wstory { display: flex; flex-direction: column; gap: clamp(20px, 3vh, 34px); }
+
+.wstory__stage {
+  position: relative;
+  width: 100%;
+  height: clamp(468px, 60vh, 566px);
+  perspective: 2000px;
+  perspective-origin: 50% 45%;
+}
+
+.wstory__card {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.wstory__card .wg {
+  height: 100%;
+  border-radius: 20px;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+
+[data-theme="light"] .wstory__card .wg {
+  box-shadow: 0 36px 90px rgba(31, 38, 135, 0.16), 0 6px 18px rgba(31, 38, 135, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.wstory__card .wg__screen { min-height: 0; overflow: hidden; padding-bottom: 14px; }
+
+/* An act waiting its turn is not usable, but clicking it brings it on stage. */
+.wstory__card:not(.is-active) .wg { box-shadow: 0 30px 70px rgba(0, 0, 0, 0.3); pointer-events: none; }
+
+.wstory__grab {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  border-radius: 20px;
+  cursor: pointer;
+  background: transparent;
+  transition: background var(--transition-base);
+}
+
+.wstory__grab:hover { background: rgba(var(--clay-rgb), 0.1); }
+
+.wstory__grab-pill {
+  padding: 9px 18px;
+  border-radius: var(--radius-full);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--btn-primary-text);
+  background: var(--accent);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity var(--transition-base), transform var(--transition-base);
+}
+
+.wstory__grab:hover .wstory__grab-pill { opacity: 1; transform: none; }
+
+/* ─── The three act labels under the row ─── */
+.wstory__nav {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(12px, 3vw, 40px);
+  width: min(760px, 100%);
+  margin: 0 auto;
+}
+
+.wstory__act {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0 8px;
+  align-items: baseline;
+  padding: 0 0 10px;
+  text-align: left;
+  color: var(--text-muted);
+  transition: color var(--transition-base);
+}
+
+.wstory__act:hover, .wstory__act.is-active { color: var(--text-primary); }
+
+.wstory__act-num {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  opacity: 0.55;
+}
+
+.wstory__act.is-active .wstory__act-num { opacity: 1; }
+
+.wstory__act-name {
+  font-family: var(--font-serif);
+  font-size: 1.08rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.wstory__act-hint {
+  grid-column: 2;
+  font-size: 0.8rem;
+  line-height: 1.35;
+  color: var(--text-muted);
+  text-wrap: pretty;
+}
+
+.wstory__act-bar {
+  grid-column: 1 / -1;
+  margin-top: 10px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--border-glass);
+  overflow: hidden;
+}
+
+[data-theme="light"] .wstory__act-bar { background: rgba(20, 18, 15, 0.12); }
+
+.wstory__act-fill {
+  display: block;
+  height: 100%;
+  width: 100%;
+  transform-origin: left center;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+@media (max-width: 760px) {
+  .wstory__stage { height: clamp(452px, 66vh, 548px); perspective: 1200px; }
+  .wstory__act-hint { display: none; }
+  .wstory__act-name { font-size: 0.95rem; }
+  .wstory__nav { gap: 10px; }
+}

@@ -79,7 +79,7 @@ export default function Support() {
           <span className="module-detail__badge">Support</span>
           <h1 className="module-detail__title">How can we help?</h1>
           <p className="module-detail__tagline">
-            A human on the Orb team reads every message. Reach out, book a walkthrough, or find your answer below.
+            A person reads every message. Write to us, book a walkthrough of the running product, or find the answer below.
           </p>
         </section>
 
@@ -102,7 +102,7 @@ export default function Support() {
               </svg>
             </div>
             <h3 className="support-page__channel-title">Request a demo</h3>
-            <p className="support-page__channel-desc">See Orb run on real clinical workflows, sized to your wards.</p>
+            <p className="support-page__channel-desc">A walkthrough of the running product on demo patients, sized to your wards.</p>
             <span className="support-page__channel-action">Book a walkthrough &rarr;</span>
           </button>
 
