@@ -1,136 +1,8 @@
-/* ─── Plans: written to be forwarded ───
-   A path rather than a tier table, then the price list, the thirteen weeks,
-   who provides what, what the pilot proves, and the procurement questions. */
+/* ─── Plans: everything a CIO needs, in a page they will finish ───
+   Four headline numbers beside the title, the three stages as one band that
+   opens what you are reading, and the detail in a single card that slides. */
 
-.plans-page .module-detail__content { max-width: 1160px; }
-
-/* ─── Hero ─── */
-.plans__hero { padding: 8px 0 clamp(40px, 6vh, 72px); }
-
-.plans__title {
-  font-family: var(--font-serif);
-  font-weight: 500;
-  font-size: clamp(2.9rem, 6vw, 5rem);
-  line-height: 0.99;
-  letter-spacing: -0.032em;
-  margin: 0 0 22px;
-  max-width: 14ch;
-}
-
-.plans__lede {
-  font-size: clamp(1.05rem, 1.5vw, 1.25rem);
-  line-height: 1.55;
-  color: var(--text-secondary);
-  margin: 0;
-  max-width: 62ch;
-  text-wrap: pretty;
-}
-
-/* ─── The path: three stages on one line ─── */
-.plans__stages {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(24px, 3.5vw, 52px);
-}
-
-.plans__stage { display: flex; flex-direction: column; min-width: 0; }
-
-/* The rule across the top is the path itself, with a node on each stage. */
-.plans__stage-rule {
-  position: relative;
-  display: block;
-  height: 2px;
-  background: var(--border-glass);
-  margin-bottom: 22px;
-}
-
-[data-theme="light"] .plans__stage-rule { background: rgba(20, 18, 15, 0.13); }
-
-.plans__stage-rule i {
-  position: absolute;
-  left: 0;
-  top: -4px;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--accent);
-}
-
-.plans__stage:first-child .plans__stage-rule { background: var(--accent); }
-
-.plans__stage-step {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.14em;
-  color: var(--accent);
-  margin-bottom: 10px;
-}
-
-.plans__stage-name {
-  font-family: var(--font-serif);
-  font-weight: 600;
-  font-size: clamp(1.7rem, 2.6vw, 2.3rem);
-  line-height: 1.05;
-  letter-spacing: -0.022em;
-  margin: 0 0 4px;
-}
-
-.plans__stage-when { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 20px; }
-
-.plans__stage-price {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  margin: 0 0 18px;
-  padding-bottom: 18px;
-  border-bottom: 1px solid var(--border-glass);
-}
-
-[data-theme="light"] .plans__stage-price { border-bottom-color: rgba(20, 18, 15, 0.1); }
-
-.plans__stage-inr {
-  font-family: var(--font-mono);
-  font-size: clamp(1.6rem, 2.4vw, 2.1rem);
-  font-weight: 600;
-  letter-spacing: -0.03em;
-  line-height: 1.1;
-}
-
-.plans__stage-unit { font-size: 0.9rem; color: var(--text-secondary); }
-.plans__stage-usd { font-size: 0.82rem; color: var(--text-muted); }
-
-.plans__stage-desc {
-  font-size: 0.98rem;
-  line-height: 1.6;
-  color: var(--text-secondary);
-  margin: 0 0 18px;
-  text-wrap: pretty;
-}
-
-.plans__stage-points { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
-
-.plans__stage-points li {
-  position: relative;
-  padding-left: 18px;
-  font-size: 0.92rem;
-  line-height: 1.5;
-  color: var(--text-secondary);
-  text-wrap: pretty;
-}
-
-.plans__stage-points li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 9px;
-  width: 8px;
-  height: 1.5px;
-  background: var(--accent);
-}
-
-/* ─── Shared section furniture ─── */
-.plans__section { padding: clamp(56px, 8vh, 100px) 0 0; }
-.plans__head { max-width: 68ch; margin-bottom: clamp(24px, 4vh, 40px); }
+.plans-page .module-detail__content { max-width: 1200px; }
 
 .plans__eyebrow {
   display: inline-block;
@@ -145,77 +17,202 @@
 .plans__h2 {
   font-family: var(--font-serif);
   font-weight: 500;
-  font-size: clamp(1.9rem, 3.6vw, 3rem);
+  font-size: clamp(1.8rem, 3.2vw, 2.7rem);
   line-height: 1.06;
   letter-spacing: -0.026em;
   margin: 0;
   text-wrap: balance;
 }
 
-.plans__sub { margin: 14px 0 0; font-size: 1rem; line-height: 1.6; color: var(--text-secondary); text-wrap: pretty; }
-
-/* ─── The price list ─── */
-.plans__table-wrap { overflow-x: auto; }
-
-.plans__table {
-  width: 100%;
-  border-collapse: collapse;
-  min-width: 640px;
+/* ─── Hero: the claim, and the answer beside it ─── */
+.plans__hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: clamp(28px, 5vw, 72px);
+  align-items: center;
+  padding: 8px 0 clamp(36px, 5vh, 60px);
 }
 
-.plans__table thead th {
-  text-align: left;
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text-muted);
+.plans__title {
+  font-family: var(--font-serif);
   font-weight: 500;
-  padding: 0 0 12px;
-  border-bottom: 1px solid var(--border-glass);
+  font-size: clamp(2.6rem, 4.8vw, 4.2rem);
+  line-height: 1;
+  letter-spacing: -0.032em;
+  margin: 0 0 20px;
 }
 
-.plans__table tbody th {
-  text-align: left;
-  font-weight: 600;
-  font-size: 1.02rem;
-  letter-spacing: -0.01em;
-  padding: 18px 20px 18px 0;
-  border-bottom: 1px solid var(--border-glass);
-  vertical-align: top;
-}
-
-.plans__table tbody td {
-  font-size: 0.95rem;
+.plans__lede {
+  font-size: clamp(1rem, 1.25vw, 1.12rem);
+  line-height: 1.6;
   color: var(--text-secondary);
-  padding: 18px 20px 18px 0;
-  border-bottom: 1px solid var(--border-glass);
-  vertical-align: top;
-}
-
-[data-theme="light"] .plans__table th,
-[data-theme="light"] .plans__table td { border-bottom-color: rgba(20, 18, 15, 0.09); }
-
-.plans__row-note {
-  display: block;
-  margin-top: 5px;
-  font-size: 0.85rem;
-  font-weight: 400;
-  color: var(--text-muted);
-  max-width: 40ch;
+  margin: 0;
+  max-width: 54ch;
   text-wrap: pretty;
 }
 
-.plans__table .plans__num { text-align: right; white-space: nowrap; padding-right: 0; }
-.plans__inr { font-family: var(--font-mono); font-size: 1rem; color: var(--text-primary); font-weight: 600; }
-.plans__usd { font-family: var(--font-mono); font-size: 0.88rem; color: var(--text-muted); }
+.plans__glance {
+  padding: clamp(20px, 2.4vw, 30px);
+  border-radius: 22px;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-glass);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.32);
+}
 
-.plans__notes { list-style: none; margin: 22px 0 0; padding: 0; display: flex; flex-direction: column; gap: 10px; max-width: 78ch; }
+[data-theme="light"] .plans__glance {
+  background: var(--frost);
+  border-color: var(--frost-border);
+  box-shadow: 0 24px 56px rgba(31, 38, 135, 0.12);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+}
+
+.plans__glance-title {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.plans__glance-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 2px 14px;
+  padding: 12px 0;
+  border-top: 1px solid var(--border-glass);
+}
+
+[data-theme="light"] .plans__glance-row { border-top-color: rgba(20, 18, 15, 0.09); }
+
+.plans__glance-label { font-size: 0.98rem; font-weight: 600; letter-spacing: -0.01em; }
+.plans__glance-figs { text-align: right; display: flex; flex-direction: column; }
+.plans__glance-inr { font-family: var(--font-mono); font-size: 1.02rem; font-weight: 600; letter-spacing: -0.02em; white-space: nowrap; }
+.plans__glance-usd { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); white-space: nowrap; }
+.plans__glance-sub { grid-column: 1 / -1; font-size: 0.8rem; color: var(--text-muted); }
+
+/* ─── The path: three stages, one band ─── */
+.plans__path {
+  display: flex;
+  gap: 14px;
+  align-items: stretch;
+  min-height: 336px;
+  margin-bottom: clamp(48px, 7vh, 90px);
+}
+
+.plans__stage {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: clamp(20px, 2.2vw, 30px);
+  text-align: left;
+  border-radius: 22px;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-glass);
+  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.26);
+  cursor: pointer;
+  overflow: hidden;
+  transition: border-color var(--transition-base), background var(--transition-base);
+}
+
+[data-theme="light"] .plans__stage {
+  background: rgba(255, 255, 255, 0.55);
+  border-color: var(--frost-border);
+  box-shadow: 0 18px 44px rgba(31, 38, 135, 0.09);
+}
+
+.plans__stage:hover { border-color: rgba(var(--clay-rgb), 0.4); }
+
+.plans__stage.is-open {
+  cursor: default;
+  border-color: rgba(var(--clay-rgb), 0.5);
+  background: var(--bg-glass-hover);
+}
+
+[data-theme="light"] .plans__stage.is-open { background: var(--frost-strong); }
+
+.plans__stage-head { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+
+.plans__stage-step {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+}
+
+.plans__stage-name {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(1.4rem, 2vw, 1.9rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+}
+
+.plans__stage-inr {
+  font-family: var(--font-mono);
+  font-size: clamp(1.3rem, 1.8vw, 1.7rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  margin-top: 10px;
+  white-space: nowrap;
+}
+
+.plans__stage-unit { font-size: 0.84rem; color: var(--text-secondary); }
+
+.plans__stage-body { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.plans__stage-when { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); }
+.plans__stage-desc { font-size: 0.97rem; line-height: 1.6; color: var(--text-secondary); text-wrap: pretty; }
+
+.plans__stage-points { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 22px; }
+
+.plans__stage-point {
+  position: relative;
+  padding-left: 17px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  text-wrap: pretty;
+}
+
+.plans__stage-point::before { content: ''; position: absolute; left: 0; top: 9px; width: 8px; height: 1.5px; background: var(--accent); }
+
+/* A closed stage says how to open it, and the word sits at the foot of the card
+   so the space below the price reads as deliberate rather than left over. */
+.plans__stage-open {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  opacity: 0.7;
+}
+
+.plans__stage-open::after { content: '→'; font-family: var(--font-family); }
+.plans__stage:hover .plans__stage-open { opacity: 1; }
+
+/* ─── The price list ─── */
+.plans__prices {
+  display: grid;
+  grid-template-columns: minmax(0, 0.6fr) minmax(0, 1.4fr);
+  gap: clamp(28px, 4vw, 60px);
+  align-items: start;
+  margin-bottom: clamp(48px, 7vh, 90px);
+}
+
+.plans__notes { list-style: none; margin: 20px 0 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
 
 .plans__notes li {
   position: relative;
-  padding-left: 18px;
-  font-size: 0.88rem;
+  padding-left: 17px;
+  font-size: 0.84rem;
   line-height: 1.55;
   color: var(--text-muted);
   text-wrap: pretty;
@@ -223,105 +220,188 @@
 
 .plans__notes li::before { content: ''; position: absolute; left: 0; top: 9px; width: 8px; height: 1.5px; background: var(--text-muted); opacity: 0.6; }
 
-/* ─── The thirteen weeks ─── */
-.plans__weeks {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0 clamp(28px, 5vw, 64px);
-}
+.plans__table-wrap { overflow-x: auto; }
+.plans__table { width: 100%; border-collapse: collapse; min-width: 560px; }
 
-.plans__week { padding: 20px 0; border-top: 1px solid var(--border-glass); }
-[data-theme="light"] .plans__week { border-top-color: rgba(20, 18, 15, 0.1); }
-
-.plans__week-when {
-  display: block;
+.plans__table thead th {
+  text-align: left;
   font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.1em;
+  font-size: 0.64rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 8px;
+  color: var(--text-muted);
+  font-weight: 500;
+  padding: 0 0 10px;
+  border-bottom: 1px solid var(--border-glass);
 }
 
-.plans__week-title {
-  font-family: var(--font-serif);
-  font-size: 1.3rem;
+.plans__table tbody th {
+  text-align: left;
   font-weight: 600;
-  letter-spacing: -0.015em;
-  margin: 0 0 6px;
+  font-size: 0.96rem;
+  letter-spacing: -0.01em;
+  padding: 14px 18px 14px 0;
+  border-bottom: 1px solid var(--border-glass);
+  vertical-align: top;
 }
 
-.plans__week-body { margin: 0; font-size: 0.95rem; line-height: 1.6; color: var(--text-secondary); text-wrap: pretty; }
+.plans__table tbody td {
+  font-size: 0.9rem;
+  white-space: nowrap;
+  color: var(--text-secondary);
+  padding: 14px 18px 14px 0;
+  border-bottom: 1px solid var(--border-glass);
+  vertical-align: top;
+}
 
-/* ─── Who provides what ─── */
-.plans__split { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(28px, 5vw, 72px); }
+[data-theme="light"] .plans__table th,
+[data-theme="light"] .plans__table td { border-bottom-color: rgba(20, 18, 15, 0.09); }
+
+.plans__row-note { display: block; margin-top: 4px; font-size: 0.8rem; font-weight: 400; color: var(--text-muted); max-width: 36ch; text-wrap: pretty; }
+.plans__table .plans__num { text-align: right; white-space: nowrap; padding-right: 0; }
+.plans__inr { font-family: var(--font-mono); font-size: 0.95rem; color: var(--text-primary); font-weight: 600; }
+.plans__usd { font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-muted); }
+
+/* ─── The dossier: four answers in one card ─── */
+.plans__dossier { margin-bottom: clamp(40px, 6vh, 80px); }
+
+.plans__tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
+
+.plans__tab {
+  position: relative;
+  padding: 9px 17px;
+  border-radius: var(--radius-full);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-glass);
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+[data-theme="light"] .plans__tab { border-color: rgba(20, 18, 15, 0.1); }
+.plans__tab:hover { color: var(--text-primary); }
+.plans__tab.is-active { color: var(--btn-primary-text); border-color: transparent; }
+
+.plans__tab-pill { position: absolute; inset: 0; border-radius: var(--radius-full); background: var(--accent); z-index: 0; }
+.plans__tab-text { position: relative; z-index: 1; }
+
+.plans__panel-frame {
+  border-radius: 24px;
+  padding: clamp(22px, 3vw, 38px);
+  background: var(--bg-glass);
+  border: 1px solid var(--border-glass);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+[data-theme="light"] .plans__panel-frame {
+  background: var(--frost);
+  border-color: var(--frost-border);
+  box-shadow: 0 24px 56px rgba(31, 38, 135, 0.11);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+}
+
+.plans__panel-lede { margin: 0 0 22px; font-size: 0.98rem; line-height: 1.6; color: var(--text-secondary); max-width: 76ch; text-wrap: pretty; }
+
+/* The thirteen weeks, as a rail you push sideways */
+.plans__rail {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 12px;
+  margin: 0 calc(clamp(22px, 3vw, 38px) * -1);
+  padding-left: clamp(22px, 3vw, 38px);
+  padding-right: clamp(22px, 3vw, 38px);
+  scrollbar-width: thin;
+}
+
+.plans__wcard {
+  flex: 0 0 268px;
+  scroll-snap-align: start;
+  padding: 18px;
+  border-radius: 16px;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-glass);
+}
+
+[data-theme="light"] .plans__wcard { background: rgba(255, 255, 255, 0.62); border-color: rgba(20, 18, 15, 0.08); }
+
+.plans__wcard-when { display: block; font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+.plans__wcard-title { font-family: var(--font-serif); font-size: 1.15rem; font-weight: 600; letter-spacing: -0.015em; margin: 0 0 6px; }
+.plans__wcard-body { margin: 0; font-size: 0.88rem; line-height: 1.55; color: var(--text-secondary); text-wrap: pretty; }
+
+/* Who provides what */
+.plans__panel--split { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(26px, 4vw, 56px); }
 
 .plans__col-title {
   font-family: var(--font-serif);
-  font-size: 1.4rem;
+  font-size: 1.24rem;
   font-weight: 600;
   letter-spacing: -0.018em;
-  margin: 0 0 18px;
-  padding-bottom: 14px;
+  margin: 0 0 14px;
+  padding-bottom: 12px;
   border-bottom: 2px solid var(--accent);
 }
 
-.plans__col-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 18px; }
+.plans__col-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.plans__item-title { display: block; font-size: 0.97rem; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 3px; }
+.plans__item-body { display: block; font-size: 0.88rem; line-height: 1.55; color: var(--text-secondary); text-wrap: pretty; }
 
-.plans__item-title { display: block; font-size: 1.02rem; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 4px; }
-.plans__item-body { display: block; font-size: 0.93rem; line-height: 1.6; color: var(--text-secondary); text-wrap: pretty; }
-
-/* ─── What the pilot proves ─── */
-.plans__proof {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(22px, 3vw, 40px);
-}
-
-.plans__proof-item { display: flex; flex-direction: column; padding-top: 16px; border-top: 1px solid var(--border-glass); }
+/* What the pilot proves */
+.plans__proof { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px clamp(22px, 3vw, 40px); }
+.plans__proof-item { display: flex; flex-direction: column; padding-top: 14px; border-top: 1px solid var(--border-glass); }
 [data-theme="light"] .plans__proof-item { border-top-color: rgba(20, 18, 15, 0.1); }
+.plans__proof-num { font-family: var(--font-serif); font-style: italic; font-size: 1rem; color: var(--accent); margin-bottom: 8px; }
 
-.plans__proof-num { font-family: var(--font-serif); font-style: italic; font-size: 1.1rem; color: var(--accent); margin-bottom: 10px; }
-
-/* ─── Procurement and security ─── */
-.plans__faq { margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 clamp(28px, 5vw, 64px); }
-
-.plans__faq-item { padding: 22px 0; border-top: 1px solid var(--border-glass); }
+/* Procurement, one question at a time */
+.plans__faq { margin: 0; }
+.plans__faq-item { border-top: 1px solid var(--border-glass); }
 [data-theme="light"] .plans__faq-item { border-top-color: rgba(20, 18, 15, 0.1); }
+.plans__faq-item:first-child { border-top: 0; }
 
-.plans__faq dt {
+.plans__faq dt button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 15px 0;
+  text-align: left;
   font-family: var(--font-serif);
-  font-size: 1.22rem;
+  font-size: 1.1rem;
   font-weight: 600;
   letter-spacing: -0.015em;
-  margin-bottom: 8px;
+  color: var(--text-primary);
 }
 
-.plans__faq dd { margin: 0; font-size: 0.95rem; line-height: 1.6; color: var(--text-secondary); text-wrap: pretty; }
+.plans__faq dt button svg { flex: none; color: var(--accent); transition: transform var(--transition-base); }
+.plans__faq-item.is-open dt button svg { transform: rotate(45deg); }
+
+.plans__faq dd { margin: 0; overflow: hidden; }
+.plans__faq dd span { display: block; padding: 0 0 16px; font-size: 0.93rem; line-height: 1.6; color: var(--text-secondary); max-width: 82ch; text-wrap: pretty; }
 
 /* ─── Close ─── */
-.plans__cta { text-align: center; padding: clamp(64px, 10vh, 120px) 0 20px; }
+.plans__cta { text-align: center; padding: clamp(20px, 4vh, 46px) 0 24px; }
 
 .plans__cta-title {
   font-family: var(--font-serif);
   font-weight: 500;
-  font-size: clamp(2rem, 4.4vw, 3.4rem);
+  font-size: clamp(1.9rem, 3.8vw, 2.9rem);
   letter-spacing: -0.028em;
   line-height: 1.05;
-  margin: 0 auto 16px;
+  margin: 0 auto 12px;
 }
 
-.plans__cta-desc { margin: 0 auto 28px; max-width: 56ch; font-size: 1.02rem; line-height: 1.6; color: var(--text-secondary); }
+.plans__cta-desc { margin: 0 auto 24px; max-width: 54ch; font-size: 0.98rem; line-height: 1.6; color: var(--text-secondary); }
 
-@media (max-width: 900px) {
-  .plans__stages { grid-template-columns: 1fr; gap: 36px; }
-  .plans__weeks, .plans__split, .plans__faq { grid-template-columns: 1fr; }
+@media (max-width: 980px) {
+  .plans__hero { grid-template-columns: 1fr; }
+  .plans__prices { grid-template-columns: 1fr; }
+  .plans__path { flex-direction: column; min-height: 0; }
+  .plans__stage { flex: none !important; }
+  .plans__panel--split { grid-template-columns: 1fr; }
   .plans__proof { grid-template-columns: 1fr; }
-  .plans__title { max-width: none; }
+  .plans__stage-points { grid-template-columns: 1fr; }
 }

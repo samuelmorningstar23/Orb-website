@@ -144,3 +144,11 @@ export const FAQ: { q: string; a: string }[] = [
   { q: 'How long until we are live?', a: 'Thirteen weeks from signature to shadow go-live on one ward, and the ward goes live after a clean shadow period rather than on a date somebody wrote in a contract. The single hard gate is the hardware order by the end of week three.' },
   { q: 'Who is behind this today?', a: 'One founder, and the product you have seen on this site. That is the honest answer to the question a CIO should ask before signing anything, and it is why the pilot is structured to be measurable and to leave you with the appliance.' },
 ]
+
+/** The four headline numbers, for the card beside the title. */
+export const AT_A_GLANCE: { label: string; inr: string; usd: string; sub: string }[] = [
+  { label: 'The pilot', inr: '₹18,00,000', usd: '$19,000', sub: 'fixed, thirteen weeks, appliance included' },
+  { label: 'Per bed', inr: '₹5,000', usd: '$53', sub: 'a month, on the wards you deploy' },
+  { label: 'Implementation', inr: '₹58,10,000', usd: '$61,500', sub: 'once per site, at eight workflows' },
+  { label: 'The appliance', inr: '₹11.2 to 12.6 L', usd: '$11,900 to $13,400', sub: 'bought by you, at cost' },
+]
