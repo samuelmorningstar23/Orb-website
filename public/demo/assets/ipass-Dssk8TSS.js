@@ -1,1 +1,0 @@
-import{d as e}from"./client-BQjqoZZa.js";async function t(t){return e(`/ipass/${t}/draft`)}async function n(t,n){return e(`/ipass/${t}/save`,{method:`POST`,body:JSON.stringify({content:n})})}async function r(t){return e(`/ipass/${t}/reasoned-assessment`)}async function i(t){return e(`/ipass/${t}/reasoned-assessment/prepare`,{method:`POST`})}export{n as i,r as n,i as r,t};

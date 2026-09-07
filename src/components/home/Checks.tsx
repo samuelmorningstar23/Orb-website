@@ -16,7 +16,7 @@ export default function Checks() {
       <Reveal className="checks__intro">
         <span className="checks__eyebrow">What you can check</span>
         <h2 className="checks__title" id="checks-title">None of this is a promise.</h2>
-        <p className="checks__lede">Each line is a screen in the product, and the demo above runs on the real thing.</p>
+        <p className="checks__lede">Each line is a screen in the product, and every screenshot on this site was taken from one running.</p>
         <Link to="/security" className="checks__link">Read the security brief <span aria-hidden="true">&rarr;</span></Link>
       </Reveal>
       <Stagger className="checks__list" as="ul" amount={0.25}>

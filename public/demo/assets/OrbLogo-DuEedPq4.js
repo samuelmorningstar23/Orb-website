@@ -1,1 +1,0 @@
-import{t as e}from"./jsx-runtime-n5LQ9ujS.js";var t=e();function n({size:e=48}){return(0,t.jsxs)(`div`,{className:`orb-logo`,style:{width:e,height:e},children:[(0,t.jsx)(`div`,{className:`orb-logo__ring`}),(0,t.jsx)(`div`,{className:`orb-logo__core`})]})}export{n as t};

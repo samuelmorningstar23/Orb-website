@@ -37,7 +37,7 @@ export default function ModuleBento() {
       <Reveal className="bento__header">
         <span className="bento__eyebrow">{TILES.length} modules, one record</span>
         <h2 className="bento__title">Pick one. Each page runs it.</h2>
-        <p className="bento__lead">Every tile is a real screen of a running Orb appliance on seeded demo patients, in the theme you are reading in. Every page behind a tile runs the module itself.</p>
+        <p className="bento__lead">Every tile is a real screen of a running Orb appliance on seeded demo patients, in the theme you are reading in. Each page behind a tile walks that module’s workflow.</p>
       </Reveal>
 
       <div className="bento__grid">

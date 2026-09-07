@@ -300,7 +300,7 @@
   grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
   gap: clamp(28px, 4vw, 56px);
   align-items: center;
-  padding: 24px 0 40px;
+  padding: 20px 0 28px;
 }
 
 .mp__title {
@@ -340,7 +340,7 @@
   box-shadow: 0 40px 100px rgba(31, 38, 135, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.95);
 }
 
-.mp__hero-demo .module-detail__visual-frame { border-radius: 16px; aspect-ratio: 16 / 10.5; min-height: 420px; }
+.mp__hero-demo .wg { border-radius: 16px; }
 
 .mp__demo-note { margin: 12px 6px 2px; font-size: 0.82rem; color: var(--text-muted); }
 
@@ -354,8 +354,8 @@
   text-wrap: balance;
 }
 
-.mp__facts { padding: clamp(56px, 8vh, 96px) 0 0; }
-.mp__facts-head { max-width: 720px; margin-bottom: 28px; }
+.mp__facts { padding: clamp(44px, 6vh, 72px) 0 0; }
+.mp__facts-head { max-width: 720px; margin-bottom: 18px; }
 
 .mp__facts-list {
   list-style: none;
@@ -371,7 +371,7 @@
   grid-template-columns: 44px minmax(0, 1fr);
   grid-template-rows: auto auto;
   column-gap: 12px;
-  padding: 22px 0;
+  padding: 18px 0;
   border-top: 1px solid var(--border-glass);
 }
 
@@ -381,9 +381,9 @@
 .mp__fact-title { font-family: var(--font-serif); font-size: 1.35rem; font-weight: 600; letter-spacing: -0.015em; line-height: 1.2; margin-bottom: 6px; }
 .mp__fact-desc { font-size: 0.98rem; line-height: 1.55; color: var(--text-secondary); }
 
-.mp__walk { padding: clamp(56px, 8vh, 96px) 0 0; }
 
-.mp__strip { padding: clamp(56px, 8vh, 96px) 0 0; }
+
+.mp__strip { padding: clamp(44px, 6vh, 72px) 0 0; }
 
 .mp__film {
   display: flex;
@@ -396,7 +396,7 @@
 }
 
 .mp__still {
-  flex: 0 0 min(72vw, 720px);
+  flex: 0 0 min(64vw, 560px);
   margin: 0;
   scroll-snap-align: start;
 }
@@ -417,7 +417,7 @@
 .mp__still--tall img { object-fit: contain; background: #101010; }
 .mp__still figcaption { margin-top: 10px; font-size: 0.88rem; color: var(--text-secondary); }
 
-.mp__cta { text-align: center; padding: clamp(72px, 12vh, 140px) 0 20px; }
+.mp__cta { text-align: center; padding: clamp(52px, 8vh, 96px) 0 20px; }
 
 .mp__cta-title {
   font-family: var(--font-serif);
@@ -430,12 +430,12 @@
   text-wrap: balance;
 }
 
-.mp .news2 { margin-top: clamp(56px, 8vh, 96px); }
+.mp .news2 { margin-top: clamp(44px, 6vh, 72px); }
 
 @media (max-width: 960px) {
   .mp__hero { grid-template-columns: 1fr; }
   .mp__hero-demo { padding: 6px; border-radius: 18px; }
-  .mp__hero-demo .module-detail__visual-frame { border-radius: 12px; aspect-ratio: 4 / 3; min-height: 380px; }
+  .mp__hero-demo .wg { border-radius: 12px; }
   .mp__facts-list { grid-template-columns: 1fr; }
 }
 
@@ -507,3 +507,7 @@
   border-color: var(--frost-border);
   box-shadow: 0 16px 44px rgba(31, 38, 135, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.95);
 }
+
+/* The strip note under the eyebrow, and a smaller CTA line on module pages. */
+.mp__strip-note { margin: 6px 0 0; font-size: 0.92rem; color: var(--text-muted); }
+.mp__cta-title { font-size: clamp(1.8rem, 3.6vw, 2.9rem); }

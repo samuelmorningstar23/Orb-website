@@ -1,8 +1,8 @@
 import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
-import LiveDemo from '../captures/LiveDemo'
-import { LIVE_VIEWS } from '../../data/liveViews'
+import Widget from '../widget/Widget'
+import { WIDGET_FLOWS } from '../../data/widgetFlows'
 import { openDemoModal } from '../../data/siteContent'
 import './Hero.css'
 
@@ -40,10 +40,10 @@ export default function Hero() {
           className="hero__frame"
           style={reduce ? undefined : { rotateX, scale }}
         >
-          <LiveDemo views={LIVE_VIEWS['/vigil']} label="Orb Vigil, live in your browser" lazy={false} />
+          <Widget flows={WIDGET_FLOWS['/vigil']} label="Orb Vigil, one workflow" size="tall" />
         </motion.div>
         <p className="hero__stage-note">
-          That is the Orb front end, running in your browser on a recording of the appliance and seeded demo patients, walking one workflow. Step through it, or let it play.
+          One workflow at a time, on the seeded demo patients the screenshots were taken on. Step through it, or let it play.
         </p>
       </div>
     </section>

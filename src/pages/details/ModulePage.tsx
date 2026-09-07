@@ -1,37 +1,27 @@
 import { Link } from 'react-router-dom'
 import MarketingHeader from '../../components/MarketingHeader'
 import Aurora from '../../components/Aurora'
-import LiveDemo from '../../components/captures/LiveDemo'
+import Widget from '../../components/widget/Widget'
 import News2Live from '../../components/captures/News2Live'
-import StoryScroll, { type StoryStep } from '../../components/home/StoryScroll'
 import { Reveal, Stagger, StaggerItem } from '../../components/motion/Reveal'
 import { useIsLightTheme } from '../../components/showcases/useIsLightTheme'
-import { LIVE_VIEWS, WALKTHROUGHS } from '../../data/liveViews'
-import { flowById, SCREENS } from '../../data/orbCaptures'
+import { WIDGET_FLOWS } from '../../data/widgetFlows'
+import { SCREENS } from '../../data/orbCaptures'
 import { modulePage } from '../../data/modulePages'
 import { ALL_MODULES, openDemoModal } from '../../data/siteContent'
 import './ModuleDetails.css'
 
 /**
- * One layout for every module page: the claim and the module itself running
- * side by side, the walkthrough told with its own screens as you scroll, the
- * facts as an editorial list, more screens as a filmstrip, one call to action.
+ * One layout for every module page, kept short on purpose: the claim beside the
+ * workflow running as an animation, four things you can check, the real screens
+ * as a strip, one call to action. No second walkthrough underneath: the widget
+ * is the walkthrough.
  */
 export default function ModulePage({ route }: { route: string }) {
   const page = modulePage(route)
   const info = ALL_MODULES.find(m => m.to === route)
-  const views = LIVE_VIEWS[route]
-  const walk = WALKTHROUGHS[route]
+  const flows = WIDGET_FLOWS[route]
   const isLight = useIsLightTheme()
-
-  const steps: StoryStep[] = walk
-    ? walk.flows.flatMap((id, fi) => flowById(id).steps.map(s => ({
-        kicker: walk.labels?.[fi] ?? flowById(id).title,
-        body: s.caption,
-        src: s.src,
-      })))
-    : []
-
   const more = (page.moreScreens ?? []).filter(n => SCREENS[n])
 
   return (
@@ -40,7 +30,7 @@ export default function ModulePage({ route }: { route: string }) {
       <MarketingHeader />
 
       <main className="mp__content">
-        <Link to="/#modules" className="module-detail__back">
+        <Link to="/modules" className="module-detail__back">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M19 12H5M12 19l-7-7 7-7" />
           </svg>
@@ -57,10 +47,10 @@ export default function ModulePage({ route }: { route: string }) {
               {info && <span className="mp__area">{info.line}</span>}
             </div>
           </div>
-          {views && (
+          {flows && (
             <div className="mp__hero-demo">
-              <LiveDemo views={views} label={`${page.title}, live in your browser`} lazy={false} />
-              <p className="mp__demo-note">{page.captureNote ?? 'The Orb front end itself, in your browser, on a recording of the appliance and seeded demo patients. Click anything.'}</p>
+              <Widget flows={flows} label={`${page.title}, one workflow`} />
+              <p className="mp__demo-note">{page.captureNote ?? (more.length ? 'An animation of the workflow. The screens themselves are below.' : 'An animation of the workflow, on seeded demo patients.')}</p>
             </div>
           )}
         </section>
@@ -68,7 +58,6 @@ export default function ModulePage({ route }: { route: string }) {
         <section className="mp__facts" aria-label={`What ${page.title} does`}>
           <Reveal className="mp__facts-head">
             <span className="mp__eyebrow">What you can check</span>
-            <h2 className="mp__h2">On the screen, not in the brochure.</h2>
           </Reveal>
           <Stagger className="mp__facts-list" as="ul" amount={0.2}>
             {page.cards.map((c, i) => (
@@ -81,22 +70,13 @@ export default function ModulePage({ route }: { route: string }) {
           </Stagger>
         </section>
 
-        {steps.length > 0 && (
-          <section className="mp__walk" aria-labelledby="walk-title">
-            <Reveal className="mp__facts-head">
-              <span className="mp__eyebrow">The walkthrough</span>
-              <h2 className="mp__h2" id="walk-title">Step by step, on the product’s own screens.</h2>
-            </Reveal>
-            <StoryScroll steps={steps} label={`${page.title} walkthrough`} numbered={false} />
-          </section>
-        )}
-
         {page.tryNews2 && <News2Live />}
 
         {more.length > 0 && (
-          <section className="mp__strip" aria-label={`More screens of ${page.title}`}>
+          <section className="mp__strip" aria-label={`Screens of ${page.title}`}>
             <Reveal className="mp__facts-head">
-              <span className="mp__eyebrow">More of {page.title}</span>
+              <span className="mp__eyebrow">The real screens</span>
+              <p className="mp__strip-note">Captured from a running appliance on seeded demo patients.</p>
             </Reveal>
             <div className="mp__film">
               {more.map(n => (
@@ -113,7 +93,7 @@ export default function ModulePage({ route }: { route: string }) {
           <h2 className="mp__cta-title">{page.ctaLine}</h2>
           <div className="mp__actions mp__actions--center">
             <button type="button" className="hero__btn hero__btn--primary" onClick={openDemoModal}>Request a demo</button>
-            <Link to="/#modules" className="hero__btn hero__btn--ghost">All modules <span aria-hidden="true">&rarr;</span></Link>
+            <Link to="/modules" className="hero__btn hero__btn--ghost">All modules <span aria-hidden="true">&rarr;</span></Link>
           </div>
         </Reveal>
       </main>

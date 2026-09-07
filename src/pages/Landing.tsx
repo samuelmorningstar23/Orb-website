@@ -71,7 +71,7 @@ export default function Landing() {
 
           <div className="landing-overview__footer-bottom">
             <p>© 2026 Orb. All rights reserved.</p>
-            <p className="landing-overview__footer-fineprint">Every screen on this site is the running Orb front end, or a capture of it, on seeded demo patients. No real patient appears here.</p>
+            <p className="landing-overview__footer-fineprint">The workflows on this site are animations of the product; the screenshots are captures of it running. Both use seeded demo patients, and no real patient appears here.</p>
           </div>
         </footer>
       </main>

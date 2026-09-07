@@ -1,1 +1,0 @@
-import{d as e}from"./client-BQjqoZZa.js";var t=`/admin/shadow`;async function n(n){return e(`${t}/outcome/shift-status?ward=${encodeURIComponent(n)}`)}async function r(n){return e(`${t}/outcome`,{method:`POST`,body:JSON.stringify(n)})}async function i(n){return e(`${t}/outcome/none`,{method:`POST`,body:JSON.stringify(n)})}export{n,r,i as t};

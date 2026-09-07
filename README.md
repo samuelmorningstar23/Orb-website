@@ -55,13 +55,13 @@ inbox the team controls.
 - `Aurora`, `OrbLogo`, and the CSS tokens are **copies** shared with the app by
   convention : there is no code dependency between the two projects.
 
-## The live demo
+## The workflow widgets
 
-Every module page and the homepage explorer embed the real Orb front end, built in demo mode from the Orb repo (`vite.demo.config.ts`): the app's API calls are answered in the browser from recordings of the real backend on seeded demo patients, and the realtime frames are replayed. Nothing is mocked by hand.
+Every module page and the homepage show one workflow as a small animated screen (`src/components/widget/Widget.tsx`). These are drawings of the product, not the product: a step is a state of a miniature Orb screen and the player animates between consecutive states, so a NEWS2 score that rises or an interlock that fires is a movement rather than a screenshot to read.
 
-- `public/demo/` is the built app (do not edit; rebuild with `scripts/build_demo.sh`).
-- `public/demo-data/<persona>.json` are the recordings, written by `node docs/website-assets/capture.cjs --record` in the Orb repo.
-- `src/components/captures/LiveDemo.tsx` embeds `/demo/index.html?persona=…&tab=…`; `src/data/liveViews.ts` maps each module to a persona, a tab and a hint.
-- `src/components/captures/Capture.tsx` plays the captioned walkthroughs (frames from the same capture run); `scripts/import_orb_assets.py` imports them.
+- `src/data/widgetFlows.ts` holds every flow, keyed by route. A flow is a list of steps; a step is a caption and a scene built from blocks (rows, tiles, banner, chat, fields, checks, meter, lines, chips).
+- Every caption is a claim the product can stand behind, and the figures are the seeded demo patients the captures were taken on. Keep it that way.
+- The real screens sit under the widget on each module page, imported from the Orb repo's capture run by `python3 scripts/import_orb_assets.py`.
 
-To refresh after a product change: in the Orb repo, reseed, start the backend with the admin MFA wall lifted, run the capture with `--record`, then here run `scripts/build_demo.sh` and `python3 scripts/import_orb_assets.py`.
+The site used to embed the whole front end in demo mode. That was removed on purpose: it handed the entire product to anyone who opened the page. The demo build itself still lives in the Orb repo (`vite.demo.config.ts`, `src/demo/`), so it can be put behind a login later.
+
