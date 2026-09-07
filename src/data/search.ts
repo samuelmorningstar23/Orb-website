@@ -54,7 +54,7 @@ const PAGE_ENTRIES: SearchEntry[] = [
     body: 'The hospital operating system that runs inside the hospital: the record, the ward monitor, the pharmacy and the front desk on one appliance.',
   },
   {
-    id: 'page-modules', kind: 'page', title: 'All modules', subtitle: 'Every module, captured from the product', to: '/#modules',
+    id: 'page-modules', kind: 'page', title: 'All modules', subtitle: 'Every module as a real screen', to: '/modules',
     keywords: ['modules', 'products', 'features', 'catalog', 'list'],
     body: ALL_MODULES.map(m => m.label).join(' '),
   },

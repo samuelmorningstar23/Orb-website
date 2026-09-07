@@ -19,7 +19,7 @@ type NavItem =
 // Four items a first-time visitor can act on. Module names live in the
 // Modules card and the explorer, not in the top bar.
 const NAV_ITEMS: NavItem[] = [
-  { id: 'modules', label: 'Modules', to: '/#modules', panel: 'modules' },
+  { id: 'modules', label: 'Modules', to: '/modules', panel: 'modules' },
   { id: 'plans', label: 'Plans', to: '/plans', panel: 'plans' },
   { id: 'security', label: 'Security', to: '/security', panel: null },
   { id: 'support', label: 'Support', to: '/support', panel: null },

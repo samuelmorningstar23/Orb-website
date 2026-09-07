@@ -1,4 +1,5 @@
 import { useRef } from 'react'
+import { Link } from 'react-router-dom'
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
 import LiveDemo from '../captures/LiveDemo'
 import { LIVE_VIEWS } from '../../data/liveViews'
@@ -30,7 +31,7 @@ export default function Hero() {
         </p>
         <div className="hero__actions">
           <button type="button" className="hero__btn hero__btn--primary" onClick={openDemoModal}>Request a demo</button>
-          <a className="hero__btn hero__btn--ghost" href="#modules">Every module, running below <span aria-hidden="true">&darr;</span></a>
+          <Link className="hero__btn hero__btn--ghost" to="/modules">The modules <span aria-hidden="true">&rarr;</span></Link>
         </div>
       </div>
 
@@ -42,7 +43,7 @@ export default function Hero() {
           <LiveDemo views={LIVE_VIEWS['/vigil']} label="Orb Vigil, live in your browser" lazy={false} />
         </motion.div>
         <p className="hero__stage-note">
-          That is the Orb front end, running in your browser on a recording of the appliance and seeded demo patients. Open a chart.
+          That is the Orb front end, running in your browser on a recording of the appliance and seeded demo patients, walking one workflow. Step through it, or let it play.
         </p>
       </div>
     </section>

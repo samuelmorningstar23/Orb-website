@@ -20,6 +20,7 @@ const modules = [...src.matchAll(/route: '([^']+)',\s*title: '([^']+)',\s*badge:
 
 const pages = [
   { route: '/', title: 'Orb Hospital OS', description: 'The record, the ward monitor, the pharmacy and the front desk on one appliance inside the hospital. The models run there too, so nothing about a patient leaves the building.' },
+  { route: '/modules', title: 'The modules | Orb', description: 'Every Orb module as a real screen of the running product, each opening a page that runs its workflows.' },
   { route: '/plans', title: 'Plans | Orb', description: 'A thirteen-week pilot on one ward, then per-bed pricing for the whole hospital. No tier withholds a safety feature.' },
   { route: '/security', title: 'Security brief | Orb', description: 'What leaves the building: nothing. The appliance, the models and the hash-chained audit log, with the admin screens they are checked on.' },
   { route: '/support', title: 'Support | Orb', description: 'Write to the team, book a walkthrough of the running product, or find the answer below.' },

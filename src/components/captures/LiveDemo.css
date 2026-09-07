@@ -6,11 +6,33 @@
   background: #1c1b19;
 }
 
+/* A thin title bar above the app, so nothing sits on top of the app's own header. */
+.live__top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 0 8px 0 14px;
+  background: rgba(0, 0, 0, 0.72);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
 .live__frame {
   position: absolute;
-  inset: 0;
+  top: 40px;
+  left: 0;
+  right: 0;
+  bottom: 0;
   width: 100%;
-  height: 100%;
+  height: calc(100% - 40px);
   border: 0;
   background: #1c1b19;
   display: block;
@@ -18,7 +40,10 @@
 
 .live__poster {
   position: absolute;
-  inset: 0;
+  top: 40px;
+  left: 0;
+  right: 0;
+  bottom: 0;
   z-index: 2;
   background: #1c1b19;
   transition: opacity 320ms ease;
@@ -81,10 +106,6 @@
 @keyframes live-spin { to { transform: rotate(360deg); } }
 
 .live__badge {
-  position: absolute;
-  top: 12px;
-  left: 14px;
-  z-index: 3;
   display: inline-flex;
   align-items: center;
   gap: 7px;
@@ -94,11 +115,10 @@
   font-size: 0.64rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
+  white-space: nowrap;
   color: rgba(255, 255, 255, 0.9);
-  background: rgba(0, 0, 0, 0.55);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   pointer-events: none;
 }
 
@@ -111,25 +131,20 @@
 }
 
 .live__tabs {
-  position: absolute;
-  top: 10px;
-  right: 12px;
-  z-index: 3;
   display: flex;
   gap: 4px;
   padding: 3px;
   border-radius: var(--radius-full);
-  background: rgba(0, 0, 0, 0.55);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
 }
 
 .live__tab {
-  padding: 5px 12px;
+  padding: 4px 12px;
   border-radius: var(--radius-full);
   font-size: 0.78rem;
   font-weight: 600;
+  white-space: nowrap;
   color: rgba(255, 255, 255, 0.78);
   transition: background var(--transition-fast), color var(--transition-fast);
 }
@@ -183,7 +198,51 @@
 
 @media (max-width: 640px) {
   .live__bar-note { display: none; }
-  .live__badge { display: none; }
-  .live__tabs { top: 8px; right: 8px; }
+  .live__badge-tail { display: none; }
+  .live__top { padding: 0 6px 0 10px; }
   .live__tab { padding: 4px 9px; font-size: 0.72rem; }
+}
+
+/* Scripted workflow: caption strip with step controls. */
+.live__bar--script {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: auto auto;
+  align-items: end;
+  gap: 8px 16px;
+  padding: 12px 12px 10px 16px;
+}
+
+.live__script { min-width: 0; }
+
+.live__script-count {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+  color: var(--clay-200);
+  margin-bottom: 4px;
+}
+
+.live__caption {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.94);
+  text-wrap: pretty;
+}
+
+.live__btn:disabled { opacity: 0.4; cursor: default; }
+.live__btn:disabled:hover { background: rgba(255, 255, 255, 0.1); }
+
+.live__dots { grid-column: 1 / -1; display: flex; gap: 6px; }
+
+.live__dot { width: 22px; height: 4px; border-radius: 2px; background: rgba(255, 255, 255, 0.22); transition: background var(--transition-fast); }
+.live__dot.is-done { background: rgba(255, 255, 255, 0.55); }
+.live__dot.is-active { background: var(--clay-300); }
+
+@media (max-width: 640px) {
+  .live__bar--script { grid-template-columns: 1fr; padding: 10px; }
+  .live__caption { font-size: 0.86rem; }
 }

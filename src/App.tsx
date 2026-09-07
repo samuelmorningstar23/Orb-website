@@ -5,6 +5,7 @@ import Landing from './pages/Landing'
 import Plans from './pages/Plans'
 import Support from './pages/Support'
 import Security from './pages/Security'
+import Modules from './pages/Modules'
 import ModulePage from './pages/details/ModulePage'
 import RequestDemoModal from './components/RequestDemoModal'
 import ScrollToTop from './components/ScrollToTop'
@@ -49,6 +50,7 @@ function AnimatedRoutes() {
         <Route path="/plans" element={<Page><Plans /></Page>} />
         <Route path="/support" element={<Page><Support /></Page>} />
         <Route path="/security" element={<Page><Security /></Page>} />
+        <Route path="/modules" element={<Page><Modules /></Page>} />
         {/* Every module page is the same layout over its own data and its own captures. */}
         {MODULE_PAGES.map(p => (
           <Route key={p.route} path={p.route} element={<Page><ModulePage route={p.route} /></Page>} />
