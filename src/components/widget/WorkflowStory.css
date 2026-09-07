@@ -33,9 +33,37 @@
 
 .wstory__card .wg__screen { min-height: 0; overflow: hidden; padding-bottom: 14px; }
 
-/* The acts waiting their turn are scenery, not controls. */
-.wstory__card:not(.is-active) { pointer-events: none; }
-.wstory__card:not(.is-active) .wg { box-shadow: 0 30px 70px rgba(0, 0, 0, 0.3); }
+/* An act waiting its turn is not usable, but clicking it brings it on stage. */
+.wstory__card:not(.is-active) .wg { box-shadow: 0 30px 70px rgba(0, 0, 0, 0.3); pointer-events: none; }
+
+.wstory__grab {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  border-radius: 20px;
+  cursor: pointer;
+  background: transparent;
+  transition: background var(--transition-base);
+}
+
+.wstory__grab:hover { background: rgba(var(--clay-rgb), 0.1); }
+
+.wstory__grab-pill {
+  padding: 9px 18px;
+  border-radius: var(--radius-full);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--btn-primary-text);
+  background: var(--accent);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity var(--transition-base), transform var(--transition-base);
+}
+
+.wstory__grab:hover .wstory__grab-pill { opacity: 1; transform: none; }
 
 /* ─── The three act labels under the row ─── */
 .wstory__nav {

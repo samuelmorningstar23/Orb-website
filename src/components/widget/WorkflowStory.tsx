@@ -43,11 +43,12 @@ export default function WorkflowStory() {
     return () => ro.disconnect()
   }, [])
 
-  // Once the row has walked a whole copy, put it back where it started. The
-  // wait lets the slide finish first; the snap itself is not animated.
+  // Once the row has walked a whole copy in either direction, put it back where
+  // it started. The wait lets the slide finish first; the snap is not animated.
   useEffect(() => {
-    if (pos < WRAP_AT) return
-    const t = window.setTimeout(() => { setSnap(true); setPos(p => p - N) }, 1100)
+    if (pos < WRAP_AT && pos >= START) return
+    const back = pos >= WRAP_AT
+    const t = window.setTimeout(() => { setSnap(true); setPos(p => p + (back ? -N : N)) }, 1100)
     return () => window.clearTimeout(t)
   }, [pos])
 
@@ -65,8 +66,13 @@ export default function WorkflowStory() {
 
   const next = useCallback(() => setPos(p => p + 1), [])
   const onStep = useCallback((n: number) => setStep(n), [])
-  // Jumping to an act always moves the row forwards, so the conveyor never reverses.
-  const goTo = (i: number) => setPos(p => p + ((i - (((p % N) + N) % N)) % N + N) % N)
+  // Clicking an act, or the card waiting beside the one on stage, takes the
+  // short way round: the neighbour on the left comes back, the one on the
+  // right comes forward.
+  const goTo = useCallback((i: number) => setPos(p => {
+    const d = (((i - (((p % N) + N) % N)) % N) + N) % N
+    return p + (d === N - 1 ? -1 : d)
+  }), [])
 
   return (
     <div className="wstory">
@@ -100,6 +106,16 @@ export default function WorkflowStory() {
                 onFinished={next}
                 onStep={active ? onStep : undefined}
               />
+              {!active && (
+                <button
+                  type="button"
+                  className="wstory__grab"
+                  tabIndex={-1}
+                  onClick={() => goTo(i % N)}
+                >
+                  <span className="wstory__grab-pill">{STORY_ACTS[i % N].name}</span>
+                </button>
+              )}
             </motion.div>
           )
         })}

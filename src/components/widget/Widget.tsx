@@ -336,7 +336,13 @@ export default function Widget({ flows, label, size = 'default', active = true, 
 
   useEffect(() => { onStep?.(step, total) }, [step, total, onStep])
 
-  const go = (n: number) => { setPlaying(false); setStep((n + total) % total) }
+  // Stepping by hand does not stop the story: it moves the step and lets the
+  // clock carry on, so a visitor who clicks once is not left on a dead card.
+  // Past the last step, the act hands over to whatever comes next.
+  const go = (n: number) => {
+    if (n >= total) { if (onFinished) onFinished(); else setStep(0); return }
+    setStep(Math.max(0, n))
+  }
   const pick = (id: string) => { setFlowId(id); setStep(0); setPlaying(true) }
 
   return (
@@ -384,7 +390,7 @@ export default function Widget({ flows, label, size = 'default', active = true, 
                 ? <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M7 5h4v14H7zM13 5h4v14h-4z" /></svg>
                 : <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M7 5v14l12-7z" /></svg>}
             </button>
-            <button type="button" className="wg__btn" onClick={() => go(step + 1)} aria-label="Next step">
+            <button type="button" className="wg__btn" onClick={() => go(step + 1)} aria-label={step >= total - 1 && onFinished ? 'Next act' : 'Next step'}>
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6l6 6-6 6" /></svg>
             </button>
           </span>
