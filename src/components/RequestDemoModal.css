@@ -9,6 +9,10 @@
   justify-content: center;
   z-index: 10000;
   padding: 24px;
+  /* A short phone, or an error message on top of the fields, must not push the
+     submit button off the bottom with no way to reach it. */
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 /* Solid, high-contrast surface - must read as a clearly separate panel, not a translucent overlay */
@@ -23,6 +27,9 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  margin: auto;
   transform: scale(0.95);
   animation: scale-up 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
@@ -249,4 +256,10 @@
 
 [data-theme="light"] .demo-modal-close-btn:hover {
   background: rgba(0, 0, 0, 0.04);
+}
+
+/* On a small phone the card takes the room it needs and scrolls inside. */
+@media (max-width: 480px) {
+  .demo-modal-overlay { padding: 12px; align-items: flex-start; }
+  .demo-modal-card { padding: 26px 20px; max-height: calc(100vh - 24px); border-radius: 20px; }
 }

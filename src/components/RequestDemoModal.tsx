@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from 'react'
-// Lead delivery (Web3Forms endpoint + key) and the contact address live in
-// siteContent.ts so every form and mailto on the site stays in sync.
-import { CONTACT_EMAIL, WEB3FORMS_ENDPOINT, WEB3FORMS_ACCESS_KEY } from '../data/siteContent'
+// Lead delivery and the contact address live in siteContent.ts, and the send
+// itself in sendForm.ts, so every form on the site behaves the same way.
+import { CONTACT_EMAIL } from '../data/siteContent'
+import { isEmail, sendForm, trapFocus } from '../data/sendForm'
 import './RequestDemoModal.css'
 
 export default function RequestDemoModal() {
@@ -15,6 +16,10 @@ export default function RequestDemoModal() {
   const [isSuccess, setIsSuccess] = useState(false)
   const [error, setError] = useState('')
   const firstFieldRef = useRef<HTMLInputElement>(null)
+  const cardRef = useRef<HTMLDivElement>(null)
+  // Closing on a click that merely ended on the backdrop loses a typed form,
+  // so the press has to have started there too.
+  const pressedBackdrop = useRef(false)
 
   const close = () => setIsOpen(false)
 
@@ -24,18 +29,20 @@ export default function RequestDemoModal() {
     return () => window.removeEventListener('open-demo-modal', handleOpen)
   }, [])
 
-  // Scroll-lock, ESC-to-close, and focus the first field while open
+  // Scroll-lock, ESC-to-close, focus the first field, and keep Tab inside.
   useEffect(() => {
     if (!isOpen) return
     const prevOverflow = document.body.style.overflow
     document.body.style.overflow = 'hidden'
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setIsOpen(false) }
     window.addEventListener('keydown', onKey)
+    const release = trapFocus(cardRef.current)
     const t = window.setTimeout(() => firstFieldRef.current?.focus(), 60)
     return () => {
       document.body.style.overflow = prevOverflow
       window.removeEventListener('keydown', onKey)
       window.clearTimeout(t)
+      release()
     }
   }, [isOpen])
 
@@ -43,48 +50,46 @@ export default function RequestDemoModal() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!name || !email || !company || !purpose) {
-      setError('Please fill in all fields.')
+    // Name the field that is missing, rather than asking them to hunt for it.
+    const missing = ([['your name', name], ['your email', email], ['your hospital', company], ['what you are exploring', purpose]] as const)
+      .filter(([, v]) => !v.trim()).map(([label]) => label)
+    if (missing.length) {
+      setError(missing.length === 1 ? `Please add ${missing[0]}.` : `Please add ${missing.slice(0, -1).join(', ')} and ${missing[missing.length - 1]}.`)
+      return
+    }
+    if (!isEmail(email)) {
+      setError('That email address does not look right. Please check it.')
       return
     }
     setIsSubmitting(true)
     setError('')
 
-    try {
-      const res = await fetch(WEB3FORMS_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({
-          access_key: WEB3FORMS_ACCESS_KEY,
-          subject: `Demo request: ${company}`,
-          from_name: 'Orb Website',
-          replyto: email, // hitting Reply answers the requester
-          name,
-          email,
-          company,
-          message: purpose,
-          botcheck: website,
-        }),
-      })
-      const detail = await res.json().catch(() => null)
+    const result = await sendForm({
+      subject: `Demo request: ${company.trim()}`,
+      replyto: email, // hitting Reply answers the requester
+      name,
+      email,
+      company,
+      message: purpose,
+    }, website)
 
-      if (res.ok && detail?.success) {
-        setIsSuccess(true)
-        setName(''); setEmail(''); setCompany(''); setPurpose(''); setWebsite('')
-      } else {
-        // Never fail silently - the visitor still gets a way to reach us.
-        setError(`We couldn’t send that just now. Please try again, or email us at ${CONTACT_EMAIL}.`)
-      }
-    } catch {
-      setError(`We couldn’t reach the server. Please check your connection, or email us at ${CONTACT_EMAIL}.`)
-    } finally {
-      setIsSubmitting(false)
+    if (result.ok) {
+      setIsSuccess(true)
+      setName(''); setEmail(''); setCompany(''); setPurpose(''); setWebsite('')
+    } else {
+      // Never fail silently: the visitor still gets a way to reach us.
+      setError(result.error)
     }
+    setIsSubmitting(false)
   }
 
   return (
-    <div className="demo-modal-overlay animate-fade-in" onClick={close}>
-      <div className="demo-modal-card" role="dialog" aria-modal="true" aria-labelledby="demo-modal-title" onClick={e => e.stopPropagation()}>
+    <div
+      className="demo-modal-overlay animate-fade-in"
+      onMouseDown={e => { pressedBackdrop.current = e.target === e.currentTarget }}
+      onClick={e => { if (e.target === e.currentTarget && pressedBackdrop.current) close() }}
+    >
+      <div className="demo-modal-card" ref={cardRef} role="dialog" aria-modal="true" aria-labelledby="demo-modal-title">
         <button className="demo-modal-close" onClick={close} aria-label="Close">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
@@ -96,27 +101,27 @@ export default function RequestDemoModal() {
             <h3 className="demo-modal-title" id="demo-modal-title">Request a Demo</h3>
             <p className="demo-modal-subtitle">A walkthrough of the running product on demo patients, on a call. Tell us the wards and the beds and we size it.</p>
 
-            {error && <div className="demo-modal-error">{error}</div>}
+            {error && <div className="demo-modal-error" role="alert">{error}</div>}
 
-            <form className="demo-modal-form" onSubmit={handleSubmit}>
+            <form className="demo-modal-form" onSubmit={handleSubmit} noValidate>
               <div className="demo-modal-field">
                 <label htmlFor="dm-name">Full Name</label>
-                <input ref={firstFieldRef} id="dm-name" type="text" placeholder="Jane Doe" value={name} onChange={e => setName(e.target.value)} required />
+                <input ref={firstFieldRef} id="dm-name" name="name" type="text" autoComplete="name" placeholder="Jane Doe" value={name} onChange={e => setName(e.target.value)} required />
               </div>
 
               <div className="demo-modal-field">
                 <label htmlFor="dm-email">Email Address</label>
-                <input id="dm-email" type="email" placeholder="jane@hospital.org" value={email} onChange={e => setEmail(e.target.value)} required />
+                <input id="dm-email" name="email" type="email" autoComplete="email" inputMode="email" spellCheck={false} placeholder="jane@hospital.org" value={email} onChange={e => setEmail(e.target.value)} required />
               </div>
 
               <div className="demo-modal-field">
                 <label htmlFor="dm-company">Company / Hospital Group</label>
-                <input id="dm-company" type="text" placeholder="Mercy Health" value={company} onChange={e => setCompany(e.target.value)} required />
+                <input id="dm-company" name="company" type="text" autoComplete="organization" placeholder="Mercy Health" value={company} onChange={e => setCompany(e.target.value)} required />
               </div>
 
               <div className="demo-modal-field">
                 <label htmlFor="dm-purpose">What are you exploring?</label>
-                <textarea id="dm-purpose" placeholder="A few words on your hospital, team, or interest in Orb." value={purpose} onChange={e => setPurpose(e.target.value)} rows={3} required />
+                <textarea id="dm-purpose" name="message" placeholder="A few words on your hospital, team, or interest in Orb." value={purpose} onChange={e => setPurpose(e.target.value)} rows={3} required />
               </div>
 
               {/* Honeypot - offscreen rather than display:none, which some bots skip */}

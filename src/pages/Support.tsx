@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom'
 import Aurora from '../components/Aurora'
 import MarketingHeader from '../components/MarketingHeader'
 import { ANSWER_ENTRIES } from '../data/search'
-import { CONTACT_EMAIL, openDemoModal, WEB3FORMS_ENDPOINT, WEB3FORMS_ACCESS_KEY } from '../data/siteContent'
+import { CONTACT_EMAIL, openDemoModal } from '../data/siteContent'
+import { isEmail, sendForm } from '../data/sendForm'
 import './Support.css'
 
 const openSearch = () => window.dispatchEvent(new CustomEvent('open-orb-search'))
@@ -20,46 +21,37 @@ export default function Support() {
   const [isSuccess, setIsSuccess] = useState(false)
   const [error, setError] = useState('')
 
-  // Same delivery path as the demo modal: Web3Forms emails the message to the
-  // team inbox, so the static site needs no server of its own.
+  // Same delivery path as the demo modal, through the shared sender.
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!name || !email || !message) {
-      setError('Please fill in all fields.')
+    const missing = ([['your name', name], ['your email', email], ['a message', message]] as const)
+      .filter(([, v]) => !v.trim()).map(([label]) => label)
+    if (missing.length) {
+      setError(missing.length === 1 ? `Please add ${missing[0]}.` : `Please add ${missing.slice(0, -1).join(', ')} and ${missing[missing.length - 1]}.`)
+      return
+    }
+    if (!isEmail(email)) {
+      setError('That email address does not look right. Please check it.')
       return
     }
     setIsSubmitting(true)
     setError('')
 
-    try {
-      const res = await fetch(WEB3FORMS_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({
-          access_key: WEB3FORMS_ACCESS_KEY,
-          subject: `Support message: ${name}`,
-          from_name: 'Orb Website',
-          replyto: email, // hitting Reply answers the sender
-          name,
-          email,
-          message,
-          botcheck: website,
-        }),
-      })
-      const detail = await res.json().catch(() => null)
+    const result = await sendForm({
+      subject: `Support message: ${name.trim()}`,
+      replyto: email, // hitting Reply answers the sender
+      name,
+      email,
+      message,
+    }, website)
 
-      if (res.ok && detail?.success) {
-        setIsSuccess(true)
-        setName(''); setEmail(''); setMessage(''); setWebsite('')
-      } else {
-        // Never fail silently - the visitor still gets a way to reach us.
-        setError(`We couldn’t send that just now. Please try again, or email us at ${CONTACT_EMAIL}.`)
-      }
-    } catch {
-      setError(`We couldn’t reach the server. Please check your connection, or email us at ${CONTACT_EMAIL}.`)
-    } finally {
-      setIsSubmitting(false)
+    if (result.ok) {
+      setIsSuccess(true)
+      setName(''); setEmail(''); setMessage(''); setWebsite('')
+    } else {
+      setError(result.error)
     }
+    setIsSubmitting(false)
   }
 
   return (
@@ -158,23 +150,23 @@ export default function Support() {
               <button className="support-page__form-again" onClick={() => setIsSuccess(false)}>Send another message</button>
             </div>
           ) : (
-            <form className="support-page__form" onSubmit={handleSubmit}>
-              {error && <div className="support-page__form-error">{error}</div>}
+            <form className="support-page__form" onSubmit={handleSubmit} noValidate>
+              {error && <div className="support-page__form-error" role="alert">{error}</div>}
 
               <div className="support-page__form-row">
                 <div className="support-page__form-field">
                   <label htmlFor="sp-name">Name</label>
-                  <input id="sp-name" type="text" placeholder="Jane Doe" value={name} onChange={e => setName(e.target.value)} required />
+                  <input id="sp-name" name="name" type="text" autoComplete="name" placeholder="Jane Doe" value={name} onChange={e => setName(e.target.value)} required />
                 </div>
                 <div className="support-page__form-field">
                   <label htmlFor="sp-email">Email</label>
-                  <input id="sp-email" type="email" placeholder="jane@hospital.org" value={email} onChange={e => setEmail(e.target.value)} required />
+                  <input id="sp-email" name="email" type="email" autoComplete="email" inputMode="email" spellCheck={false} placeholder="jane@hospital.org" value={email} onChange={e => setEmail(e.target.value)} required />
                 </div>
               </div>
 
               <div className="support-page__form-field">
                 <label htmlFor="sp-message">How can we help?</label>
-                <textarea id="sp-message" rows={5} placeholder="Tell us what’s happening. The more detail, the faster we can help." value={message} onChange={e => setMessage(e.target.value)} required />
+                <textarea id="sp-message" name="message" rows={5} placeholder="Tell us what’s happening. The more detail, the faster we can help." value={message} onChange={e => setMessage(e.target.value)} required />
               </div>
 
               {/* Honeypot - offscreen rather than display:none, which some bots skip */}
