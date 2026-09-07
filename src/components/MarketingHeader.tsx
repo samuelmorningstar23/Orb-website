@@ -2,7 +2,8 @@ import { useState, useEffect, useLayoutEffect, useRef, useCallback } from 'react
 import { Link, useLocation } from 'react-router-dom'
 import OrbLogo from './OrbLogo'
 import SearchOverlay from './SearchOverlay'
-import { ALL_MODULES, PLANS, openDemoModal, type FeaturedModule } from '../data/siteContent'
+import { ALL_MODULES, openDemoModal, type FeaturedModule } from '../data/siteContent'
+import { STAGES } from '../data/plans'
 import './MarketingHeader.css'
 
 // ─── Top-bar model ───
@@ -198,10 +199,10 @@ export default function MarketingHeader() {
         <div className="nav-panel nav-panel--plans">
           <span className="nav-panel__eyebrow">A pilot first, then the hospital</span>
           <div className="nav-panel__plan-list">
-            {PLANS.map(p => (
+            {STAGES.map(p => (
               <Link key={p.id} to={`/plans#${p.id}`} className="nav-panel__plan" onClick={closeNow}>
                 <span className="nav-panel__plan-name">{p.name}</span>
-                <span className="nav-panel__plan-tag">{p.tagline}</span>
+                <span className="nav-panel__plan-tag">{p.price} {p.unit}</span>
               </Link>
             ))}
           </div>
@@ -326,7 +327,7 @@ export default function MarketingHeader() {
 
           <span className="marketing-header__drawer-label">Plans</span>
           <div className="marketing-header__drawer-grid">
-            {PLANS.map(p => (
+            {STAGES.map(p => (
               <Link key={p.id} to={`/plans#${p.id}`} className="marketing-header__drawer-link" onClick={() => setMobileOpen(false)}>{p.name}</Link>
             ))}
           </div>

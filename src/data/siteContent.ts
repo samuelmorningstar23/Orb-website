@@ -156,44 +156,6 @@ export const FEATURED_MODULES: FeaturedModule[] = [
 // There are no tiers that withhold safety features. Orb is bought as a pilot
 // first, then per bed for the whole hospital. Numbers are agreed in the demo;
 // none are published here until the founder decides to.
-export interface Plan {
-  id: string
-  name: string
-  tagline: string
-  desc: string
-  audience: string
-  includes: string[]
-  extras?: string[]
-}
-
-export const PLANS: Plan[] = [
-  {
-    id: 'pilot',
-    name: 'The pilot',
-    tagline: 'One ward, thirteen weeks.',
-    audience: 'Where every hospital starts',
-    desc: 'Orb runs on one ward beside the current process. The first weeks are shadow mode: it scores, drafts and flags while nobody acts on it, and every call is checked against what the ward actually did. Then it goes live on that ward, with the numbers in hand.',
-    includes: ['Every module from day one', 'The appliance, installed inside the hospital', 'Shadow mode, then live, with a scorecard the board can read', 'A weekly review with the clinical champion'],
-  },
-  {
-    id: 'hospital',
-    name: 'The hospital',
-    tagline: 'The whole house, per bed.',
-    audience: 'After the pilot',
-    desc: 'Priced per bed per month and scoped in the demo from your wards, beds and hardware. No plan withholds a safety feature: the allergy interlock, NEWS2 and the audit chain are in every deployment.',
-    includes: ['Every clinical module on every ward', 'Front desk, billing, insurance, procurement, housekeeping, workforce', 'Updates and support for the life of the contract'],
-    extras: ['ABDM and NABH support as each is certified'],
-  },
-  {
-    id: 'group',
-    name: 'The group',
-    tagline: 'One appliance per site.',
-    audience: 'For hospital groups',
-    desc: 'Each hospital keeps its own appliance and its own data. A view across sites is on the roadmap and not in the product today, and we say so in the demo rather than on a slide.',
-    includes: ['Everything in the hospital plan, per site', 'One contract, one support line', 'A named engineer for the rollout'],
-  },
-]
-
 // ─── Contact & lead delivery ───
 // The site is a static build (GitHub Pages) and cannot send mail itself, so
 // every form on it (demo modal, support page) submits to Web3Forms, which

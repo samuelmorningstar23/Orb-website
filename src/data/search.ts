@@ -1,4 +1,5 @@
-import { ALL_MODULES, PLANS, CONTACT_EMAIL } from './siteContent'
+import { ALL_MODULES, CONTACT_EMAIL } from './siteContent'
+import { STAGES } from './plans'
 
 // ─── Site search: keyword lookup + lightweight question answering ───
 // Everything is indexed client-side (the site is static), so search works
@@ -37,14 +38,14 @@ const MODULE_ENTRIES: SearchEntry[] = ALL_MODULES.map(m => ({
   body: m.blurb,
 }))
 
-const PLAN_ENTRIES: SearchEntry[] = PLANS.map(p => ({
+const PLAN_ENTRIES: SearchEntry[] = STAGES.map(p => ({
   id: `plan-${p.id}`,
   kind: 'plan',
   title: p.name,
-  subtitle: `${p.tagline} ${p.audience}.`,
+  subtitle: `${p.price} ${p.unit}. ${p.when}.`,
   to: `/plans#${p.id}`,
-  keywords: ['plan', 'pricing', 'tier', 'edition', p.id, p.name.toLowerCase()],
-  body: `${p.desc} ${p.includes.join(' ')}`,
+  keywords: ['plan', 'pricing', 'price', 'cost', 'per bed', p.id, p.name.toLowerCase()],
+  body: `${p.desc} ${p.points.join(' ')}`,
 }))
 
 const PAGE_ENTRIES: SearchEntry[] = [
