@@ -1,0 +1,61 @@
+/* ─── What you can check: an editorial two-column list ─── */
+
+.checks {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(28px, 6vw, 96px);
+  padding: clamp(80px, 11vh, 140px) 0;
+}
+
+.checks__intro { position: sticky; top: 110px; align-self: start; }
+
+.checks__lede {
+  font-size: 1.1rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  margin: 0 0 22px;
+  max-width: 34ch;
+}
+
+.checks__link { color: var(--accent); font-weight: 700; font-size: 0.98rem; }
+.checks__link:hover { text-decoration: underline; }
+
+.checks__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.checks__item {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+  gap: 24px;
+  padding: 26px 0;
+  border-top: 1px solid var(--border-glass);
+}
+
+[data-theme="light"] .checks__item { border-top-color: rgba(0, 0, 0, 0.1); }
+.checks__item:last-child { border-bottom: 1px solid var(--border-glass); }
+[data-theme="light"] .checks__item:last-child { border-bottom-color: rgba(0, 0, 0, 0.1); }
+
+.checks__label {
+  font-family: var(--font-serif);
+  font-size: clamp(1.25rem, 1.8vw, 1.5rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+
+.checks__line {
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 900px) {
+  .checks { grid-template-columns: 1fr; gap: 32px; }
+  .checks__intro { position: static; }
+  .checks__item { grid-template-columns: 1fr; gap: 8px; padding: 20px 0; }
+}

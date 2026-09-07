@@ -11,22 +11,15 @@ import ScrollToTop from './components/ScrollToTop'
 import { MODULE_PAGES } from './data/modulePages'
 import './App.css'
 
-// Theme init - follow the operating system by default. A theme the visitor
-// picked themselves (via the header toggle) is remembered and wins over the OS.
-// Note: this deliberately tests `prefers-color-scheme: dark`, not `light` - the
-// "no-preference" case must fall back to light rather than silently forcing dark.
+// Theme init: light unless the visitor chose dark with the header toggle.
 try {
   const saved = localStorage.getItem('orb-theme')
   const darkQuery = window.matchMedia('(prefers-color-scheme: dark)')
   const chosen = saved === 'light' || saved === 'dark' ? saved : null
-  document.documentElement.setAttribute('data-theme', chosen ?? (darkQuery.matches ? 'dark' : 'light'))
-
-  // Keep tracking the OS live, but only while the visitor hasn't chosen for themselves.
-  darkQuery.addEventListener('change', (e) => {
-    if (localStorage.getItem('orb-theme')) return
-    document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light')
-    window.dispatchEvent(new CustomEvent('theme-changed'))
-  })
+  // The site is light first: the blue and white aurora is the look. A visitor
+  // who picks dark in the header keeps it; the OS preference is not consulted.
+  void darkQuery
+  document.documentElement.setAttribute('data-theme', chosen ?? 'light')
 } catch (e) {
   console.error('Failed to initialize theme:', e)
 }

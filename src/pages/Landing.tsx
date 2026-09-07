@@ -1,30 +1,52 @@
-import { useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
 import Aurora from '../components/Aurora'
 import MarketingHeader from '../components/MarketingHeader'
-import ProofBand from '../components/ProofBand'
-import AgenticShowcase from '../components/AgenticShowcase'
-import ModuleExplorer from '../components/ModuleExplorer'
+import Hero from '../components/home/Hero'
+import StoryScroll, { type StoryStep } from '../components/home/StoryScroll'
+import ModuleBento from '../components/home/ModuleBento'
+import ActsBand from '../components/home/ActsBand'
+import Checks from '../components/home/Checks'
 import { Reveal } from '../components/motion/Reveal'
 import { ALL_MODULES, CONTACT_EMAIL, openDemoModal } from '../data/siteContent'
+import { flowById } from '../data/orbCaptures'
 import './Landing.css'
 
 /**
- * Homepage - five beats: the promise, how Orb acts, the modules captured from
- * the product, the proof, and one call to action. Detail lives on the module
- * and security pages; this page's job is to make someone want to see it.
+ * Homepage in five moves: the product running in the first screen, five things
+ * it does told with its own screens as you scroll, every module as a real
+ * screen, how it acts, what you can check, and one call to action.
  */
+const frame = (flow: string, step: number) => flowById(flow).steps[Math.min(step, flowById(flow).steps.length - 1)].src
+
+const CHAPTERS: StoryStep[] = [
+  {
+    title: 'The ward orders itself by risk.',
+    body: 'Every patient is scored on NEWS2 as the vitals arrive. The board is ordered by that score, every point on it is explained, and the Sepsis Six clock starts when the score crosses the line.',
+    src: frame('ward-is-alive', 1), link: { to: '/vigil', label: 'Open Vigil' },
+  },
+  {
+    title: 'A bundle is applied whole or not at all.',
+    body: 'Sepsis Six for a patient with a documented ceftriaxone anaphylaxis stops at the ceftriaxone, with the reaction spelled out, and the Apply button stays disabled. A half-applied bundle is its own emergency.',
+    src: frame('allergy-interlock', 3), link: { to: '/helix', label: 'Open Helix' },
+  },
+  {
+    title: 'Sage answers inside the building.',
+    body: 'A 27-billion-parameter medical model on the appliance answers with the guidance it read listed underneath. No question, and no chart, leaves the hospital. A chart outside your department is never shown to it.',
+    src: frame('sage-ask', 3), link: { to: '/sage', label: 'Open Sage' },
+  },
+  {
+    title: 'Extracted is not prescribed.',
+    body: 'Medications a model pulled from a signed note wait in a pharmacist’s queue, marked AI EXTRACTED, with the safety line in plain words. They become orders when a named pharmacist says so.',
+    src: frame('pharmacy-verify', 2), link: { to: '/helix', label: 'See the queue' },
+  },
+  {
+    title: 'Every action lands in a hash chain.',
+    body: 'SHA-256 over every audit row: every model answer, every refusal, every confirmed action. Alter or delete one and the chain breaks, and the Trust Center shows the check.',
+    src: frame('show-your-work', 1), link: { to: '/security', label: 'Read the security brief' },
+  },
+]
+
 export default function Landing() {
-  const heroRef = useRef<HTMLElement>(null)
-  const reduce = useReducedMotion()
-
-  // The orb recedes as the visitor scrolls out of the hero, handing focus to the flow below.
-  const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] })
-  const orbScale = useTransform(scrollYProgress, [0, 1], [1, 0.8])
-  const orbOpacity = useTransform(scrollYProgress, [0, 0.85], [1, 0.15])
-  const orbY = useTransform(scrollYProgress, [0, 1], [0, 90])
-
   const half = Math.ceil(ALL_MODULES.length / 2)
 
   return (
@@ -33,53 +55,21 @@ export default function Landing() {
       <MarketingHeader />
 
       <main className="landing-overview__content">
+        <Hero />
 
-        {/* Beat 1 - the promise */}
-        <section className="landing-overview__hero" ref={heroRef}>
-          <div className="landing-overview__hero-headers">
-            <span className="landing-overview__badge">Hospital OS</span>
-            <h1 className="landing-overview__title">
-              The Hospital<br />Operating System.
-            </h1>
-            <p className="landing-overview__subtitle">
-              The record, the ward monitor, the pharmacy and the front desk on one appliance inside the hospital. The models run there too, so nothing about a patient leaves the building.
-            </p>
-            <div className="landing-overview__hero-actions">
-              <button className="landing-overview__btn-primary" onClick={openDemoModal}>
-                Request a demo
-              </button>
-              <a href="#modules" className="landing-overview__btn-secondary-action">
-                Explore the modules &nbsp;&darr;
-              </a>
-            </div>
-          </div>
-
-          <motion.div className="landing-overview__orb-showcase" style={reduce ? undefined : { scale: orbScale, opacity: orbOpacity, y: orbY }}>
-            <div className="landing-overview__orb-sphere">
-              <div className="landing-overview__orb-glow" />
-              <svg width="240" height="240" viewBox="0 0 100 100" className="landing-overview__orb-svg">
-                <circle cx="50" cy="50" r="42" fill="none" stroke="var(--orb-ring-1)" strokeWidth="1" />
-                <circle cx="50" cy="50" r="32" fill="none" stroke="var(--orb-ring-2)" strokeWidth="0.8" strokeDasharray="3 3" />
-                <circle cx="50" cy="50" r="22" fill="none" stroke="var(--orb-ring-3)" strokeWidth="0.5" />
-                <circle cx="50" cy="50" r="6" fill="var(--accent)" className="orb-pulse-center" />
-                <circle cx="28" cy="28" r="2.5" fill="#00E676" />
-                <circle cx="72" cy="28" r="2.5" fill="#FF5252" />
-                <circle cx="50" cy="88" r="2" fill="#2997ff" />
-              </svg>
-            </div>
-          </motion.div>
+        <section className="chapters" aria-labelledby="chapters-title">
+          <Reveal className="chapters__header">
+            <span className="chapters__eyebrow">Five things you can check</span>
+            <h2 className="chapters__title" id="chapters-title">The product, one screen at a time.</h2>
+            <p className="chapters__lead">Scroll. Each frame is a capture of the running appliance; each line is something you can do in the demo above.</p>
+          </Reveal>
+          <StoryScroll steps={CHAPTERS} label="Five things Orb does, shown on its own screens" />
         </section>
 
-        {/* Beat 2 - Orb acts (scroll-driven flow) */}
-        <AgenticShowcase />
+        <ModuleBento />
+        <ActsBand />
+        <Checks />
 
-        {/* Beat 3 - the modules, running */}
-        <ModuleExplorer />
-
-        {/* Beat 4 - the proof, stated once */}
-        <ProofBand />
-
-        {/* Beat 5 - one call to action */}
         <Reveal as="section" className="landing-overview__cta" amount={0.4}>
           <h2 className="landing-overview__cta-title">See Orb on your wards.</h2>
           <p className="landing-overview__cta-desc">
@@ -91,7 +81,6 @@ export default function Landing() {
           </div>
         </Reveal>
 
-        {/* Footer */}
         <footer className="landing-overview__footer">
           <div className="landing-overview__footer-top">
             <div className="landing-overview__footer-brand">
@@ -125,10 +114,9 @@ export default function Landing() {
 
           <div className="landing-overview__footer-bottom">
             <p>© 2026 Orb. All rights reserved.</p>
-            <p className="landing-overview__footer-fineprint">Every screen on this site is a capture of a running Orb appliance on seeded demo patients. No real patient appears here.</p>
+            <p className="landing-overview__footer-fineprint">Every screen on this site is the running Orb front end, or a capture of it, on seeded demo patients. No real patient appears here.</p>
           </div>
         </footer>
-
       </main>
     </div>
   )

@@ -1,0 +1,50 @@
+import { useRef } from 'react'
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
+import LiveDemo from '../captures/LiveDemo'
+import { LIVE_VIEWS } from '../../data/liveViews'
+import { openDemoModal } from '../../data/siteContent'
+import './Hero.css'
+
+/**
+ * The first screen: the claim, and under it the product itself, already
+ * running. The frame leans back a little at the top of the page and stands up
+ * as the visitor starts to scroll, so the first movement they make is the
+ * product turning to face them.
+ */
+export default function Hero() {
+  const ref = useRef<HTMLElement>(null)
+  const reduce = useReducedMotion()
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
+  const rotateX = useTransform(scrollYProgress, [0, 0.35], [14, 0])
+  const scale = useTransform(scrollYProgress, [0, 0.35], [0.94, 1])
+
+  return (
+    <section className="hero" ref={ref} aria-labelledby="hero-title">
+      <div className="hero__copy">
+        <span className="hero__eyebrow">Orb Hospital OS</span>
+        <h1 className="hero__title" id="hero-title">
+          The hospital,<br />running on one machine<br /><em>inside</em> the hospital.
+        </h1>
+        <p className="hero__sub">
+          The record, the ward monitor, the pharmacy and the front desk on one appliance. The models run there too, so nothing about a patient leaves the building.
+        </p>
+        <div className="hero__actions">
+          <button type="button" className="hero__btn hero__btn--primary" onClick={openDemoModal}>Request a demo</button>
+          <a className="hero__btn hero__btn--ghost" href="#modules">Every module, running below <span aria-hidden="true">&darr;</span></a>
+        </div>
+      </div>
+
+      <div className="hero__stage">
+        <motion.div
+          className="hero__frame"
+          style={reduce ? undefined : { rotateX, scale }}
+        >
+          <LiveDemo views={LIVE_VIEWS['/vigil']} label="Orb Vigil, live in your browser" lazy={false} />
+        </motion.div>
+        <p className="hero__stage-note">
+          That is the Orb front end, running in your browser on a recording of the appliance and seeded demo patients. Open a chart.
+        </p>
+      </div>
+    </section>
+  )
+}
