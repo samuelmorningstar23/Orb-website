@@ -1,8 +1,7 @@
 import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
-import Widget from '../widget/Widget'
-import { WIDGET_FLOWS } from '../../data/widgetFlows'
+import WorkflowStory from '../widget/WorkflowStory'
 import { openDemoModal } from '../../data/siteContent'
 import './Hero.css'
 
@@ -40,10 +39,10 @@ export default function Hero() {
           className="hero__frame"
           style={reduce ? undefined : { rotateX, scale }}
         >
-          <Widget flows={WIDGET_FLOWS['/vigil']} label="Orb Vigil, one workflow" size="tall" />
+          <WorkflowStory />
         </motion.div>
         <p className="hero__stage-note">
-          One workflow at a time, on the seeded demo patients the screenshots were taken on. Step through it, or let it play.
+One patient, from the ward to the pharmacy and back to his bedside. Three modules, in the order it happens. Pick an act, or let it run.
         </p>
       </div>
     </section>

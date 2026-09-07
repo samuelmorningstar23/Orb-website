@@ -1179,3 +1179,255 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
 }
 
 export const widgetFlows = (route: string): WidgetFlow[] | undefined => WIDGET_FLOWS[route]
+
+// ─── The story: one patient, three modules, in the order it happens ───
+// Rajesh Iyer deteriorates on the ward (Vigil), the team talks about it and the
+// order is written where the talk is (Relay), and the order is verified and
+// carried to the bedside (Helix). The hero plays these three in sequence.
+
+export const STORY_ACTS: { id: string; name: string; hint: string }[] = [
+  { id: 'story-vigil', name: 'Vigil', hint: 'The ward sees it first' },
+  { id: 'story-relay', name: 'Relay', hint: 'The team decides, in one thread' },
+  { id: 'story-helix', name: 'Helix', hint: 'The order reaches the bedside' },
+]
+
+export const STORY_FLOWS: WidgetFlow[] = [
+  {
+    id: 'story-vigil', label: 'Vigil', app: 'Orb Vigil', who: 'General Medicine',
+    steps: [
+      {
+        caption: 'The ward, ordered by NEWS2. Rajesh Iyer is second, and comfortable enough to wait.',
+        scene: {
+          head: 'Today', sub: 'General Medicine · 5 admitted',
+          blocks: [
+            { id: 'tiles', k: 'tiles', tiles: [
+              { label: 'Admitted', value: '5' },
+              { label: 'Elevated', value: '2', tone: 'warn' },
+              { label: 'Critical', value: '2', tone: 'critical' },
+            ] },
+            { id: 'rows', k: 'rows', label: 'Deteriorating · by NEWS2', rows: [
+              { ...WARD.suresh, tag: 'RR 37 · SpO2 84%', tagTone: 'critical' },
+              { ...WARD.rajesh9, tag: 'RR 33 · SpO2 85%', tagTone: 'warn' },
+              { ...WARD.ananya, tag: 'RR 31 · SpO2 94%', tagTone: 'warn' },
+            ] },
+          ],
+        },
+      },
+      {
+        caption: 'Observations come in from his bay. The score moves, and the board reorders itself around him.',
+        scene: {
+          head: 'Today', sub: 'General Medicine · 5 admitted',
+          blocks: [
+            { id: 'tiles', k: 'tiles', tiles: [
+              { label: 'Admitted', value: '5' },
+              { label: 'Elevated', value: '1', tone: 'warn' },
+              { label: 'Critical', value: '3', tone: 'critical' },
+            ] },
+            { id: 'rows', k: 'rows', label: 'Deteriorating · by NEWS2', rows: [
+              { ...WARD.rajesh13, tag: 'RR 32 · SpO2 80%', tagTone: 'critical', active: true },
+              { ...WARD.suresh, tag: 'RR 37 · SpO2 84%', tagTone: 'critical' },
+              { ...WARD.ananya, tag: 'RR 31 · SpO2 94%', tagTone: 'warn' },
+            ] },
+          ],
+        },
+      },
+      {
+        caption: 'Open his chart. The vitals that moved the score, and the escalation the table asks for.',
+        scene: {
+          head: 'Rajesh Iyer', sub: 'GM-102 · 67Y · COPD exacerbation',
+          blocks: [
+            { id: 'banner', k: 'banner', tone: 'critical', tag: 'NEWS2 13', title: 'Critical', body: 'Continuous monitoring. Emergency assessment by a critical-care-competent team.' },
+            { id: 'fields', k: 'fields', label: 'Observations · 12:55', fields: [
+              { label: 'HR', value: '112', tone: 'warn' },
+              { label: 'BP', value: '74/38', tone: 'critical' },
+              { label: 'SpO2', value: '80%', tone: 'critical' },
+              { label: 'Temp', value: '39.6', tone: 'warn' },
+              { label: 'RR', value: '32', tone: 'critical' },
+            ] },
+          ],
+        },
+      },
+      {
+        caption: 'Every point of the score is listed against the observation that produced it. A nurse can check it by hand.',
+        scene: {
+          head: 'Why this score', sub: 'NEWS2 13 · RCP 2017 table',
+          blocks: [
+            { id: 'lines', k: 'lines', label: 'Points', lines: [
+              { text: '+3  Severe tachypnea (RR 32)', strong: true },
+              { text: '+3  Severe hypoxia (SpO2 80%)', strong: true },
+              { text: '+3  Hypotension (SBP 74)', strong: true },
+              { text: '+2  On supplemental oxygen' },
+              { text: '+2  Tachycardia (HR 112)' },
+            ] },
+          ],
+        },
+      },
+      {
+        caption: 'Under the score, the notes on his chart, and an assessment marked as written by a model. The score itself never is.',
+        scene: {
+          head: 'Rajesh Iyer', sub: 'Notes and assessment',
+          blocks: [
+            { id: 'note', k: 'lines', label: 'Last note · ward round 08:00', lines: [
+              { text: 'Infective exacerbation of COPD. Nebulisers and oxygen started.', strong: true },
+              { text: 'Steroids to be reviewed with the registrar this morning.' },
+            ] },
+            { id: 'banner', k: 'banner', tone: 'warn', tag: 'Sage · model draft', title: 'For review, not for filing', body: 'Deterioration consistent with the documented exacerbation. Consider senior review and steroid cover.' },
+          ],
+        },
+      },
+    ],
+  },
+
+  {
+    id: 'story-relay', label: 'Relay', app: 'Orb Relay', who: 'General Medicine',
+    steps: [
+      {
+        caption: 'Relay is the hospital’s own messaging. Every department has its rooms, and every admitted patient has one.',
+        scene: {
+          head: 'Rooms', sub: 'Your departments',
+          blocks: [
+            { id: 'rows', k: 'rows', rows: [
+              { id: 'gm', title: 'General Medicine', sub: '5 case rooms · 12 people', tag: '3 new', tagTone: 'accent', active: true },
+              { id: 'icu', title: 'Intensive Care', sub: '3 case rooms · 9 people' },
+              { id: 'sur', title: 'Surgical', sub: '8 case rooms · 14 people' },
+              { id: 'pha', title: 'Pharmacy', sub: 'Department room · 4 people' },
+            ] },
+            { id: 'note', k: 'lines', lines: [
+              { text: 'An alert about a patient is posted into that patient’s room, never into a general channel.', strong: true },
+            ] },
+          ],
+        },
+      },
+      {
+        caption: 'His case room. The team is already in it, and Vigil has posted the alert with the vitals that caused it.',
+        scene: {
+          head: 'Rajesh Iyer', sub: 'GM-102 · case room · 4 people',
+          blocks: [
+            { id: 'chat', k: 'chat', msgs: [
+              { from: 'orb', badge: 'Vigil alert', text: 'NEWS2 13, critical. RR 32, SpO2 80% on air, SBP 74.', meta: 'Posted automatically · 12:55' },
+              { from: 'orb', text: 'Standing guidance: ensure continuous monitoring and prepare for possible intervention.', meta: 'A fixed line on every alert, not an assessment of this patient' },
+            ] },
+            { id: 'who', k: 'chips', chips: [
+              { text: 'Dr Meera Sharma', tone: 'muted' },
+              { text: 'Ward nurse', tone: 'muted' },
+              { text: 'Registrar', tone: 'muted' },
+              { text: 'Pharmacist', tone: 'muted' },
+            ] },
+          ],
+        },
+      },
+      {
+        caption: 'The nurse posts what she has just done, in the room where the alert already is.',
+        scene: {
+          head: 'Rajesh Iyer', sub: 'GM-102 · case room · 4 people',
+          blocks: [
+            { id: 'chat', k: 'chat', msgs: [
+              { from: 'orb', badge: 'Vigil alert', text: 'NEWS2 13, critical. RR 32, SpO2 80% on air, SBP 74.' },
+              { from: 'you', text: 'On 4 L via nasal cannula, sats up to 88. He is working hard. Steroids not given yet.', meta: 'Nurse · 12:58' },
+            ] },
+          ],
+        },
+      },
+      {
+        caption: 'The doctor answers with the order itself, typed as a message. No second system, no form to find.',
+        scene: {
+          head: 'Rajesh Iyer', sub: 'GM-102 · case room · 4 people',
+          blocks: [
+            { id: 'chat', k: 'chat', msgs: [
+              { from: 'you', text: 'On 4 L via nasal cannula, sats up to 88. Steroids not given yet.', meta: 'Nurse · 12:58' },
+              { from: 'orb', text: 'Start prednisolone 40 mg oral, once daily for five days.', meta: 'Dr Meera Sharma · 13:01' },
+            ] },
+          ],
+        },
+      },
+      {
+        caption: 'A model on the appliance reads the sentence and turns it into a drug card, checked against his chart. Saying it is not prescribing it: someone has to approve.',
+        scene: {
+          head: 'Order from a message', sub: 'Read by the local model',
+          blocks: [
+            { id: 'card', k: 'fields', label: 'Prednisolone', fields: [
+              { label: 'Dose', value: '40 mg' },
+              { label: 'Route', value: 'Oral' },
+              { label: 'Freq', value: 'Once daily' },
+              { label: 'Days', value: '5' },
+            ] },
+            { id: 'banner', k: 'banner', tone: 'info', tag: 'Checked', title: 'No allergy match, no dose flag', body: 'Screened against his chart before the card was offered.' },
+            { id: 'chips', k: 'chips', chips: [{ text: 'Approve', tone: 'accent' }, { text: 'Edit', tone: 'muted' }, { text: 'Discard', tone: 'muted' }] },
+          ],
+        },
+      },
+    ],
+  },
+
+  {
+    id: 'story-helix', label: 'Helix', app: 'Orb Helix', who: 'Pharmacist',
+    steps: [
+      {
+        caption: 'Approved, it arrives in the pharmacist’s queue, marked as something a model pulled out of a sentence.',
+        scene: {
+          head: 'Verification queue', sub: 'Pharmacy · 3 waiting',
+          blocks: [
+            { id: 'rows', k: 'rows', rows: [
+              { id: 'p1', title: 'Prednisolone 40 mg oral', sub: 'Rajesh Iyer · GM-102 · from a Relay message', tag: 'AI extracted', tagTone: 'warn', active: true },
+              { id: 'p2', title: 'Salbutamol nebuliser', sub: 'Rajesh Iyer · from a signed note', tag: 'AI extracted', tagTone: 'warn' },
+              { id: 'p3', title: 'Amoxicillin 500 mg', sub: 'Ananya Kapoor · typed by a prescriber', tag: 'Prescribed', tagTone: 'muted' },
+            ] },
+            { id: 'note', k: 'lines', lines: [
+              { text: 'Nothing in this queue is an order yet. The ward cannot give any of it.', strong: true },
+            ] },
+          ],
+        },
+      },
+      {
+        caption: 'The pharmacist checks the dose, the route and the frequency against the chart, and can change any of them.',
+        scene: {
+          head: 'Prednisolone 40 mg', sub: 'Rajesh Iyer · GM-102',
+          blocks: [
+            { id: 'fields', k: 'fields', fields: [
+              { label: 'Dose', value: '40 mg' },
+              { label: 'Route', value: 'Oral' },
+              { label: 'Freq', value: 'Once daily' },
+              { label: 'Days', value: '5' },
+            ] },
+            { id: 'banner', k: 'banner', tone: 'info', tag: 'Source', title: 'From a message by Dr Meera Sharma, 13:01', body: 'The sentence it came from is one click away.' },
+          ],
+        },
+      },
+      {
+        caption: 'Screened against his active medications and his allergies. What the knowledge base does not cover is marked, not waved through.',
+        scene: {
+          head: 'Safety screen', sub: '6 active medications',
+          blocks: [
+            { id: 'rows', k: 'rows', rows: [
+              { id: 'i1', title: 'Prednisolone', sub: 'Screened against 6 active medications', tag: 'No interaction', tagTone: 'ok' },
+              { id: 'i2', title: 'Ceftriaxone allergy on file', sub: 'Anaphylaxis, recorded at admission. Not implicated here.', tag: 'Noted', tagTone: 'muted' },
+              { id: 'i3', title: 'Herbal preparation, unnamed', sub: 'Outside the interaction knowledge base', tag: 'Not screened', tagTone: 'warn' },
+            ] },
+          ],
+        },
+      },
+      {
+        caption: 'A named pharmacist verifies it. That, and nothing earlier, is the moment it becomes an order on the ward.',
+        scene: {
+          head: 'Verified', sub: 'Prednisolone 40 mg · Rajesh Iyer',
+          blocks: [
+            { id: 'banner', k: 'banner', tone: 'ok', tag: 'Verified', title: 'Now an active order', body: 'Verified by the pharmacist on duty, recorded by name and time.' },
+            { id: 'chips', k: 'chips', chips: [{ text: 'Sent to GM-102', tone: 'ok' }, { text: 'On the eMAR', tone: 'muted' }, { text: 'In the audit log', tone: 'muted' }] },
+          ],
+        },
+      },
+      {
+        caption: 'It lands on the nurse’s shift as due, with the allergy printed on the sheet she gives it from. The ward closes the loop it opened.',
+        scene: {
+          head: 'My Shift', sub: 'Due now · GM-102',
+          blocks: [
+            { id: 'rows', k: 'rows', rows: [
+              { id: 'd1', score: 'now', tone: 'warn', title: 'Prednisolone 40 mg oral', sub: 'Rajesh Iyer · first dose', tag: 'Due', tagTone: 'warn', active: true },
+            ] },
+            { id: 'banner', k: 'banner', tone: 'critical', tag: 'On the sheet', title: 'Allergy: ceftriaxone, anaphylaxis', body: 'Printed on the administration sheet at the bedside, every time.' },
+          ],
+        },
+      },
+    ],
+  },
+]

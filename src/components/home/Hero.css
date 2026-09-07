@@ -95,31 +95,17 @@
 .hero__stage {
   width: min(1180px, 100%);
   margin-top: clamp(40px, 7vh, 76px);
-  perspective: 1600px;
+  perspective: 1900px;
   perspective-origin: 50% 0%;
 }
 
-.hero__frame {
-  transform-origin: 50% 0%;
-  border-radius: 24px;
-  padding: 10px;
-  background: linear-gradient(160deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.04));
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  box-shadow: 0 40px 120px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.14);
-  backdrop-filter: blur(24px) saturate(160%);
-  -webkit-backdrop-filter: blur(24px) saturate(160%);
-}
+/* The cards carry their own surface now, so this only holds the tilt. */
+.hero__frame { transform-origin: 50% 0%; }
 
-[data-theme="light"] .hero__frame {
-  background: linear-gradient(160deg, var(--frost-strong), var(--frost));
-  border-color: var(--frost-border);
-  box-shadow: 0 40px 110px rgba(31, 38, 135, 0.16), 0 8px 24px rgba(31, 38, 135, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.95);
-}
-
-.hero__frame .wg { border-radius: 16px; }
 
 .hero__stage-note {
   margin: 18px auto 0;
+  padding: 0 20px;
   max-width: 62ch;
   font-size: 0.86rem;
   color: var(--text-muted);
@@ -128,6 +114,4 @@
 @media (max-width: 900px) {
   .hero { padding-top: 48px; }
   .hero__stage { perspective: none; }
-  .hero__frame { padding: 6px; border-radius: 18px; }
-  .hero__frame .wg { border-radius: 12px; }
 }

@@ -295,9 +295,15 @@ interface WidgetProps {
   label: string
   /** Taller screen area for the hero, where there is room. */
   size?: 'default' | 'tall'
+  /** In a story, only the act on screen plays; the others sit at step one. */
+  active?: boolean
+  /** Called instead of looping, when the last caption has been up long enough. */
+  onFinished?: () => void
+  /** Reports the step the act is on, for a progress rail outside the card. */
+  onStep?: (n: number, total: number) => void
 }
 
-export default function Widget({ flows, label, size = 'default' }: WidgetProps) {
+export default function Widget({ flows, label, size = 'default', active = true, onFinished, onStep }: WidgetProps) {
   const [flowId, setFlowId] = useState(flows[0].id)
   const [step, setStep] = useState(0)
   const [playing, setPlaying] = useState(true)
@@ -310,13 +316,25 @@ export default function Widget({ flows, label, size = 'default' }: WidgetProps) 
   const current = flow.steps[Math.min(step, total - 1)]
   const hold = 2800 + Math.min(3600, current.caption.length * 34)
 
-  // Autoplay while the widget is on screen, then start the workflow again.
+  // Autoplay while the widget is on screen. On the last step it either starts
+  // again, or hands over to whatever comes next in a story.
   useEffect(() => {
-    if (!playing || reduce || !onScreen) return
+    if (!playing || reduce || !onScreen || !active) return
     const last = step >= total - 1
+    if (last && onFinished) {
+      const t = window.setTimeout(onFinished, hold)
+      return () => window.clearTimeout(t)
+    }
     const t = window.setTimeout(() => setStep(last ? 0 : step + 1), last ? hold + 1400 : hold)
     return () => window.clearTimeout(t)
-  }, [playing, reduce, onScreen, step, total, hold])
+  }, [playing, reduce, onScreen, step, total, hold, active, onFinished])
+
+  // An act that is not on stage waits at its first step, ready to play again.
+  useEffect(() => {
+    if (!active) { setStep(0); setPlaying(true) }
+  }, [active])
+
+  useEffect(() => { onStep?.(step, total) }, [step, total, onStep])
 
   const go = (n: number) => { setPlaying(false); setStep((n + total) % total) }
   const pick = (id: string) => { setFlowId(id); setStep(0); setPlaying(true) }
@@ -371,7 +389,7 @@ export default function Widget({ flows, label, size = 'default' }: WidgetProps) 
             </button>
           </span>
         </div>
-        {playing && !reduce && onScreen && (
+        {playing && !reduce && onScreen && active && (
           <motion.span key={`${flow.id}-${step}`} className="wg__progress" initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: hold / 1000, ease: 'linear' }} aria-hidden="true" />
         )}
       </figcaption>
