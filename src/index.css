@@ -12,8 +12,8 @@
 
   /* Text - high contrast, warm tones */
   --text-primary: #f5f5f7;
-  --text-secondary: #b6b6c8;
-  --text-muted: #8a8aa0;
+  --text-secondary: #C9C9D8;
+  --text-muted: #9B9BB0;
 
   /* ─── Sierra Blue scale - the single brand accent in both themes ─── */
   --sierra-50: #F3F7FB;
@@ -128,8 +128,8 @@ body {
   line-height: 1.55;
   letter-spacing: -0.011em;
   /* Raleway at 400 is thin on a screen, and thinnest exactly where the text is
-     smallest. 500 is the floor for anything that inherits. */
-  font-weight: 500;
+     smallest. 600 is the floor for anything that inherits. */
+  font-weight: 600;
 }
 
 #root {
@@ -241,8 +241,8 @@ input, textarea { font-family: inherit; }
   --bg-elevated: rgba(255, 255, 255, 0.94);
 
   --text-primary: #111215;
-  --text-secondary: #2A2A2E;
-  --text-muted: #4E4E57;
+  --text-secondary: #1E1E22;
+  --text-muted: #43434B;
 
   /* Semantic accent roles (light): deep clay for text (5.1:1) and buttons
      (warm white on clay-600, 5.3:1); frosted white surfaces over the Sierra atmosphere */

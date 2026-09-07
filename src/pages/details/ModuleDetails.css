@@ -47,7 +47,7 @@
 
 .module-detail__badge {
   font-size: 0.84rem;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--accent);
@@ -288,7 +288,7 @@
 .mp__eyebrow {
   display: inline-block;
   font-family: var(--font-mono);
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.8rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -422,7 +422,7 @@
   font-family: var(--font-mono);
   font-size: 0.8rem;
   letter-spacing: 0.14em;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .module-detail__title {

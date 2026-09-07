@@ -77,7 +77,7 @@
 
 .search-overlay__esc {
   font-size: 0.8rem;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--text-muted);
@@ -214,7 +214,7 @@
 
 .search-overlay__answer-more {
   font-size: 0.8rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--text-secondary);
 }
 
@@ -283,7 +283,7 @@
 }
 
 .search-overlay__result-subtitle {
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.8rem;
   color: var(--text-muted);
   white-space: nowrap;
@@ -320,7 +320,7 @@
   gap: 18px;
   padding: 10px 18px;
   border-top: 1px solid var(--border-subtle);
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.8rem;
   color: var(--text-muted);
 }
@@ -328,7 +328,7 @@
 .search-overlay__footer kbd {
   font-family: inherit;
   font-size: 0.8rem;
-  font-weight: 600;
+  font-weight: 700;
   border: 1px solid var(--border-glass);
   border-radius: 5px;
   padding: 1px 5px;
