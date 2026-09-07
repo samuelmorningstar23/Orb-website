@@ -13,7 +13,7 @@
 .gallery__tab {
   padding: 7px 14px;
   border-radius: var(--radius-full);
-  font-size: 0.86rem;
+  font-size: 0.9rem;
   font-weight: 600;
   color: var(--text-secondary);
   background: var(--bg-glass);
@@ -65,5 +65,5 @@
 
 @media (max-width: 700px) {
   .gallery__frame { aspect-ratio: 1277 / 900; border-radius: 14px; }
-  .gallery__tab { padding: 6px 11px; font-size: 0.8rem; }
+  .gallery__tab { padding: 6px 11px; font-size: 0.84rem; }
 }

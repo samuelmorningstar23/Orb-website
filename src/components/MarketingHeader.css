@@ -54,7 +54,7 @@
 }
 
 .marketing-header__link {
-  font-size: 0.8rem;
+  font-size: 0.84rem;
   color: var(--text-secondary);
   font-weight: 500;
   letter-spacing: -0.01em;
@@ -104,7 +104,7 @@
   background: transparent;
   color: var(--accent);
   border: 1.5px solid var(--accent-gold);
-  font-size: 0.8rem;
+  font-size: 0.84rem;
   font-weight: 700;
   padding: 5px 14px;
   border-radius: var(--radius-full);
@@ -190,7 +190,7 @@
 }
 
 .nav-panel__eyebrow {
-  font-size: 0.66rem;
+  font-size: 0.8rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.11em;
@@ -225,7 +225,7 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.85rem;
+  font-size: 0.89rem;
   font-weight: 600;
   color: var(--accent);
   transition: opacity var(--transition-fast), transform var(--transition-fast);
@@ -243,7 +243,7 @@
 .nav-panel__demo {
   background: var(--accent-gold);
   color: var(--btn-primary-text);
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   font-weight: 700;
   padding: 6px 16px;
   border-radius: var(--radius-full);
@@ -285,14 +285,14 @@
 }
 
 .nav-panel__plan-name {
-  font-size: 0.92rem;
+  font-size: 0.96rem;
   font-weight: 600;
   color: var(--text-primary);
   white-space: nowrap;
 }
 
 .nav-panel__plan-tag {
-  font-size: 0.74rem;
+  font-size: 0.8rem;
   color: var(--text-muted);
   white-space: nowrap;
 }
@@ -306,7 +306,7 @@
 }
 
 .nav-panel__module-link {
-  font-size: 0.84rem;
+  font-size: 0.88rem;
   font-weight: 500;
   color: var(--text-secondary);
   padding: 7px 10px;
@@ -325,7 +325,7 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   font-weight: 600;
   color: var(--accent);
   padding-top: 10px;
@@ -395,7 +395,7 @@
   }
 
   .marketing-header__drawer-label {
-    font-size: 0.68rem;
+    font-size: 0.8rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;

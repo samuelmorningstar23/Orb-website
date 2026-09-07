@@ -40,6 +40,8 @@
 
 .acts__num {
   font-family: var(--font-serif);
+  font-weight: 900;
+  letter-spacing: -0.042em;
   font-style: italic;
   font-size: 1.5rem;
   color: var(--accent);
@@ -48,8 +50,8 @@
 .acts__label {
   font-family: var(--font-serif);
   font-size: 1.5rem;
-  font-weight: 600;
-  letter-spacing: -0.015em;
+  font-weight: 900;
+  letter-spacing: -0.042em;
 }
 
 .acts__line {

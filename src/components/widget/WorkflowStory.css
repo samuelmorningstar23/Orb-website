@@ -89,7 +89,7 @@
 
 .wstory__act-num {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.8rem;
   letter-spacing: 0.08em;
   color: var(--accent);
   opacity: 0.55;
@@ -100,13 +100,13 @@
 .wstory__act-name {
   font-family: var(--font-serif);
   font-size: 1.08rem;
-  font-weight: 600;
-  letter-spacing: -0.015em;
+  font-weight: 900;
+  letter-spacing: -0.042em;
 }
 
 .wstory__act-hint {
   grid-column: 2;
-  font-size: 0.8rem;
+  font-size: 0.84rem;
   line-height: 1.35;
   color: var(--text-muted);
   text-wrap: pretty;

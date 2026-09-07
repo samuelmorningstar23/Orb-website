@@ -43,9 +43,9 @@
 .checks__label {
   font-family: var(--font-serif);
   font-size: clamp(1.25rem, 1.8vw, 1.5rem);
-  font-weight: 600;
+  font-weight: 900;
   line-height: 1.2;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.042em;
 }
 
 .checks__line {

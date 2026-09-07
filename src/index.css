@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Raleway:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400..900;1,400..900&family=Fira+Code:wght@400;500;600;700&display=swap');
 
 /* ─── Design Tokens - Dark Mode (Default) ─── */
 :root {
@@ -12,8 +12,8 @@
 
   /* Text - high contrast, warm tones */
   --text-primary: #f5f5f7;
-  --text-secondary: #a0a0b8;
-  --text-muted: #6b6b82;
+  --text-secondary: #b6b6c8;
+  --text-muted: #8a8aa0;
 
   /* ─── Sierra Blue scale - the single brand accent in both themes ─── */
   --sierra-50: #F3F7FB;
@@ -84,9 +84,13 @@
   --blur-glass: 40px;
   --blur-light: 20px;
 
-  /* Typography */
-  --font-family: 'Raleway', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  --font-serif: 'Lora', Georgia, serif;
+  /* Typography.
+     One family, set heavy: body at 600 and display at 900 with tight tracking,
+     the system a16z Speedrun uses. Theirs is Messina Sans, which is licensed;
+     Archivo is the closest face with a real 900. --font-serif is kept as the
+     display token so every existing rule keeps working. */
+  --font-family: 'Archivo', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-serif: 'Archivo', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   --font-mono: 'Fira Code', 'SF Mono', 'JetBrains Mono', monospace;
 
   /* Transitions - smooth, premium feel */
@@ -125,9 +129,9 @@ body {
   color: var(--text-primary);
   min-height: 100vh;
   overflow-x: hidden;
-  line-height: 1.55;
-  letter-spacing: -0.011em;
-  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: -0.014em;
+  font-weight: 600;
 }
 
 #root {
@@ -239,8 +243,8 @@ input, textarea { font-family: inherit; }
   --bg-elevated: rgba(255, 255, 255, 0.94);
 
   --text-primary: #111215;
-  --text-secondary: #333336;
-  --text-muted: #62626A;
+  --text-secondary: #2A2A2E;
+  --text-muted: #4E4E57;
 
   /* Semantic accent roles (light): deep clay for text (5.1:1) and buttons
      (warm white on clay-600, 5.3:1); frosted white surfaces over the Sierra atmosphere */
