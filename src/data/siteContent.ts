@@ -169,7 +169,7 @@ export const FEATURED_MODULES: FeaturedModule[] = [
 // secret. Web3Forms rejects server-side calls on the free plan; submissions
 // must come from the browser (which is what happens here).
 export const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit'
-export const WEB3FORMS_ACCESS_KEY = '20e7bb09-6c16-4692-bee8-343422d7ff94'
+export const WEB3FORMS_ACCESS_KEY = 'f2327387-ec11-4f52-99f4-d496dc28e10f'
 
 export const CONTACT_EMAIL = 'support@orbsuite.com'
 
