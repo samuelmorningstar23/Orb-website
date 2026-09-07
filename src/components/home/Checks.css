@@ -41,11 +41,11 @@
 [data-theme="light"] .checks__item:last-child { border-bottom-color: rgba(0, 0, 0, 0.1); }
 
 .checks__label {
-  font-family: var(--font-family);
+  font-family: var(--font-serif);
   font-size: clamp(1.25rem, 1.8vw, 1.5rem);
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.2;
-  letter-spacing: -0.016em;
+  letter-spacing: -0.015em;
 }
 
 .checks__line {

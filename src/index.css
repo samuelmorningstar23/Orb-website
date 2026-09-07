@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Fira+Code:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Raleway:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600;700&display=swap');
 
 /* ─── Design Tokens - Dark Mode (Default) ─── */
 :root {
@@ -12,8 +12,8 @@
 
   /* Text - high contrast, warm tones */
   --text-primary: #f5f5f7;
-  --text-secondary: #b6b6c8;
-  --text-muted: #8a8aa0;
+  --text-secondary: #a0a0b8;
+  --text-muted: #6b6b82;
 
   /* ─── Sierra Blue scale - the single brand accent in both themes ─── */
   --sierra-50: #F3F7FB;
@@ -84,15 +84,9 @@
   --blur-glass: 40px;
   --blur-light: 20px;
 
-  /* Typography: three voices, each doing one job.
-     Instrument Serif carries the statements, large and high contrast, with a
-     true italic for the emphasis in them. Instrument Sans runs the interface,
-     set at 500 and 600 so it stays readable at the sizes a ward screen uses.
-     Fira Code holds every number, because a score should look measured.
-     Setting one family at 900 for everything, as Speedrun does, flattened the
-     hierarchy: when all of it shouts, none of it leads. */
-  --font-family: 'Instrument Sans', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  --font-serif: 'Instrument Serif', 'Iowan Old Style', Georgia, serif;
+  /* Typography */
+  --font-family: 'Raleway', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-serif: 'Lora', Georgia, serif;
   --font-mono: 'Fira Code', 'SF Mono', 'JetBrains Mono', monospace;
 
   /* Transitions - smooth, premium feel */
@@ -132,8 +126,8 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   line-height: 1.55;
-  letter-spacing: -0.006em;
-  font-weight: 500;
+  letter-spacing: -0.011em;
+  font-weight: 400;
 }
 
 #root {
@@ -245,8 +239,8 @@ input, textarea { font-family: inherit; }
   --bg-elevated: rgba(255, 255, 255, 0.94);
 
   --text-primary: #111215;
-  --text-secondary: #2A2A2E;
-  --text-muted: #4E4E57;
+  --text-secondary: #333336;
+  --text-muted: #62626A;
 
   /* Semantic accent roles (light): deep clay for text (5.1:1) and buttons
      (warm white on clay-600, 5.3:1); frosted white surfaces over the Sierra atmosphere */

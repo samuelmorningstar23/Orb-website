@@ -25,7 +25,7 @@
   align-items: center;
   gap: 8px;
   color: var(--accent);
-  font-size: 0.94rem;
+  font-size: 0.9rem;
   font-weight: 500;
   margin-bottom: 40px;
   transition: opacity var(--transition-fast), transform var(--transition-fast);
@@ -46,7 +46,7 @@
 }
 
 .module-detail__badge {
-  font-size: 0.84rem;
+  font-size: 0.8rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -219,7 +219,7 @@
   padding: 12px 28px;
   border-radius: 999px;
   font-weight: 700;
-  font-size: 0.94rem;
+  font-size: 0.9rem;
   box-shadow: 0 4px 16px var(--accent-glow);
   transition: transform var(--transition-fast), filter var(--transition-fast);
 }
@@ -252,7 +252,7 @@
 /* ─── Captures (real screens) ─── */
 .module-detail__capture-note {
   margin: 14px 4px 0;
-  font-size: 0.86rem;
+  font-size: 0.82rem;
   color: var(--text-muted);
   text-align: center;
 }
@@ -288,7 +288,7 @@
 .mp__eyebrow {
   display: inline-block;
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: 0.72rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--accent);
@@ -305,10 +305,10 @@
 
 .mp__title {
   font-family: var(--font-serif);
-  font-weight: 400;
+  font-weight: 500;
   font-size: clamp(3rem, 6.5vw, 5.4rem);
   line-height: 0.98;
-  letter-spacing: -0.028em;
+  letter-spacing: -0.032em;
   margin: 0 0 20px;
 }
 
@@ -322,7 +322,7 @@
 
 .mp__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 20px; }
 .mp__actions--center { justify-content: center; margin-top: 28px; }
-.mp__area { font-size: 0.96rem; color: var(--text-muted); max-width: 34ch; }
+.mp__area { font-size: 0.92rem; color: var(--text-muted); max-width: 34ch; }
 
 .mp__hero-demo {
   border-radius: 24px;
@@ -342,14 +342,14 @@
 
 .mp__hero-demo .wg { border-radius: 16px; }
 
-.mp__demo-note { margin: 12px 6px 2px; font-size: 0.86rem; color: var(--text-muted); }
+.mp__demo-note { margin: 12px 6px 2px; font-size: 0.82rem; color: var(--text-muted); }
 
 .mp__h2 {
   font-family: var(--font-serif);
-  font-weight: 400;
+  font-weight: 500;
   font-size: clamp(1.9rem, 3.6vw, 3rem);
   line-height: 1.06;
-  letter-spacing: -0.028em;
+  letter-spacing: -0.026em;
   margin: 0;
   text-wrap: balance;
 }
@@ -377,10 +377,8 @@
 
 [data-theme="light"] .mp__fact { border-top-color: rgba(0, 0, 0, 0.1); }
 
-.mp__fact-num { grid-row: 1 / 3; font-family: var(--font-family);
-  font-weight: 700;
-  letter-spacing: -0.016em; font-style: italic; font-size: 1.3rem; color: var(--accent); padding-top: 3px; }
-.mp__fact-title { font-family: var(--font-family); font-size: 1.35rem; font-weight: 700; letter-spacing: -0.016em; line-height: 1.2; margin-bottom: 6px; }
+.mp__fact-num { grid-row: 1 / 3; font-family: var(--font-serif); font-style: italic; font-size: 1.3rem; color: var(--accent); padding-top: 3px; }
+.mp__fact-title { font-family: var(--font-serif); font-size: 1.35rem; font-weight: 600; letter-spacing: -0.015em; line-height: 1.2; margin-bottom: 6px; }
 .mp__fact-desc { font-size: 0.98rem; line-height: 1.55; color: var(--text-secondary); }
 
 
@@ -398,7 +396,7 @@
 
 .mp__cta-title {
   font-family: var(--font-serif);
-  font-weight: 400;
+  font-weight: 500;
   font-size: clamp(2rem, 4.5vw, 3.6rem);
   letter-spacing: -0.028em;
   line-height: 1.05;
@@ -421,17 +419,17 @@
    as one piece. Class names are unchanged; only their look. */
 .module-detail__badge {
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: 0.72rem;
   letter-spacing: 0.14em;
   font-weight: 500;
 }
 
 .module-detail__title {
   font-family: var(--font-serif);
-  font-weight: 400;
+  font-weight: 500;
   font-size: clamp(2.8rem, 6.4vw, 5.2rem);
   line-height: 1;
-  letter-spacing: -0.028em;
+  letter-spacing: -0.03em;
 }
 
 .module-detail__tagline { font-size: clamp(1.08rem, 1.6vw, 1.3rem); }
@@ -441,9 +439,9 @@
 .safety-suite__title,
 .trust-posture__title,
 .support-page__faq-title {
-  font-family: var(--font-family);
-  font-weight: 700;
-  letter-spacing: -0.016em;
+  font-family: var(--font-serif);
+  font-weight: 500;
+  letter-spacing: -0.026em;
 }
 
 .module-detail__cta-title { font-size: clamp(2rem, 4.5vw, 3.6rem); line-height: 1.05; }
@@ -455,14 +453,13 @@
 .trust-posture__card-title,
 .support-page__channel-title,
 .support-page__faq-item summary {
-  font-family: var(--font-family);
-  font-weight: 700;
-  letter-spacing: -0.016em;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  letter-spacing: -0.015em;
 }
 
 .plans-page__name { font-size: 2rem; }
-.plans-page__tagline { font-family: var(--font-family); font-style: italic; font-weight: 700;
-  letter-spacing: -0.016em; }
+.plans-page__tagline { font-family: var(--font-serif); font-style: italic; font-weight: 500; }
 
 .module-detail__card,
 .plans-page__card,
@@ -487,5 +484,5 @@
 }
 
 /* The strip note under the eyebrow, and a smaller CTA line on module pages. */
-.mp__strip-note { margin: 6px 0 0; font-size: 0.96rem; color: var(--text-muted); }
+.mp__strip-note { margin: 6px 0 0; font-size: 0.92rem; color: var(--text-muted); }
 .mp__cta-title { font-size: clamp(1.8rem, 3.6vw, 2.9rem); }

@@ -42,7 +42,7 @@
 }
 
 .landing-overview__badge {
-  font-size: 0.84rem;
+  font-size: 0.8rem;
   font-weight: 600;
   text-transform: uppercase;
   color: var(--accent);
@@ -86,7 +86,7 @@
   padding: 12px 28px;
   border-radius: var(--radius-full);
   font-weight: 600;
-  font-size: 0.94rem;
+  font-size: 0.9rem;
   box-shadow: 0 4px 16px var(--accent-glow);
   transition: transform var(--transition-fast), filter var(--transition-fast);
 }
@@ -226,7 +226,7 @@
 }
 
 .landing-overview__footer-tagline {
-  font-size: 0.94rem;
+  font-size: 0.9rem;
   line-height: 1.5;
   color: var(--text-secondary);
   margin: 16px 0 22px;
@@ -245,7 +245,7 @@
 }
 
 .landing-overview__footer-col-title {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -262,7 +262,7 @@
   gap: 12px;
   padding-top: 28px;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
-  font-size: 0.8rem;
+  font-size: 0.78rem;
 }
 
 [data-theme="light"] .landing-overview__footer-bottom {
@@ -362,9 +362,9 @@
 
 .landing-overview__cta-title {
   font-family: var(--font-serif);
-  font-weight: 400;
+  font-weight: 500;
   font-size: clamp(2.6rem, 6vw, 5rem);
-  letter-spacing: -0.028em;
+  letter-spacing: -0.03em;
   line-height: 1;
 }
 
