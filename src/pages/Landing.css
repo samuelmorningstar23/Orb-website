@@ -362,9 +362,9 @@
 
 .landing-overview__cta-title {
   font-family: var(--font-serif);
-  font-weight: 900;
+  font-weight: 400;
   font-size: clamp(2.6rem, 6vw, 5rem);
-  letter-spacing: -0.042em;
+  letter-spacing: -0.028em;
   line-height: 1;
 }
 

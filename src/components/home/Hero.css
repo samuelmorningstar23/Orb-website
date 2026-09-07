@@ -27,10 +27,10 @@
 
 .hero__title {
   font-family: var(--font-serif);
-  font-weight: 900;
-  font-size: clamp(2.4rem, 5vw, 4.1rem);
+  font-weight: 400;
+  font-size: clamp(2.7rem, 5.9vw, 5.3rem);
   line-height: 0.98;
-  letter-spacing: -0.042em;
+  letter-spacing: -0.028em;
   color: var(--text-primary);
   margin: 0 0 26px;
   text-wrap: balance;

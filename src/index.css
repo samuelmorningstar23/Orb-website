@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400..900;1,400..900&family=Fira+Code:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Fira+Code:wght@400;500;600;700&display=swap');
 
 /* ─── Design Tokens - Dark Mode (Default) ─── */
 :root {
@@ -84,13 +84,15 @@
   --blur-glass: 40px;
   --blur-light: 20px;
 
-  /* Typography.
-     One family, set heavy: body at 600 and display at 900 with tight tracking,
-     the system a16z Speedrun uses. Theirs is Messina Sans, which is licensed;
-     Archivo is the closest face with a real 900. --font-serif is kept as the
-     display token so every existing rule keeps working. */
-  --font-family: 'Archivo', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  --font-serif: 'Archivo', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  /* Typography: three voices, each doing one job.
+     Instrument Serif carries the statements, large and high contrast, with a
+     true italic for the emphasis in them. Instrument Sans runs the interface,
+     set at 500 and 600 so it stays readable at the sizes a ward screen uses.
+     Fira Code holds every number, because a score should look measured.
+     Setting one family at 900 for everything, as Speedrun does, flattened the
+     hierarchy: when all of it shouts, none of it leads. */
+  --font-family: 'Instrument Sans', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-serif: 'Instrument Serif', 'Iowan Old Style', Georgia, serif;
   --font-mono: 'Fira Code', 'SF Mono', 'JetBrains Mono', monospace;
 
   /* Transitions - smooth, premium feel */
@@ -129,9 +131,9 @@ body {
   color: var(--text-primary);
   min-height: 100vh;
   overflow-x: hidden;
-  line-height: 1.5;
-  letter-spacing: -0.014em;
-  font-weight: 600;
+  line-height: 1.55;
+  letter-spacing: -0.006em;
+  font-weight: 500;
 }
 
 #root {
