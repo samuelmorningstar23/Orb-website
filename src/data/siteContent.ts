@@ -171,7 +171,7 @@ export const FEATURED_MODULES: FeaturedModule[] = [
 export const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit'
 export const WEB3FORMS_ACCESS_KEY = 'f2327387-ec11-4f52-99f4-d496dc28e10f'
 
-export const CONTACT_EMAIL = 'support@orbsuite.com'
+export const CONTACT_EMAIL = 'Mags@orbsuite.com'
 
 export const openDemoModal = () =>
   window.dispatchEvent(new CustomEvent('open-demo-modal'))
