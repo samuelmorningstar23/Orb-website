@@ -94,7 +94,7 @@ export default function Support() {
               </svg>
             </div>
             <h3 className="support-page__channel-title">Request a demo</h3>
-            <p className="support-page__channel-desc">A walkthrough of the running product on demo patients, sized to your wards.</p>
+            <p className="support-page__channel-desc">A walkthrough of the running product on demo patients, about your wards.</p>
             <span className="support-page__channel-action">Book a walkthrough &rarr;</span>
           </button>
 

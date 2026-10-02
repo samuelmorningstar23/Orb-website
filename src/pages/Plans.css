@@ -108,6 +108,8 @@
 
 .plans__proof { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px clamp(22px, 3vw, 40px); }
 .plans__proof-item { display: flex; flex-direction: column; padding-top: 14px; border-top: 1px solid var(--border-glass); }
+/* An odd last item takes the full row instead of leaving a hole beside it. */
+.plans__proof-item:last-child:nth-child(odd) { grid-column: 1 / -1; }
 [data-theme="light"] .plans__proof-item { border-top-color: rgba(20, 18, 15, 0.1); }
 .plans__proof-num { font-family: var(--font-serif); font-style: italic; font-size: 1rem; color: var(--accent); margin-bottom: 8px; }
 
@@ -124,6 +126,10 @@
 }
 
 .plans__cta-desc { margin: 0 auto 24px; max-width: 54ch; font-size: 0.98rem; line-height: 1.6; color: var(--text-secondary); }
+/* On a narrow phone the link drops under the button instead of squeezing it onto two lines. */
+.plans__cta .module-detail__buttons { flex-wrap: wrap; gap: 14px 20px; }
+.plans__cta .module-detail__btn-primary,
+.plans__cta .module-detail__btn-secondary { white-space: nowrap; }
 
 @media (max-width: 980px) {
   .plans__hero { grid-template-columns: 1fr; }

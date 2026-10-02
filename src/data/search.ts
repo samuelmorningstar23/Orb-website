@@ -99,8 +99,8 @@ export const ANSWER_ENTRIES: SearchEntry[] = [
     keywords: ['offline', 'outage', 'internet', 'network', 'connection', 'isp', 'down', 'downtime', 'continuity', 'work'],
   },
   {
-    id: 'qa-integration', kind: 'answer', title: 'Does Orb replace our EHR?', to: '/security',
-    answer: 'Yes. Orb is the system of record: admissions, orders, notes, pharmacy, billing and the front desk run on one database. Where a hospital already has an HIS, Orb imports from it and exports records as FHIR, so there is no second record to keep in step.',
+    id: 'qa-integration', kind: 'answer', title: 'Does Orb replace our hospital system?', to: '/plans',
+    answer: 'No. Orb runs beside your hospital system on one ward. Registration, billing, pharmacy and lab stay where they are. Orb can export its own records as FHIR.',
     keywords: ['ehr', 'emr', 'his', 'integrate', 'integration', 'replace', 'stack', 'systems', 'interoperability', 'hl7', 'fhir', 'record'],
   },
   {
@@ -120,7 +120,7 @@ export const ANSWER_ENTRIES: SearchEntry[] = [
   },
   {
     id: 'qa-demo', kind: 'answer', title: 'How do I see Orb in action?', to: '/support',
-    answer: 'Every screen on this site is a capture of the running product on demo patients. For the live version, request a demo: a walkthrough on a call, sized to your wards, with the product open rather than slides.',
+    answer: 'Every screen on this site is a capture of the running product on demo patients. For the live version, request a demo: a walkthrough on a call, about your wards, with the product open rather than slides.',
     keywords: ['demo', 'see', 'try', 'trial', 'walkthrough', 'test', 'evaluate', 'poc', 'pilot', 'action'],
   },
   {

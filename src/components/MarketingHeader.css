@@ -259,7 +259,11 @@
 
 /* Plans card: one line and one link, the same width as a module card */
 .nav-panel--plans {
-  max-width: 300px;
+  max-width: 320px;
+}
+
+.nav-panel--plans .nav-panel__summary {
+  text-wrap: balance;
 }
 
 /* All-modules grid - labels stacked side by side */

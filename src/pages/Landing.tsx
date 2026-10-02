@@ -30,7 +30,7 @@ export default function Landing() {
         <Reveal as="section" className="landing-overview__cta" amount={0.4}>
           <h2 className="landing-overview__cta-title">See Orb on your wards.</h2>
           <p className="landing-overview__cta-desc">
-            A walkthrough of the running product on demo patients, on a call sized to your hospital. No slides.
+            A walkthrough of the running product on demo patients, on a call about your wards. No slides.
           </p>
           <div className="landing-overview__cta-actions">
             <button className="landing-overview__btn-primary" onClick={openDemoModal}>Request a demo</button>

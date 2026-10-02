@@ -99,7 +99,7 @@ export default function RequestDemoModal() {
         {!isSuccess ? (
           <>
             <h3 className="demo-modal-title" id="demo-modal-title">Request a Demo</h3>
-            <p className="demo-modal-subtitle">A walkthrough of the running product on demo patients, on a call. Tell us the wards and the beds and we size it.</p>
+            <p className="demo-modal-subtitle">A walkthrough of the running product on demo patients, on a call. Tell us about your wards and the software you run today.</p>
 
             {error && <div className="demo-modal-error" role="alert">{error}</div>}
 
@@ -115,8 +115,8 @@ export default function RequestDemoModal() {
               </div>
 
               <div className="demo-modal-field">
-                <label htmlFor="dm-company">Company / Hospital Group</label>
-                <input id="dm-company" name="company" type="text" autoComplete="organization" placeholder="Mercy Health" value={company} onChange={e => setCompany(e.target.value)} required />
+                <label htmlFor="dm-company">Hospital</label>
+                <input id="dm-company" name="company" type="text" autoComplete="organization" placeholder="Your hospital" value={company} onChange={e => setCompany(e.target.value)} required />
               </div>
 
               <div className="demo-modal-field">

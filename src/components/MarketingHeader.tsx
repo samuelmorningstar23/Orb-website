@@ -317,8 +317,7 @@ export default function MarketingHeader() {
         <div className="marketing-header__drawer">
           <Link to="/" className="marketing-header__drawer-link marketing-header__drawer-link--overview" onClick={() => setMobileOpen(false)}>Overview</Link>
 
-          <span className="marketing-header__drawer-label">Plans</span>
-          <Link to="/plans" className="marketing-header__drawer-link" onClick={() => setMobileOpen(false)}>Founding programme</Link>
+          <Link to="/plans" className="marketing-header__drawer-link marketing-header__drawer-link--overview" onClick={() => setMobileOpen(false)}>Plans</Link>
 
           <span className="marketing-header__drawer-label">Modules</span>
           <div className="marketing-header__drawer-grid">

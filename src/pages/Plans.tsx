@@ -59,7 +59,7 @@ export default function Plans() {
         {/* ─── What Orb is not, today ─── */}
         <section className="plans__plain" aria-labelledby="not-today">
           <div className="plans__plain-head">
-            <span className="plans__eyebrow">Said plainly</span>
+            <span className="plans__eyebrow">Before you call</span>
             <h2 className="plans__h2" id="not-today">What Orb is not, today.</h2>
           </div>
 
