@@ -18,10 +18,14 @@ const src = readFileSync('src/data/modulePages.ts', 'utf8')
 const modules = [...src.matchAll(/route: '([^']+)',\s*title: '([^']+)',\s*badge: '([^']+)',\s*tagline: '((?:[^'\\]|\\.)+)'/g)]
   .map(m => ({ route: m[1], title: `${m[2]}: ${m[3]} | Orb`, description: m[4].replace(/\\'/g, "'") }))
 
+// The Plans page description is the page's own lede, so the two cannot drift.
+const plansLede = readFileSync('src/data/plans.ts', 'utf8').match(/PLANS_LEDE = '((?:[^'\\]|\\.)+)'/)?.[1]?.replace(/\\'/g, "'")
+if (!plansLede) throw new Error('postbuild: PLANS_LEDE not found in src/data/plans.ts')
+
 const pages = [
   { route: '/', title: 'Orb Hospital OS', description: 'The record, the ward monitor, the pharmacy and the front desk on one appliance inside the hospital. The models run there too, so nothing about a patient leaves the building.' },
   { route: '/modules', title: 'The modules | Orb', description: 'Every Orb module as a real screen of the running product, each opening a page that runs its workflows.' },
-  { route: '/plans', title: 'Plans | Orb', description: 'A thirteen-week pilot on one ward, then per-bed pricing for the whole hospital. No tier withholds a safety feature.' },
+  { route: '/plans', title: 'Plans | Orb', description: plansLede },
   { route: '/security', title: 'Security brief | Orb', description: 'What leaves the building: nothing. The appliance, the models and the hash-chained audit log, with the admin screens they are checked on.' },
   { route: '/support', title: 'Support | Orb', description: 'Write to the team, book a walkthrough of the running product, or find the answer below.' },
   ...modules,

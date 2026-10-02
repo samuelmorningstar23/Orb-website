@@ -3,7 +3,6 @@ import { Link, useLocation } from 'react-router-dom'
 import OrbLogo from './OrbLogo'
 import SearchOverlay from './SearchOverlay'
 import { ALL_MODULES, openDemoModal, type FeaturedModule } from '../data/siteContent'
-import { STAGES } from '../data/plans'
 import './MarketingHeader.css'
 
 // ─── Top-bar model ───
@@ -197,17 +196,10 @@ export default function MarketingHeader() {
     if (item.panel === 'plans') {
       return (
         <div className="nav-panel nav-panel--plans">
-          <span className="nav-panel__eyebrow">A pilot first, then the hospital</span>
-          <div className="nav-panel__plan-list">
-            {STAGES.map(p => (
-              <Link key={p.id} to={`/plans#${p.id}`} className="nav-panel__plan" onClick={closeNow}>
-                <span className="nav-panel__plan-name">{p.name}</span>
-                <span className="nav-panel__plan-tag">{p.price} {p.unit}</span>
-              </Link>
-            ))}
-          </div>
+          <span className="nav-panel__eyebrow">Founding hospital programme</span>
+          <p className="nav-panel__summary">Three places in Hyderabad. One ward, beside the software you already run.</p>
           <Link to="/plans" className="nav-panel__footer-link" onClick={closeNow}>
-            Compare all plans {arrow}
+            How it starts {arrow}
           </Link>
         </div>
       )
@@ -326,11 +318,7 @@ export default function MarketingHeader() {
           <Link to="/" className="marketing-header__drawer-link marketing-header__drawer-link--overview" onClick={() => setMobileOpen(false)}>Overview</Link>
 
           <span className="marketing-header__drawer-label">Plans</span>
-          <div className="marketing-header__drawer-grid">
-            {STAGES.map(p => (
-              <Link key={p.id} to={`/plans#${p.id}`} className="marketing-header__drawer-link" onClick={() => setMobileOpen(false)}>{p.name}</Link>
-            ))}
-          </div>
+          <Link to="/plans" className="marketing-header__drawer-link" onClick={() => setMobileOpen(false)}>Founding programme</Link>
 
           <span className="marketing-header__drawer-label">Modules</span>
           <div className="marketing-header__drawer-grid">

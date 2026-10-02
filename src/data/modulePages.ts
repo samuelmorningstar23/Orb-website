@@ -32,7 +32,7 @@ export const MODULE_PAGES: ModulePageData[] = [
   {
     route: '/vigil',
     title: 'Vigil',
-    badge: 'Vitals and early warning',
+    badge: 'Vitals and NEWS2',
     tagline: 'Every patient scored on NEWS2 as the vitals arrive, the ward ordered by that score, and the Sepsis Six clock started for you.',
     cards: [
       { icon: 'pulse', title: 'A deterministic score, not a model', desc: 'NEWS2 straight from the Royal College of Physicians table. Any nurse can check any point by hand.' },

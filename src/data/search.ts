@@ -1,5 +1,5 @@
 import { ALL_MODULES, CONTACT_EMAIL } from './siteContent'
-import { STAGES } from './plans'
+import { PLANS_LEDE } from './plans'
 
 // ─── Site search: keyword lookup + lightweight question answering ───
 // Everything is indexed client-side (the site is static), so search works
@@ -9,7 +9,7 @@ export type SearchAction = 'demo' | 'mail'
 
 export interface SearchEntry {
   id: string
-  kind: 'module' | 'page' | 'plan' | 'action' | 'answer'
+  kind: 'module' | 'page' | 'action' | 'answer'
   title: string
   subtitle?: string
   /** Route to navigate to on selection (mutually exclusive with `action`). */
@@ -24,7 +24,7 @@ export interface SearchEntry {
 export interface SearchResults {
   /** Best-matching Q&A entry, when the query reads like a question it can answer. */
   answer: SearchEntry | null
-  /** Ranked pages, modules, plans, and actions. */
+  /** Ranked pages, modules, and actions. */
   results: SearchEntry[]
 }
 
@@ -36,16 +36,6 @@ const MODULE_ENTRIES: SearchEntry[] = ALL_MODULES.map(m => ({
   to: m.to,
   keywords: [...m.keywords, 'module', m.label.toLowerCase()],
   body: m.blurb,
-}))
-
-const PLAN_ENTRIES: SearchEntry[] = STAGES.map(p => ({
-  id: `plan-${p.id}`,
-  kind: 'plan',
-  title: p.name,
-  subtitle: `${p.price} ${p.unit}. ${p.when}.`,
-  to: `/plans#${p.id}`,
-  keywords: ['plan', 'pricing', 'price', 'cost', 'per bed', p.id, p.name.toLowerCase()],
-  body: `${p.desc} ${p.points.join(' ')}`,
 }))
 
 const PAGE_ENTRIES: SearchEntry[] = [
@@ -60,9 +50,9 @@ const PAGE_ENTRIES: SearchEntry[] = [
     body: ALL_MODULES.map(m => m.label).join(' '),
   },
   {
-    id: 'page-plans', kind: 'page', title: 'Plans', subtitle: 'A pilot first, then per bed', to: '/plans',
-    keywords: ['plans', 'pricing', 'price', 'cost', 'tiers', 'editions', 'compare', 'buy', 'subscription'],
-    body: 'A thirteen-week pilot on one ward, then per-bed pricing for the hospital. No tier withholds a safety feature.',
+    id: 'page-plans', kind: 'page', title: 'Plans', subtitle: 'Founding hospital programme: three places in Hyderabad', to: '/plans',
+    keywords: ['plans', 'plan', 'founding', 'programme', 'program', 'hyderabad', 'pricing', 'price', 'cost', 'terms', 'buy', 'start'],
+    body: PLANS_LEDE,
   },
   {
     id: 'page-support', kind: 'page', title: 'Support', subtitle: 'Help, contact, and common questions', to: '/support',
@@ -120,8 +110,8 @@ export const ANSWER_ENTRIES: SearchEntry[] = [
   },
   {
     id: 'qa-pricing', kind: 'answer', title: 'How much does Orb cost?', to: '/plans',
-    answer: 'Orb is bought as a thirteen-week pilot on one ward, then per bed per month for the whole hospital. The figure is agreed on the demo call with your wards, beds and hardware in front of us, and no tier withholds a safety feature.',
-    keywords: ['cost', 'price', 'pricing', 'much', 'pay', 'plans', 'subscription', 'license', 'expensive', 'budget', 'bed'],
+    answer: 'Orb is not publishing prices yet. It starts with a founding hospital programme: three places in Hyderabad, one ward each, beside the hospital software you already run. Terms are agreed in person.',
+    keywords: ['cost', 'price', 'pricing', 'much', 'pay', 'plans', 'subscription', 'license', 'expensive', 'budget', 'terms', 'founding'],
   },
   {
     id: 'qa-modules-count', kind: 'answer', title: 'Which modules does Orb have?', to: '/#modules',
@@ -135,7 +125,7 @@ export const ANSWER_ENTRIES: SearchEntry[] = [
   },
   {
     id: 'qa-deployment', kind: 'answer', title: 'How is Orb deployed?', to: '/plans',
-    answer: 'On an appliance installed inside the hospital, on your network, with your IT team. The pilot runs on one ward for thirteen weeks, in shadow mode first, and produces a scorecard before the rest of the house is committed.',
+    answer: 'On a computer installed inside the hospital, on your network. It starts on one ward, beside the hospital software you already run.',
     keywords: ['deploy', 'deployment', 'install', 'installation', 'premise', 'premises', 'hardware', 'setup', 'hosted', 'server', 'infrastructure', 'appliance'],
   },
   {
@@ -153,7 +143,6 @@ export const ANSWER_ENTRIES: SearchEntry[] = [
 export const SEARCH_ENTRIES: SearchEntry[] = [
   ...MODULE_ENTRIES,
   ...PAGE_ENTRIES,
-  ...PLAN_ENTRIES,
   ...ACTION_ENTRIES,
   ...ANSWER_ENTRIES,
 ]

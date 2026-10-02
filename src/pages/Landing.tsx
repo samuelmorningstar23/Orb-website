@@ -34,7 +34,7 @@ export default function Landing() {
           </p>
           <div className="landing-overview__cta-actions">
             <button className="landing-overview__btn-primary" onClick={openDemoModal}>Request a demo</button>
-            <Link to="/plans" className="landing-overview__btn-secondary-action">Compare plans &nbsp;&rarr;</Link>
+            <Link to="/plans" className="landing-overview__btn-secondary-action">Plans &nbsp;&rarr;</Link>
           </div>
         </Reveal>
 
