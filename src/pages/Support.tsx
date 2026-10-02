@@ -94,7 +94,7 @@ export default function Support() {
               </svg>
             </div>
             <h3 className="support-page__channel-title">Request a demo</h3>
-            <p className="support-page__channel-desc">A walkthrough of the running product on demo patients, sized to your wards.</p>
+            <p className="support-page__channel-desc">A walkthrough of the running product on demo patients, about your wards.</p>
             <span className="support-page__channel-action">Book a walkthrough &rarr;</span>
           </button>
 
@@ -190,7 +190,7 @@ export default function Support() {
           <p className="support-page__form-alt">
             Prefer email? <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
             <span aria-hidden="true"> &nbsp;·&nbsp; </span>
-            <Link to="/plans">Compare plans &rarr;</Link>
+            <Link to="/plans">Plans &rarr;</Link>
           </p>
         </section>
       </main>

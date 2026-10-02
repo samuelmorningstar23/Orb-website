@@ -31,9 +31,9 @@ export interface ModuleInfo {
 
 export const ALL_MODULES: ModuleInfo[] = [
   {
-    to: '/vigil', label: 'Vigil', badge: 'Vitals and early warning',
+    to: '/vigil', label: 'Vigil', badge: 'Vitals and NEWS2',
     blurb: 'Every patient scored on NEWS2 as the vitals arrive, the ward ordered by that score, and each point on the score explained. The Sepsis Six clock starts when the score crosses the line.',
-    keywords: ['vitals', 'monitoring', 'early warning', 'deterioration', 'news2', 'alerts', 'nurses', 'risk', 'sepsis'],
+    keywords: ['vitals', 'monitoring', 'deterioration', 'news2', 'alerts', 'nurses', 'risk', 'sepsis'],
     area: 'ward',
     line: 'The ward ordered by NEWS2, each point explained, the Sepsis Six clock already running.',
   },
@@ -153,9 +153,10 @@ export const FEATURED_MODULES: FeaturedModule[] = [
 ]
 
 // ─── Plans ───
-// There are no tiers that withhold safety features. Orb is bought as a pilot
-// first, then per bed for the whole hospital. Numbers are agreed in the demo;
-// none are published here until the founder decides to.
+// No price is published on this site. The Plans page describes the founding
+// hospital programme, and its copy lives in data/plans.ts. No figure goes up
+// here until the founder decides to.
+
 // ─── Contact & lead delivery ───
 // The site is a static build (GitHub Pages) and cannot send mail itself, so
 // every form on it (demo modal, support page) submits to Web3Forms, which

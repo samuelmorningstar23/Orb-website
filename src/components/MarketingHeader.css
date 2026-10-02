@@ -257,45 +257,13 @@
   filter: brightness(1.06);
 }
 
-/* Plans list */
+/* Plans card: one line and one link, the same width as a module card */
 .nav-panel--plans {
-  min-width: 250px;
+  max-width: 320px;
 }
 
-.nav-panel__plan-list {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  margin-bottom: 8px;
-}
-
-.nav-panel__plan {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 22px;
-  padding: 9px 12px;
-  margin: 0 -12px;
-  border-radius: var(--radius-sm);
-  transition: background var(--transition-fast);
-}
-
-.nav-panel__plan:hover {
-  background: var(--bg-glass-hover);
-}
-
-.nav-panel__plan-name {
-  font-size: 0.96rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  white-space: nowrap;
-}
-
-.nav-panel__plan-tag {
-  font-weight: 700;
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  white-space: nowrap;
+.nav-panel--plans .nav-panel__summary {
+  text-wrap: balance;
 }
 
 /* All-modules grid - labels stacked side by side */

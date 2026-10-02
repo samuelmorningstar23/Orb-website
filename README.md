@@ -40,11 +40,12 @@ inbox the team controls.
   `ALL_MODULES` (14 today: Sage, Vigil, Scribe, Lens, Relay, Helix, Surgical
   Suite, Pulse, Forecast, Bridge, Slate, Revenue Integrity, Command Center,
   Surge Simulator)
-- `src/pages/Plans.tsx` / `src/pages/Support.tsx` : plan comparison; support
+- `src/pages/Plans.tsx` / `src/pages/Support.tsx` : the founding hospital
+  programme, with no price published (copy in `src/data/plans.ts`); support
   page with FAQ and a contact form
 - `src/components/` : `MarketingHeader`, `Aurora` (background),
   `RequestDemoModal`, `OrbLogo`, the search overlay, and the landing sections
-- `src/data/siteContent.ts` : single source of truth for modules, plans,
+- `src/data/siteContent.ts` : single source of truth for modules,
   contact email, and form delivery config
 - `src/index.css` / `src/App.css` : shared visual design tokens (copied from the app
   so the two look consistent; they are otherwise independent)
