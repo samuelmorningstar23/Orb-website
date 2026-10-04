@@ -85,7 +85,7 @@ export const MODULE_PAGES: ModulePageData[] = [
     route: '/lens',
     title: 'Lens',
     badge: 'A first read of an image, switched off today',
-    tagline: 'Switched off in every deployment, and not part of the founding programme. Upload an X-ray, an ECG or a wound photo and a model on the appliance drafts a first read for a clinician to correct.',
+    tagline: 'Not part of the founding programme. Upload an X-ray, an ECG or a wound photo and a model on the appliance drafts a first read for a clinician to correct.',
     cards: [
       { icon: 'image', title: 'Any image the ward has', desc: 'A chest film, an ECG strip or a clinical photo, dragged in from a phone or a workstation.' },
       { icon: 'search', title: 'A draft, labelled as one', desc: 'Marked as a model draft on the screen, for a clinician to correct, keep or discard.' },

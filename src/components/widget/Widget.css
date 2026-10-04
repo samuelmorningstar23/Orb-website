@@ -327,7 +327,7 @@
 /* ─── Checklist ─── */
 .wg__check-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px 14px; }
 
-.wg__check { display: flex; align-items: flex-start; gap: 9px; font-weight: 700;
+.wg__check { display: flex; align-items: flex-start; gap: 9px; font-weight: 500;
   font-size: 13px; min-width: 0; }
 .wg__check-text { min-width: 0; }
 
@@ -361,7 +361,7 @@
 }
 
 .wg__check.is-now .wg__check-mark { border-color: var(--accent); opacity: 1; box-shadow: 0 0 0 3px var(--accent-soft); }
-.wg__check.is-now .wg__check-text { font-weight: 600; }
+.wg__check.is-now .wg__check-text { font-weight: 700; }
 
 .wg__check.is-blocked .wg__check-mark { border-color: var(--wg-critical); background: color-mix(in srgb, var(--wg-critical) 22%, transparent); opacity: 1; }
 .wg__check.is-blocked .wg__check-mark::after {
@@ -371,7 +371,7 @@
   background: var(--wg-critical);
   clip-path: polygon(12% 0, 50% 38%, 88% 0, 100% 12%, 62% 50%, 100% 88%, 88% 100%, 50% 62%, 12% 100%, 0 88%, 38% 50%, 0 12%);
 }
-.wg__check.is-blocked .wg__check-text { color: var(--wg-critical-text); font-weight: 600; }
+.wg__check.is-blocked .wg__check-text { color: var(--wg-critical-text); font-weight: 700; }
 
 /* ─── Meter ─── */
 .wg__meter-top { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
@@ -392,14 +392,14 @@
 .wg__line {
   position: relative;
   padding-left: 16px;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 13px;
   color: var(--text-secondary);
   text-wrap: pretty;
 }
 
 .wg__line::before { content: ''; position: absolute; left: 0; top: 8px; width: 7px; height: 1.5px; background: var(--text-muted); opacity: 0.6; }
-.wg__line.is-strong { color: var(--text-primary); font-weight: 600; }
+.wg__line.is-strong { color: var(--text-primary); font-weight: 700; }
 .wg__line.is-strong::before { background: var(--accent); opacity: 1; }
 
 /* ─── Chips ─── */
