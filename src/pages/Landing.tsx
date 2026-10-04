@@ -28,12 +28,12 @@ export default function Landing() {
         <Checks />
 
         <Reveal as="section" className="landing-overview__cta" amount={0.4}>
-          <h2 className="landing-overview__cta-title">See Orb run, on a call.</h2>
+          <h2 className="landing-overview__cta-title">See it run. On a call.</h2>
           <p className="landing-overview__cta-desc">
-            A walkthrough of the product on demo patients, on a call about your wards. No slides.
+            A walkthrough on demo patients, about your wards. The product is open the whole time. No slides.
           </p>
           <div className="landing-overview__cta-actions">
-            <button className="landing-overview__btn-primary" onClick={openDemoModal}>Request a demo</button>
+            <button className="landing-overview__btn-primary" onClick={openDemoModal}>Book a walkthrough</button>
             <Link to="/plans" className="landing-overview__btn-secondary-action">Plans &nbsp;&rarr;</Link>
           </div>
         </Reveal>
@@ -42,7 +42,7 @@ export default function Landing() {
           <div className="landing-overview__footer-top">
             <div className="landing-overview__footer-brand">
               <span className="landing-overview__footer-wordmark">Orb</span>
-              <p className="landing-overview__footer-tagline">Hospital software that runs on one computer inside the hospital.</p>
+              <p className="landing-overview__footer-tagline">Hospital software that never leaves the building.</p>
             </div>
 
             <nav className="landing-overview__footer-cols">
@@ -71,7 +71,7 @@ export default function Landing() {
 
           <div className="landing-overview__footer-bottom">
             <p>© 2026 Orb. All rights reserved.</p>
-            <p className="landing-overview__footer-fineprint">The workflows on this site are animations of the product; the screenshots are captures of it running. Both use seeded demo patients, and no real patient appears here.</p>
+            <p className="landing-overview__footer-fineprint">The workflows on this site are animations of the product and the screenshots are captures of it running, both on seeded demo patients. No real patient appears here.</p>
           </div>
         </footer>
       </main>

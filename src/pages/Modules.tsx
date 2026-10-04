@@ -16,9 +16,9 @@ export default function Modules() {
       <main className="landing-overview__content">
         <ModuleBento />
         <Reveal as="section" className="mp__cta" amount={0.4}>
-          <h2 className="mp__cta-title">Every module runs on one record, on one appliance inside the hospital.</h2>
+          <h2 className="mp__cta-title">Fourteen modules. One record. One computer.</h2>
           <div className="mp__actions mp__actions--center">
-            <button type="button" className="hero__btn hero__btn--primary" onClick={openDemoModal}>Request a demo</button>
+            <button type="button" className="hero__btn hero__btn--primary" onClick={openDemoModal}>Book a walkthrough</button>
             <Link to="/plans" className="hero__btn hero__btn--ghost">Plans <span aria-hidden="true">&rarr;</span></Link>
           </div>
         </Reveal>

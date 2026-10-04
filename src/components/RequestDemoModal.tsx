@@ -98,20 +98,20 @@ export default function RequestDemoModal() {
 
         {!isSuccess ? (
           <>
-            <h3 className="demo-modal-title" id="demo-modal-title">Request a Demo</h3>
-            <p className="demo-modal-subtitle">A walkthrough of the running product on demo patients, on a call. Tell us about your wards and the software you run today.</p>
+            <h3 className="demo-modal-title" id="demo-modal-title">Book a walkthrough</h3>
+            <p className="demo-modal-subtitle">A walkthrough of the product on demo patients, on a call. Tell us about your wards and the software you run today.</p>
 
             {error && <div className="demo-modal-error" role="alert">{error}</div>}
 
             <form className="demo-modal-form" onSubmit={handleSubmit} noValidate>
               <div className="demo-modal-field">
-                <label htmlFor="dm-name">Full Name</label>
-                <input ref={firstFieldRef} id="dm-name" name="name" type="text" autoComplete="name" placeholder="Jane Doe" value={name} onChange={e => setName(e.target.value)} required />
+                <label htmlFor="dm-name">Full name</label>
+                <input ref={firstFieldRef} id="dm-name" name="name" type="text" autoComplete="name" placeholder="Your name" value={name} onChange={e => setName(e.target.value)} required />
               </div>
 
               <div className="demo-modal-field">
-                <label htmlFor="dm-email">Email Address</label>
-                <input id="dm-email" name="email" type="email" autoComplete="email" inputMode="email" spellCheck={false} placeholder="jane@hospital.org" value={email} onChange={e => setEmail(e.target.value)} required />
+                <label htmlFor="dm-email">Email</label>
+                <input id="dm-email" name="email" type="email" autoComplete="email" inputMode="email" spellCheck={false} placeholder="you@hospital.org" value={email} onChange={e => setEmail(e.target.value)} required />
               </div>
 
               <div className="demo-modal-field">
@@ -121,7 +121,7 @@ export default function RequestDemoModal() {
 
               <div className="demo-modal-field">
                 <label htmlFor="dm-purpose">What are you exploring?</label>
-                <textarea id="dm-purpose" name="message" placeholder="A few words on your hospital, team, or interest in Orb." value={purpose} onChange={e => setPurpose(e.target.value)} rows={3} required />
+                <textarea id="dm-purpose" name="message" placeholder="A few words on your hospital, your team, or what you want to see." value={purpose} onChange={e => setPurpose(e.target.value)} rows={3} required />
               </div>
 
               {/* Honeypot - offscreen rather than display:none, which some bots skip */}
@@ -137,7 +137,7 @@ export default function RequestDemoModal() {
               />
 
               <button type="submit" className="demo-modal-submit" disabled={isSubmitting}>
-                {isSubmitting ? 'Sending…' : 'Request a Demo'}
+                {isSubmitting ? 'Sending…' : 'Book a walkthrough'}
               </button>
             </form>
           </>
@@ -148,9 +148,9 @@ export default function RequestDemoModal() {
                 <polyline points="20 6 9 17 4 12" />
               </svg>
             </div>
-            <h3 className="demo-modal-title">Thank you</h3>
+            <h3 className="demo-modal-title">Got it.</h3>
             <p className="demo-modal-subtitle">
-              Your request has reached us. We’ll be in touch shortly. You can also reach us any time at <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
+              Your request has reached me. I will be in touch shortly. You can also write any time to <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
             </p>
             <button className="demo-modal-close-btn" onClick={close}>Close</button>
           </div>

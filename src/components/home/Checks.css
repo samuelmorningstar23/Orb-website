@@ -10,14 +10,11 @@
 .checks__intro { position: sticky; top: 110px; align-self: start; }
 
 .checks__lede {
-  font-size: 1.1rem;
-  line-height: 1.55;
-  color: var(--text-secondary);
   margin: 0 0 22px;
   max-width: 34ch;
 }
 
-.checks__link { color: var(--accent); font-weight: 700; font-size: 0.98rem; }
+.checks__link { color: var(--accent); }
 .checks__link:hover { text-decoration: underline; }
 
 .checks__list {
@@ -40,17 +37,7 @@
 .checks__item:last-child { border-bottom: 1px solid var(--border-glass); }
 [data-theme="light"] .checks__item:last-child { border-bottom-color: rgba(0, 0, 0, 0.1); }
 
-.checks__label {
-  font-family: var(--font-serif);
-  font-size: clamp(1.25rem, 1.8vw, 1.5rem);
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: -0.015em;
-}
-
 .checks__line {
-  font-size: 1rem;
-  line-height: 1.55;
   color: var(--text-secondary);
 }
 

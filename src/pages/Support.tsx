@@ -64,14 +64,14 @@ export default function Support() {
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M19 12H5M12 19l-7-7 7-7" />
           </svg>
-          Back to Overview
+          Back to the overview
         </Link>
 
         <section className="module-detail__hero animate-slide-up">
           <span className="module-detail__badge">Support</span>
-          <h1 className="module-detail__title">How can we help?</h1>
+          <h1 className="module-detail__title">How can I help?</h1>
           <p className="module-detail__tagline">
-            One person reads every message. Write to us, book a walkthrough of the product on demo patients, or find the answer below.
+            One person reads every message. Write to me, book a walkthrough on demo patients, or find the answer below.
           </p>
         </section>
 
@@ -82,8 +82,8 @@ export default function Support() {
                 <rect x="2" y="4" width="20" height="16" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
               </svg>
             </div>
-            <h3 className="support-page__channel-title">Email us</h3>
-            <p className="support-page__channel-desc">Questions, issues, or feedback. Straight to my inbox.</p>
+            <h3 className="support-page__channel-title">Email</h3>
+            <p className="support-page__channel-desc">Questions, issues, feedback. Straight to my inbox.</p>
             <span className="support-page__channel-action">{CONTACT_EMAIL}</span>
           </a>
 
@@ -93,7 +93,7 @@ export default function Support() {
                 <path d="m22 8-6 4 6 4V8Z" /><rect x="2" y="6" width="14" height="12" rx="2" />
               </svg>
             </div>
-            <h3 className="support-page__channel-title">Request a demo</h3>
+            <h3 className="support-page__channel-title">See it run</h3>
             <p className="support-page__channel-desc">A walkthrough of the product on demo patients, about your wards.</p>
             <span className="support-page__channel-action">Book a walkthrough &rarr;</span>
           </button>
@@ -105,7 +105,7 @@ export default function Support() {
               </svg>
             </div>
             <h3 className="support-page__channel-title">Ask Orb</h3>
-            <p className="support-page__channel-desc">Search the site or ask a question. Answers come back instantly.</p>
+            <p className="support-page__channel-desc">Search the site or ask a question. The answer comes from the page itself, and nothing is sent anywhere.</p>
             <span className="support-page__channel-action">Open search (⌘K) &rarr;</span>
           </button>
         </section>
@@ -124,7 +124,7 @@ export default function Support() {
                 <div className="support-page__faq-body">
                   <p>{item.answer}</p>
                   {item.to && item.to !== '/support' && (
-                    <Link to={item.to} className="support-page__faq-link">Learn more &rarr;</Link>
+                    <Link to={item.to} className="support-page__faq-link">Read more &rarr;</Link>
                   )}
                 </div>
               </details>
@@ -133,9 +133,9 @@ export default function Support() {
         </section>
 
         <section className="support-page__form-section animate-slide-up stagger-3" id="write-to-us">
-          <h2 className="support-page__form-title">Still stuck? Write to us</h2>
+          <h2 className="support-page__form-title">Still stuck? Write to me</h2>
           <p className="support-page__form-desc">
-            Send a message right here. A real person will get back to you, usually within one business day.
+            Send it here. I reply to your email, usually within one business day.
           </p>
 
           {isSuccess ? (
@@ -146,7 +146,7 @@ export default function Support() {
                 </svg>
               </div>
               <h3>Message sent</h3>
-              <p>Thanks, it’s on its way to me. I’ll reply to your email, usually within one business day.</p>
+              <p>Thanks. It is on its way to me, and I will reply to your email, usually within one business day.</p>
               <button className="support-page__form-again" onClick={() => setIsSuccess(false)}>Send another message</button>
             </div>
           ) : (
@@ -156,17 +156,17 @@ export default function Support() {
               <div className="support-page__form-row">
                 <div className="support-page__form-field">
                   <label htmlFor="sp-name">Name</label>
-                  <input id="sp-name" name="name" type="text" autoComplete="name" placeholder="Jane Doe" value={name} onChange={e => setName(e.target.value)} required />
+                  <input id="sp-name" name="name" type="text" autoComplete="name" placeholder="Your name" value={name} onChange={e => setName(e.target.value)} required />
                 </div>
                 <div className="support-page__form-field">
                   <label htmlFor="sp-email">Email</label>
-                  <input id="sp-email" name="email" type="email" autoComplete="email" inputMode="email" spellCheck={false} placeholder="jane@hospital.org" value={email} onChange={e => setEmail(e.target.value)} required />
+                  <input id="sp-email" name="email" type="email" autoComplete="email" inputMode="email" spellCheck={false} placeholder="you@hospital.org" value={email} onChange={e => setEmail(e.target.value)} required />
                 </div>
               </div>
 
               <div className="support-page__form-field">
-                <label htmlFor="sp-message">How can we help?</label>
-                <textarea id="sp-message" name="message" rows={5} placeholder="Tell us what’s happening. The more detail, the faster we can help." value={message} onChange={e => setMessage(e.target.value)} required />
+                <label htmlFor="sp-message">What is it about?</label>
+                <textarea id="sp-message" name="message" rows={5} placeholder="Tell me what is happening. The more detail, the faster I can help." value={message} onChange={e => setMessage(e.target.value)} required />
               </div>
 
               {/* Honeypot - offscreen rather than display:none, which some bots skip */}

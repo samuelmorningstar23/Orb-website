@@ -41,14 +41,14 @@ export default function ModulePage({ route }: { route: string }) {
             <h1 className="mp__title">{page.title}</h1>
             <p className="mp__tagline">{page.tagline}</p>
             <div className="mp__actions">
-              <button type="button" className="hero__btn hero__btn--primary" onClick={openDemoModal}>Request a demo</button>
+              <button type="button" className="hero__btn hero__btn--primary" onClick={openDemoModal}>Book a walkthrough</button>
               {info && <span className="mp__area">{info.line}</span>}
             </div>
           </div>
           {flows && (
             <div className="mp__hero-demo">
               <Widget flows={flows} label={`${page.title}, one workflow`} />
-              <p className="mp__demo-note">{page.captureNote ?? (shots.length ? 'An animation of the workflow. The screens themselves are below.' : 'An animation of the workflow, on seeded demo patients.')}</p>
+              <p className="mp__demo-note">{page.captureNote ?? (shots.length ? 'The workflow, animated. The real screens are below.' : 'The workflow, animated, on seeded demo patients.')}</p>
             </div>
           )}
         </section>
@@ -74,7 +74,7 @@ export default function ModulePage({ route }: { route: string }) {
           <section className="mp__strip" aria-label={`Screens of ${page.title}`}>
             <Reveal className="mp__facts-head">
               <span className="mp__eyebrow">The real screens</span>
-              <p className="mp__strip-note">Captured from a running appliance on seeded demo patients, at the size they run at.</p>
+              <p className="mp__strip-note">Captured from the product running on seeded demo patients, at the size it runs at.</p>
             </Reveal>
             <ScreenGallery shots={shots} label={`${page.title} screens`} />
           </section>
@@ -83,7 +83,7 @@ export default function ModulePage({ route }: { route: string }) {
         <Reveal as="section" className="mp__cta" amount={0.4}>
           <h2 className="mp__cta-title">{page.ctaLine}</h2>
           <div className="mp__actions mp__actions--center">
-            <button type="button" className="hero__btn hero__btn--primary" onClick={openDemoModal}>Request a demo</button>
+            <button type="button" className="hero__btn hero__btn--primary" onClick={openDemoModal}>Book a walkthrough</button>
             <Link to="/modules" className="hero__btn hero__btn--ghost">All modules <span aria-hidden="true">&rarr;</span></Link>
           </div>
         </Reveal>

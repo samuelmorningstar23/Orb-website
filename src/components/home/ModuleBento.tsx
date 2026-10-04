@@ -34,10 +34,10 @@ export default function ModuleBento() {
   return (
     <section className="wall" id="modules" aria-label="The modules">
       <Reveal className="wall__header">
-        <span className="wall__eyebrow">{TILES.length} modules, one record</span>
-        <h2 className="wall__title">Pick one. Each page walks its workflow.</h2>
+        <span className="wall__eyebrow">{TILES.length} modules. One record.</span>
+        <h2 className="wall__title">Pick a module. Watch it work.</h2>
         <p className="wall__lead">
-          Every card is a moment from that module, drawn from the product’s own screens on seeded demo patients. The screens themselves sit on each module’s page.
+          Each card is one moment from the module, drawn from its own screens. The screens themselves are on its page.
         </p>
       </Reveal>
 
@@ -63,7 +63,7 @@ export default function ModuleBento() {
         <Link to="/plans" className="wall__card wall__card--ops">
           <span className="wall__meta">
             <span className="wall__name">The rest of the house</span>
-            <span className="wall__line">Also on the appliance. Not part of the founding programme.</span>
+            <span className="wall__line">On the appliance too. Outside the founding programme.</span>
             <span className="wall__ops">
               {OPS.map(o => <span key={o} className="wall__op">{o}</span>)}
             </span>

@@ -23,14 +23,14 @@ export default function Hero() {
       <div className="hero__copy">
         <span className="hero__eyebrow">Orb</span>
         <h1 className="hero__title" id="hero-title">
-          Hospital software,<br />running on one computer<br /><em>inside</em> the hospital.
+          Hospital software<br />that <em>never</em> leaves<br />your building.
         </h1>
         <p className="hero__sub">
-          The ward record, the NEWS2 score calculated from the nurse’s observations, the drug chart and the case rooms, with the models on the same machine, so nothing about a patient leaves the building.
+          One computer in your hospital. On it: the ward record, the NEWS2 score from the nurse’s own readings, the drug chart, the case rooms, and the models that read them.
         </p>
         <div className="hero__actions">
-          <button type="button" className="hero__btn hero__btn--primary" onClick={openDemoModal}>Request a demo</button>
-          <Link className="hero__btn hero__btn--ghost" to="/modules">The modules <span aria-hidden="true">&rarr;</span></Link>
+          <button type="button" className="hero__btn hero__btn--primary" onClick={openDemoModal}>Book a walkthrough</button>
+          <Link className="hero__btn hero__btn--ghost" to="/modules">Meet the modules <span aria-hidden="true">&rarr;</span></Link>
         </div>
       </div>
 
@@ -42,7 +42,7 @@ export default function Hero() {
           <WorkflowStory />
         </motion.div>
         <p className="hero__stage-note">
-One demo patient, from the ward to the pharmacy and back to his bedside. Three modules, in the order it happens. Pick an act, or let it run.
+One demo patient. From the ward to the pharmacy and back to his bedside, in three acts. Pick one, or let it play.
         </p>
       </div>
     </section>

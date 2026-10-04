@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Raleway:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600;700&display=swap');
+/* Inter 400 to 700 and Fira Code load from the <link> in index.html, with a
+   preconnect ahead of them. Nothing else is requested. */
 
 /* ─── Design Tokens - Dark Mode (Default) ─── */
 :root {
@@ -84,10 +85,35 @@
   --blur-glass: 40px;
   --blur-light: 20px;
 
-  /* Typography */
-  --font-family: 'Raleway', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  --font-serif: 'Lora', Georgia, serif;
+  /* ─── Typography: one face for display and body, a mono face for figures ───
+     Sizes follow a short scale so every page reads as one piece:
+     hero h1, section title, deck, body, small label, button. */
+  --font-display: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   --font-mono: 'Fira Code', 'SF Mono', 'JetBrains Mono', monospace;
+  /* Legacy names - every existing rule keeps working */
+  --font-family: var(--font-body);
+  --font-serif: var(--font-display);
+
+  --text-hero: clamp(2.75rem, 7.2vw, 5.5rem);        /* home h1 */
+  --text-title: clamp(2rem, 4.6vw, 3.5rem);          /* section h2, page titles */
+  --text-deck: clamp(1.15rem, 1.6vw, 1.5rem);        /* the sentence under a title */
+  --text-body: 1rem;                                 /* 17px */
+  --text-small: 0.8rem;                              /* 13.6px: eyebrows, labels */
+  --text-button: 1rem;
+
+  --leading-hero: 1.02;
+  --leading-title: 1.08;
+  --leading-deck: 1.45;
+  --leading-body: 1.55;
+
+  --tracking-hero: -0.03em;
+  --tracking-title: -0.025em;
+  --tracking-label: 0.08em;
+
+  --section-pad: clamp(72px, 10vh, 140px);
+  --measure: 62ch;
+  --content-max: 1200px;
 
   /* Transitions - smooth, premium feel */
   --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -110,7 +136,8 @@
 }
 
 html {
-  font-size: 16px;
+  /* 1rem is 17px: the body size, and the unit every other size is set in. */
+  font-size: 17px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -120,16 +147,15 @@ html {
 }
 
 body {
-  font-family: var(--font-family);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
   background: var(--bg-primary);
   color: var(--text-primary);
   min-height: 100vh;
   overflow-x: hidden;
-  line-height: 1.55;
+  line-height: var(--leading-body);
   letter-spacing: -0.011em;
-  /* Raleway at 400 is thin on a screen, and thinnest exactly where the text is
-     smallest. 600 is the floor for anything that inherits. */
-  font-weight: 600;
+  font-weight: 400;
 }
 
 #root {

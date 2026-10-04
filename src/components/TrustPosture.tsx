@@ -8,8 +8,8 @@ type TrustColumn = {
 
 const columns: TrustColumn[] = [
   {
-    title: 'Security & sovereignty',
-    desc: 'The appliance, the database, the models and the audit log are on hardware you control. No patient data leaves it. Access is by role, administrators sign in with a second factor, and the audit log is hash-chained.',
+    title: 'Security and sovereignty',
+    desc: 'The appliance, the database, the models and the audit log sit on hardware you control, and no patient data leaves it. Access is by role, a second factor is available for administrator sign-in, and the audit log is hash-chained.',
     icon: (
       <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" />
@@ -18,8 +18,8 @@ const columns: TrustColumn[] = [
     ),
   },
   {
-    title: 'Beside your hospital system',
-    desc: 'Orb keeps the ward’s record on its own database inside the hospital and exports it as FHIR. It does not import from your hospital system yet.',
+    title: 'Beside your system',
+    desc: 'The ward’s record lives on Orb’s own database inside your hospital and exports as FHIR. Orb does not import from your hospital system yet.',
     icon: (
       <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
@@ -28,8 +28,8 @@ const columns: TrustColumn[] = [
     ),
   },
   {
-    title: 'Deployment & continuity',
-    desc: 'Installed on an appliance inside the hospital. It runs without an internet connection, and a printable downtime pack per patient covers the hour the appliance itself is down.',
+    title: 'Deployment and continuity',
+    desc: 'Installed on one appliance inside the hospital. It runs without an internet connection, and a printable downtime pack per patient covers the hour the appliance itself is down.',
     icon: (
       <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <rect x="2" y="3" width="20" height="8" rx="2" />
@@ -46,7 +46,7 @@ export default function TrustPosture() {
     <section className="trust-posture">
       <div className="trust-posture__header">
         <span className="trust-posture__badge">For hospitals</span>
-        <h2 className="trust-posture__title">Answers a security team can check on screen.</h2>
+        <h2 className="trust-posture__title">Answers you can check on a screen.</h2>
       </div>
 
       <div className="trust-posture__grid">
@@ -60,7 +60,7 @@ export default function TrustPosture() {
       </div>
 
       <p className="trust-posture__note">
-        Built for India first: the safeguards the DPDP Act asks for, ABDM (not yet certified; Orb sends nothing to ABDM today) and the evidence NABH inspects. None of it substitutes for your own certification.
+        Built for India first: the safeguards the DPDP Act asks for, the evidence NABH inspects, and ABDM, where Orb is not yet certified and sends nothing today. None of it stands in for your own certification.
       </p>
     </section>
   )

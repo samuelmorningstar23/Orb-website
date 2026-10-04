@@ -30,17 +30,11 @@
 }
 
 .security-page__fact-title {
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
   color: var(--accent);
   margin: 0 0 10px;
 }
 
 .security-page__fact-body {
-  font-size: 0.98rem;
-  line-height: 1.55;
   color: var(--text-primary);
   margin: 0;
 }
@@ -59,16 +53,12 @@
 }
 
 .security-page__audit-title {
-  font-size: clamp(1.6rem, 4vw, 2.2rem);
-  font-weight: 600;
-  letter-spacing: -0.025em;
   margin-bottom: 14px;
   text-wrap: balance;
 }
 
 .security-page__audit-body {
-  font-size: 1.05rem;
-  line-height: 1.6;
-  color: var(--text-secondary);
-  text-wrap: balance;
+  margin-left: auto;
+  margin-right: auto;
+  text-wrap: pretty;
 }

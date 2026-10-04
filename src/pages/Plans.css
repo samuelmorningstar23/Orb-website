@@ -6,21 +6,11 @@
 
 .plans__eyebrow {
   display: inline-block;
-  font-family: var(--font-mono);
-  font-weight: 700;
-  font-size: 0.8rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
   color: var(--accent);
   margin-bottom: 14px;
 }
 
 .plans__h2 {
-  font-family: var(--font-serif);
-  font-weight: 500;
-  font-size: clamp(1.8rem, 3.2vw, 2.7rem);
-  line-height: 1.06;
-  letter-spacing: -0.026em;
   margin: 0;
   text-wrap: balance;
 }
@@ -35,18 +25,11 @@
 }
 
 .plans__title {
-  font-family: var(--font-serif);
-  font-weight: 500;
-  font-size: clamp(2.6rem, 4.8vw, 4.2rem);
-  line-height: 1;
-  letter-spacing: -0.032em;
   margin: 0 0 20px;
+  text-wrap: balance;
 }
 
 .plans__lede {
-  font-size: clamp(1rem, 1.25vw, 1.12rem);
-  line-height: 1.6;
-  color: var(--text-secondary);
   margin: 0;
   max-width: 54ch;
   text-wrap: pretty;
@@ -70,11 +53,6 @@
 
 .plans__glance-title {
   display: block;
-  font-family: var(--font-mono);
-  font-weight: 700;
-  font-size: 0.8rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
   color: var(--text-muted);
   margin-bottom: 16px;
 }
@@ -89,10 +67,9 @@
 
 [data-theme="light"] .plans__glance-row { border-top-color: rgba(20, 18, 15, 0.09); }
 
-.plans__glance-label { font-size: 0.98rem; font-weight: 600; letter-spacing: -0.01em; }
-.plans__glance-value { font-family: var(--font-mono); font-size: 1.02rem; font-weight: 600; letter-spacing: -0.02em; white-space: nowrap; text-align: right; }
-.plans__glance-sub { grid-column: 1 / -1; font-weight: 700;
-  font-size: 0.84rem; color: var(--text-muted); }
+.plans__glance-label { font-weight: 600; letter-spacing: -0.01em; }
+.plans__glance-value { font-family: var(--font-mono); font-size: 1rem; font-weight: 600; letter-spacing: -0.02em; white-space: nowrap; text-align: right; }
+.plans__glance-sub { grid-column: 1 / -1; font-size: 0.88rem; color: var(--text-muted); }
 
 /* ─── Said plainly: the heading on the left, the list on the right ─── */
 .plans__plain {
@@ -103,29 +80,24 @@
   margin-bottom: clamp(48px, 7vh, 90px);
 }
 
-.plans__item-title { display: block; font-size: 0.97rem; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 3px; }
-.plans__item-body { display: block; font-size: 0.92rem; line-height: 1.55; color: var(--text-secondary); text-wrap: pretty; }
+.plans__item-title { display: block; margin-bottom: 4px; }
+.plans__item-body { display: block; color: var(--text-secondary); text-wrap: pretty; }
 
 .plans__proof { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px clamp(22px, 3vw, 40px); }
 .plans__proof-item { display: flex; flex-direction: column; padding-top: 14px; border-top: 1px solid var(--border-glass); }
 /* An odd last item takes the full row instead of leaving a hole beside it. */
 .plans__proof-item:last-child:nth-child(odd) { grid-column: 1 / -1; }
 [data-theme="light"] .plans__proof-item { border-top-color: rgba(20, 18, 15, 0.1); }
-.plans__proof-num { font-family: var(--font-serif); font-style: italic; font-size: 1rem; color: var(--accent); margin-bottom: 8px; }
+.plans__proof-num { font-size: 0.88rem; color: var(--accent); margin-bottom: 8px; }
 
 /* ─── Close ─── */
 .plans__cta { text-align: center; padding: clamp(20px, 4vh, 46px) 0 24px; }
 
 .plans__cta-title {
-  font-family: var(--font-serif);
-  font-weight: 500;
-  font-size: clamp(1.9rem, 3.8vw, 2.9rem);
-  letter-spacing: -0.028em;
-  line-height: 1.05;
   margin: 0 auto 12px;
 }
 
-.plans__cta-desc { margin: 0 auto 24px; max-width: 54ch; font-size: 0.98rem; line-height: 1.6; color: var(--text-secondary); }
+.plans__cta-desc { margin: 0 auto 24px; max-width: 54ch; }
 /* On a narrow phone the link drops under the button instead of squeezing it onto two lines. */
 .plans__cta .module-detail__buttons { flex-wrap: wrap; gap: 14px 20px; }
 .plans__cta .module-detail__btn-primary,

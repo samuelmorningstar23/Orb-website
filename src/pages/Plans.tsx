@@ -28,14 +28,14 @@ export default function Plans() {
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M19 12H5M12 19l-7-7 7-7" />
           </svg>
-          Back to Overview
+          Back to the overview
         </Link>
 
         {/* ─── Title, with how it starts beside it ─── */}
         <section className="plans__hero">
           <div className="plans__hero-copy">
-            <span className="plans__eyebrow">Plans</span>
-            <h1 className="plans__title">Three founding places.</h1>
+            <span className="plans__eyebrow">Founding programme</span>
+            <h1 className="plans__title">Three places. One ward each.</h1>
             <p className="plans__lede">{PLANS_LEDE}</p>
           </div>
 
@@ -45,7 +45,7 @@ export default function Plans() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: EASE, delay: 0.1 }}
           >
-            <span className="plans__glance-title">How it starts</span>
+            <span className="plans__glance-title">At a glance</span>
             {AT_A_GLANCE.map(g => (
               <div key={g.label} className="plans__glance-row">
                 <span className="plans__glance-label">{g.label}</span>
@@ -56,11 +56,11 @@ export default function Plans() {
           </motion.div>
         </section>
 
-        {/* ─── What Orb is not, today ─── */}
+        {/* ─── Where Orb stands today ─── */}
         <section className="plans__plain" aria-labelledby="not-today">
           <div className="plans__plain-head">
-            <span className="plans__eyebrow">Before you call</span>
-            <h2 className="plans__h2" id="not-today">What Orb is not, today.</h2>
+            <span className="plans__eyebrow">Read this first</span>
+            <h2 className="plans__h2" id="not-today">Where Orb stands today.</h2>
           </div>
 
           <ol className="plans__proof">
@@ -75,8 +75,8 @@ export default function Plans() {
         </section>
 
         <section className="plans__cta">
-          <h2 className="plans__cta-title">Start with one ward.</h2>
-          <p className="plans__cta-desc">Tell us about your wards and the software you run today. The first conversation is about how your ward works, not about a contract.</p>
+          <h2 className="plans__cta-title">Begin with one ward.</h2>
+          <p className="plans__cta-desc">Tell me about your wards and the software you run today. The first conversation is about how your ward works, with no contract on the table.</p>
           <div className="module-detail__buttons">
             <button className="module-detail__btn-primary" onClick={openDemoModal}>Talk to us</button>
             <Link to="/security" className="module-detail__btn-secondary">Read the security brief &nbsp;&rarr;</Link>

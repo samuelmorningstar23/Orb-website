@@ -135,9 +135,9 @@ export default function News2Live() {
     <section className="news2" aria-label="Try the NEWS2 score">
       <div className="news2__head">
         <span className="news2__eyebrow">Try the rule</span>
-        <h2 className="news2__title">The score the ward runs on, with your numbers.</h2>
+        <h2 className="news2__title">Put your own numbers through it.</h2>
         <p className="news2__lead">
-          NEWS2 (Royal College of Physicians, 2017), the same table Orb applies to every set of observations a nurse records. No model is involved: a nurse can check any point by hand, and the response sentence is the RCP’s own, shown for the clinician to decide on.
+          NEWS2 (Royal College of Physicians, 2017), the same table Orb applies to every set of observations a nurse records. No model is involved. A nurse can check any point by hand, and the response sentence is the RCP’s own, shown for the clinician to decide on.
         </p>
         <div className="news2__presets" role="group" aria-label="Example patients">
           {PRESETS.map(p => (
@@ -218,7 +218,7 @@ export default function News2Live() {
             {result.parts.every(p => p.points === 0) && <li className="news2__driver-none">Every parameter in range.</li>}
           </ul>
           <p className="news2__foot">
-            Ported from the server's compute_news2, not re-derived for this page. In Orb the score is calculated on the appliance for every set of observations, and the nurse sees it before saving.
+            Ported from the server’s compute_news2, with nothing re-derived for this page. In Orb the score is calculated on the appliance for every set of observations, and the nurse sees it before saving.
           </p>
         </div>
       </div>
