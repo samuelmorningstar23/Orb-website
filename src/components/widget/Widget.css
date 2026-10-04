@@ -160,6 +160,11 @@
 .wg__tile-value { font-family: var(--font-mono); font-size: 24px; font-weight: 600; line-height: 1.1; letter-spacing: -0.02em; }
 .wg__tile-label { font-weight: 700;
   font-size: 12px; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+/* Three tiles in a 358px column are 77px each: the label wraps rather than
+   ellipsising to "Backups v...". The grid keeps the tiles equal height. */
+@media (max-width: 430px) {
+  .wg__tile-label { white-space: normal; overflow: visible; text-overflow: clip; }
+}
 .wg__tile.is-critical .wg__tile-value { color: var(--wg-critical); }
 .wg__tile.is-warn .wg__tile-value { color: var(--wg-warn); }
 .wg__tile.is-ok .wg__tile-value { color: var(--wg-ok); }

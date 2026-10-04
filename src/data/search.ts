@@ -90,7 +90,7 @@ export const ANSWER_ENTRIES: SearchEntry[] = [
   },
   {
     id: 'qa-compliance', kind: 'answer', title: 'Where does Orb stand on DPDP, ABDM and NABH?', to: '/security',
-    answer: 'Built for India first: the technical safeguards the DPDP Act asks for, the evidence NABH inspects, and ABDM, where Orb is not yet certified and sends nothing today. On-site processing, role-based access and a hash-chained audit log do that work. None of it stands in for your own certification.',
+    answer: 'Built for India first. Consent, retention and breach registers are built in the backend, with their screens to come before the DPDP duties start in May 2027. The NABH evidence pack holds what an assessor inspects. On ABDM, Orb is not yet certified and sends nothing today. None of it stands in for your own certification.',
     keywords: ['dpdp', 'abdm', 'nabh', 'compliance', 'compliant', 'regulation', 'certified', 'legal', 'audit', 'safeguards', 'security'],
   },
   {
@@ -105,7 +105,7 @@ export const ANSWER_ENTRIES: SearchEntry[] = [
   },
   {
     id: 'qa-safety', kind: 'answer', title: 'Can Orb act without a clinician?', to: '/helix',
-    answer: 'No. Orb drafts the order set, the alert or the note, and a named person confirms it. What they confirm meets the same allergy interlock, dose guard and pharmacist queue as anything typed by hand, and every confirmed action lands in the hash-chained audit log.',
+    answer: 'No. Orb drafts the order set, the alert or the note, and a named person confirms it. A drafted medication then meets the allergy interlock and the dose guard and waits in the pharmacist’s queue, and every confirmed action lands in the hash-chained audit log.',
     keywords: ['safety', 'autonomous', 'clinician', 'confirm', 'confirmation', 'human', 'loop', 'act', 'safe', 'oversight', 'approve', 'agentic'],
   },
   {

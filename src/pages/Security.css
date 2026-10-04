@@ -62,3 +62,11 @@
   margin-right: auto;
   text-wrap: pretty;
 }
+
+/* The detail under the one-sentence deck: body size, read left to right. */
+.security-page__audit-detail {
+  margin: 20px auto 0;
+  text-align: left;
+  color: var(--text-secondary);
+  text-wrap: pretty;
+}

@@ -137,7 +137,7 @@ export default function News2Live() {
         <span className="news2__eyebrow">Try the rule</span>
         <h2 className="news2__title">Put your own numbers through it.</h2>
         <p className="news2__lead">
-          NEWS2 (Royal College of Physicians, 2017), the same table Orb applies to every set of observations a nurse records. No model is involved. A nurse can check any point by hand, and the response sentence is the RCP’s own, shown for the clinician to decide on.
+          The same table Orb applies to every set of observations a nurse records, with the response line in the RCP’s own words.
         </p>
         <div className="news2__presets" role="group" aria-label="Example patients">
           {PRESETS.map(p => (

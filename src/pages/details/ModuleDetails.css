@@ -16,7 +16,7 @@
   width: 100%;
   max-width: 1024px;
   margin: 0 auto;
-  padding: 80px 24px 120px;
+  padding: 80px 24px 0; /* the footer at the end of main carries the bottom space */
 }
 
 /* Back navigation */
@@ -261,7 +261,7 @@
   width: 100%;
   max-width: 1240px;
   margin: 0 auto;
-  padding: 48px clamp(20px, 3.5vw, 40px) 120px;
+  padding: 48px clamp(20px, 3.5vw, 40px) 0; /* the footer at the end of main carries the bottom space */
 }
 
 .mp__eyebrow {
@@ -289,7 +289,6 @@
 
 .mp__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 20px; }
 .mp__actions--center { justify-content: center; margin-top: 28px; }
-.mp__area { color: var(--text-muted); max-width: 34ch; }
 
 .mp__hero-demo {
   border-radius: 24px;

@@ -194,81 +194,7 @@
 
 
 
-/* ─── Footer ─── */
-.landing-overview__footer {
-  padding: 72px 0 56px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  color: var(--text-muted);
-}
-
-.landing-overview__footer-top {
-  display: flex;
-  justify-content: space-between;
-  gap: 48px;
-  flex-wrap: wrap;
-  margin-bottom: 48px;
-}
-
-.landing-overview__footer-brand {
-  max-width: 320px;
-  min-width: 220px;
-}
-
-.landing-overview__footer-wordmark {
-  font-size: 1.2rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  color: var(--text-primary);
-}
-
-.landing-overview__footer-tagline {
-  color: var(--text-secondary);
-  margin: 16px 0 22px;
-}
-
-.landing-overview__footer-cols {
-  display: flex;
-  gap: 56px;
-  flex-wrap: wrap;
-}
-
-.landing-overview__footer-col {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.landing-overview__footer-col-title {
-  color: var(--text-muted);
-  margin-bottom: 4px;
-  min-height: 0.7rem;
-}
-
-.landing-overview__footer-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 12px;
-  padding-top: 28px;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-  font-size: 0.82rem;
-}
-
-[data-theme="light"] .landing-overview__footer-bottom {
-  border-top-color: rgba(0, 0, 0, 0.06);
-}
-
-.landing-overview__footer-fineprint {
-  color: var(--text-muted);
-  font-style: italic;
-}
-
-@media (max-width: 560px) {
-  .landing-overview__footer-cols {
-    gap: 36px;
-  }
-}
+/* The footer's rules live in components/SiteFooter.css: it is on every page. */
 
 /* ─── Light Mode Overrides for Landing Page ─── */
 [data-theme="light"] .landing-overview {
@@ -280,11 +206,6 @@
 
 [data-theme="light"] .landing-overview__btn-secondary-action {
   color: var(--accent-deep);
-}
-
-[data-theme="light"] .landing-overview__footer-btn {
-  color: var(--accent-deep);
-  font-weight: 700;
 }
 
 /* ─── Closing call to action (v4 restructure) ─── */

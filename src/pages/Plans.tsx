@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
 import Aurora from '../components/Aurora'
 import MarketingHeader from '../components/MarketingHeader'
+import SiteFooter from '../components/SiteFooter'
 import { AT_A_GLANCE, NOT_TODAY, PLANS_LEDE } from '../data/plans'
 import { openDemoModal } from '../data/siteContent'
 import './Plans.css'
@@ -78,10 +79,12 @@ export default function Plans() {
           <h2 className="plans__cta-title">Begin with one ward.</h2>
           <p className="plans__cta-desc">Tell me about your wards and the software you run today. The first conversation is about how your ward works, with no contract on the table.</p>
           <div className="module-detail__buttons">
-            <button className="module-detail__btn-primary" onClick={openDemoModal}>Talk to us</button>
+            <button className="module-detail__btn-primary" onClick={openDemoModal}>Book a walkthrough</button>
             <Link to="/security" className="module-detail__btn-secondary">Read the security brief &nbsp;&rarr;</Link>
           </div>
         </section>
+
+        <SiteFooter />
       </main>
     </div>
   )

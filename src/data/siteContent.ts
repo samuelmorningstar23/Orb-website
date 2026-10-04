@@ -109,10 +109,10 @@ export const ALL_MODULES: ModuleInfo[] = [
   },
   {
     to: '/bridge', label: 'Bridge', badge: 'For the patient. In plain words.',
-    blurb: 'A patient signs in with the code issued at admission and sees their care team, their vitals in plain words, their medications, results and documents. The whole record downloads as FHIR.',
+    blurb: 'A patient signs in with the code issued at admission and sees their care team, their vitals in plain words, their medications and their documents. Their record downloads as FHIR.',
     keywords: ['patients', 'families', 'plain language', 'portal', 'explanations', 'next steps', 'fhir', 'record'],
     area: 'patients',
-    line: 'The patient’s own portal: vitals in plain words, results, documents, and a FHIR download.',
+    line: 'The patient’s own portal: vitals in plain words, medications, documents, and a FHIR download.',
   },
   {
     to: '/appointments', label: 'Appointments', badge: 'Follow-ups, with the score in view',

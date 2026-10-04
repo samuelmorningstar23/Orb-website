@@ -59,7 +59,7 @@
   font-size: 0.95rem;
   line-height: 1.5;
   color: var(--text-secondary);
-  max-width: 78ch;
+  max-width: var(--measure);
   text-wrap: pretty;
 }
 

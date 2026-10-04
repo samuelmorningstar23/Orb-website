@@ -459,7 +459,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
                 { text: 'IV fluids', state: 'done' },
                 { text: 'Serum lactate', state: 'done' },
               ] },
-              { id: 'banner', k: 'banner', tone: 'critical', tag: 'Stopped', title: 'Ceftriaxone: documented anaphylaxis', body: 'Recorded at admission. Apply is disabled while this item is in the set.' },
+              { id: 'banner', k: 'banner', tone: 'critical', tag: 'Stopped', title: 'Ceftriaxone: documented anaphylaxis', body: 'On his chart. Apply is disabled while this item is in the set.' },
             ],
           },
         },
@@ -988,13 +988,12 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
           },
         },
         {
-          caption: 'Medications, results and documents to read, and the whole record to download as FHIR. It is their record.',
+          caption: 'Medications and documents to read, and their record to download as FHIR. It is their record.',
           scene: {
             head: 'Your record', sub: 'Yours to take',
             blocks: [
               { id: 'chips', k: 'chips', chips: [
                 { text: 'Medications', tone: 'muted' },
-                { text: 'Results', tone: 'muted' },
                 { text: 'Documents', tone: 'muted' },
                 { text: 'Download as FHIR', tone: 'accent' },
               ] },
@@ -1196,7 +1195,7 @@ export const STORY_FLOWS: WidgetFlow[] = [
     id: 'story-vigil', label: 'Vigil', app: 'Orb Vigil', who: 'General Medicine',
     steps: [
       {
-        caption: 'The ward, by NEWS2 score. Rajesh Iyer is second, and comfortable enough to wait.',
+        caption: 'The ward, by NEWS2 score. Rajesh Iyer is second at 9. The nurse is about to record a new set.',
         scene: {
           head: 'Today', sub: 'General Medicine · 5 admitted',
           blocks: [
@@ -1271,7 +1270,7 @@ export const STORY_FLOWS: WidgetFlow[] = [
               { text: 'Infective exacerbation of COPD. Nebulisers and oxygen started.', strong: true },
               { text: 'Steroids to be reviewed with the registrar this morning.' },
             ] },
-            { id: 'banner', k: 'banner', tone: 'warn', tag: 'Sage · model draft', title: 'For review, not for filing', body: 'Deterioration consistent with the documented exacerbation. Consider senior review and steroid cover.' },
+            { id: 'banner', k: 'banner', tone: 'warn', tag: 'Sage · model draft', title: 'For review, not for filing', body: 'Consistent with the documented exacerbation. For senior review.' },
           ],
         },
       },
@@ -1400,7 +1399,7 @@ export const STORY_FLOWS: WidgetFlow[] = [
           blocks: [
             { id: 'rows', k: 'rows', rows: [
               { id: 'i1', title: 'Prednisolone', sub: 'Checked against the curated list', tag: 'None listed', tagTone: 'muted' },
-              { id: 'i2', title: 'Ceftriaxone allergy on file', sub: 'Anaphylaxis, recorded at admission. Not implicated here.', tag: 'Noted', tagTone: 'muted' },
+              { id: 'i2', title: 'Ceftriaxone allergy on file', sub: 'Anaphylaxis, on his chart. Not implicated here.', tag: 'Noted', tagTone: 'muted' },
               { id: 'i3', title: 'Herbal preparation, unnamed', sub: 'Outside the interaction knowledge base', tag: 'Not screened', tagTone: 'warn' },
             ] },
           ],

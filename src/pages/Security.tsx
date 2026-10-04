@@ -4,6 +4,7 @@ import MarketingHeader from '../components/MarketingHeader'
 import SafetySuite from '../components/SafetySuite'
 import TrustPosture from '../components/TrustPosture'
 import ScreenGallery from '../components/captures/ScreenGallery'
+import SiteFooter from '../components/SiteFooter'
 import Widget from '../components/widget/Widget'
 import { WIDGET_FLOWS } from '../data/widgetFlows'
 import { Reveal, Stagger, StaggerItem } from '../components/motion/Reveal'
@@ -58,14 +59,16 @@ export default function Security() {
         </section>
 
         <section className="module-detail__showcase">
-          {/* The evaluation scorecard capture is held back until it is retaken:
-              the picture on file is titled over a six-ward run Orb has not had. */}
+          {/* Two captures are held back until they are retaken. The evaluation
+              scorecard is titled over a six-ward run Orb has not had, and the
+              Model Governance table describes two models in words the site does
+              not use. The admin captures that remain are cropped below the tab
+              strip, which names a scorecard the site does not claim. */}
           <ScreenGallery
             label="The admin screens"
             shots={[
               { name: 'admin-trust', label: 'Trust Center', caption: 'Compliance posture, aggregated from the running system. Amber is amber, and an all-green screen deserves a harder look.' },
               { name: 'admin-flight', label: 'Flight Recorder', caption: 'A SHA-256 hash chain over every audit row, with its verification state on the page.' },
-              { name: 'admin-models', label: 'Model Governance', caption: 'Every model with its version and validation state, including the one that says untrained.' },
             ]}
           />
         </section>
@@ -83,22 +86,27 @@ export default function Security() {
         <TrustPosture />
 
         <Reveal as="section" className="security-page__audit" amount={0.4}>
-          <h2 className="security-page__audit-title">What Orb writes down</h2>
+          <h2 className="security-page__audit-title">What Orb writes down.</h2>
           <p className="security-page__audit-body">
-            Every model answer, every refusal and every confirmed action is written to an audit log sealed by a SHA-256 hash chain. A reviewer can see what was proposed, who confirmed it and when, and whether any row has been altered since. The Flight Recorder in the admin screens is that log. Role-based access is part of the same record, and a second factor is available for administrator sign-in.
+            Every model answer, every refusal and every confirmed action is written to an audit log sealed by a SHA-256 hash chain.
+          </p>
+          <p className="security-page__audit-detail">
+            A reviewer can see what was proposed, who confirmed it and when, and whether any row has been altered since. The Flight Recorder in the admin screens is that log.
           </p>
         </Reveal>
 
         <section className="module-detail__cta-section">
           <h2 className="module-detail__cta-title">Bring your security team.</h2>
           <p className="module-detail__cta-desc">
-            We walk them through the appliance, the data flow and the access controls on a call, with the admin screens open.
+            I walk them through the appliance, the data flow and the access controls on a call, with the admin screens open.
           </p>
           <div className="module-detail__buttons">
             <button className="module-detail__btn-primary" onClick={openDemoModal}>Book a walkthrough</button>
             <Link to="/support" className="module-detail__btn-secondary">Ask a question &nbsp;&rarr;</Link>
           </div>
         </section>
+
+        <SiteFooter />
       </main>
     </div>
   )

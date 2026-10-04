@@ -8,28 +8,14 @@
 // shared /vigil link previews as Vigil, not as the homepage.
 import { readFileSync, writeFileSync, mkdirSync, copyFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
+// Route → title, description: the same list the app uses for the tab title, so
+// the two cannot drift. Importing the TypeScript data file needs Node 22.18 or
+// later (type stripping); the deploy workflow pins Node 22.
+import { PAGES as pages } from '../src/data/pageMeta.ts'
 
 const DIST = 'dist'
 const SITE = 'https://orbsuite.com'
 const shell = readFileSync(join(DIST, 'index.html'), 'utf8')
-
-// Route → title, description. Module pages read their copy from the data file.
-const src = readFileSync('src/data/modulePages.ts', 'utf8')
-const modules = [...src.matchAll(/route: '([^']+)',\s*title: '([^']+)',\s*badge: '([^']+)',\s*tagline: '((?:[^'\\]|\\.)+)'/g)]
-  .map(m => ({ route: m[1], title: `${m[2]}: ${m[3]} | Orb`, description: m[4].replace(/\\'/g, "'") }))
-
-// The Plans page description is the page's own lede, so the two cannot drift.
-const plansLede = readFileSync('src/data/plans.ts', 'utf8').match(/PLANS_LEDE = '((?:[^'\\]|\\.)+)'/)?.[1]?.replace(/\\'/g, "'")
-if (!plansLede) throw new Error('postbuild: PLANS_LEDE not found in src/data/plans.ts')
-
-const pages = [
-  { route: '/', title: 'Orb: Hospital software that never leaves the building', description: 'One computer in your building runs the ward record, the NEWS2 score, the drug chart, the case rooms and the models. Nothing about a patient leaves it.' },
-  { route: '/modules', title: 'The modules | Orb', description: 'Fourteen modules, each shown as a real screen of the product on demo patients, each with a page that walks its workflow.' },
-  { route: '/plans', title: 'Plans | Orb', description: plansLede },
-  { route: '/security', title: 'Security brief | Orb', description: 'Nothing leaves the building. The appliance, the models and the hash-chained audit log, with the admin screens they are checked on.' },
-  { route: '/support', title: 'Support | Orb', description: 'Write to me, book a walkthrough of the product on demo patients, or find the answer below.' },
-  ...modules,
-]
 
 const esc = s => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;')
 const withMeta = p => shell

@@ -60,7 +60,7 @@ export default function TrustPosture() {
       </div>
 
       <p className="trust-posture__note">
-        Built for India first: the safeguards the DPDP Act asks for, the evidence NABH inspects, and ABDM, where Orb is not yet certified and sends nothing today. None of it stands in for your own certification.
+        Built for India first. Consent, retention and breach registers are built in the backend, with their screens to come before the DPDP duties start in May 2027. The NABH evidence pack holds what an assessor inspects. On ABDM, Orb is not yet certified and sends nothing today. None of it stands in for your own certification.
       </p>
     </section>
   )

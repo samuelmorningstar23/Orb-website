@@ -4,10 +4,11 @@ import Aurora from '../../components/Aurora'
 import Widget from '../../components/widget/Widget'
 import News2Live from '../../components/captures/News2Live'
 import ScreenGallery from '../../components/captures/ScreenGallery'
+import SiteFooter from '../../components/SiteFooter'
 import { Reveal, Stagger, StaggerItem } from '../../components/motion/Reveal'
 import { WIDGET_FLOWS } from '../../data/widgetFlows'
 import { modulePage } from '../../data/modulePages'
-import { ALL_MODULES, openDemoModal } from '../../data/siteContent'
+import { openDemoModal } from '../../data/siteContent'
 import './ModuleDetails.css'
 
 /**
@@ -18,7 +19,6 @@ import './ModuleDetails.css'
  */
 export default function ModulePage({ route }: { route: string }) {
   const page = modulePage(route)
-  const info = ALL_MODULES.find(m => m.to === route)
   const flows = WIDGET_FLOWS[route]
   const shots = page.shots ?? []
 
@@ -42,7 +42,6 @@ export default function ModulePage({ route }: { route: string }) {
             <p className="mp__tagline">{page.tagline}</p>
             <div className="mp__actions">
               <button type="button" className="hero__btn hero__btn--primary" onClick={openDemoModal}>Book a walkthrough</button>
-              {info && <span className="mp__area">{info.line}</span>}
             </div>
           </div>
           {flows && (
@@ -87,6 +86,8 @@ export default function ModulePage({ route }: { route: string }) {
             <Link to="/modules" className="hero__btn hero__btn--ghost">All modules <span aria-hidden="true">&rarr;</span></Link>
           </div>
         </Reveal>
+
+        <SiteFooter />
       </main>
     </div>
   )

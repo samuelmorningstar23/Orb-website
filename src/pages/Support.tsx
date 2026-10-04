@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Aurora from '../components/Aurora'
 import MarketingHeader from '../components/MarketingHeader'
+import SiteFooter from '../components/SiteFooter'
 import { ANSWER_ENTRIES } from '../data/search'
 import { CONTACT_EMAIL, openDemoModal } from '../data/siteContent'
 import { isEmail, sendForm } from '../data/sendForm'
@@ -193,6 +194,8 @@ export default function Support() {
             <Link to="/plans">Plans &rarr;</Link>
           </p>
         </section>
+
+        <SiteFooter />
       </main>
     </div>
   )

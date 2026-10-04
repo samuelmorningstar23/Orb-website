@@ -14,7 +14,7 @@ export const PLANS_LEDE = 'Founding hospital programme. Three places in Hyderaba
 
 /** The four rows of the card beside the title. */
 export const AT_A_GLANCE: { label: string; value: string; sub: string }[] = [
-  { label: 'Where', value: 'Hyderabad', sub: 'three hospitals, agreed in conversation' },
+  { label: 'Where', value: 'Hyderabad', sub: 'three places, terms agreed in person' },
   { label: 'The start', value: 'One ward', sub: 'beside the software you already run' },
   { label: 'Your hospital system', value: 'Stays', sub: 'Orb replaces nothing you run today' },
   { label: 'Terms', value: 'In person', sub: 'agreed with you, and not published here' },

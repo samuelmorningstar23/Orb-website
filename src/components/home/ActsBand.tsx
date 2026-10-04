@@ -15,9 +15,9 @@ export default function ActsBand() {
     <section className="acts" aria-labelledby="acts-title">
       <Reveal className="acts__header">
         <span className="acts__eyebrow">How it works</span>
-        <h2 className="acts__title" id="acts-title">Orb drafts. A clinician signs.</h2>
+        <h2 className="acts__title" id="acts-title">Orb drafts.<br />A clinician signs.</h2>
         <p className="acts__lead">
-          Nothing is ordered, charted or filed until a named person says yes. The same gates apply as to anything typed by hand.
+          Nothing is ordered, charted or filed until a named person says yes. A drafted medication still meets the allergy interlock, the dose guard and the pharmacist’s queue.
         </p>
       </Reveal>
       <Stagger className="acts__steps" as="ul">
