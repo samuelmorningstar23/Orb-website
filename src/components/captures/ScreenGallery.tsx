@@ -49,7 +49,9 @@ export default function ScreenGallery({ shots, label }: { shots: Shot[]; label: 
         </div>
       )}
 
-      <div className={'gallery__frame' + (full ? ' gallery__frame--full' : '')}>
+      {/* The frame shows the top 800 px of a capture; a capture shorter than
+          that (the cropped admin screens) sets the frame to its own height. */}
+      <div className={'gallery__frame' + (full ? ' gallery__frame--full' : '')} style={{ ['--shot-h' as string]: screen.height }}>
         <AnimatePresence mode="wait" initial={false}>
           <motion.img
             key={`${shot.name}-${isLight ? 'l' : 'd'}`}

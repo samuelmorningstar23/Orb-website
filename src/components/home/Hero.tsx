@@ -21,16 +21,16 @@ export default function Hero() {
   return (
     <section className="hero" ref={ref} aria-labelledby="hero-title">
       <div className="hero__copy">
-        <span className="hero__eyebrow">Orb Hospital OS</span>
+        <span className="hero__eyebrow">Orb</span>
         <h1 className="hero__title" id="hero-title">
-          The hospital,<br />running on one machine<br /><em>inside</em> the hospital.
+          Hospital software<br />that <em>never</em> leaves<br />your building.
         </h1>
         <p className="hero__sub">
-          The record, the ward monitor, the pharmacy and the front desk on one appliance. The models run there too, so nothing about a patient leaves the building.
+          One computer in your hospital runs the ward record, the NEWS2 score, the drug chart and the case rooms.
         </p>
         <div className="hero__actions">
-          <button type="button" className="hero__btn hero__btn--primary" onClick={openDemoModal}>Request a demo</button>
-          <Link className="hero__btn hero__btn--ghost" to="/modules">The modules <span aria-hidden="true">&rarr;</span></Link>
+          <button type="button" className="hero__btn hero__btn--primary" onClick={openDemoModal}>Book a walkthrough</button>
+          <Link className="hero__btn hero__btn--ghost" to="/modules">Meet the modules <span aria-hidden="true">&rarr;</span></Link>
         </div>
       </div>
 
@@ -42,7 +42,7 @@ export default function Hero() {
           <WorkflowStory />
         </motion.div>
         <p className="hero__stage-note">
-One patient, from the ward to the pharmacy and back to his bedside. Three modules, in the order it happens. Pick an act, or let it run.
+One demo patient. From the ward to the pharmacy and back to his bedside, in three acts. Pick one, or let it play.
         </p>
       </div>
     </section>

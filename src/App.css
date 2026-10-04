@@ -1,1 +1,249 @@
-/* ─── App-level styles ─── */
+/* ─── The type scale, applied by role ───
+   This file is imported last, after every page and component stylesheet, so
+   these rules win on equal specificity. Each class below already exists in
+   its component's stylesheet; these rules set only face, size, weight,
+   tracking and leading, so layout is untouched. The tokens are in index.css. */
+
+/* Paragraph measure: no line of running text wider than 62 characters. */
+p { max-width: var(--measure); }
+
+/* Hero h1 */
+.hero__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-hero);
+  line-height: var(--leading-hero);
+  letter-spacing: var(--tracking-hero);
+}
+
+/* Three forced lines have to fit a 358px column: the longest is 17 characters. */
+@media (max-width: 430px) {
+  .hero__title { font-size: 2.45rem; }
+}
+
+/* Section h2 and page titles */
+.wall__title,
+.acts__title,
+.checks__title,
+.landing-overview__cta-title,
+.mp__title,
+.mp__cta-title,
+.module-detail__title,
+.module-detail__cta-title,
+.plans__title,
+.plans__h2,
+.plans__cta-title,
+.safety-suite__title,
+.trust-posture__title,
+.security-page__audit-title,
+.support-page__faq-title,
+.support-page__form-title,
+.news2__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-title);
+  line-height: var(--leading-title);
+  letter-spacing: var(--tracking-title);
+}
+
+/* The secondary titles on a page keep the same face one step down */
+.plans__h2,
+.plans__cta-title,
+.mp__cta-title,
+.module-detail__cta-title,
+.security-page__audit-title,
+.news2__title,
+.safety-suite__title,
+.trust-posture__title,
+.support-page__faq-title,
+.support-page__form-title {
+  font-size: clamp(1.7rem, 3.4vw, 2.6rem);
+}
+
+/* The module closing line breaks after its first sentence (ModulePage.tsx);
+   on a 390px phone "Every observation scored." has to sit on one 350px line,
+   which it does at 1.6rem and not at the clamp's 1.7rem floor. */
+@media (max-width: 430px) {
+  .mp__cta-title { font-size: 1.6rem; }
+}
+
+.demo-modal-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+/* Decks and ledes: the one sentence under a title */
+.hero__sub,
+.wall__lead,
+.acts__lead,
+.checks__lede,
+.mp__claim,
+.module-detail__tagline,
+.plans__lede,
+.landing-overview__cta-desc,
+.module-detail__cta-desc,
+.plans__cta-desc,
+.safety-suite__desc,
+.news2__lead,
+.security-page__audit-body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--text-deck);
+  line-height: var(--leading-deck);
+  letter-spacing: -0.012em;
+  color: var(--text-secondary);
+}
+
+/* Running text inside cards and lists: body size */
+.acts__line,
+.checks__line,
+.wall__line,
+.mp__tagline,
+.mp__fact-desc,
+.gallery__caption,
+.mp__strip-note,
+.security-page__fact-body,
+.security-page__audit-detail,
+.safety-suite__card-desc,
+.trust-posture__card-desc,
+.trust-posture__note,
+.plans__item-body,
+.plans__glance-label,
+.support-page__channel-desc,
+.support-page__faq-body p,
+.support-page__form-desc,
+.support-page__form-success p,
+.demo-modal-subtitle,
+.search-overlay__answer-text,
+.landing-overview__footer-tagline,
+.landing-overview__footer-link,
+.news2__foot {
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  font-weight: 400;
+}
+
+.news2__foot,
+.trust-posture__note,
+.mp__strip-note,
+.demo-modal-subtitle { font-size: 0.94rem; }
+
+/* The detail under a module page's claim reads as the secondary line. */
+.mp__tagline { color: var(--text-secondary); }
+
+/* Card and list titles */
+.acts__label,
+.checks__label,
+.wall__name,
+.mp__fact-title,
+.safety-suite__card-title,
+.trust-posture__card-title,
+.support-page__channel-title,
+.plans__item-title,
+.wstory__act-name,
+.search-overlay__result-title,
+.nav-panel__summary {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.acts__label,
+.wall__name { font-size: 1.35rem; line-height: 1.15; }
+.checks__label { font-size: clamp(1.15rem, 1.6vw, 1.35rem); line-height: 1.2; }
+.mp__fact-title { font-size: 1.2rem; line-height: 1.25; }
+.safety-suite__card-title,
+.trust-posture__card-title,
+.support-page__channel-title { font-size: 1.1rem; }
+.plans__item-title { font-size: 1rem; }
+.wstory__act-name { font-size: 1.05rem; }
+.wstory__act-hint { font-weight: 400; font-size: 0.88rem; }
+
+/* Eyebrows and small labels */
+.hero__eyebrow,
+.wall__eyebrow,
+.acts__eyebrow,
+.checks__eyebrow,
+.bento__eyebrow,
+.chapters__eyebrow,
+.mp__eyebrow,
+.plans__eyebrow,
+.plans__glance-title,
+.module-detail__badge,
+.safety-suite__badge,
+.trust-posture__badge,
+.news2__eyebrow,
+.nav-panel__eyebrow,
+.search-overlay__section-label,
+.marketing-header__drawer-label,
+.landing-overview__footer-col-title,
+.security-page__fact-title,
+.wstory__act-num {
+  font-family: var(--font-display);
+  font-size: var(--text-small);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+}
+
+/* Numerals that used to be an italic serif: the mono face, upright */
+.acts__num,
+.mp__fact-num,
+.plans__proof-num {
+  font-family: var(--font-mono);
+  font-style: normal;
+  font-weight: 600;
+}
+
+.landing-overview__footer-fineprint { font-style: normal; font-weight: 400; }
+.wall__op { font-weight: 600; }
+
+/* Buttons */
+.hero__btn,
+.landing-overview__btn-primary,
+.landing-overview__btn-secondary-action,
+.module-detail__btn-primary,
+.module-detail__btn-secondary,
+.demo-modal-submit,
+.support-page__form-submit,
+.marketing-header__drawer-cta,
+.wstory__grab-pill {
+  font-family: var(--font-body);
+  font-size: var(--text-button);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* The header pill sits in a 52px bar, so it stays a size down. */
+.marketing-header__request-btn { font-size: 0.86rem; font-weight: 600; }
+
+.acts__link,
+.checks__link,
+.wall__go,
+.module-detail__back,
+.support-page__faq-link,
+.support-page__channel-action,
+.nav-panel__footer-link,
+.nav-panel__know { font-weight: 600; }
+
+/* Section rhythm: one padding token between the big moves on a page */
+.acts { margin-top: var(--section-pad); }
+.checks { padding-top: var(--section-pad); padding-bottom: var(--section-pad); }
+.landing-overview__cta { padding-top: var(--section-pad); padding-bottom: var(--section-pad); }
+.wall { padding-top: var(--section-pad); }
+.mp__facts,
+.mp__strip { padding-top: calc(var(--section-pad) * 0.6); }
+.mp__cta { padding-top: calc(var(--section-pad) * 0.7); }
+.mp .news2 { margin-top: calc(var(--section-pad) * 0.6); }
+.security-page .safety-suite,
+.security-page .trust-posture { padding-top: calc(var(--section-pad) * 0.6); }
+.security-page__audit { margin-top: calc(var(--section-pad) * 0.6); }
+
+/* Content width */
+.landing-overview__content,
+.mp__content { max-width: var(--content-max); }
+.module-detail__content { max-width: 1120px; }
+.plans-page .module-detail__content { max-width: var(--content-max); }

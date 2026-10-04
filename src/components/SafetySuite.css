@@ -12,28 +12,18 @@
 }
 
 .safety-suite__badge {
-  font-size: 0.84rem;
-  font-weight: 700;
-  text-transform: uppercase;
   color: var(--accent);
-  letter-spacing: 0.12em;
   margin-bottom: 18px;
   display: inline-block;
 }
 
 .safety-suite__title {
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 600;
-  letter-spacing: -0.025em;
   color: var(--text-primary);
   margin-bottom: 16px;
 }
 
 .safety-suite__desc {
-  font-size: clamp(1.05rem, 2vw, 1.25rem);
-  color: var(--text-secondary);
-  line-height: 1.45;
-  text-wrap: balance;
+  text-wrap: pretty;
 }
 
 /* ─── Grid ─── */
@@ -96,17 +86,12 @@
 }
 
 .safety-suite__card-title {
-  font-size: 1.15rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
   color: var(--text-primary);
   margin-bottom: 10px;
 }
 
 .safety-suite__card-desc {
-  font-size: 0.96rem;
   color: var(--text-secondary);
-  line-height: 1.55;
 }
 
 /* ─── Light Theme Overrides ─── */

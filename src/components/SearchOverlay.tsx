@@ -12,7 +12,7 @@ interface SearchOverlayProps {
 
 const QUICK_LINKS: { label: string; to: string }[] = [
   { label: 'Plans', to: '/plans' },
-  { label: 'All modules', to: '/#modules' },
+  { label: 'All modules', to: '/modules' },
   { label: 'Sage', to: '/sage' },
   { label: 'Support', to: '/support' },
 ]
@@ -135,7 +135,7 @@ export default function SearchOverlay({ open, onClose, onOpen }: SearchOverlayPr
             ref={inputRef}
             type="text"
             className="search-overlay__input"
-            placeholder="Search Orb, or ask a question…"
+            placeholder="Search, or ask a question…"
             value={query}
             onChange={e => setQuery(e.target.value)}
             onKeyDown={onInputKeyDown}
@@ -160,7 +160,7 @@ export default function SearchOverlay({ open, onClose, onOpen }: SearchOverlayPr
                   </button>
                 ))}
                 <button className="search-overlay__quick-link search-overlay__quick-link--gold" onClick={() => { onClose(); openDemoModal() }}>
-                  Request a demo
+                  Book a walkthrough
                 </button>
               </div>
               <span className="search-overlay__section-label">Try asking</span>
@@ -226,7 +226,7 @@ export default function SearchOverlay({ open, onClose, onOpen }: SearchOverlayPr
 
           {hasQuery && !answer && results.length === 0 && (
             <p className="search-overlay__empty">
-              No matches for “{query.trim()}”. Try a module name like <em>Sage</em>, a page like <em>plans</em>, or ask a question.
+              No matches for “{query.trim()}”. Try a module name like <em>Sage</em>, a page like <em>Plans</em>, or ask a question.
             </p>
           )}
         </div>

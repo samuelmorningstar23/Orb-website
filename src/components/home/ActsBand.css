@@ -39,28 +39,17 @@
 [data-theme="light"] .acts__step { border-top-color: rgba(0, 0, 0, 0.1); }
 
 .acts__num {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   color: var(--accent);
 }
 
-.acts__label {
-  font-family: var(--font-serif);
-  font-size: 1.5rem;
-  font-weight: 600;
-  letter-spacing: -0.015em;
-}
-
 .acts__line {
-  font-size: 0.98rem;
-  line-height: 1.5;
   color: var(--text-secondary);
 }
 
 .acts__cta { margin-top: 36px; }
 
-.acts__link { color: var(--accent); font-weight: 700; font-size: 0.98rem; }
+.acts__link { color: var(--accent); }
 .acts__link:hover { text-decoration: underline; }
 
 @media (max-width: 900px) {

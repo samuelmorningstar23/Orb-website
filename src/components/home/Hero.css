@@ -17,38 +17,24 @@
 }
 
 .hero__eyebrow {
-  font-family: var(--font-mono);
-  font-weight: 700;
-  font-size: 0.8rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
   color: var(--accent);
   margin-bottom: 26px;
 }
 
 .hero__title {
-  font-family: var(--font-serif);
-  font-weight: 500;
-  font-size: clamp(2.9rem, 7.4vw, 6.4rem);
-  line-height: 0.98;
-  letter-spacing: -0.032em;
   color: var(--text-primary);
   margin: 0 0 26px;
   text-wrap: balance;
 }
 
 .hero__title em {
-  font-style: italic;
-  font-weight: 500;
+  font-style: normal;
   color: var(--sierra-600);
 }
 
 [data-theme="dark"] .hero__title em { color: var(--sierra-300); }
 
 .hero__sub {
-  font-size: clamp(1.08rem, 1.7vw, 1.32rem);
-  line-height: 1.5;
-  color: var(--text-secondary);
   max-width: 46ch;
   margin: 0 0 34px;
   text-wrap: pretty;
@@ -68,8 +54,6 @@
   gap: 8px;
   padding: 13px 26px;
   border-radius: var(--radius-full);
-  font-size: 0.95rem;
-  font-weight: 600;
   transition: transform var(--transition-fast), filter var(--transition-fast), background var(--transition-fast);
 }
 
@@ -108,7 +92,7 @@
   margin: 18px auto 0;
   padding: 0 20px;
   max-width: 62ch;
-  font-size: 0.9rem;
+  font-size: 0.94rem;
   color: var(--text-muted);
 }
 

@@ -16,7 +16,7 @@
   width: 100%;
   max-width: 1024px;
   margin: 0 auto;
-  padding: 80px 24px 120px;
+  padding: 80px 24px 0; /* the footer at the end of main carries the bottom space */
 }
 
 /* Back navigation */
@@ -26,7 +26,6 @@
   gap: 8px;
   color: var(--accent);
   font-size: 0.94rem;
-  font-weight: 500;
   margin-bottom: 40px;
   transition: opacity var(--transition-fast), transform var(--transition-fast);
 }
@@ -46,32 +45,21 @@
 }
 
 .module-detail__badge {
-  font-size: 0.84rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
   color: var(--accent);
   margin-bottom: 16px;
   display: inline-block;
 }
 
 .module-detail__title {
-  font-size: clamp(2.5rem, 6.5vw, 4.5rem);
-  font-weight: 700;
-  line-height: 1.08;
-  letter-spacing: -0.035em;
   color: var(--text-primary);
   margin-bottom: 24px;
   text-wrap: balance;
 }
 
 .module-detail__tagline {
-  font-size: clamp(1.15rem, 2.5vw, 1.45rem);
-  color: var(--text-secondary);
-  font-weight: 400;
-  line-height: 1.4;
-  letter-spacing: -0.015em;
-  text-wrap: balance;
+  margin-left: auto;
+  margin-right: auto;
+  text-wrap: pretty;
 }
 
 /* Showcase visual wrapper */
@@ -191,35 +179,36 @@
 }
 
 .module-detail__cta-title {
-  font-size: 2rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
   margin-bottom: 16px;
 }
 
 .module-detail__cta-desc {
-  font-size: 1rem;
-  color: var(--text-secondary);
   margin-bottom: 32px;
-  max-width: 500px;
+  max-width: 520px;
   margin-left: auto;
   margin-right: auto;
 }
 
 .module-detail__buttons {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: 20px;
 }
 
+/* On a phone the pair stacks, one pill per line, each one line tall. */
+@media (max-width: 560px) {
+  .module-detail__buttons { flex-direction: column; gap: 14px; }
+  .module-detail__btn-primary,
+  .module-detail__btn-secondary { white-space: nowrap; }
+}
+
 .module-detail__btn-primary {
   background: var(--accent-gold);
   color: var(--btn-primary-text);
-  padding: 12px 28px;
+  padding: 13px 28px;
   border-radius: 999px;
-  font-weight: 700;
-  font-size: 0.94rem;
   box-shadow: 0 4px 16px var(--accent-glow);
   transition: transform var(--transition-fast), filter var(--transition-fast);
 }
@@ -231,8 +220,6 @@
 
 .module-detail__btn-secondary {
   color: var(--accent);
-  font-weight: 500;
-  font-size: 0.95rem;
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -251,7 +238,7 @@
 
 /* ─── Captures (real screens) ─── */
 .module-detail__capture-note {
-  margin: 14px 4px 0;
+  margin: 14px auto 0;
   font-size: 0.86rem;
   color: var(--text-muted);
   text-align: center;
@@ -282,16 +269,11 @@
   width: 100%;
   max-width: 1240px;
   margin: 0 auto;
-  padding: 48px clamp(20px, 3.5vw, 40px) 120px;
+  padding: 48px clamp(20px, 3.5vw, 40px) 0; /* the footer at the end of main carries the bottom space */
 }
 
 .mp__eyebrow {
   display: inline-block;
-  font-family: var(--font-mono);
-  font-weight: 700;
-  font-size: 0.8rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
   color: var(--accent);
   margin-bottom: 16px;
 }
@@ -305,25 +287,26 @@
 }
 
 .mp__title {
-  font-family: var(--font-serif);
-  font-weight: 500;
-  font-size: clamp(3rem, 6.5vw, 5.4rem);
-  line-height: 0.98;
-  letter-spacing: -0.032em;
-  margin: 0 0 20px;
+  margin: 0 0 14px;
+}
+
+/* The claim, directly under the name, at deck size. */
+.mp__claim {
+  margin: 0 0 16px;
+  color: var(--text-primary);
+  text-wrap: balance;
 }
 
 .mp__tagline {
-  font-size: clamp(1.05rem, 1.5vw, 1.25rem);
-  line-height: 1.5;
-  color: var(--text-secondary);
   margin: 0 0 28px;
   text-wrap: pretty;
 }
 
+/* With no tagline the buttons follow the claim at the same distance. */
+.mp__claim:last-of-type { margin-bottom: 28px; }
+
 .mp__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 20px; }
 .mp__actions--center { justify-content: center; margin-top: 28px; }
-.mp__area { font-size: 0.96rem; color: var(--text-muted); max-width: 34ch; }
 
 .mp__hero-demo {
   border-radius: 24px;
@@ -343,14 +326,14 @@
 
 .mp__hero-demo .wg { border-radius: 16px; }
 
-.mp__demo-note { margin: 12px 6px 2px; font-size: 0.86rem; color: var(--text-muted); }
+.mp__demo-note { margin: 12px 6px 2px; font-size: 0.88rem; color: var(--text-muted); }
 
 .mp__h2 {
-  font-family: var(--font-serif);
-  font-weight: 500;
-  font-size: clamp(1.9rem, 3.6vw, 3rem);
-  line-height: 1.06;
-  letter-spacing: -0.026em;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.7rem, 3.4vw, 2.6rem);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
   margin: 0;
   text-wrap: balance;
 }
@@ -378,9 +361,9 @@
 
 [data-theme="light"] .mp__fact { border-top-color: rgba(0, 0, 0, 0.1); }
 
-.mp__fact-num { grid-row: 1 / 3; font-family: var(--font-serif); font-style: italic; font-size: 1.3rem; color: var(--accent); padding-top: 3px; }
-.mp__fact-title { font-family: var(--font-serif); font-size: 1.35rem; font-weight: 600; letter-spacing: -0.015em; line-height: 1.2; margin-bottom: 6px; }
-.mp__fact-desc { font-size: 0.98rem; line-height: 1.55; color: var(--text-secondary); }
+.mp__fact-num { grid-row: 1 / 3; font-size: 1rem; color: var(--accent); padding-top: 5px; }
+.mp__fact-title { margin-bottom: 6px; }
+.mp__fact-desc { color: var(--text-secondary); }
 
 
 
@@ -396,11 +379,6 @@
 .mp__cta { text-align: center; padding: clamp(52px, 8vh, 96px) 0 20px; }
 
 .mp__cta-title {
-  font-family: var(--font-serif);
-  font-weight: 500;
-  font-size: clamp(2rem, 4.5vw, 3.6rem);
-  letter-spacing: -0.028em;
-  line-height: 1.05;
   max-width: 22ch;
   margin: 0 auto;
   text-wrap: balance;
@@ -409,58 +387,27 @@
 .mp .news2 { margin-top: clamp(44px, 6vh, 72px); }
 
 @media (max-width: 960px) {
-  .mp__hero { grid-template-columns: 1fr; }
+  /* minmax(0, 1fr), not 1fr: a 1fr track is min-content wide, and the widget
+     inside the Helix hero is wider than a phone, so the hero overflowed. */
+  .mp__hero { grid-template-columns: minmax(0, 1fr); }
   .mp__hero-demo { padding: 6px; border-radius: 18px; }
   .mp__hero-demo .wg { border-radius: 12px; }
   .mp__facts-list { grid-template-columns: 1fr; }
 }
 
-/* ═══ Type and surfaces shared by the secondary pages (Plans, Security, Support) ═══
-   The same serif display and frosted panels as the home page, so the site reads
-   as one piece. Class names are unchanged; only their look. */
-.module-detail__badge {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  letter-spacing: 0.14em;
-  font-weight: 700;
-}
-
-.module-detail__title {
-  font-family: var(--font-serif);
-  font-weight: 500;
-  font-size: clamp(2.8rem, 6.4vw, 5.2rem);
-  line-height: 1;
-  letter-spacing: -0.03em;
-}
-
-.module-detail__tagline { font-size: clamp(1.08rem, 1.6vw, 1.3rem); }
-
-.module-detail__cta-title,
-.security-page__audit-title,
-.safety-suite__title,
-.trust-posture__title,
-.support-page__faq-title {
-  font-family: var(--font-serif);
-  font-weight: 500;
-  letter-spacing: -0.026em;
-}
-
-.module-detail__cta-title { font-size: clamp(2rem, 4.5vw, 3.6rem); line-height: 1.05; }
-
+/* ═══ Surfaces shared by the secondary pages (Plans, Security, Support) ═══
+   The type comes from the scale in index.css; these are the frosted panels,
+   so the site reads as one piece. Class names are unchanged; only their look. */
 .module-detail__card-title,
 .plans-page__name,
-.security-page__fact-title,
-.safety-suite__item-title,
-.trust-posture__card-title,
-.support-page__channel-title,
 .support-page__faq-item summary {
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-weight: 600;
   letter-spacing: -0.015em;
 }
 
 .plans-page__name { font-size: 2rem; }
-.plans-page__tagline { font-family: var(--font-serif); font-style: italic; font-weight: 500; }
+.plans-page__tagline { font-family: var(--font-display); font-weight: 500; }
 
 .module-detail__card,
 .plans-page__card,
@@ -484,6 +431,5 @@
   box-shadow: 0 16px 44px rgba(31, 38, 135, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.95);
 }
 
-/* The strip note under the eyebrow, and a smaller CTA line on module pages. */
-.mp__strip-note { margin: 6px 0 0; font-size: 0.96rem; color: var(--text-muted); }
-.mp__cta-title { font-size: clamp(1.8rem, 3.6vw, 2.9rem); }
+/* The strip note under the eyebrow. */
+.mp__strip-note { margin: 6px 0 0; color: var(--text-muted); }

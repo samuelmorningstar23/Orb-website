@@ -8,8 +8,8 @@ type SafetyItem = {
 
 const items: SafetyItem[] = [
   {
-    title: 'Medication Safety',
-    desc: 'The allergy interlock and the dose guard run on every order, typed or extracted from a note. A blocked item shows the documented reaction, and only a prescriber can override it.',
+    title: 'Medication safety',
+    desc: 'The allergy interlock and the dose guard run on order sets and at the bedside, on items typed or extracted from a note. A blocked item shows the documented reaction, and only a prescriber can override it.',
     icon: (
       <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M10.5 20.5 20 11a4.95 4.95 0 1 0-7-7l-9.5 9.5a4.95 4.95 0 1 0 7 7Z" />
@@ -18,8 +18,8 @@ const items: SafetyItem[] = [
     ),
   },
   {
-    title: 'Sepsis & Care Bundles',
-    desc: 'Sepsis Six starts a 60-minute clock on the chart when NEWS2 crosses the line. Each of the six items turns overdue on its own.',
+    title: 'Sepsis Six',
+    desc: 'The clinician opens it on the chart: a checklist of six items with a 60-minute target. Each item shows when it is overdue.',
     icon: (
       <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <line x1="10" y1="2" x2="14" y2="2" />
@@ -29,8 +29,8 @@ const items: SafetyItem[] = [
     ),
   },
   {
-    title: 'Safe Handovers',
-    desc: 'An I-PASS handover drafted from recorded data, to be read against the patient before handing over.',
+    title: 'Safe handovers',
+    desc: 'An I-PASS handover drafted from recorded data, to be read against the patient before the handover.',
     icon: (
       <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M8 3 4 7l4 4" />
@@ -41,8 +41,8 @@ const items: SafetyItem[] = [
     ),
   },
   {
-    title: 'Downtime Resilience',
-    desc: 'A printable snapshot per patient kept fresh on the appliance, so the hour the appliance is down is covered on paper.',
+    title: 'Downtime on paper',
+    desc: 'A printable snapshot per patient, refreshed on the appliance. Print it on the ward’s schedule and the hour the appliance is down is covered on paper.',
     icon: (
       <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <circle cx="12" cy="12" r="10" />
@@ -55,8 +55,8 @@ const items: SafetyItem[] = [
     ),
   },
   {
-    title: 'Standards-Based Interoperability',
-    desc: 'Records export as FHIR today. ABDM support is built behind a flag and is not yet certified; we say which milestone we are at.',
+    title: 'FHIR export',
+    desc: 'Records export as FHIR today. Orb is not yet ABDM-certified and sends nothing to ABDM; your hospital system stays your ABDM system.',
     icon: (
       <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
@@ -65,8 +65,8 @@ const items: SafetyItem[] = [
     ),
   },
   {
-    title: 'Oversight & Governance',
-    desc: 'Every model answer and every confirmed action lands in the hash-chained audit log, and Model Governance lists each model with its version and validation state.',
+    title: 'Oversight and governance',
+    desc: 'Every model answer and every confirmed action lands in the hash-chained audit log. Model Governance lists the registered models with version and validation state.',
     icon: (
       <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M2.06 12.35a1 1 0 0 1 0-.7 10.75 10.75 0 0 1 19.88 0 1 1 0 0 1 0 .7 10.75 10.75 0 0 1-19.88 0" />
@@ -80,9 +80,9 @@ export default function SafetySuite() {
   return (
     <section className="safety-suite">
       <div className="safety-suite__header">
-        <span className="safety-suite__badge">Clinical Safety</span>
-        <h2 className="safety-suite__title">The safeguards, as they run</h2>
-        <p className="safety-suite__desc">Each one is deterministic and visible on a screen in the product.</p>
+        <span className="safety-suite__badge">Clinical safety</span>
+        <h2 className="safety-suite__title">Six safeguards. All deterministic.</h2>
+        <p className="safety-suite__desc">Each one runs as a rule, and each one has a screen.</p>
       </div>
 
       <div className="safety-suite__grid">

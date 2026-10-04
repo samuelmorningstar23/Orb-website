@@ -196,8 +196,8 @@ export default function MarketingHeader() {
     if (item.panel === 'plans') {
       return (
         <div className="nav-panel nav-panel--plans">
-          <span className="nav-panel__eyebrow">Founding hospital programme</span>
-          <p className="nav-panel__summary">Three places in Hyderabad. One ward, beside the software you already run.</p>
+          <span className="nav-panel__eyebrow">Founding programme</span>
+          <p className="nav-panel__summary">Three places in Hyderabad. One ward each, beside the software you already run.</p>
           <Link to="/plans" className="nav-panel__footer-link" onClick={closeNow}>
             How it starts {arrow}
           </Link>
@@ -207,7 +207,7 @@ export default function MarketingHeader() {
     if (item.panel === 'modules') {
       return (
         <div className="nav-panel nav-panel--modules">
-          <span className="nav-panel__eyebrow">Every module, captured from the product.</span>
+          <span className="nav-panel__eyebrow">Fourteen modules. One record.</span>
           <div className="nav-panel__module-grid">
             {ALL_MODULES.map(m => (
               <Link key={m.to} to={m.to} className="nav-panel__module-link" onClick={closeNow}>
@@ -215,8 +215,8 @@ export default function MarketingHeader() {
               </Link>
             ))}
           </div>
-          <Link to="/#modules" className="nav-panel__footer-link" onClick={closeNow}>
-            Watch them run on the overview {arrow}
+          <Link to="/modules" className="nav-panel__footer-link" onClick={closeNow}>
+            Watch them run {arrow}
           </Link>
         </div>
       )
@@ -229,9 +229,9 @@ export default function MarketingHeader() {
           <p className="nav-panel__summary">{m.summary}</p>
           <div className="nav-panel__actions">
             <Link to={m.to} className="nav-panel__know" onClick={closeNow}>
-              Know more {arrow}
+              Learn more {arrow}
             </Link>
-            <button className="nav-panel__demo" onClick={openDemo}>Demo</button>
+            <button className="nav-panel__demo" onClick={openDemo}>Book a walkthrough</button>
           </div>
         </div>
       )
@@ -281,7 +281,7 @@ export default function MarketingHeader() {
             {ThemeIcon}
           </button>
 
-          <button className="marketing-header__request-btn" onClick={openDemo}>Request Demo</button>
+          <button className="marketing-header__request-btn" onClick={openDemo}>Book a walkthrough</button>
 
           <button
             className="marketing-header__hamburger"
@@ -329,7 +329,7 @@ export default function MarketingHeader() {
           <Link to="/security" className="marketing-header__drawer-link marketing-header__drawer-link--overview" onClick={() => setMobileOpen(false)}>Security</Link>
           <Link to="/support" className="marketing-header__drawer-link marketing-header__drawer-link--overview" onClick={() => setMobileOpen(false)}>Support</Link>
 
-          <button className="marketing-header__drawer-cta" onClick={openDemo}>Request a Demo</button>
+          <button className="marketing-header__drawer-cta" onClick={openDemo}>Book a walkthrough</button>
         </div>
       )}
 

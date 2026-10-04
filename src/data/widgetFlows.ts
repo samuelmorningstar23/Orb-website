@@ -72,7 +72,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
       id: 'ward', label: 'The ward', app: 'Orb Vigil', who: 'General Medicine',
       steps: [
         {
-          caption: 'Orb opens on what needs you first, not on a search box.',
+          caption: 'Orb opens on the highest NEWS2 scores. No search box first.',
           scene: {
             head: 'Today', sub: 'General Medicine · 5 admitted',
             blocks: [
@@ -81,12 +81,12 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
                 { label: 'Elevated', value: '2', tone: 'warn' },
                 { label: 'Critical', value: '2', tone: 'critical' },
               ] },
-              { id: 'rows', k: 'rows', label: 'Deteriorating', rows: [WARD.suresh, WARD.rajesh9, WARD.ananya, WARD.priya] },
+              { id: 'rows', k: 'rows', label: 'Highest NEWS2', rows: [WARD.suresh, WARD.rajesh9, WARD.ananya, WARD.priya] },
             ],
           },
         },
         {
-          caption: 'Every patient carries a NEWS2 score, computed from the Royal College of Physicians table on every set of observations.',
+          caption: 'Every patient carries a NEWS2 score, calculated from the RCP 2017 table on each set of observations the nurse records.',
           scene: {
             head: 'Today', sub: 'General Medicine · 5 admitted',
             blocks: [
@@ -95,17 +95,17 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
                 { label: 'Elevated', value: '2', tone: 'warn' },
                 { label: 'Critical', value: '2', tone: 'critical' },
               ] },
-              { id: 'rows', k: 'rows', label: 'Deteriorating · by NEWS2', rows: [
+              { id: 'rows', k: 'rows', label: 'By NEWS2 score', rows: [
                 { ...WARD.suresh, tag: 'RR 37 · SpO2 84%', tagTone: 'critical' },
                 { ...WARD.rajesh9, tag: 'RR 33 · SpO2 85%', tagTone: 'warn' },
                 { ...WARD.ananya, tag: 'RR 31 · SpO2 94%', tagTone: 'warn' },
-                { ...WARD.priya, tag: 'SpO2 96% · SBP 97', tagTone: 'muted' },
+                { ...WARD.priya, tag: 'SBP 97', tagTone: 'muted' },
               ] },
             ],
           },
         },
         {
-          caption: 'New observations arrive for Rajesh. The score moves, and the board reorders itself around it.',
+          caption: 'The nurse records new observations for Rajesh. The score moves, and the board reorders around him.',
           scene: {
             head: 'Today', sub: 'General Medicine · 5 admitted',
             blocks: [
@@ -114,17 +114,17 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
                 { label: 'Elevated', value: '1', tone: 'warn' },
                 { label: 'Critical', value: '3', tone: 'critical' },
               ] },
-              { id: 'rows', k: 'rows', label: 'Deteriorating · by NEWS2', rows: [
+              { id: 'rows', k: 'rows', label: 'By NEWS2 score', rows: [
                 { ...WARD.suresh, tag: 'RR 37 · SpO2 84%', tagTone: 'critical' },
                 { ...WARD.rajesh13, tag: 'RR 32 · SpO2 80%', tagTone: 'critical', active: true },
                 { ...WARD.ananya, tag: 'RR 31 · SpO2 94%', tagTone: 'warn' },
-                { ...WARD.priya, tag: 'SpO2 96% · SBP 97', tagTone: 'muted' },
+                { ...WARD.priya, tag: 'SBP 97', tagTone: 'muted' },
               ] },
             ],
           },
         },
         {
-          caption: 'Open the chart. Every point of the score is listed against the observation that produced it, so a nurse can check it by hand.',
+          caption: 'Open the chart. Every point of the score sits against the observation that produced it. A nurse can check it by hand.',
           scene: {
             head: 'Rajesh Iyer', sub: 'GM-102 · 67Y · COPD exacerbation',
             blocks: [
@@ -140,11 +140,11 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
           },
         },
         {
-          caption: 'Crossing the threshold starts the Sepsis Six clock. Six actions, a sixty minute target, each one going overdue on its own.',
+          caption: 'The doctor opens Sepsis Six from the chart. Six items, a 60-minute target, and each one shows when it is overdue.',
           scene: {
             head: 'Rajesh Iyer', sub: 'GM-102 · 67Y · COPD exacerbation',
             blocks: [
-              { id: 'banner', k: 'banner', tone: 'critical', tag: 'NEWS2 13', title: 'Critical', body: 'Trigger: NEWS2 7 or more.' },
+              { id: 'banner', k: 'banner', tone: 'critical', tag: 'NEWS2 13', title: 'Critical', body: 'Sepsis Six opened by Dr Meera Sharma.' },
               { id: 'meter', k: 'meter', label: 'Sepsis Six', value: '02:38', pct: 4, tone: 'ok', note: '0 of 6 done · 60m target · on track' },
               { id: 'checks', k: 'checks', items: [
                 { text: 'High-flow oxygen', state: 'now' },
@@ -163,7 +163,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
       id: 'nurse', label: 'The nurse’s shift', app: 'Orb · My Shift', who: 'Ward nurse',
       steps: [
         {
-          caption: 'A nurse lands on the shift, not on a chart: what is due now, and how late it is.',
+          caption: 'A nurse lands on her shift: what is due now, and how late each item is.',
           scene: {
             head: 'My Shift', sub: 'Due now · 6 items',
             blocks: [
@@ -176,7 +176,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
           },
         },
         {
-          caption: 'Recording observations: big numeric targets, built for a tablet on a trolley.',
+          caption: 'Recording observations. Big numeric targets, made for a tablet on a trolley.',
           scene: {
             head: 'Record observations', sub: 'Rajesh Iyer · GM-102',
             blocks: [
@@ -184,30 +184,31 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
                 { label: 'RR', value: '24' },
                 { label: 'SpO2', value: '91' },
                 { label: 'BP', value: '98/60' },
-                { label: 'HR', value: '112' },
+                { label: 'HR', value: '108' },
                 { label: 'Temp', value: '38.4' },
               ] },
             ],
           },
         },
         {
-          caption: 'NEWS2 computes as the values go in, before anything is saved.',
+          caption: 'NEWS2 is calculated as the values go in, before anything is saved.',
           scene: {
             head: 'Record observations', sub: 'Rajesh Iyer · GM-102',
             blocks: [
+              // RCP 2017: RR 24 (+2), SpO2 91 (+3), SBP 98 (+2), HR 108 (+1), 38.4 (+1), on air, alert = 9.
               { id: 'fields', k: 'fields', fields: [
                 { label: 'RR', value: '24', tone: 'warn' },
                 { label: 'SpO2', value: '91', tone: 'critical' },
                 { label: 'BP', value: '98/60', tone: 'warn' },
-                { label: 'HR', value: '112', tone: 'warn' },
+                { label: 'HR', value: '108', tone: 'warn' },
                 { label: 'Temp', value: '38.4', tone: 'warn' },
               ] },
-              { id: 'banner', k: 'banner', tone: 'critical', tag: 'NEWS2 9', title: 'Elevated to critical', body: 'Urgent review by a clinician competent in acute illness. Escalate now.' },
+              { id: 'banner', k: 'banner', tone: 'critical', tag: 'NEWS2 9', title: 'Critical', body: 'Continuous monitoring. Emergency assessment by a team with critical-care competencies.' },
             ],
           },
         },
         {
-          caption: 'She sees the escalation she is about to trigger, in the words of the RCP table, before she presses save.',
+          caption: 'She sees the score and the RCP response sentence before she presses save. What happens next is her call, and the team’s.',
           scene: {
             head: 'Record observations', sub: 'Rajesh Iyer · GM-102',
             blocks: [
@@ -215,10 +216,10 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
                 { label: 'RR', value: '24', tone: 'warn' },
                 { label: 'SpO2', value: '91', tone: 'critical' },
                 { label: 'BP', value: '98/60', tone: 'warn' },
-                { label: 'HR', value: '112', tone: 'warn' },
+                { label: 'HR', value: '108', tone: 'warn' },
                 { label: 'Temp', value: '38.4', tone: 'warn' },
               ] },
-              { id: 'banner', k: 'banner', tone: 'critical', tag: 'NEWS2 9', title: 'Escalate now', body: 'Monitoring interval 60 minutes. The nurse in charge is informed on save.' },
+              { id: 'banner', k: 'banner', tone: 'critical', tag: 'NEWS2 9', title: 'For review', body: 'Observations at least every 30 minutes. On save the score is logged and posted to the case room for review.' },
               { id: 'chips', k: 'chips', chips: [{ text: 'Save observations', tone: 'accent' }, { text: 'Every point is checkable by hand', tone: 'muted' }] },
             ],
           },
@@ -239,28 +240,28 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
               { id: 'chips', k: 'chips', chips: [{ text: '27B careful', tone: 'ok' }, { text: '4B fast', tone: 'ok' }, { text: 'No egress', tone: 'muted' }] },
               { id: 'cards', k: 'rows', label: 'Start with', rows: [
                 { id: 'q1', title: 'Patient summary', sub: 'Overview of the current unit census' },
-                { id: 'q2', title: 'Lab insights', sub: 'Flag recent critical values' },
+                { id: 'q2', title: 'Guideline question', sub: 'Ask about a protocol or a drug' },
                 { id: 'q3', title: 'Drug interactions', sub: 'Safety check across medications' },
               ] },
             ],
           },
         },
         {
-          caption: 'Fast mode answers general questions with the small model. Patient, medication and dose questions always go to the careful one. That floor is not a toggle.',
+          caption: 'Fast mode sends general questions to the small model. Patient, medication and dose questions always go to the careful one. That floor is not a toggle.',
           scene: {
             head: 'Sage', sub: 'Clinical AI · on this appliance',
             blocks: [
               { id: 'chips', k: 'chips', chips: [{ text: '4B fast · on', tone: 'accent' }, { text: 'Patient and dose questions still route to 27B', tone: 'muted' }] },
               { id: 'cards', k: 'rows', label: 'Start with', rows: [
                 { id: 'q1', title: 'Patient summary', sub: 'Overview of the current unit census', tag: '27B', tagTone: 'muted' },
-                { id: 'q2', title: 'Lab insights', sub: 'Flag recent critical values', tag: '27B', tagTone: 'muted' },
+                { id: 'q2', title: 'Guideline question', sub: 'Ask about a protocol or a drug', tag: '27B', tagTone: 'muted' },
                 { id: 'q3', title: 'Drug interactions', sub: 'Safety check across medications', tag: '27B', tagTone: 'muted' },
               ] },
             ],
           },
         },
         {
-          caption: 'A question a registrar actually asks at two in the morning.',
+          caption: 'A question a registrar asks at two in the morning.',
           scene: {
             head: 'Sage', sub: 'Clinical AI · on this appliance',
             blocks: [
@@ -273,7 +274,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
           },
         },
         {
-          caption: 'The answer arrives with its safety line before the first sentence, not buried after it.',
+          caption: 'The answer arrives with its safety line before the first sentence.',
           scene: {
             head: 'Sage', sub: 'Clinical AI · on this appliance',
             blocks: [
@@ -286,7 +287,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
           },
         },
         {
-          caption: 'Show details lists the guidance the model actually read. An answer you cannot check is not an answer.',
+          caption: 'Show details lists the guidance the model read. An answer you cannot check is no answer at all.',
           scene: {
             head: 'Sage', sub: 'Clinical AI · on this appliance',
             blocks: [
@@ -294,7 +295,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
                 { from: 'orb', badge: 'Confirm against your local protocol', text: 'Peaked T waves are the earliest change, followed by a flattened P wave, a widened QRS, and finally a sine-wave pattern.' },
               ] },
               { id: 'lines', k: 'lines', label: 'Show details', lines: [
-                { text: 'Retrieved from the hospital’s own guideline set', strong: true },
+                { text: 'Retrieved from the guideline set loaded on the appliance', strong: true },
                 { text: 'Passages listed with the answer, each one openable' },
                 { text: 'Model, mode and timing recorded in the audit log' },
               ] },
@@ -307,7 +308,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
       id: 'scope', label: 'Out of scope', app: 'Orb Sage', who: 'General Medicine',
       steps: [
         {
-          caption: 'New chat. This login is General Medicine. Cardiology is not its ward.',
+          caption: 'New chat. This login is General Medicine. Cardiology is a different ward.',
           scene: {
             head: 'Sage', sub: 'Signed in: General Medicine',
             blocks: [
@@ -327,7 +328,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
           },
         },
         {
-          caption: 'Nothing comes back, because the server never handed that chart to the model. Scope is enforced below Sage, not by asking it nicely.',
+          caption: 'Nothing comes back, because the server never handed that chart to the model. Scope is enforced underneath Sage.',
           scene: {
             head: 'Sage', sub: 'Signed in: General Medicine',
             blocks: [
@@ -351,7 +352,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
       id: 'note', label: 'A note, signed', app: 'Orb Scribe', who: 'General Medicine',
       steps: [
         {
-          caption: 'Dictate or type the consultation. Speech is transcribed on the appliance, not by a cloud service.',
+          caption: 'Dictate or type the consultation. Speech becomes text on the appliance. No cloud service hears it.',
           scene: {
             head: 'Scribe', sub: 'New consultation',
             blocks: [
@@ -364,7 +365,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
           },
         },
         {
-          caption: 'The local model drafts a structured note: a SOAP note, a discharge summary or an I-PASS handover.',
+          caption: 'The local model drafts a structured note: SOAP, or an I-PASS handover.',
           scene: {
             head: 'Structured note', sub: 'SOAP · draft',
             blocks: [
@@ -378,7 +379,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
           },
         },
         {
-          caption: 'A second pass compares the draft with the transcript and lists what the transcript does not support.',
+          caption: 'An optional second pass reads the draft against the transcript and lists what the transcript does not support.',
           scene: {
             head: 'Structured note', sub: 'SOAP · verification',
             blocks: [
@@ -391,7 +392,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
           },
         },
         {
-          caption: 'A note that was never verified against audio makes the clinician type SIGN. Accepting an unverified draft is recorded in their own name.',
+          caption: 'A note never verified against audio makes the clinician type SIGN. Accepting an unverified draft is recorded in their own name.',
           scene: {
             head: 'Sign and finalize', sub: 'Rajesh Iyer · GM-102',
             blocks: [
@@ -418,10 +419,10 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
 
   '/helix': [
     {
-      id: 'interlock', label: 'The allergy interlock', app: 'Orb Helix', who: 'General Medicine',
+      id: 'interlock', label: 'The interlock', app: 'Orb Helix', who: 'General Medicine',
       steps: [
         {
-          caption: 'An order set is always chosen for a named patient. There is nothing honest to show until Orb knows whose chart this is.',
+          caption: 'An order set is always chosen for a named patient. There is nothing to show until Orb knows whose chart this is.',
           scene: {
             head: 'Order sets', sub: 'Apply to: Rajesh Iyer · GM-102',
             blocks: [
@@ -459,7 +460,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
                 { text: 'IV fluids', state: 'done' },
                 { text: 'Serum lactate', state: 'done' },
               ] },
-              { id: 'banner', k: 'banner', tone: 'critical', tag: 'Stopped', title: 'Ceftriaxone: documented anaphylaxis', body: 'Recorded at admission. Apply is disabled while this item is in the set.' },
+              { id: 'banner', k: 'banner', tone: 'critical', tag: 'Stopped', title: 'Ceftriaxone: documented anaphylaxis', body: 'On his chart. Apply is disabled while this item is in the set.' },
             ],
           },
         },
@@ -471,7 +472,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
               { id: 'banner', k: 'banner', tone: 'critical', tag: 'Stopped', title: 'Ceftriaxone: documented anaphylaxis' },
               { id: 'chips', k: 'chips', chips: [
                 { text: 'Apply set · disabled', tone: 'muted' },
-                { text: 'Substitute the antibiotic', tone: 'accent' },
+                { text: 'Choose another antibiotic', tone: 'accent' },
               ] },
             ],
           },
@@ -492,7 +493,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
       ],
     },
     {
-      id: 'verify', label: 'Pharmacist verification', app: 'Orb Helix', who: 'Pharmacist',
+      id: 'verify', label: 'Verification', app: 'Orb Helix', who: 'Pharmacist',
       steps: [
         {
           caption: 'Medications a model pulled out of a signed note land here first, marked as extracted.',
@@ -508,7 +509,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
           },
         },
         {
-          caption: 'Dose, route and frequency are editable before anything becomes an order.',
+          caption: 'Dose, route and frequency can be edited before anything becomes an order.',
           scene: {
             head: 'Prednisolone 40 mg', sub: 'Rajesh Iyer · GM-102',
             blocks: [
@@ -523,19 +524,19 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
           },
         },
         {
-          caption: 'A drug outside the interaction knowledge base says so, instead of showing a green tick it has not earned.',
+          caption: 'A drug outside the interaction knowledge base is marked as unscreened. A clear line means the list had nothing to say about it.',
           scene: {
             head: 'Interaction screen', sub: 'Rajesh Iyer · 6 active medications',
             blocks: [
               { id: 'rows', k: 'rows', rows: [
-                { id: 'i1', title: 'Prednisolone', sub: 'Screened against 6 active medications', tag: 'No interaction', tagTone: 'ok' },
+                { id: 'i1', title: 'Prednisolone', sub: 'Checked against the curated list', tag: 'None listed', tagTone: 'muted' },
                 { id: 'i2', title: 'Herbal preparation, unnamed', sub: 'Outside the knowledge base', tag: 'Not screened', tagTone: 'warn' },
               ] },
             ],
           },
         },
         {
-          caption: 'A named pharmacist verifies it. That, and nothing earlier, is what makes it an order.',
+          caption: 'A named pharmacist verifies it. That, and nothing earlier, makes it an order.',
           scene: {
             head: 'Verified', sub: 'Prednisolone 40 mg · Rajesh Iyer',
             blocks: [
@@ -565,12 +566,12 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
           },
         },
         {
-          caption: 'Vigil posts its alerts into the room, with the vitals that caused them, so the numbers and the conversation sit together.',
+          caption: 'Vigil posts its alerts into the room with the vitals that caused them, so the numbers and the conversation sit together.',
           scene: {
             head: 'Suresh Reddy', sub: 'GM-104 · case room',
             blocks: [
               { id: 'chat', k: 'chat', msgs: [
-                { from: 'orb', badge: 'Vigil alert', text: 'NEWS2 14, critical. RR 37, SpO2 84% on air, SBP 85.', meta: 'Posted automatically' },
+                { from: 'orb', badge: 'Vigil alert', text: 'NEWS2 14, critical. RR 37, SpO2 84% on air, SBP 85.', meta: 'Posted by Vigil' },
                 { from: 'you', text: 'Starting high-flow oxygen now, cultures going off.' },
               ] },
             ],
@@ -589,7 +590,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
           },
         },
         {
-          caption: 'Orb delivers it, then says so. A nurse mid-emergency does not need a modal in the way, and the message is not silently lost either.',
+          caption: 'Orb delivers it, then says so. A nurse mid-emergency gets no modal in the way, and the message is never silently lost.',
           scene: {
             head: 'Suresh Reddy', sub: 'GM-104 · case room',
             blocks: [
@@ -609,7 +610,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
       id: 'lens', label: 'A first read', app: 'Orb Lens', who: 'General Medicine',
       steps: [
         {
-          caption: 'Drag in a chest film, an ECG strip or a photo of a wound, from a phone or a workstation. There is no integration to wait for.',
+          caption: 'Drag in a chest film, an ECG strip or a photo of a wound, from a phone or a workstation. Nothing to wire up first.',
           scene: {
             head: 'Lens', sub: 'New image',
             blocks: [
@@ -620,7 +621,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
           },
         },
         {
-          caption: 'The model that reads it runs on the appliance. The image does not leave the building, and neither does the text about it.',
+          caption: 'The model that reads it runs on the appliance. The image stays in the building, and so does every word about it.',
           scene: {
             head: 'Lens', sub: 'Reading · on this appliance',
             blocks: [
@@ -630,7 +631,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
           },
         },
         {
-          caption: 'The read comes back marked as a model draft, in the clinician’s own report, for them to correct, keep or throw away.',
+          caption: 'The read comes back marked as a model draft, in the clinician’s own report, to correct, keep or throw away.',
           scene: {
             head: 'First read', sub: 'Draft · not a finding',
             blocks: [
@@ -642,7 +643,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
           },
         },
         {
-          caption: 'Nothing is stored as a finding until a person signs it. Lens is not a certified diagnostic device, and the product says so on the screen.',
+          caption: 'The read is a model draft, labelled as one. Lens is not a certified diagnostic device, and it is switched off in every deployment today.',
           scene: {
             head: 'First read', sub: 'Draft · not a finding',
             blocks: [
@@ -659,31 +660,31 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
       id: 'suite', label: 'Theatre', app: 'Orb Surgical Suite', who: 'Surgeon',
       steps: [
         {
-          caption: 'The week’s list: every procedure with its theatre, surgeon, duration and readiness.',
+          caption: 'The week’s list: every procedure with its theatre, surgeon and duration.',
           scene: {
             head: 'Theatre list', sub: 'Monday · Theatre 2',
             blocks: [
               { id: 'rows', k: 'rows', rows: [
-                { id: 't1', score: '09:00', tone: 'muted', title: 'Laparoscopic cholecystectomy', sub: 'Theatre 2 · 90 min', tag: 'Ready', tagTone: 'ok', active: true },
-                { id: 't2', score: '11:00', tone: 'muted', title: 'Hernia repair', sub: 'Theatre 2 · 60 min', tag: 'Consent pending', tagTone: 'warn' },
+                { id: 't1', score: '09:00', tone: 'muted', title: 'Laparoscopic cholecystectomy', sub: 'Theatre 2 · 90 min', tag: 'Listed', tagTone: 'muted', active: true },
+                { id: 't2', score: '11:00', tone: 'muted', title: 'Hernia repair', sub: 'Theatre 2 · 60 min', tag: 'Listed', tagTone: 'muted' },
               ] },
             ],
           },
         },
         {
-          caption: 'Each patient carries their risk band onto the list, so the surgeon sees the number the ward sees.',
+          caption: 'Each patient carries their NEWS2 band onto the list, so the surgeon sees the number the ward sees.',
           scene: {
             head: 'Theatre list', sub: 'Monday · Theatre 2',
             blocks: [
               { id: 'rows', k: 'rows', rows: [
                 { id: 't1', score: '09:00', tone: 'muted', title: 'Laparoscopic cholecystectomy', sub: 'Priya Nair · GM-103', tag: 'NEWS2 5 · elevated', tagTone: 'warn', active: true },
-                { id: 't2', score: '11:00', tone: 'muted', title: 'Hernia repair', sub: 'Stable · NEWS2 1', tag: 'Ready', tagTone: 'ok' },
+                { id: 't2', score: '11:00', tone: 'muted', title: 'Hernia repair', sub: 'Stable · NEWS2 1', tag: 'Listed', tagTone: 'muted' },
               ] },
             ],
           },
         },
         {
-          caption: 'The WHO surgical safety checklist is recorded as it happens, per case.',
+          caption: 'The WHO surgical safety checklist, recorded as it happens, case by case.',
           scene: {
             head: 'WHO checklist', sub: 'Priya Nair · sign-in',
             blocks: [
@@ -697,7 +698,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
           },
         },
         {
-          caption: 'Sign-in, time-out and sign-out, in the name of the person who did them, on the same record as the ward. The allergy recorded at admission is the one the anaesthetist sees.',
+          caption: 'Sign-in, time-out and sign-out, in the name of the person who did them, on the same record as the ward.',
           scene: {
             head: 'WHO checklist', sub: 'Priya Nair · complete',
             blocks: [
@@ -732,7 +733,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
           },
         },
         {
-          caption: 'This is the only place Orb calls out. The request carries a map coordinate and no patient, every call is logged, and the firewall can block it with no loss of clinical function.',
+          caption: 'The only place Orb calls out. The request carries a map coordinate and no patient, every call is logged, and the firewall can block it.',
           scene: {
             head: 'Pulse', sub: 'The only outbound call',
             blocks: [
@@ -745,7 +746,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
           },
         },
         {
-          caption: 'A heat wave or a bad air day becomes a note on the ward’s day. It does not change anybody’s score.',
+          caption: 'A heat wave or a bad air day becomes a note on the ward’s day. It changes nobody’s score.',
           scene: {
             head: 'Today’s signals', sub: 'Read against the ward',
             blocks: [
@@ -802,18 +803,18 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
           scene: {
             head: 'Forecast', sub: 'AI untrained',
             blocks: [
-              { id: 'banner', k: 'banner', tone: 'warn', tag: 'AI untrained', title: 'Registered in Model Governance', body: 'Listed with its version and validation state, next to the deterministic NEWS2 engine that drives escalation.' },
+              { id: 'banner', k: 'banner', tone: 'warn', tag: 'AI untrained', title: 'Registered in Model Governance', body: 'Listed with its version and validation state, next to the NEWS2 table.' },
             ],
           },
         },
         {
-          caption: 'The discharge board and the bed arithmetic are computed from the record, not from the model. Those are live today.',
+          caption: 'The bed arithmetic comes from the record, with no model involved. That part is live today.',
           scene: {
-            head: 'Discharge board', sub: 'Computed from the record',
+            head: 'Bed arithmetic', sub: 'Computed from the record',
             blocks: [
               { id: 'rows', k: 'rows', rows: [
-                { id: 'd1', title: 'Likely ready today', sub: '4 patients', tag: 'From the record', tagTone: 'ok' },
-                { id: 'd2', title: 'Blocked', sub: '2 waiting on a pharmacy discharge, 1 on transport', tag: 'From the record', tagTone: 'ok' },
+                { id: 'd1', title: 'Beds free in 48 hours', sub: '6 of 60', tag: 'From the record', tagTone: 'ok' },
+                { id: 'd2', title: 'Discharges this week', sub: '14 planned', tag: 'From the record', tagTone: 'ok' },
               ] },
             ],
           },
@@ -840,7 +841,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
           },
         },
         {
-          caption: 'The acuity map: every ward as a tile, so pressure is visible before it becomes a phone call.',
+          caption: 'The acuity map: every ward as a tile, with its critical, elevated and stable counts.',
           scene: {
             head: 'Acuity map', sub: 'By ward',
             blocks: [
@@ -853,16 +854,16 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
           },
         },
         {
-          caption: 'Active deteriorations by name, in the order the ward already uses.',
+          caption: 'The highest NEWS2 scores by name, in the order the ward already uses.',
           scene: {
-            head: 'Deteriorating now', sub: 'By NEWS2',
+            head: 'Highest scores', sub: 'By NEWS2',
             blocks: [
               { id: 'rows', k: 'rows', rows: [WARD.suresh, WARD.rajesh13, WARD.ananya] },
             ],
           },
         },
         {
-          caption: 'Downtime readiness is a number, not a promise: how many printable snapshots are current if the screens go dark.',
+          caption: 'Downtime readiness is a number: how many printable snapshots are current if the screens go dark.',
           scene: {
             head: 'Downtime readiness', sub: 'Printable snapshots',
             blocks: [
@@ -879,7 +880,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
       id: 'sim', label: 'What if', app: 'Orb Surge Simulator', who: 'General Medicine',
       steps: [
         {
-          caption: 'The baseline is today’s census, bed count and admission rate, read from the record. Not a spreadsheet typed up for the meeting.',
+          caption: 'The baseline is today’s census, bed count and admission rate, read from the record. No spreadsheet typed up for the meeting.',
           scene: {
             head: 'Surge Simulator', sub: 'Baseline from the record',
             blocks: [
@@ -906,7 +907,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
           },
         },
         {
-          caption: 'The answer is the four things you would actually have to decide tonight.',
+          caption: 'The answer is the four things you would have to decide tonight.',
           scene: {
             head: '20 admissions tonight', sub: 'Horizon: 24 hours',
             blocks: [
@@ -923,7 +924,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
           },
         },
         {
-          caption: 'The assumptions sit under the answer with their citations, so the number can be argued with instead of believed.',
+          caption: 'The assumptions sit under the answer with their citations, so the number can be argued with.',
           scene: {
             head: 'Assumptions', sub: 'Under every figure',
             blocks: [
@@ -944,7 +945,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
       id: 'bridge', label: 'The patient’s view', app: 'Orb Bridge', who: 'Patient',
       steps: [
         {
-          caption: 'A patient signs in with the code issued at admission. No app store, no account to create.',
+          caption: 'A patient signs in with the code issued at admission. No app store, and no account to create.',
           scene: {
             head: 'Bridge', sub: 'Sign in',
             blocks: [
@@ -953,7 +954,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
                 { label: 'Date of birth', value: '••/••/••••' },
               ] },
               { id: 'lines', k: 'lines', label: 'What the patient gets', lines: [
-                { text: 'A code on the admission slip, and a browser', strong: true },
+                { text: 'A code issued at admission, and a browser', strong: true },
                 { text: 'No app to install, and no account to create' },
                 { text: 'The same record the ward is looking at' },
               ] },
@@ -961,7 +962,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
           },
         },
         {
-          caption: 'Their care team, their diagnosis and what happens next, written for them and not for a coder.',
+          caption: 'Their care team and their status, written for the person in the bed.',
           scene: {
             head: 'Your care', sub: 'General Medicine',
             blocks: [
@@ -969,7 +970,6 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
                 { id: 'dr', title: 'Dr Meera Sharma', sub: 'Consultant, General Medicine' },
                 { id: 'ns', title: 'Ward nurse', sub: 'On this shift' },
               ] },
-              { id: 'banner', k: 'banner', tone: 'info', tag: 'What happens next', title: 'A chest X-ray this morning, and a review on the ward round' },
             ],
           },
         },
@@ -988,13 +988,12 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
           },
         },
         {
-          caption: 'Medications, results and documents to read, and the whole record to download as FHIR. It is their record.',
+          caption: 'Medications and documents to read, and their record to download as FHIR. It is their record.',
           scene: {
             head: 'Your record', sub: 'Yours to take',
             blocks: [
               { id: 'chips', k: 'chips', chips: [
                 { text: 'Medications', tone: 'muted' },
-                { text: 'Results', tone: 'muted' },
                 { text: 'Documents', tone: 'muted' },
                 { text: 'Download as FHIR', tone: 'accent' },
               ] },
@@ -1016,20 +1015,21 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
         {
           caption: 'Follow-ups, medication reviews and post-discharge checks, in day columns.',
           scene: {
-            head: 'This week', sub: '18 appointments',
+            head: 'This week', sub: 'In day columns',
             blocks: [
-              { id: 'tiles', k: 'tiles', tiles: [
-                { label: 'Today', value: '5' },
-                { label: 'This week', value: '18' },
-                { label: 'Post-discharge', value: '4' },
+              // No counts drawn: the day list on the product mixes real bookings with generated rows today.
+              { id: 'kinds', k: 'rows', label: 'What goes in a column', rows: [
+                { id: 'k1', title: 'Follow-ups' },
+                { id: 'k2', title: 'Medication reviews' },
+                { id: 'k3', title: 'Post-discharge checks' },
               ] },
             ],
           },
         },
         {
-          caption: 'Every slot carries the patient’s risk band.',
+          caption: 'Every slot carries the patient’s NEWS2 band.',
           scene: {
-            head: 'Tuesday', sub: '5 appointments',
+            head: 'Tuesday', sub: 'Day column',
             blocks: [
               { id: 'rows', k: 'rows', rows: [
                 { id: 'a1', score: '09:30', tone: 'muted', title: 'Rajesh Iyer', sub: 'Post-discharge review', tag: 'Critical', tagTone: 'critical', active: true },
@@ -1040,9 +1040,9 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
           },
         },
         {
-          caption: 'A follow-up for a critical patient is not the same task as a routine wound check, and the list stops pretending it is.',
+          caption: 'A follow-up for a patient with a high score is a different task from a routine wound check, and the list says so.',
           scene: {
-            head: 'Tuesday', sub: 'Sorted by risk',
+            head: 'Tuesday', sub: 'Sorted by NEWS2',
             blocks: [
               { id: 'rows', k: 'rows', rows: [
                 { id: 'a1', score: '09:30', tone: 'critical', title: 'Rajesh Iyer', sub: 'Post-discharge review · seen within 7 days', tag: 'Critical', tagTone: 'critical', active: true },
@@ -1053,11 +1053,11 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
           },
         },
         {
-          caption: 'Booked from the chart itself, and the same appointment shows in the patient’s own view. There is no second system to keep in step.',
+          caption: 'Booked on the same record as the ward, and the same appointment shows in the patient’s own view. No second system to keep in step.',
           scene: {
-            head: 'Booked', sub: 'From the discharge summary',
+            head: 'Booked', sub: 'On the record',
             blocks: [
-              { id: 'banner', k: 'banner', tone: 'ok', tag: 'One record', title: 'Created by the discharge summary, visible in Bridge', body: 'With the date and the reason, in the patient’s words.' },
+              { id: 'banner', k: 'banner', tone: 'ok', tag: 'One record', title: 'On the same record, visible in Bridge', body: 'With the date and the reason, in the patient’s words.' },
             ],
           },
         },
@@ -1079,12 +1079,12 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
           },
         },
         {
-          caption: 'It reads the notes already on the chart. The model runs inside the hospital; no chart is sent to a coding vendor.',
+          caption: 'It reads the notes already on the chart. The model runs inside the hospital, and no chart goes to a coding vendor.',
           scene: {
             head: 'Reading the chart', sub: 'On this appliance',
             blocks: [
               { id: 'chat', k: 'chat', msgs: [{ from: 'orb', text: '', typing: true }] },
-              { id: 'lines', k: 'lines', lines: [{ text: '4 signed notes, 2 discharge summaries, results on file' }] },
+              { id: 'lines', k: 'lines', lines: [{ text: '4 signed notes and the results on file' }] },
             ],
           },
         },
@@ -1101,7 +1101,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
           },
         },
         {
-          caption: 'Where a condition is treated but not documented well enough to code, it is listed as a gap for the clinician. Nothing is invented to fit a code.',
+          caption: 'A condition treated and not documented well enough to code is listed as a gap for the clinician. Nothing is invented to fit a code.',
           scene: {
             head: 'Documentation gaps', sub: 'Queries, not codes',
             blocks: [
@@ -1121,7 +1121,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
       id: 'trust', label: 'Show your work', app: 'Orb Admin', who: 'Administrator',
       steps: [
         {
-          caption: 'The Trust Center is aggregated from the running system, not written into a PDF once a year.',
+          caption: 'The Trust Center is built from the running system each time it opens.',
           scene: {
             head: 'Trust Center', sub: 'Compliance posture',
             blocks: [
@@ -1130,7 +1130,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
                 { label: 'Backups verified', value: 'Amber', tone: 'warn' },
                 { label: 'Audit chain', value: 'Intact', tone: 'ok' },
               ] },
-              { id: 'banner', k: 'banner', tone: 'warn', tag: 'The point', title: 'Amber is amber', body: 'An all-green compliance screen should be trusted less, not more.' },
+              { id: 'banner', k: 'banner', tone: 'warn', tag: 'The point', title: 'Amber is amber', body: 'An all-green compliance screen deserves a harder look.' },
             ],
           },
         },
@@ -1161,7 +1161,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
           },
         },
         {
-          caption: 'Model Governance lists each model, its version and whether it has been validated. The forecast model says untrained, on the day you look.',
+          caption: 'Model Governance lists the registered models, each with a version and whether it has been validated. The forecast model says untrained, on the day you look.',
           scene: {
             head: 'Model Governance', sub: 'Registered models',
             blocks: [
@@ -1181,14 +1181,14 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
 export const widgetFlows = (route: string): WidgetFlow[] | undefined => WIDGET_FLOWS[route]
 
 // ─── The story: one patient, three modules, in the order it happens ───
-// Rajesh Iyer deteriorates on the ward (Vigil), the team talks about it and the
+// Rajesh Iyer's score moves on the ward (Vigil), the team talks about it and the
 // order is written where the talk is (Relay), and the order is verified and
 // carried to the bedside (Helix). The hero plays these three in sequence.
 
 export const STORY_ACTS: { id: string; name: string; hint: string }[] = [
-  { id: 'story-vigil', name: 'Vigil', hint: 'The ward sees it first' },
-  { id: 'story-relay', name: 'Relay', hint: 'The team decides, in one thread' },
-  { id: 'story-helix', name: 'Helix', hint: 'The order reaches the bedside' },
+  { id: 'story-vigil', name: 'Vigil', hint: 'His score moves on the ward' },
+  { id: 'story-relay', name: 'Relay', hint: 'The team decides in one room' },
+  { id: 'story-helix', name: 'Helix', hint: 'The order reaches his bedside' },
 ]
 
 export const STORY_FLOWS: WidgetFlow[] = [
@@ -1196,7 +1196,7 @@ export const STORY_FLOWS: WidgetFlow[] = [
     id: 'story-vigil', label: 'Vigil', app: 'Orb Vigil', who: 'General Medicine',
     steps: [
       {
-        caption: 'The ward, ordered by NEWS2. Rajesh Iyer is second, and comfortable enough to wait.',
+        caption: 'The ward, by NEWS2 score. Rajesh Iyer is second at 9. The nurse is about to record a new set.',
         scene: {
           head: 'Today', sub: 'General Medicine · 5 admitted',
           blocks: [
@@ -1205,7 +1205,7 @@ export const STORY_FLOWS: WidgetFlow[] = [
               { label: 'Elevated', value: '2', tone: 'warn' },
               { label: 'Critical', value: '2', tone: 'critical' },
             ] },
-            { id: 'rows', k: 'rows', label: 'Deteriorating · by NEWS2', rows: [
+            { id: 'rows', k: 'rows', label: 'By NEWS2 score', rows: [
               { ...WARD.suresh, tag: 'RR 37 · SpO2 84%', tagTone: 'critical' },
               { ...WARD.rajesh9, tag: 'RR 33 · SpO2 85%', tagTone: 'warn' },
               { ...WARD.ananya, tag: 'RR 31 · SpO2 94%', tagTone: 'warn' },
@@ -1214,7 +1214,7 @@ export const STORY_FLOWS: WidgetFlow[] = [
         },
       },
       {
-        caption: 'Observations come in from his bay. The score moves, and the board reorders itself around him.',
+        caption: 'The nurse records a new set of observations. The score moves, and the board reorders itself around him.',
         scene: {
           head: 'Today', sub: 'General Medicine · 5 admitted',
           blocks: [
@@ -1223,16 +1223,16 @@ export const STORY_FLOWS: WidgetFlow[] = [
               { label: 'Elevated', value: '1', tone: 'warn' },
               { label: 'Critical', value: '3', tone: 'critical' },
             ] },
-            { id: 'rows', k: 'rows', label: 'Deteriorating · by NEWS2', rows: [
-              { ...WARD.rajesh13, tag: 'RR 32 · SpO2 80%', tagTone: 'critical', active: true },
+            { id: 'rows', k: 'rows', label: 'By NEWS2 score', rows: [
               { ...WARD.suresh, tag: 'RR 37 · SpO2 84%', tagTone: 'critical' },
+              { ...WARD.rajesh13, tag: 'RR 32 · SpO2 80%', tagTone: 'critical', active: true },
               { ...WARD.ananya, tag: 'RR 31 · SpO2 94%', tagTone: 'warn' },
             ] },
           ],
         },
       },
       {
-        caption: 'Open his chart. The vitals that moved the score, and the escalation the table asks for.',
+        caption: 'Open his chart. The readings that moved the score, and the response the table asks for.',
         scene: {
           head: 'Rajesh Iyer', sub: 'GM-102 · 67Y · COPD exacerbation',
           blocks: [
@@ -1248,15 +1248,16 @@ export const STORY_FLOWS: WidgetFlow[] = [
         },
       },
       {
-        caption: 'Every point of the score is listed against the observation that produced it. A nurse can check it by hand.',
+        caption: 'Every point of the score sits against the observation that produced it. A nurse can check it by hand.',
         scene: {
           head: 'Why this score', sub: 'NEWS2 13 · RCP 2017 table',
           blocks: [
+            // RCP 2017: RR 32 (+3), SpO2 80 (+3), SBP 74 (+3), 39.6 (+2), HR 112 (+2), on air, alert = 13.
             { id: 'lines', k: 'lines', label: 'Points', lines: [
               { text: '+3  Severe tachypnea (RR 32)', strong: true },
               { text: '+3  Severe hypoxia (SpO2 80%)', strong: true },
               { text: '+3  Hypotension (SBP 74)', strong: true },
-              { text: '+2  On supplemental oxygen' },
+              { text: '+2  High temperature (39.6°C)' },
               { text: '+2  Tachycardia (HR 112)' },
             ] },
           ],
@@ -1271,7 +1272,7 @@ export const STORY_FLOWS: WidgetFlow[] = [
               { text: 'Infective exacerbation of COPD. Nebulisers and oxygen started.', strong: true },
               { text: 'Steroids to be reviewed with the registrar this morning.' },
             ] },
-            { id: 'banner', k: 'banner', tone: 'warn', tag: 'Sage · model draft', title: 'For review, not for filing', body: 'Deterioration consistent with the documented exacerbation. Consider senior review and steroid cover.' },
+            { id: 'banner', k: 'banner', tone: 'warn', tag: 'Sage · model draft', title: 'For review, not for filing', body: 'Consistent with the documented exacerbation. For senior review.' },
           ],
         },
       },
@@ -1304,7 +1305,7 @@ export const STORY_FLOWS: WidgetFlow[] = [
           head: 'Rajesh Iyer', sub: 'GM-102 · case room · 4 people',
           blocks: [
             { id: 'chat', k: 'chat', msgs: [
-              { from: 'orb', badge: 'Vigil alert', text: 'NEWS2 13, critical. RR 32, SpO2 80% on air, SBP 74.', meta: 'Posted automatically · 12:55' },
+              { from: 'orb', badge: 'Vigil alert', text: 'NEWS2 13, critical. RR 32, SpO2 80% on air, SBP 74.', meta: 'Posted by Vigil · 12:55' },
               { from: 'orb', text: 'Standing guidance: ensure continuous monitoring and prepare for possible intervention.', meta: 'A fixed line on every alert, not an assessment of this patient' },
             ] },
             { id: 'who', k: 'chips', chips: [
@@ -1329,7 +1330,7 @@ export const STORY_FLOWS: WidgetFlow[] = [
         },
       },
       {
-        caption: 'The doctor answers with the order itself, typed as a message. No second system, no form to find.',
+        caption: 'The doctor answers with the order itself, typed as a message. No form to find.',
         scene: {
           head: 'Rajesh Iyer', sub: 'GM-102 · case room · 4 people',
           blocks: [
@@ -1341,7 +1342,7 @@ export const STORY_FLOWS: WidgetFlow[] = [
         },
       },
       {
-        caption: 'A model on the appliance reads the sentence and turns it into a drug card, checked against his chart. Saying it is not prescribing it: someone has to approve.',
+        caption: 'A model on the appliance reads the sentence and turns it into a drug card, checked against his chart. Saying it is not prescribing it. Someone has to approve.',
         scene: {
           head: 'Order from a message', sub: 'Read by the local model',
           blocks: [
@@ -1363,7 +1364,7 @@ export const STORY_FLOWS: WidgetFlow[] = [
     id: 'story-helix', label: 'Helix', app: 'Orb Helix', who: 'Pharmacist',
     steps: [
       {
-        caption: 'Approved, it arrives in the pharmacist’s queue, marked as something a model pulled out of a sentence.',
+        caption: 'Approved, it lands in the pharmacist’s queue, marked as something a model pulled out of a sentence.',
         scene: {
           head: 'Verification queue', sub: 'Pharmacy · 3 waiting',
           blocks: [
@@ -1394,13 +1395,13 @@ export const STORY_FLOWS: WidgetFlow[] = [
         },
       },
       {
-        caption: 'Screened against his active medications and his allergies. What the knowledge base does not cover is marked, not waved through.',
+        caption: 'Screened against his active medications and his allergies. The interaction list is short and curated, and whatever it does not cover is marked, never waved through.',
         scene: {
           head: 'Safety screen', sub: '6 active medications',
           blocks: [
             { id: 'rows', k: 'rows', rows: [
-              { id: 'i1', title: 'Prednisolone', sub: 'Screened against 6 active medications', tag: 'No interaction', tagTone: 'ok' },
-              { id: 'i2', title: 'Ceftriaxone allergy on file', sub: 'Anaphylaxis, recorded at admission. Not implicated here.', tag: 'Noted', tagTone: 'muted' },
+              { id: 'i1', title: 'Prednisolone', sub: 'Checked against the curated list', tag: 'None listed', tagTone: 'muted' },
+              { id: 'i2', title: 'Ceftriaxone allergy on file', sub: 'Anaphylaxis, on his chart. Not implicated here.', tag: 'Noted', tagTone: 'muted' },
               { id: 'i3', title: 'Herbal preparation, unnamed', sub: 'Outside the interaction knowledge base', tag: 'Not screened', tagTone: 'warn' },
             ] },
           ],
@@ -1417,7 +1418,7 @@ export const STORY_FLOWS: WidgetFlow[] = [
         },
       },
       {
-        caption: 'It lands on the nurse’s shift as due, with the allergy printed on the sheet she gives it from. The ward closes the loop it opened.',
+        caption: 'It lands on the nurse’s shift as due, with the allergy printed on the sheet she gives it from.',
         scene: {
           head: 'My Shift', sub: 'Due now · GM-102',
           blocks: [

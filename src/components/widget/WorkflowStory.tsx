@@ -7,7 +7,7 @@ import './WorkflowStory.css'
 /**
  * One patient, three modules, on a conveyor.
  *
- * Rajesh Iyer deteriorates on the ward, the team settles it in his case room,
+ * Rajesh Iyer's score moves on the ward, the team settles it in his case room,
  * and the order is verified and carried back to his bedside. Each act is its
  * own card. When an act finishes, the whole row slides left: the card that was
  * on stage runs off the side of the page and the next one arrives from the

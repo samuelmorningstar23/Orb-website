@@ -40,37 +40,37 @@ const MODULE_ENTRIES: SearchEntry[] = ALL_MODULES.map(m => ({
 
 const PAGE_ENTRIES: SearchEntry[] = [
   {
-    id: 'page-home', kind: 'page', title: 'Overview', subtitle: 'The Hospital Operating System', to: '/',
+    id: 'page-home', kind: 'page', title: 'Overview', subtitle: 'Hospital software that never leaves the building', to: '/',
     keywords: ['home', 'overview', 'orb', 'start', 'landing'],
-    body: 'The hospital operating system that runs inside the hospital: the record, the ward monitor, the pharmacy and the front desk on one appliance.',
+    body: 'Hospital software that never leaves the building. One computer in your hospital runs the ward record, the NEWS2 score, the drug chart and the case rooms. Nothing about a patient leaves it.',
   },
   {
-    id: 'page-modules', kind: 'page', title: 'All modules', subtitle: 'Every module as a real screen', to: '/modules',
+    id: 'page-modules', kind: 'page', title: 'All modules', subtitle: 'Fourteen modules, each with its workflow', to: '/modules',
     keywords: ['modules', 'products', 'features', 'catalog', 'list'],
     body: ALL_MODULES.map(m => m.label).join(' '),
   },
   {
-    id: 'page-plans', kind: 'page', title: 'Plans', subtitle: 'Founding hospital programme: three places in Hyderabad', to: '/plans',
+    id: 'page-plans', kind: 'page', title: 'Plans', subtitle: 'Founding programme: three places in Hyderabad', to: '/plans',
     keywords: ['plans', 'plan', 'founding', 'programme', 'program', 'hyderabad', 'pricing', 'price', 'cost', 'terms', 'buy', 'start'],
     body: PLANS_LEDE,
   },
   {
-    id: 'page-support', kind: 'page', title: 'Support', subtitle: 'Help, contact, and common questions', to: '/support',
+    id: 'page-support', kind: 'page', title: 'Support', subtitle: 'Write to us, book a walkthrough, or find the answer', to: '/support',
     keywords: ['support', 'help', 'contact', 'faq', 'questions', 'email', 'assistance', 'troubleshooting'],
-    body: `Reach the Orb team, browse frequently asked questions, or request a walkthrough. ${CONTACT_EMAIL}`,
+    body: `Reach us, read the common questions, or book a walkthrough. ${CONTACT_EMAIL}`,
   },
 ]
 
 const ACTION_ENTRIES: SearchEntry[] = [
   {
-    id: 'action-demo', kind: 'action', title: 'Request a Demo', subtitle: 'Book a walkthrough with the team', action: 'demo',
+    id: 'action-demo', kind: 'action', title: 'Book a walkthrough', subtitle: 'On a call, with the product open. No slides.', action: 'demo',
     keywords: ['demo', 'request', 'walkthrough', 'trial', 'book', 'meeting', 'sales', 'see it'],
-    body: 'A walkthrough of the running product on demo patients.',
+    body: 'A walkthrough of the product on demo patients.',
   },
   {
-    id: 'action-mail', kind: 'action', title: `Email ${CONTACT_EMAIL}`, subtitle: 'Write to the Orb team directly', action: 'mail',
+    id: 'action-mail', kind: 'action', title: `Email ${CONTACT_EMAIL}`, subtitle: 'Write to us directly', action: 'mail',
     keywords: ['email', 'mail', 'contact', 'write', 'reach', 'message'],
-    body: 'Contact the team by email.',
+    body: 'Write to us by email.',
   },
 ]
 
@@ -80,62 +80,62 @@ const ACTION_ENTRIES: SearchEntry[] = [
 export const ANSWER_ENTRIES: SearchEntry[] = [
   {
     id: 'qa-what-is-orb', kind: 'answer', title: 'What is Orb?', to: '/',
-    answer: 'Orb is a hospital operating system that runs on an appliance inside the hospital: the patient record, the ward monitor (NEWS2 on every patient), the pharmacy, orders, notes, the front desk, billing and the admin screens, on one database. The models that answer questions and draft notes run on the same appliance, so nothing about a patient leaves the building.',
-    keywords: ['what', 'orb', 'about', 'hospital', 'operating', 'system', 'platform', 'company', 'product', 'os', 'appliance'],
+    answer: 'Orb is hospital software that never leaves the building. One computer in your hospital runs the ward record, the NEWS2 score calculated from the nurse’s observations, the drug chart and the case rooms, with the models beside them, so nothing about a patient leaves it. It runs beside the hospital system you already have. It has not yet run in a hospital.',
+    keywords: ['what', 'orb', 'about', 'hospital', 'software', 'ward', 'record', 'platform', 'company', 'product', 'appliance'],
   },
   {
     id: 'qa-privacy', kind: 'answer', title: 'Does patient data leave the hospital?', to: '/security',
-    answer: 'No. The database, the models and the audit log are on the appliance, and there is no cloud model in the loop. The one outbound call is Pulse, which sends a map coordinate to public weather, air-quality, flu and drug-recall feeds: it carries no patient data, every call is logged, and the firewall can block it.',
+    answer: 'No. The database, the models and the audit log sit on the appliance, and no cloud model is in the loop. The one outbound call is Pulse, which sends a map coordinate to public weather, air-quality, flu and drug-recall feeds. It carries no patient, every call is logged, and the firewall can block it.',
     keywords: ['data', 'privacy', 'leave', 'cloud', 'egress', 'private', 'phi', 'patient', 'stored', 'store', 'send', 'external', 'sovereignty', 'local'],
   },
   {
-    id: 'qa-compliance', kind: 'answer', title: 'Is Orb compliant with DPDP, ABDM, NABH, HIPAA or GDPR?', to: '/security',
-    answer: 'Orb is built for India first: the technical safeguards the DPDP Act asks for, ABDM (not yet certified; Orb sends nothing to ABDM today), and the evidence NABH inspects. The same architecture, on-site processing, role-based access and a hash-chained audit log, covers what HIPAA and GDPR require. None of it substitutes for your own certification.',
-    keywords: ['hipaa', 'gdpr', 'dpdp', 'abdm', 'nabh', 'compliance', 'compliant', 'regulation', 'certified', 'legal', 'audit', 'safeguards', 'security'],
+    id: 'qa-compliance', kind: 'answer', title: 'Where does Orb stand on DPDP, ABDM and NABH?', to: '/security',
+    answer: 'Built for India first. Consent, retention and breach registers are built in the backend, with their screens to come before the DPDP duties start in May 2027. The NABH evidence pack exports the quality indicators and the incident register, and lists the indicators it cannot compute. On ABDM, Orb is not yet certified and sends nothing today. None of it stands in for your own certification.',
+    keywords: ['dpdp', 'abdm', 'nabh', 'compliance', 'compliant', 'regulation', 'certified', 'legal', 'audit', 'safeguards', 'security'],
   },
   {
     id: 'qa-offline', kind: 'answer', title: 'Does Orb work during internet outages?', to: '/security',
-    answer: 'Yes. Orb needs no internet connection to run, because everything it uses is on the appliance. For the hour the appliance itself is down, a printable downtime pack per patient is kept fresh, and the Command Center shows how many packs are current.',
+    answer: 'Yes. Orb needs no internet connection, because everything it uses is on the appliance. For the hour the appliance itself is down, the ward prints a downtime pack per patient on its schedule, and the Command Center shows how many packs are current.',
     keywords: ['offline', 'outage', 'internet', 'network', 'connection', 'isp', 'down', 'downtime', 'continuity', 'work'],
   },
   {
     id: 'qa-integration', kind: 'answer', title: 'Does Orb replace our hospital system?', to: '/plans',
-    answer: 'No. Orb runs beside your hospital system on one ward. Registration, billing, pharmacy and lab stay where they are. Orb can export its own records as FHIR.',
+    answer: 'No. Orb runs beside your hospital system on one ward. Registration, billing, pharmacy and lab stay where they are. Orb exports its own records as FHIR, and does not import from your system yet.',
     keywords: ['ehr', 'emr', 'his', 'integrate', 'integration', 'replace', 'stack', 'systems', 'interoperability', 'hl7', 'fhir', 'record'],
   },
   {
     id: 'qa-safety', kind: 'answer', title: 'Can Orb act without a clinician?', to: '/helix',
-    answer: 'No. Orb drafts the order set, the alert or the note, and a named person confirms it. What they confirm goes through the same allergy interlock, dose guard and pharmacist queue as anything typed by hand, and every confirmed action lands in the hash-chained audit log.',
+    answer: 'No. Orb drafts the order set or the note and a named person confirms it; an alert is posted to the case room for review. A drafted medication then meets the allergy interlock and the dose guard and waits in the pharmacist’s queue, and every confirmed action lands in the hash-chained audit log.',
     keywords: ['safety', 'autonomous', 'clinician', 'confirm', 'confirmation', 'human', 'loop', 'act', 'safe', 'oversight', 'approve', 'agentic'],
   },
   {
     id: 'qa-pricing', kind: 'answer', title: 'How much does Orb cost?', to: '/plans',
-    answer: 'Orb is not publishing prices yet. It starts with a founding hospital programme: three places in Hyderabad, one ward each, beside the hospital software you already run. Terms are agreed in person.',
+    answer: 'Orb publishes no prices yet. It starts with a founding hospital programme: three places in Hyderabad, one ward each, beside the software you already run. Terms are agreed in person.',
     keywords: ['cost', 'price', 'pricing', 'much', 'pay', 'plans', 'subscription', 'license', 'expensive', 'budget', 'terms', 'founding'],
   },
   {
-    id: 'qa-modules-count', kind: 'answer', title: 'Which modules does Orb have?', to: '/#modules',
-    answer: `On this site: ${ALL_MODULES.map(m => m.label).join(', ')}. The same appliance also runs the front desk, billing, payments, insurance and TPA, procurement, housekeeping, workforce, equipment, diet and kitchen, NABH evidence and the admin screens (Trust Center, Flight Recorder, Model Governance, Pilot Scorecard).`,
+    id: 'qa-modules-count', kind: 'answer', title: 'Which modules does Orb have?', to: '/modules',
+    answer: `On this site: ${ALL_MODULES.map(m => m.label).join(', ')}. Also on the appliance, outside the founding programme: front desk, billing, payments, insurance and TPA, procurement, housekeeping, workforce, equipment, diet and kitchen, NABH evidence, and the admin screens. In the founding programme Orb runs on one ward, beside your hospital system.`,
     keywords: ['many', 'modules', 'count', 'number', 'which', 'list', 'included', 'features', 'apps', 'billing', 'front desk'],
   },
   {
     id: 'qa-demo', kind: 'answer', title: 'How do I see Orb in action?', to: '/support',
-    answer: 'Every screen on this site is a capture of the running product on demo patients. For the live version, request a demo: a walkthrough on a call, about your wards, with the product open rather than slides.',
-    keywords: ['demo', 'see', 'try', 'trial', 'walkthrough', 'test', 'evaluate', 'poc', 'pilot', 'action'],
+    answer: 'Every screen on this site is a capture of the product running on a test computer with demo patients. To see it live, book a walkthrough: a call about your wards, with the product open instead of slides.',
+    keywords: ['demo', 'see', 'try', 'trial', 'walkthrough', 'test', 'evaluate', 'poc', 'founding', 'action'],
   },
   {
     id: 'qa-deployment', kind: 'answer', title: 'How is Orb deployed?', to: '/plans',
-    answer: 'On a computer installed inside the hospital, on your network. It starts on one ward, beside the hospital software you already run.',
+    answer: 'On one computer installed inside your hospital, on your network. It starts on one ward, beside the software you already run.',
     keywords: ['deploy', 'deployment', 'install', 'installation', 'premise', 'premises', 'hardware', 'setup', 'hosted', 'server', 'infrastructure', 'appliance'],
   },
   {
     id: 'qa-who-for', kind: 'answer', title: 'Who is Orb for?', to: '/',
-    answer: 'Hospitals, starting with one ward. Nurses get the score and what is due now, doctors get the chart and a model that answers on site, pharmacists get a verification queue, administrators get the Trust Center and the audit log, and patients get Bridge.',
+    answer: 'Hospitals, starting with one ward beside the system they already run. The founding programme is the ward’s observation record and a monthly file for the quality team. This site shows what nurses see (observations, the NEWS2 score, what is due now), what doctors see (the chart, the case rooms, a model that answers on site), the pharmacist’s queue, the admin screens and Bridge for patients.',
     keywords: ['who', 'for', 'audience', 'customers', 'hospitals', 'clinics', 'users', 'buyer', 'nurses', 'doctors', 'pharmacists', 'patients'],
   },
   {
-    id: 'qa-contact', kind: 'answer', title: 'How do I contact the Orb team?', to: '/support',
-    answer: `Email ${CONTACT_EMAIL} any time, or request a demo from any page. A person reads every message.`,
+    id: 'qa-contact', kind: 'answer', title: 'How do I contact Orb?', to: '/support',
+    answer: `Email ${CONTACT_EMAIL} any time, or book a walkthrough from any page. One person reads every message.`,
     keywords: ['contact', 'reach', 'email', 'talk', 'human', 'team', 'phone', 'sales', 'touch'],
   },
 ]

@@ -4,8 +4,9 @@ import MarketingHeader from '../components/MarketingHeader'
 import Hero from '../components/home/Hero'
 import ActsBand from '../components/home/ActsBand'
 import Checks from '../components/home/Checks'
+import SiteFooter from '../components/SiteFooter'
 import { Reveal } from '../components/motion/Reveal'
-import { ALL_MODULES, CONTACT_EMAIL, openDemoModal } from '../data/siteContent'
+import { openDemoModal } from '../data/siteContent'
 import './Landing.css'
 
 /**
@@ -14,8 +15,6 @@ import './Landing.css'
  * own page behind the Modules menu, and each runs its own workflows.
  */
 export default function Landing() {
-  const half = Math.ceil(ALL_MODULES.length / 2)
-
   return (
     <div className="landing-overview">
       <Aurora />
@@ -28,52 +27,17 @@ export default function Landing() {
         <Checks />
 
         <Reveal as="section" className="landing-overview__cta" amount={0.4}>
-          <h2 className="landing-overview__cta-title">See Orb on your wards.</h2>
+          <h2 className="landing-overview__cta-title">See it run. On a call.</h2>
           <p className="landing-overview__cta-desc">
-            A walkthrough of the running product on demo patients, on a call about your wards. No slides.
+            A walkthrough on demo patients, about your wards. The product is open the whole time. No slides.
           </p>
           <div className="landing-overview__cta-actions">
-            <button className="landing-overview__btn-primary" onClick={openDemoModal}>Request a demo</button>
+            <button className="landing-overview__btn-primary" onClick={openDemoModal}>Book a walkthrough</button>
             <Link to="/plans" className="landing-overview__btn-secondary-action">Plans &nbsp;&rarr;</Link>
           </div>
         </Reveal>
 
-        <footer className="landing-overview__footer">
-          <div className="landing-overview__footer-top">
-            <div className="landing-overview__footer-brand">
-              <span className="landing-overview__footer-wordmark">Orb</span>
-              <p className="landing-overview__footer-tagline">The hospital operating system that runs inside the hospital.</p>
-            </div>
-
-            <nav className="landing-overview__footer-cols">
-              <div className="landing-overview__footer-col">
-                <span className="landing-overview__footer-col-title">Modules</span>
-                {ALL_MODULES.slice(0, half).map(m => (
-                  <Link key={m.to} to={m.to} className="landing-overview__footer-link">{m.label}</Link>
-                ))}
-              </div>
-              <div className="landing-overview__footer-col">
-                <span className="landing-overview__footer-col-title">&nbsp;</span>
-                {ALL_MODULES.slice(half).map(m => (
-                  <Link key={m.to} to={m.to} className="landing-overview__footer-link">{m.label}</Link>
-                ))}
-              </div>
-              <div className="landing-overview__footer-col">
-                <span className="landing-overview__footer-col-title">Company</span>
-                <Link to="/modules" className="landing-overview__footer-link">Modules</Link>
-                <Link to="/plans" className="landing-overview__footer-link">Plans</Link>
-                <Link to="/security" className="landing-overview__footer-link">Security</Link>
-                <Link to="/support" className="landing-overview__footer-link">Support</Link>
-                <a href={`mailto:${CONTACT_EMAIL}`} className="landing-overview__footer-link">Contact</a>
-              </div>
-            </nav>
-          </div>
-
-          <div className="landing-overview__footer-bottom">
-            <p>© 2026 Orb. All rights reserved.</p>
-            <p className="landing-overview__footer-fineprint">The workflows on this site are animations of the product; the screenshots are captures of it running. Both use seeded demo patients, and no real patient appears here.</p>
-          </div>
-        </footer>
+        <SiteFooter />
       </main>
     </div>
   )

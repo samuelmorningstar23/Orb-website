@@ -12,19 +12,12 @@
 }
 
 .trust-posture__badge {
-  font-size: 0.84rem;
-  font-weight: 700;
-  text-transform: uppercase;
   color: var(--accent);
-  letter-spacing: 0.12em;
   margin-bottom: 18px;
   display: inline-block;
 }
 
 .trust-posture__title {
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 600;
-  letter-spacing: -0.025em;
   color: var(--text-primary);
   text-wrap: balance;
 }
@@ -83,25 +76,18 @@
 }
 
 .trust-posture__card-title {
-  font-size: 1.2rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
   color: var(--text-primary);
   margin-bottom: 12px;
 }
 
 .trust-posture__card-desc {
-  font-size: 0.95rem;
   color: var(--text-secondary);
-  line-height: 1.6;
 }
 
-/* ─── Honest Compliance-Posture Note ─── */
+/* ─── The compliance-posture note ─── */
 .trust-posture__note {
   margin-top: 28px;
-  max-width: 760px;
-  font-size: 0.89rem;
-  line-height: 1.6;
+  max-width: 62ch;
   color: var(--text-muted);
   text-wrap: pretty;
 }

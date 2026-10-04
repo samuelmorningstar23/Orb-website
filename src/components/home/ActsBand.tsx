@@ -3,21 +3,21 @@ import { Reveal, Stagger, StaggerItem } from '../motion/Reveal'
 import './ActsBand.css'
 
 const STEPS = [
-  { n: '01', label: 'Understand', line: 'Reads the chart, the vitals and the note as they change.' },
-  { n: '02', label: 'Propose', line: 'Drafts the order, the alert or the note, with the guideline it used.' },
-  { n: '03', label: 'Confirm', line: 'A named clinician approves, or the draft goes nowhere.' },
-  { n: '04', label: 'Act', line: 'The order is placed, the pharmacist is queued, the audit row is sealed.' },
+  { n: '01', label: 'Read', line: 'The chart and the observations, as the ward recorded them.' },
+  { n: '02', label: 'Draft', line: 'An order, a note, or the score with every reading behind it and the guideline it used.' },
+  { n: '03', label: 'Confirm', line: 'A named clinician approves it. Or it goes nowhere.' },
+  { n: '04', label: 'Record', line: 'Order placed. Pharmacist queued. Audit row sealed.' },
 ]
 
-/** How Orb acts, in four numbered beats. */
+/** How Orb works, in four numbered beats. */
 export default function ActsBand() {
   return (
     <section className="acts" aria-labelledby="acts-title">
       <Reveal className="acts__header">
-        <span className="acts__eyebrow">How it acts</span>
-        <h2 className="acts__title" id="acts-title">Orb drafts. A clinician confirms. Then it acts.</h2>
+        <span className="acts__eyebrow">How it works</span>
+        <h2 className="acts__title" id="acts-title">Orb drafts.<br />A clinician signs.</h2>
         <p className="acts__lead">
-          Nothing happens until a named person confirms it, and what they confirm goes through the same allergy interlock, dose guard and pharmacist queue as anything typed by hand.
+          The models that read the record only draft. Nothing is filed until a named person says yes. A drafted medication still meets the allergy interlock and the dose guard, then waits for a pharmacist.
         </p>
       </Reveal>
       <Stagger className="acts__steps" as="ul">
@@ -30,7 +30,7 @@ export default function ActsBand() {
         ))}
       </Stagger>
       <Reveal className="acts__cta">
-        <Link to="/helix" className="acts__link">See the allergy interlock <span aria-hidden="true">&rarr;</span></Link>
+        <Link to="/helix" className="acts__link">Watch the interlock stop an order <span aria-hidden="true">&rarr;</span></Link>
       </Reveal>
     </section>
   )

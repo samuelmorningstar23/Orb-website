@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
-import type { ReactNode } from 'react'
+import { useEffect, type ReactNode } from 'react'
 import Landing from './pages/Landing'
 import Plans from './pages/Plans'
 import Support from './pages/Support'
@@ -10,6 +10,7 @@ import ModulePage from './pages/details/ModulePage'
 import RequestDemoModal from './components/RequestDemoModal'
 import ScrollToTop from './components/ScrollToTop'
 import { MODULE_PAGES } from './data/modulePages'
+import { TITLES } from './data/pageMeta'
 import './App.css'
 
 // Theme init: light unless the visitor chose dark with the header toggle.
@@ -43,6 +44,15 @@ function Page({ children }: { children: ReactNode }) {
 
 function AnimatedRoutes() {
   const location = useLocation()
+
+  // The static HTML carries each route's own title, but after a client-side
+  // navigation the tab would keep the entry page's. GitHub Pages serves
+  // /vigil/ with the slash, so the lookup drops it.
+  useEffect(() => {
+    const path = location.pathname.replace(/\/+$/, '') || '/'
+    document.title = TITLES[path] ?? 'Orb'
+  }, [location.pathname])
+
   return (
     <AnimatePresence mode="wait" initial={false}>
       <Routes location={location} key={location.pathname}>

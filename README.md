@@ -1,9 +1,9 @@
 # Orb website
 
-The marketing site for Orb (orbsuite.com): a static front end with no backend of its own. It presents the product with the product itself: every module page and the homepage explorer embed a demo-mode build of the real Orb front end, answered in the browser from recordings of the real backend on seeded demo patients (see The live demo below), plus captioned walkthroughs captured from the same runs.
+The marketing site for Orb (orbsuite.com): a static front end with no backend of its own. Each module page shows an animated drawing of one workflow (`src/data/widgetFlows.ts`) and, where captured, real screens of the product running on seeded demo patients.
 
-> The actual clinical application ("Orb Hospital OS") is a **separate project**
-> and is intentionally not linked to this site.
+> The actual clinical application ("Orb") is a **separate project** and is
+> intentionally not linked to this site.
 
 ## Run
 
@@ -28,18 +28,20 @@ npm run deploy   # builds and publishes dist/ to GitHub Pages
 GitHub Pages serves the site at **https://orbsuite.com** (`public/CNAME`, plus
 DNS records and the custom-domain setting in the repo's Pages settings). There
 is no server anywhere: both forms (the demo modal and the support page) submit
-to Web3Forms, which emails submissions to the team inbox. The endpoint, public
-access key, and contact address live in `src/data/siteContent.ts` : the access
-key must be registered in the Web3Forms dashboard to orbsuite.com and to an
-inbox the team controls.
+to Web3Forms, which emails submissions to the founder's inbox. The endpoint,
+public access key, and contact address live in `src/data/siteContent.ts` : the
+access key must be registered in the Web3Forms dashboard to orbsuite.com and to
+an inbox the founder controls.
 
 ## Structure
 
-- `src/pages/Landing.tsx` : homepage (bento grid, hero)
-- `src/pages/details/*` : per-module showcase pages, one for every module in
-  `ALL_MODULES` (14 today: Sage, Vigil, Scribe, Lens, Relay, Helix, Surgical
-  Suite, Pulse, Forecast, Bridge, Slate, Revenue Integrity, Command Center,
-  Surge Simulator)
+- `src/pages/Landing.tsx` : homepage (the hero story, how it works, what you
+  can check)
+- `src/pages/Modules.tsx` : the module wall, one card per module
+- `src/pages/details/ModulePage.tsx` : one layout for every module route, over
+  the data in `src/data/modulePages.ts` (14 today: Vigil, Sage, Scribe, Lens,
+  Relay, Helix, Surgical Suite, Pulse, Forecast, Command Center, Surge
+  Simulator, Bridge, Appointments, Revenue Integrity)
 - `src/pages/Plans.tsx` / `src/pages/Support.tsx` : the founding hospital
   programme, with no price published (copy in `src/data/plans.ts`); support
   page with FAQ and a contact form
@@ -62,7 +64,7 @@ Every module page and the homepage show one workflow as a small animated screen 
 
 - `src/data/widgetFlows.ts` holds every flow, keyed by route. A flow is a list of steps; a step is a caption and a scene built from blocks (rows, tiles, banner, chat, fields, checks, meter, lines, chips).
 - Every caption is a claim the product can stand behind, and the figures are the seeded demo patients the captures were taken on. Keep it that way.
-- The real screens sit under the widget on each module page, imported from the Orb repo's capture run by `python3 scripts/import_orb_assets.py`.
+- The real screens sit under the widget on the module pages that have them, imported from the Orb repo's capture run by `python3 scripts/import_orb_assets.py`. Captures whose pixels carry words the site does not use are held back in that script until the product strings are swept and the screens retaken.
 
 The site used to embed the whole front end in demo mode. That was removed on purpose: it handed the entire product to anyone who opened the page. The demo build itself still lives in the Orb repo (`vite.demo.config.ts`, `src/demo/`), so it can be put behind a login later.
 
