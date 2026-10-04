@@ -90,7 +90,7 @@ export const ANSWER_ENTRIES: SearchEntry[] = [
   },
   {
     id: 'qa-compliance', kind: 'answer', title: 'Is Orb compliant with DPDP, ABDM, NABH, HIPAA or GDPR?', to: '/security',
-    answer: 'Orb is built for India first: the technical safeguards the DPDP Act asks for, ABDM support (in progress and not yet certified), and the evidence NABH inspects. The same architecture, on-site processing, role-based access and a hash-chained audit log, covers what HIPAA and GDPR require. None of it substitutes for your own certification.',
+    answer: 'Orb is built for India first: the technical safeguards the DPDP Act asks for, ABDM (not yet certified; Orb sends nothing to ABDM today), and the evidence NABH inspects. The same architecture, on-site processing, role-based access and a hash-chained audit log, covers what HIPAA and GDPR require. None of it substitutes for your own certification.',
     keywords: ['hipaa', 'gdpr', 'dpdp', 'abdm', 'nabh', 'compliance', 'compliant', 'regulation', 'certified', 'legal', 'audit', 'safeguards', 'security'],
   },
   {

@@ -25,6 +25,6 @@ export const NOT_TODAY: { title: string; body: string }[] = [
   { title: 'It has not yet run in a hospital', body: 'So far Orb has only run on a test computer with demo patients. Parts of the ward record are still being built. The founding hospitals are the first wards it runs on, which is why there are only three places.' },
   { title: 'It is not ABDM-certified', body: 'Orb sends nothing to ABDM. Whatever you do with ABDM today stays in your hospital system.' },
   { title: 'It does not replace your hospital system', body: 'Registration, billing, pharmacy and lab stay where they are. Orb runs beside them on one ward.' },
-  { title: 'It is one person today', body: 'One person builds and supports Orb. That is why the programme takes three hospitals, one ward each, and no more.' },
+  { title: 'It is one person today', body: 'One person builds and supports Orb. That is why the programme takes three hospitals, one ward each to start, and no more hospitals until there is a second pair of hands.' },
   { title: 'It is not everything on this site', body: 'The founding programme is the ward’s observation record and a monthly file for your quality team. The scoring, alerts and AI screens shown on other pages are not part of it.' },
 ]

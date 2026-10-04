@@ -60,7 +60,7 @@ export default function TrustPosture() {
       </div>
 
       <p className="trust-posture__note">
-        Built for India first: the safeguards the DPDP Act asks for, ABDM (in progress, not yet certified) and the evidence NABH inspects. The same architecture covers what HIPAA and GDPR require. None of it substitutes for your own certification.
+        Built for India first: the safeguards the DPDP Act asks for, ABDM (not yet certified; Orb sends nothing to ABDM today) and the evidence NABH inspects. The same architecture covers what HIPAA and GDPR require. None of it substitutes for your own certification.
       </p>
     </section>
   )
