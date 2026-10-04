@@ -36,6 +36,8 @@ p { max-width: var(--measure); }
 .safety-suite__title,
 .trust-posture__title,
 .security-page__audit-title,
+.support-page__faq-title,
+.support-page__form-title,
 .news2__title {
   font-family: var(--font-display);
   font-weight: 700;
@@ -52,12 +54,19 @@ p { max-width: var(--measure); }
 .security-page__audit-title,
 .news2__title,
 .safety-suite__title,
-.trust-posture__title {
+.trust-posture__title,
+.support-page__faq-title,
+.support-page__form-title {
   font-size: clamp(1.7rem, 3.4vw, 2.6rem);
 }
 
-.support-page__faq-title,
-.support-page__form-title,
+/* The module closing line breaks after its first sentence (ModulePage.tsx);
+   on a 390px phone "Every observation scored." has to sit on one 350px line,
+   which it does at 1.6rem and not at the clamp's 1.7rem floor. */
+@media (max-width: 430px) {
+  .mp__cta-title { font-size: 1.6rem; }
+}
+
 .demo-modal-title {
   font-family: var(--font-display);
   font-weight: 700;
@@ -71,7 +80,7 @@ p { max-width: var(--measure); }
 .wall__lead,
 .acts__lead,
 .checks__lede,
-.mp__tagline,
+.mp__claim,
 .module-detail__tagline,
 .plans__lede,
 .landing-overview__cta-desc,
@@ -92,6 +101,7 @@ p { max-width: var(--measure); }
 .acts__line,
 .checks__line,
 .wall__line,
+.mp__tagline,
 .mp__fact-desc,
 .gallery__caption,
 .mp__strip-note,
@@ -120,6 +130,9 @@ p { max-width: var(--measure); }
 .trust-posture__note,
 .mp__strip-note,
 .demo-modal-subtitle { font-size: 0.94rem; }
+
+/* The detail under a module page's claim reads as the secondary line. */
+.mp__tagline { color: var(--text-secondary); }
 
 /* Card and list titles */
 .acts__label,

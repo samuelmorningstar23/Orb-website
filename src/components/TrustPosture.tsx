@@ -29,7 +29,7 @@ const columns: TrustColumn[] = [
   },
   {
     title: 'Deployment and continuity',
-    desc: 'Installed on one appliance inside the hospital. It runs without an internet connection, and a printable downtime pack per patient covers the hour the appliance itself is down.',
+    desc: 'Installed on one appliance inside the hospital. It runs without an internet connection, and a printable downtime pack per patient, printed on the ward’s schedule, covers the hour the appliance itself is down.',
     icon: (
       <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <rect x="2" y="3" width="20" height="8" rx="2" />
@@ -46,7 +46,7 @@ export default function TrustPosture() {
     <section className="trust-posture">
       <div className="trust-posture__header">
         <span className="trust-posture__badge">For hospitals</span>
-        <h2 className="trust-posture__title">Answers you can check on a screen.</h2>
+        <h2 className="trust-posture__title">Three answers for procurement.</h2>
       </div>
 
       <div className="trust-posture__grid">
@@ -60,7 +60,7 @@ export default function TrustPosture() {
       </div>
 
       <p className="trust-posture__note">
-        Built for India first. Consent, retention and breach registers are built in the backend, with their screens to come before the DPDP duties start in May 2027. The NABH evidence pack holds what an assessor inspects. On ABDM, Orb is not yet certified and sends nothing today. None of it stands in for your own certification.
+        Built for India first. Consent, retention and breach registers are built in the backend, with their screens to come before the DPDP duties start in May 2027. The NABH evidence pack exports the quality indicators and the incident register, and lists the indicators it cannot compute. On ABDM, Orb is not yet certified and sends nothing today. None of it stands in for your own certification.
       </p>
     </section>
   )

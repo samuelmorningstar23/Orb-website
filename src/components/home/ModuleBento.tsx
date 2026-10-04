@@ -37,7 +37,7 @@ export default function ModuleBento() {
         <span className="wall__eyebrow">{TILES.length} modules. One record.</span>
         <h2 className="wall__title">Pick a module. Watch it work.</h2>
         <p className="wall__lead">
-          Each card is one moment from the module, drawn from its own screens. The screens themselves are on its page.
+          Each card is one moment from the module, drawn from its own screens. The captures, where there are any, are on its page.
         </p>
       </Reveal>
 

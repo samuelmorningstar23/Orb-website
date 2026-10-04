@@ -35,7 +35,8 @@ export default function Plans() {
         {/* ─── Title, with how it starts beside it ─── */}
         <section className="plans__hero">
           <div className="plans__hero-copy">
-            <span className="plans__eyebrow">Founding programme</span>
+            {/* The lede opens "Founding hospital programme.", so the eyebrow says something else. */}
+            <span className="plans__eyebrow">How it starts</span>
             <h1 className="plans__title">Three places. One ward each.</h1>
             <p className="plans__lede">{PLANS_LEDE}</p>
           </div>

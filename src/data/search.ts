@@ -42,10 +42,10 @@ const PAGE_ENTRIES: SearchEntry[] = [
   {
     id: 'page-home', kind: 'page', title: 'Overview', subtitle: 'Hospital software that never leaves the building', to: '/',
     keywords: ['home', 'overview', 'orb', 'start', 'landing'],
-    body: 'Hospital software that never leaves the building. One computer in your hospital runs the ward record, the NEWS2 score, the drug chart, the case rooms and the models that read them. Nothing about a patient leaves it.',
+    body: 'Hospital software that never leaves the building. One computer in your hospital runs the ward record, the NEWS2 score, the drug chart and the case rooms. Nothing about a patient leaves it.',
   },
   {
-    id: 'page-modules', kind: 'page', title: 'All modules', subtitle: 'Fourteen modules, each as a real screen', to: '/modules',
+    id: 'page-modules', kind: 'page', title: 'All modules', subtitle: 'Fourteen modules, each with its workflow', to: '/modules',
     keywords: ['modules', 'products', 'features', 'catalog', 'list'],
     body: ALL_MODULES.map(m => m.label).join(' '),
   },
@@ -90,12 +90,12 @@ export const ANSWER_ENTRIES: SearchEntry[] = [
   },
   {
     id: 'qa-compliance', kind: 'answer', title: 'Where does Orb stand on DPDP, ABDM and NABH?', to: '/security',
-    answer: 'Built for India first. Consent, retention and breach registers are built in the backend, with their screens to come before the DPDP duties start in May 2027. The NABH evidence pack holds what an assessor inspects. On ABDM, Orb is not yet certified and sends nothing today. None of it stands in for your own certification.',
+    answer: 'Built for India first. Consent, retention and breach registers are built in the backend, with their screens to come before the DPDP duties start in May 2027. The NABH evidence pack exports the quality indicators and the incident register, and lists the indicators it cannot compute. On ABDM, Orb is not yet certified and sends nothing today. None of it stands in for your own certification.',
     keywords: ['dpdp', 'abdm', 'nabh', 'compliance', 'compliant', 'regulation', 'certified', 'legal', 'audit', 'safeguards', 'security'],
   },
   {
     id: 'qa-offline', kind: 'answer', title: 'Does Orb work during internet outages?', to: '/security',
-    answer: 'Yes. Orb needs no internet connection, because everything it uses is on the appliance. For the hour the appliance itself is down, a printable downtime pack per patient is kept fresh, and the Command Center shows how many packs are current.',
+    answer: 'Yes. Orb needs no internet connection, because everything it uses is on the appliance. For the hour the appliance itself is down, the ward prints a downtime pack per patient on its schedule, and the Command Center shows how many packs are current.',
     keywords: ['offline', 'outage', 'internet', 'network', 'connection', 'isp', 'down', 'downtime', 'continuity', 'work'],
   },
   {
@@ -105,7 +105,7 @@ export const ANSWER_ENTRIES: SearchEntry[] = [
   },
   {
     id: 'qa-safety', kind: 'answer', title: 'Can Orb act without a clinician?', to: '/helix',
-    answer: 'No. Orb drafts the order set, the alert or the note, and a named person confirms it. A drafted medication then meets the allergy interlock and the dose guard and waits in the pharmacist’s queue, and every confirmed action lands in the hash-chained audit log.',
+    answer: 'No. Orb drafts the order set or the note and a named person confirms it; an alert is posted to the case room for review. A drafted medication then meets the allergy interlock and the dose guard and waits in the pharmacist’s queue, and every confirmed action lands in the hash-chained audit log.',
     keywords: ['safety', 'autonomous', 'clinician', 'confirm', 'confirmation', 'human', 'loop', 'act', 'safe', 'oversight', 'approve', 'agentic'],
   },
   {

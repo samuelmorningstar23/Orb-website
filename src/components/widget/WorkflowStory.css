@@ -135,7 +135,8 @@
 }
 
 @media (max-width: 760px) {
-  .wstory__stage { height: clamp(452px, 66vh, 548px); perspective: 1200px; }
+  /* Tall enough for the ward board's three rows with the diagnosis wrapped under each name. */
+  .wstory__stage { height: clamp(500px, 72vh, 600px); perspective: 1200px; }
   .wstory__act-hint { display: none; }
   .wstory__act-name { font-size: 0.95rem; }
   .wstory__nav { gap: 10px; }

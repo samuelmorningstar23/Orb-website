@@ -191,9 +191,17 @@
 
 .module-detail__buttons {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: 20px;
+}
+
+/* On a phone the pair stacks, one pill per line, each one line tall. */
+@media (max-width: 560px) {
+  .module-detail__buttons { flex-direction: column; gap: 14px; }
+  .module-detail__btn-primary,
+  .module-detail__btn-secondary { white-space: nowrap; }
 }
 
 .module-detail__btn-primary {
@@ -230,7 +238,7 @@
 
 /* ─── Captures (real screens) ─── */
 .module-detail__capture-note {
-  margin: 14px 4px 0;
+  margin: 14px auto 0;
   font-size: 0.86rem;
   color: var(--text-muted);
   text-align: center;
@@ -279,13 +287,23 @@
 }
 
 .mp__title {
-  margin: 0 0 20px;
+  margin: 0 0 14px;
+}
+
+/* The claim, directly under the name, at deck size. */
+.mp__claim {
+  margin: 0 0 16px;
+  color: var(--text-primary);
+  text-wrap: balance;
 }
 
 .mp__tagline {
   margin: 0 0 28px;
   text-wrap: pretty;
 }
+
+/* With no tagline the buttons follow the claim at the same distance. */
+.mp__claim:last-of-type { margin-bottom: 28px; }
 
 .mp__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 20px; }
 .mp__actions--center { justify-content: center; margin-top: 28px; }

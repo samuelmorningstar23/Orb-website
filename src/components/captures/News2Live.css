@@ -190,6 +190,8 @@
 }
 .news2__result--elevated .news2__score-level { background: var(--status-warn); }
 .news2__result--critical .news2__score-level { background: var(--status-danger); color: #fff; }
+/* Dark mode's coral is too light for white text (3.2:1); dark text on it passes at about 7:1. */
+[data-theme="dark"] .news2__result--critical .news2__score-level { color: #111215; }
 
 .news2__band { display: block; font-family: var(--font-mono); font-weight: 700;
   font-size: 0.8rem; color: var(--text-muted); margin-bottom: 6px; }

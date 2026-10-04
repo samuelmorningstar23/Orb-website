@@ -47,7 +47,7 @@ export const ALL_MODULES: ModuleInfo[] = [
   {
     to: '/scribe', label: 'Scribe', badge: 'From dictation to a signed note',
     blurb: 'Type or dictate the consultation. The local model drafts a SOAP note, an optional second pass checks it against what was said, and the clinician signs by name. Signing queues the medications for a pharmacist.',
-    keywords: ['documentation', 'notes', 'dictation', 'transcription', 'discharge summary', 'voice', 'soap', 'sign'],
+    keywords: ['documentation', 'notes', 'dictation', 'transcription', 'voice', 'soap', 'sign'],
     area: 'ward',
     line: 'Speak the consultation. Sign the note. All of it on the appliance.',
   },
@@ -88,7 +88,7 @@ export const ALL_MODULES: ModuleInfo[] = [
   },
   {
     to: '/forecast', label: 'Forecast', badge: 'The week ahead, in beds',
-    blurb: 'Seven days of census against capacity, the discharge board and admission patterns. The forecasting model ships untrained and the screen says so. The bed arithmetic and the discharge board are live today.',
+    blurb: 'Seven days of census against capacity, the discharge board and admission patterns. The forecasting model ships untrained and the screen says so. The bed arithmetic is live today.',
     keywords: ['capacity', 'beds', 'length of stay', 'discharge', 'planning', 'projection', 'availability', 'census'],
     area: 'house',
     line: 'Census against capacity for the week ahead, with the model’s status printed on the screen.',
@@ -172,7 +172,7 @@ export const FEATURED_MODULES: FeaturedModule[] = [
 export const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit'
 export const WEB3FORMS_ACCESS_KEY = 'f2327387-ec11-4f52-99f4-d496dc28e10f'
 
-export const CONTACT_EMAIL = 'Mags@orbsuite.com'
+export const CONTACT_EMAIL = 'mags@orbsuite.com'
 
 export const openDemoModal = () =>
   window.dispatchEvent(new CustomEvent('open-demo-modal'))

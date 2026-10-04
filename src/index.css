@@ -112,7 +112,7 @@
   --tracking-label: 0.08em;
 
   --section-pad: clamp(72px, 10vh, 140px);
-  --measure: 62ch;
+  --measure: 54ch; /* about 68 characters of Inter at body size */
   --content-max: 1200px;
 
   /* Transitions - smooth, premium feel */

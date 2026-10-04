@@ -16,8 +16,10 @@ export interface ModuleShot { name: string; label: string; caption: string }
 export interface ModulePageData {
   route: string
   title: string
+  /** The one claim, rendered under the module name at deck size. */
   badge: string
-  tagline: string
+  /** The detail under the claim, at body size. Left out where it would only repeat the claim. */
+  tagline?: string
   cards: ModuleCard[]
   ctaLine: string
   /** Under the main capture; defaults to the standard "captured from the product" line. */
@@ -42,10 +44,7 @@ export const MODULE_PAGES: ModulePageData[] = [
     ],
     ctaLine: 'Every observation scored. Every point explained.',
     shots: [
-      { name: 'vigil-patient-board', label: 'The board', caption: 'The ward by NEWS2 score, with the readings behind each score and the alerts already logged.' },
-      { name: 'vigil-patient-chart', label: 'A chart', caption: 'One patient: the vitals, the Sepsis Six clock, the clinical course and the labs.' },
-      { name: 'vigil-news2-explained', label: 'Why this score', caption: 'Every parameter and the points it adds, so the number can be checked by hand.' },
-      { name: 'vigil-patient-story', label: 'Patient story', caption: 'Alerts, notes, doses, handovers and bundles on one timeline.' },
+      // vigil-patient-board, vigil-patient-chart, vigil-news2-explained and vigil-patient-story: held back until recapture, 4 Oct 2026.
       { name: 'nurse-my-shift', label: 'The nurse’s shift', caption: 'What is due now, and how late each item is.' },
       { name: 'nurse-observations-news2-live', label: 'Recording obs', caption: 'The score and the RCP response sentence appear before the nurse saves.' },
     ],
@@ -74,7 +73,7 @@ export const MODULE_PAGES: ModulePageData[] = [
     tagline: 'Speak or type the consultation. The local model drafts the note, a second pass checks it if you ask, and you sign it by name.',
     cards: [
       { icon: 'mic', title: 'Transcribed in the building', desc: 'Speech is transcribed on the appliance. No cloud service hears it.' },
-      { icon: 'file', title: 'Structured. Checked, if you ask.', desc: 'A SOAP note, a discharge summary or an I-PASS handover. Turn on the optional second pass and unsupported claims and omissions are listed against the transcript.' },
+      { icon: 'file', title: 'Structured. Checked, if you ask.', desc: 'A SOAP note or an I-PASS handover. Turn on the optional second pass and unsupported claims and omissions are listed against the transcript.' },
       { icon: 'check', title: 'Signing is on the record', desc: 'A note never verified against audio makes you type SIGN. The signature and the verification state are stored with it.' },
       { icon: 'pill', title: 'A signed note feeds the pharmacy', desc: 'The medications it names are extracted and queued. They become orders only when a pharmacist verifies them.' },
     ],
@@ -89,7 +88,7 @@ export const MODULE_PAGES: ModulePageData[] = [
     tagline: 'Switched off in every deployment, and not part of the founding programme. Upload an X-ray, an ECG or a wound photo and a model on the appliance drafts a first read for a clinician to correct.',
     cards: [
       { icon: 'image', title: 'Any image the ward has', desc: 'A chest film, an ECG strip or a clinical photo, dragged in from a phone or a workstation.' },
-      { icon: 'search', title: 'A draft, labelled as one', desc: 'Marked as a model draft, and never stored as a finding until someone signs it.' },
+      { icon: 'search', title: 'A draft, labelled as one', desc: 'Marked as a model draft on the screen, for a clinician to correct, keep or discard.' },
       { icon: 'building', title: 'Nothing is uploaded anywhere', desc: 'The model runs on the appliance. No image, and no text about it, leaves the hospital.' },
       { icon: 'alert', title: 'Switched off today', desc: 'Lens is not a certified diagnostic device, and the screen says so. It is switched off in every deployment.' },
     ],
@@ -99,7 +98,7 @@ export const MODULE_PAGES: ModulePageData[] = [
     route: '/relay',
     title: 'Relay',
     badge: 'One room per patient',
-    tagline: 'One room per patient, with the team in it. Vigil posts each alert beside the conversation, and a wrong-patient message is flagged, never lost.',
+    // No tagline: it opened by repeating the claim, and cards 01 to 03 carry the rest.
     cards: [
       { icon: 'users', title: 'One room per patient', desc: 'Every admitted patient has a case room with the team in it, listed with their NEWS2 band.' },
       { icon: 'alert', title: 'Alerts land where the talk is', desc: 'Vigil posts each alert into the room with the vitals that caused it.' },
@@ -109,7 +108,7 @@ export const MODULE_PAGES: ModulePageData[] = [
     ctaLine: 'The team’s conversation, with the ward’s alerts and safeguards inside it.',
     shots: [
       { name: 'relay-case-rooms', label: 'Case rooms', caption: 'The department’s rooms, by recency or urgency, each with the patient’s NEWS2 band.' },
-      { name: 'relay-case-room', label: 'A room', caption: 'One room: Vigil’s alerts posted inline with the vitals that caused them.' },
+      // relay-case-room: held back until recapture, 4 Oct 2026.
     ],
   },
   {
@@ -125,19 +124,17 @@ export const MODULE_PAGES: ModulePageData[] = [
     ],
     ctaLine: 'Three gates between the order and the bed.',
     shots: [
-      { name: 'orders-sepsis-six', label: 'Order sets', caption: 'Order sets apply to a named patient. The gates are patient-specific, so nothing shows until Orb knows whose chart this is.' },
-      { name: 'pharmacy-verify-queue', label: 'Verification queue', caption: 'Dose, route, frequency, source and safety line, with AI EXTRACTED and NOT SCREENED said out loud.' },
-      { name: 'nurse-administer-medication', label: 'At the bedside', caption: 'Giving a dose: the charted allergy is on the sheet, and the drug name has to be typed to confirm.' },
-      { name: 'pharmacy-formulary', label: 'Formulary', caption: 'The formulary as the pharmacist sees it: the drug list, with no stock levels.' },
+      { name: 'orders-sepsis-six', label: 'Order sets', caption: 'Order sets, on the Orders screen Helix runs through. They apply to a named patient. The gates are patient-specific, so nothing shows until Orb knows whose chart this is.' },
+      // pharmacy-verify-queue, nurse-administer-medication and pharmacy-formulary: held back until recapture, 4 Oct 2026.
     ],
   },
   {
     route: '/surgical-suite',
     title: 'Surgical Suite',
     badge: 'The theatre, on the ward’s record',
-    tagline: 'The week’s list and the day’s theatre. Each case moves through the WHO checklist with the patient’s NEWS2 band beside it.',
+    tagline: 'The week’s list and the day’s theatre, with the WHO checklist recorded step by step. Not part of the founding programme.',
     cards: [
-      { icon: 'calendar', title: 'The week and the day', desc: 'Every listed procedure with its theatre, surgeon, duration and readiness.' },
+      { icon: 'calendar', title: 'The week and the day', desc: 'Every listed procedure with its theatre, surgeon and duration.' },
       { icon: 'check', title: 'The WHO checklist, step by step', desc: 'Sign-in, time-out and sign-out recorded as they happen, in the name of the person who did them.' },
       { icon: 'alert', title: 'The NEWS2 band on the list', desc: 'Each patient carries their NEWS2 band onto the theatre list, so the surgeon sees the number the ward sees.' },
       { icon: 'users', title: 'One record', desc: 'The allergy on the ward’s chart is the allergy the anaesthetist sees.' },
@@ -153,7 +150,7 @@ export const MODULE_PAGES: ModulePageData[] = [
       { icon: 'chart', title: 'Four feeds, each named', desc: 'Weather and air quality from Open-Meteo, flu from CDC FluView, recalls from openFDA, each with the time it was read.' },
       { icon: 'lock', title: 'One call, one coordinate', desc: 'The request carries a latitude and a longitude. Block it at the firewall and nothing clinical changes.' },
       { icon: 'alert', title: 'A note on the day', desc: 'A heat wave or a bad air day becomes a note on the ward’s day. It changes nobody’s score.' },
-      { icon: 'pill', title: 'Recalls against the formulary', desc: 'Each recall arrives with its class and reason, so the pharmacy can check the formulary that morning.' },
+      { icon: 'pill', title: 'Recalls against the formulary', desc: 'Each US FDA recall arrives with its class and reason, so the pharmacy can check the formulary that morning. An Indian recall feed is not wired yet.' },
     ],
     ctaLine: 'What is happening outside, read against the ward inside.',
   },
@@ -165,7 +162,7 @@ export const MODULE_PAGES: ModulePageData[] = [
     cards: [
       { icon: 'chart', title: 'Census against capacity', desc: 'Current census, beds free in 48 hours, discharges this week and the peak day.' },
       { icon: 'alert', title: 'Untrained, and labelled', desc: 'Every model figure is marked model_trained=false. The badge comes off when the numbers earn it.' },
-      { icon: 'bed', title: 'The discharge board is live', desc: 'Who is ready, what is blocking the rest and the ward capacity view, computed from the record.' },
+      { icon: 'bed', title: 'The bed arithmetic is live', desc: 'Beds free, discharges this week and the ward capacity view, computed from the record. The discharge order is the untrained model’s guess, and the screen labels it as one.' },
       { icon: 'shield', title: 'Registered in Model Governance', desc: 'Listed with its version and validation state, next to the NEWS2 table.' },
     ],
     ctaLine: 'The week ahead, with the model’s status printed on the page.',
@@ -202,7 +199,7 @@ export const MODULE_PAGES: ModulePageData[] = [
     badge: 'For the patient. In plain words.',
     tagline: 'A patient signs in with the code issued at admission and sees their team, their vitals in plain words and their record, theirs to download as FHIR.',
     cards: [
-      { icon: 'users', title: 'The care team, by name', desc: 'Who is looking after them and what happens next, written for the person in the bed.' },
+      { icon: 'users', title: 'The care team, by name', desc: 'Who is looking after them and how they are doing, written for the person in the bed.' },
       { icon: 'pulse', title: 'Vitals in plain words', desc: 'Each observation with a trend and a sentence about what the team is watching.' },
       { icon: 'file', title: 'Their record, in their hands', desc: 'Medications and documents to read, and their record to download as FHIR.' },
       { icon: 'chat', title: 'Questions get a plain answer', desc: 'It points them to their nurse or doctor, gives no medical advice, and says so.' },
@@ -218,11 +215,11 @@ export const MODULE_PAGES: ModulePageData[] = [
     route: '/appointments',
     title: 'Appointments',
     badge: 'Follow-ups, with the score in view',
-    tagline: 'Follow-ups, medication reviews and post-discharge checks, in day columns. Every slot carries the patient’s NEWS2 band.',
+    tagline: 'Follow-ups, medication reviews and post-discharge checks, in day columns. Every slot carries the patient’s NEWS2 band. Not part of the founding programme.',
     cards: [
       { icon: 'calendar', title: 'A week in columns', desc: 'Today, the week, the patients with high scores among them and the post-discharge reviews.' },
       { icon: 'alert', title: 'The band on the slot', desc: 'A follow-up for a patient with a high score is a different task from a routine wound check.' },
-      { icon: 'link', title: 'On the same record', desc: 'The appointment is a row on the record the ward uses. There is no second system to keep in step.' },
+      { icon: 'link', title: 'On the same record', desc: 'The appointment is a row on the record the ward uses.' },
       { icon: 'users', title: 'Visible to the patient', desc: 'The same appointment shows in Bridge, with the date and the reason in the patient’s words.' },
     ],
     ctaLine: 'Follow-ups on the same record as the ward, with the NEWS2 band in view.',
@@ -233,7 +230,7 @@ export const MODULE_PAGES: ModulePageData[] = [
     badge: 'Codes the chart already supports',
     tagline: 'Pick a patient and press Analyze. Orb reads the notes on the chart and lists the codes they support and the gaps that block them, each with the sentence behind it.',
     cards: [
-      { icon: 'search', title: 'It reads what is already written', desc: 'The analysis runs over signed notes and results. Nothing is invented to fit a code.' },
+      { icon: 'search', title: 'It reads what is already written', desc: 'The analysis runs over signed notes and results, against a starter set of 22 ICD-10 codes today. Nothing is invented to fit a code.' },
       { icon: 'file', title: 'The evidence sentence', desc: 'Every suggested code carries the note and the sentence behind it.' },
       { icon: 'alert', title: 'Gaps, named', desc: 'A condition treated and not documented is listed as a query for the clinician, never as a code.' },
       { icon: 'building', title: 'On the appliance', desc: 'The model reads the notes inside the hospital. No chart goes to a coding vendor.' },

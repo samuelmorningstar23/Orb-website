@@ -17,6 +17,18 @@ import './Widget.css'
 const EASE = [0.22, 1, 0.36, 1] as const
 const toneClass = (t?: Tone) => (t ? ` is-${t}` : '')
 
+/**
+ * A row tag such as "RR 37 · SpO2 84%" lists the readings worst first. On a
+ * phone only the first reading fits beside the name, so the rest is wrapped in
+ * a span the phone stylesheet hides.
+ */
+function TagText({ text }: { text: string }) {
+  const sep = ' · '
+  const i = text.indexOf(sep)
+  if (i < 0) return <>{text}</>
+  return <>{text.slice(0, i)}<span className="wg__tag-more">{text.slice(i)}</span></>
+}
+
 function Dots() {
   return (
     <span className="wg__typing" aria-label="working">
@@ -87,7 +99,7 @@ function BlockView({ b, reduce }: { b: Block; reduce: boolean }) {
                     <span className="wg__row-title">{r.title}</span>
                     {r.sub && <span className="wg__row-sub">{r.sub}</span>}
                   </span>
-                  {r.tag && <span className={'wg__tag' + toneClass(r.tagTone)}>{r.tag}</span>}
+                  {r.tag && <span className={'wg__tag' + toneClass(r.tagTone)}><TagText text={r.tag} /></span>}
                 </motion.li>
               ))}
             </AnimatePresence>

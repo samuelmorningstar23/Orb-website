@@ -3,7 +3,7 @@ import { Reveal, Stagger, StaggerItem } from '../motion/Reveal'
 import './ActsBand.css'
 
 const STEPS = [
-  { n: '01', label: 'Read', line: 'The chart, the observations, the notes. As the ward recorded them.' },
+  { n: '01', label: 'Read', line: 'The chart and the observations, as the ward recorded them.' },
   { n: '02', label: 'Draft', line: 'An order, a note, or the score with every reading behind it and the guideline it used.' },
   { n: '03', label: 'Confirm', line: 'A named clinician approves it. Or it goes nowhere.' },
   { n: '04', label: 'Record', line: 'Order placed. Pharmacist queued. Audit row sealed.' },
@@ -17,7 +17,7 @@ export default function ActsBand() {
         <span className="acts__eyebrow">How it works</span>
         <h2 className="acts__title" id="acts-title">Orb drafts.<br />A clinician signs.</h2>
         <p className="acts__lead">
-          Nothing is ordered, charted or filed until a named person says yes. A drafted medication still meets the allergy interlock, the dose guard and the pharmacist’s queue.
+          The models that read the record only draft. Nothing is filed until a named person says yes. A drafted medication still meets the allergy interlock and the dose guard, then waits for a pharmacist.
         </p>
       </Reveal>
       <Stagger className="acts__steps" as="ul">

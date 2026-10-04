@@ -74,7 +74,8 @@
 /* ─── Said plainly: the heading on the left, the list on the right ─── */
 .plans__plain {
   display: grid;
-  grid-template-columns: minmax(0, 0.44fr) minmax(0, 1.56fr);
+  /* Wide enough for "Where Orb / stands today." on two lines at 1280. */
+  grid-template-columns: minmax(0, 0.6fr) minmax(0, 1.4fr);
   gap: clamp(28px, 4vw, 60px);
   align-items: start;
   margin-bottom: clamp(48px, 7vh, 90px);

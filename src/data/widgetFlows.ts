@@ -99,7 +99,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
                 { ...WARD.suresh, tag: 'RR 37 · SpO2 84%', tagTone: 'critical' },
                 { ...WARD.rajesh9, tag: 'RR 33 · SpO2 85%', tagTone: 'warn' },
                 { ...WARD.ananya, tag: 'RR 31 · SpO2 94%', tagTone: 'warn' },
-                { ...WARD.priya, tag: 'SpO2 96% · SBP 97', tagTone: 'muted' },
+                { ...WARD.priya, tag: 'SBP 97 · SpO2 96%', tagTone: 'muted' },
               ] },
             ],
           },
@@ -118,7 +118,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
                 { ...WARD.suresh, tag: 'RR 37 · SpO2 84%', tagTone: 'critical' },
                 { ...WARD.rajesh13, tag: 'RR 32 · SpO2 80%', tagTone: 'critical', active: true },
                 { ...WARD.ananya, tag: 'RR 31 · SpO2 94%', tagTone: 'warn' },
-                { ...WARD.priya, tag: 'SpO2 96% · SBP 97', tagTone: 'muted' },
+                { ...WARD.priya, tag: 'SBP 97 · SpO2 96%', tagTone: 'muted' },
               ] },
             ],
           },
@@ -184,7 +184,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
                 { label: 'RR', value: '24' },
                 { label: 'SpO2', value: '91' },
                 { label: 'BP', value: '98/60' },
-                { label: 'HR', value: '112' },
+                { label: 'HR', value: '108' },
                 { label: 'Temp', value: '38.4' },
               ] },
             ],
@@ -195,14 +195,15 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
           scene: {
             head: 'Record observations', sub: 'Rajesh Iyer · GM-102',
             blocks: [
+              // RCP 2017: RR 24 (+2), SpO2 91 (+3), SBP 98 (+2), HR 108 (+1), 38.4 (+1), on air, alert = 9.
               { id: 'fields', k: 'fields', fields: [
                 { label: 'RR', value: '24', tone: 'warn' },
                 { label: 'SpO2', value: '91', tone: 'critical' },
                 { label: 'BP', value: '98/60', tone: 'warn' },
-                { label: 'HR', value: '112', tone: 'warn' },
+                { label: 'HR', value: '108', tone: 'warn' },
                 { label: 'Temp', value: '38.4', tone: 'warn' },
               ] },
-              { id: 'banner', k: 'banner', tone: 'critical', tag: 'NEWS2 9', title: 'Critical', body: 'The nurse informs the medical team. Urgent review by a clinician competent in acute illness.' },
+              { id: 'banner', k: 'banner', tone: 'critical', tag: 'NEWS2 9', title: 'Critical', body: 'Continuous monitoring. Emergency assessment by a team with critical-care competencies.' },
             ],
           },
         },
@@ -215,10 +216,10 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
                 { label: 'RR', value: '24', tone: 'warn' },
                 { label: 'SpO2', value: '91', tone: 'critical' },
                 { label: 'BP', value: '98/60', tone: 'warn' },
-                { label: 'HR', value: '112', tone: 'warn' },
+                { label: 'HR', value: '108', tone: 'warn' },
                 { label: 'Temp', value: '38.4', tone: 'warn' },
               ] },
-              { id: 'banner', k: 'banner', tone: 'critical', tag: 'NEWS2 9', title: 'For review', body: 'Monitoring interval 60 minutes. On save the score is logged and posted to the case room for review.' },
+              { id: 'banner', k: 'banner', tone: 'critical', tag: 'NEWS2 9', title: 'For review', body: 'Observations at least every 30 minutes. On save the score is logged and posted to the case room for review.' },
               { id: 'chips', k: 'chips', chips: [{ text: 'Save observations', tone: 'accent' }, { text: 'Every point is checkable by hand', tone: 'muted' }] },
             ],
           },
@@ -239,7 +240,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
               { id: 'chips', k: 'chips', chips: [{ text: '27B careful', tone: 'ok' }, { text: '4B fast', tone: 'ok' }, { text: 'No egress', tone: 'muted' }] },
               { id: 'cards', k: 'rows', label: 'Start with', rows: [
                 { id: 'q1', title: 'Patient summary', sub: 'Overview of the current unit census' },
-                { id: 'q2', title: 'Lab insights', sub: 'Flag recent critical values' },
+                { id: 'q2', title: 'Guideline question', sub: 'Ask about a protocol or a drug' },
                 { id: 'q3', title: 'Drug interactions', sub: 'Safety check across medications' },
               ] },
             ],
@@ -253,7 +254,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
               { id: 'chips', k: 'chips', chips: [{ text: '4B fast · on', tone: 'accent' }, { text: 'Patient and dose questions still route to 27B', tone: 'muted' }] },
               { id: 'cards', k: 'rows', label: 'Start with', rows: [
                 { id: 'q1', title: 'Patient summary', sub: 'Overview of the current unit census', tag: '27B', tagTone: 'muted' },
-                { id: 'q2', title: 'Lab insights', sub: 'Flag recent critical values', tag: '27B', tagTone: 'muted' },
+                { id: 'q2', title: 'Guideline question', sub: 'Ask about a protocol or a drug', tag: '27B', tagTone: 'muted' },
                 { id: 'q3', title: 'Drug interactions', sub: 'Safety check across medications', tag: '27B', tagTone: 'muted' },
               ] },
             ],
@@ -294,7 +295,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
                 { from: 'orb', badge: 'Confirm against your local protocol', text: 'Peaked T waves are the earliest change, followed by a flattened P wave, a widened QRS, and finally a sine-wave pattern.' },
               ] },
               { id: 'lines', k: 'lines', label: 'Show details', lines: [
-                { text: 'Retrieved from the hospital’s own guideline set', strong: true },
+                { text: 'Retrieved from the guideline set loaded on the appliance', strong: true },
                 { text: 'Passages listed with the answer, each one openable' },
                 { text: 'Model, mode and timing recorded in the audit log' },
               ] },
@@ -364,7 +365,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
           },
         },
         {
-          caption: 'The local model drafts a structured note: SOAP, a discharge summary or an I-PASS handover.',
+          caption: 'The local model drafts a structured note: SOAP, or an I-PASS handover.',
           scene: {
             head: 'Structured note', sub: 'SOAP · draft',
             blocks: [
@@ -471,7 +472,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
               { id: 'banner', k: 'banner', tone: 'critical', tag: 'Stopped', title: 'Ceftriaxone: documented anaphylaxis' },
               { id: 'chips', k: 'chips', chips: [
                 { text: 'Apply set · disabled', tone: 'muted' },
-                { text: 'Substitute the antibiotic', tone: 'accent' },
+                { text: 'Choose another antibiotic', tone: 'accent' },
               ] },
             ],
           },
@@ -642,7 +643,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
           },
         },
         {
-          caption: 'Nothing is stored as a finding until a person signs it. Lens is not a certified diagnostic device, and it is switched off in every deployment today.',
+          caption: 'The read is a model draft, labelled as one. Lens is not a certified diagnostic device, and it is switched off in every deployment today.',
           scene: {
             head: 'First read', sub: 'Draft · not a finding',
             blocks: [
@@ -659,13 +660,13 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
       id: 'suite', label: 'Theatre', app: 'Orb Surgical Suite', who: 'Surgeon',
       steps: [
         {
-          caption: 'The week’s list: every procedure with its theatre, surgeon, duration and readiness.',
+          caption: 'The week’s list: every procedure with its theatre, surgeon and duration.',
           scene: {
             head: 'Theatre list', sub: 'Monday · Theatre 2',
             blocks: [
               { id: 'rows', k: 'rows', rows: [
-                { id: 't1', score: '09:00', tone: 'muted', title: 'Laparoscopic cholecystectomy', sub: 'Theatre 2 · 90 min', tag: 'Ready', tagTone: 'ok', active: true },
-                { id: 't2', score: '11:00', tone: 'muted', title: 'Hernia repair', sub: 'Theatre 2 · 60 min', tag: 'Consent pending', tagTone: 'warn' },
+                { id: 't1', score: '09:00', tone: 'muted', title: 'Laparoscopic cholecystectomy', sub: 'Theatre 2 · 90 min', tag: 'Listed', tagTone: 'muted', active: true },
+                { id: 't2', score: '11:00', tone: 'muted', title: 'Hernia repair', sub: 'Theatre 2 · 60 min', tag: 'Listed', tagTone: 'muted' },
               ] },
             ],
           },
@@ -677,7 +678,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
             blocks: [
               { id: 'rows', k: 'rows', rows: [
                 { id: 't1', score: '09:00', tone: 'muted', title: 'Laparoscopic cholecystectomy', sub: 'Priya Nair · GM-103', tag: 'NEWS2 5 · elevated', tagTone: 'warn', active: true },
-                { id: 't2', score: '11:00', tone: 'muted', title: 'Hernia repair', sub: 'Stable · NEWS2 1', tag: 'Ready', tagTone: 'ok' },
+                { id: 't2', score: '11:00', tone: 'muted', title: 'Hernia repair', sub: 'Stable · NEWS2 1', tag: 'Listed', tagTone: 'muted' },
               ] },
             ],
           },
@@ -807,13 +808,13 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
           },
         },
         {
-          caption: 'The discharge board and the bed arithmetic come from the record, with no model involved. Those are live today.',
+          caption: 'The bed arithmetic comes from the record, with no model involved. That part is live today.',
           scene: {
-            head: 'Discharge board', sub: 'Computed from the record',
+            head: 'Bed arithmetic', sub: 'Computed from the record',
             blocks: [
               { id: 'rows', k: 'rows', rows: [
-                { id: 'd1', title: 'Likely ready today', sub: '4 patients', tag: 'From the record', tagTone: 'ok' },
-                { id: 'd2', title: 'Blocked', sub: '2 waiting on a pharmacy discharge, 1 on transport', tag: 'From the record', tagTone: 'ok' },
+                { id: 'd1', title: 'Beds free in 48 hours', sub: '6 of 60', tag: 'From the record', tagTone: 'ok' },
+                { id: 'd2', title: 'Discharges this week', sub: '14 planned', tag: 'From the record', tagTone: 'ok' },
               ] },
             ],
           },
@@ -961,7 +962,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
           },
         },
         {
-          caption: 'Their care team, their diagnosis and what happens next, written for the person in the bed.',
+          caption: 'Their care team and their status, written for the person in the bed.',
           scene: {
             head: 'Your care', sub: 'General Medicine',
             blocks: [
@@ -969,7 +970,6 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
                 { id: 'dr', title: 'Dr Meera Sharma', sub: 'Consultant, General Medicine' },
                 { id: 'ns', title: 'Ward nurse', sub: 'On this shift' },
               ] },
-              { id: 'banner', k: 'banner', tone: 'info', tag: 'What happens next', title: 'A chest X-ray this morning, and a review on the ward round' },
             ],
           },
         },
@@ -1015,12 +1015,13 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
         {
           caption: 'Follow-ups, medication reviews and post-discharge checks, in day columns.',
           scene: {
-            head: 'This week', sub: '18 appointments',
+            head: 'This week', sub: 'In day columns',
             blocks: [
-              { id: 'tiles', k: 'tiles', tiles: [
-                { label: 'Today', value: '5' },
-                { label: 'This week', value: '18' },
-                { label: 'Post-discharge', value: '4' },
+              // No counts drawn: the day list on the product mixes real bookings with generated rows today.
+              { id: 'kinds', k: 'rows', label: 'What goes in a column', rows: [
+                { id: 'k1', title: 'Follow-ups' },
+                { id: 'k2', title: 'Medication reviews' },
+                { id: 'k3', title: 'Post-discharge checks' },
               ] },
             ],
           },
@@ -1028,7 +1029,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
         {
           caption: 'Every slot carries the patient’s NEWS2 band.',
           scene: {
-            head: 'Tuesday', sub: '5 appointments',
+            head: 'Tuesday', sub: 'Day column',
             blocks: [
               { id: 'rows', k: 'rows', rows: [
                 { id: 'a1', score: '09:30', tone: 'muted', title: 'Rajesh Iyer', sub: 'Post-discharge review', tag: 'Critical', tagTone: 'critical', active: true },
@@ -1129,7 +1130,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
                 { label: 'Backups verified', value: 'Amber', tone: 'warn' },
                 { label: 'Audit chain', value: 'Intact', tone: 'ok' },
               ] },
-              { id: 'banner', k: 'banner', tone: 'warn', tag: 'The point', title: 'Amber is amber', body: 'An all-green compliance screen should be trusted less, not more.' },
+              { id: 'banner', k: 'banner', tone: 'warn', tag: 'The point', title: 'Amber is amber', body: 'An all-green compliance screen deserves a harder look.' },
             ],
           },
         },
@@ -1160,7 +1161,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
           },
         },
         {
-          caption: 'Model Governance lists each model, its version and whether it has been validated. The forecast model says untrained, on the day you look.',
+          caption: 'Model Governance lists the registered models, each with a version and whether it has been validated. The forecast model says untrained, on the day you look.',
           scene: {
             head: 'Model Governance', sub: 'Registered models',
             blocks: [
@@ -1251,11 +1252,12 @@ export const STORY_FLOWS: WidgetFlow[] = [
         scene: {
           head: 'Why this score', sub: 'NEWS2 13 · RCP 2017 table',
           blocks: [
+            // RCP 2017: RR 32 (+3), SpO2 80 (+3), SBP 74 (+3), 39.6 (+2), HR 112 (+2), on air, alert = 13.
             { id: 'lines', k: 'lines', label: 'Points', lines: [
               { text: '+3  Severe tachypnea (RR 32)', strong: true },
               { text: '+3  Severe hypoxia (SpO2 80%)', strong: true },
               { text: '+3  Hypotension (SBP 74)', strong: true },
-              { text: '+2  On supplemental oxygen' },
+              { text: '+2  High temperature (39.6°C)' },
               { text: '+2  Tachycardia (HR 112)' },
             ] },
           ],

@@ -194,6 +194,8 @@
   font-size: 0.94rem;
   color: var(--text-secondary);
   margin: 0 0 24px;
+  margin-inline: auto; /* the global p measure would otherwise leave it flush left */
+  text-align: center;
 }
 
 /* Same glass surface as the channel cards above, so the page reads as one set */
@@ -390,6 +392,8 @@
   font-size: 0.88rem;
   color: var(--text-secondary);
   margin: 20px 0 0;
+  margin-inline: auto;
+  text-align: center;
 }
 
 .support-page__form-alt a {

@@ -27,7 +27,7 @@ const FACTS = [
   },
   {
     title: 'When the network drops',
-    body: 'Care continues. Orb needs no internet connection to run. A printable downtime pack per patient is kept fresh on the appliance for the hour the appliance itself is down, and the Command Center shows how many packs are current.',
+    body: 'Care continues. Orb needs no internet connection to run. A printable downtime pack per patient is refreshed on the appliance for the ward to print on its schedule, and the Command Center shows how many packs are current.',
   },
 ]
 
@@ -63,11 +63,13 @@ export default function Security() {
               scorecard is titled over a six-ward run Orb has not had, and the
               Model Governance table describes two models in words the site does
               not use. The admin captures that remain are cropped below the tab
-              strip, which names a scorecard the site does not claim. */}
+              strip, which names a scorecard the site does not claim; the Trust
+              Center also loses the product's intro paragraph above its card, and
+              both end above the floating control at the foot of the page. */}
           <ScreenGallery
             label="The admin screens"
             shots={[
-              { name: 'admin-trust', label: 'Trust Center', caption: 'Compliance posture, aggregated from the running system. Amber is amber, and an all-green screen deserves a harder look.' },
+              { name: 'admin-trust', label: 'Trust Center', caption: 'Compliance posture, built from the running system each time the page opens. Nine controls passing, five warnings, none failing on this build.' },
               { name: 'admin-flight', label: 'Flight Recorder', caption: 'A SHA-256 hash chain over every audit row, with its verification state on the page.' },
             ]}
           />

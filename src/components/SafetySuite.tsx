@@ -42,7 +42,7 @@ const items: SafetyItem[] = [
   },
   {
     title: 'Downtime on paper',
-    desc: 'A printable snapshot per patient, kept fresh on the appliance, so the hour the appliance is down is covered on paper.',
+    desc: 'A printable snapshot per patient, refreshed on the appliance. Print it on the ward’s schedule and the hour the appliance is down is covered on paper.',
     icon: (
       <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <circle cx="12" cy="12" r="10" />
@@ -66,7 +66,7 @@ const items: SafetyItem[] = [
   },
   {
     title: 'Oversight and governance',
-    desc: 'Every model answer and every confirmed action lands in the hash-chained audit log. Model Governance lists each model with its version and validation state.',
+    desc: 'Every model answer and every confirmed action lands in the hash-chained audit log. Model Governance lists the registered models with version and validation state.',
     icon: (
       <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M2.06 12.35a1 1 0 0 1 0-.7 10.75 10.75 0 0 1 19.88 0 1 1 0 0 1 0 .7 10.75 10.75 0 0 1-19.88 0" />
@@ -81,8 +81,8 @@ export default function SafetySuite() {
     <section className="safety-suite">
       <div className="safety-suite__header">
         <span className="safety-suite__badge">Clinical safety</span>
-        <h2 className="safety-suite__title">Six safeguards, on screen.</h2>
-        <p className="safety-suite__desc">Each one is deterministic, and each one is a screen in the product.</p>
+        <h2 className="safety-suite__title">Six safeguards. All deterministic.</h2>
+        <p className="safety-suite__desc">Each one runs as a rule, and each one has a screen.</p>
       </div>
 
       <div className="safety-suite__grid">

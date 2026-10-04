@@ -12,15 +12,23 @@ import { openDemoModal } from '../../data/siteContent'
 import './ModuleDetails.css'
 
 /**
- * One layout for every module page, kept short on purpose: the claim beside the
- * workflow running as an animation, four things you can check, the real screens
- * as a strip, one call to action. No second walkthrough underneath: the widget
- * is the walkthrough.
+ * One layout for every module page, kept short on purpose: the module name with
+ * its one claim under it, beside the workflow running as an animation, four
+ * things you can check, the real screens as a strip, one call to action. No
+ * second walkthrough underneath: the widget is the walkthrough.
  */
+
+/** The claim as a sentence under the name: a full stop unless it already ends in one. */
+const asSentence = (s: string) => (/[.!?]$/.test(s) ? s : `${s}.`)
+
+/** The closing line breaks after its first sentence, so a phone never breaks it mid-sentence. */
+const ctaLines = (s: string) => s.split('. ').map((part, i, all) => (i < all.length - 1 ? `${part}.` : part))
+
 export default function ModulePage({ route }: { route: string }) {
   const page = modulePage(route)
   const flows = WIDGET_FLOWS[route]
   const shots = page.shots ?? []
+  const cta = ctaLines(page.ctaLine)
 
   return (
     <div className="module-detail mp">
@@ -37,9 +45,9 @@ export default function ModulePage({ route }: { route: string }) {
 
         <section className="mp__hero">
           <div className="mp__hero-copy">
-            <span className="mp__eyebrow">{page.badge}</span>
             <h1 className="mp__title">{page.title}</h1>
-            <p className="mp__tagline">{page.tagline}</p>
+            <p className="mp__claim">{asSentence(page.badge)}</p>
+            {page.tagline && <p className="mp__tagline">{page.tagline}</p>}
             <div className="mp__actions">
               <button type="button" className="hero__btn hero__btn--primary" onClick={openDemoModal}>Book a walkthrough</button>
             </div>
@@ -73,14 +81,18 @@ export default function ModulePage({ route }: { route: string }) {
           <section className="mp__strip" aria-label={`Screens of ${page.title}`}>
             <Reveal className="mp__facts-head">
               <span className="mp__eyebrow">The real screens</span>
-              <p className="mp__strip-note">Captured from the product running on seeded demo patients, at the size it runs at.</p>
+              <p className="mp__strip-note">The real screens, on demo patients.</p>
             </Reveal>
             <ScreenGallery shots={shots} label={`${page.title} screens`} />
           </section>
         )}
 
         <Reveal as="section" className="mp__cta" amount={0.4}>
-          <h2 className="mp__cta-title">{page.ctaLine}</h2>
+          <h2 className="mp__cta-title">
+            {cta.map((line, i) => (
+              <span key={line}>{i > 0 && <br />}{line}</span>
+            ))}
+          </h2>
           <div className="mp__actions mp__actions--center">
             <button type="button" className="hero__btn hero__btn--primary" onClick={openDemoModal}>Book a walkthrough</button>
             <Link to="/modules" className="hero__btn hero__btn--ghost">All modules <span aria-hidden="true">&rarr;</span></Link>
