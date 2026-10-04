@@ -2,8 +2,8 @@
 
 The marketing site for Orb (orbsuite.com): a static front end with no backend of its own. It presents the product with the product itself: every module page and the homepage explorer embed a demo-mode build of the real Orb front end, answered in the browser from recordings of the real backend on seeded demo patients (see The live demo below), plus captioned walkthroughs captured from the same runs.
 
-> The actual clinical application ("Orb Hospital OS") is a **separate project**
-> and is intentionally not linked to this site.
+> The actual clinical application ("Orb") is a **separate project** and is
+> intentionally not linked to this site.
 
 ## Run
 
@@ -28,10 +28,10 @@ npm run deploy   # builds and publishes dist/ to GitHub Pages
 GitHub Pages serves the site at **https://orbsuite.com** (`public/CNAME`, plus
 DNS records and the custom-domain setting in the repo's Pages settings). There
 is no server anywhere: both forms (the demo modal and the support page) submit
-to Web3Forms, which emails submissions to the team inbox. The endpoint, public
-access key, and contact address live in `src/data/siteContent.ts` : the access
-key must be registered in the Web3Forms dashboard to orbsuite.com and to an
-inbox the team controls.
+to Web3Forms, which emails submissions to the founder's inbox. The endpoint,
+public access key, and contact address live in `src/data/siteContent.ts` : the
+access key must be registered in the Web3Forms dashboard to orbsuite.com and to
+an inbox the founder controls.
 
 ## Structure
 

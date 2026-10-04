@@ -32,10 +32,10 @@ export interface ModuleInfo {
 export const ALL_MODULES: ModuleInfo[] = [
   {
     to: '/vigil', label: 'Vigil', badge: 'Vitals and NEWS2',
-    blurb: 'Every patient scored on NEWS2 as the vitals arrive, the ward ordered by that score, and each point on the score explained. The Sepsis Six clock starts when the score crosses the line.',
-    keywords: ['vitals', 'monitoring', 'deterioration', 'news2', 'alerts', 'nurses', 'risk', 'sepsis'],
+    blurb: 'Orb calculates NEWS2 from the observations the nurse records, orders the ward by that score, and shows which readings drive each point. The clinician can open the Sepsis Six checklist from the chart.',
+    keywords: ['vitals', 'monitoring', 'observations', 'news2', 'alerts', 'nurses', 'score', 'sepsis'],
     area: 'ward',
-    line: 'The ward ordered by NEWS2, each point explained, the Sepsis Six clock already running.',
+    line: 'The ward ordered by NEWS2 score, each point explained, the Sepsis Six checklist a click away.',
   },
   {
     to: '/sage', label: 'Sage', badge: 'Clinical questions, answered on the appliance',
@@ -46,17 +46,17 @@ export const ALL_MODULES: ModuleInfo[] = [
   },
   {
     to: '/scribe', label: 'Scribe', badge: 'Dictation to a signed note',
-    blurb: 'Type or dictate the consultation. The local model drafts a SOAP note, a second pass checks it against what was said, and the clinician signs by name. Signing is what queues the medications for a pharmacist.',
+    blurb: 'Type or dictate the consultation. The local model drafts a SOAP note, an optional second pass checks it against what was said, and the clinician signs by name. Signing is what queues the medications for a pharmacist.',
     keywords: ['documentation', 'notes', 'dictation', 'transcription', 'discharge summary', 'voice', 'soap', 'sign'],
     area: 'ward',
-    line: 'Dictation to a verified, signed SOAP note, on the appliance.',
+    line: 'Dictation to a signed SOAP note, on the appliance.',
   },
   {
     to: '/lens', label: 'Lens', badge: 'A first read of an image',
-    blurb: 'Upload an X-ray, an ECG or a photo of a wound. The local model drafts a first read for the clinician to correct, keep or discard. The image never leaves the building.',
+    blurb: 'Upload an X-ray, an ECG or a photo of a wound. The local model drafts a first read for the clinician to correct, keep or discard. The image never leaves the building. Lens is switched off in every deployment and is not part of the founding programme.',
     keywords: ['imaging', 'x-ray', 'xray', 'ecg', 'scans', 'radiology', 'image review', 'photo', 'wound'],
     area: 'ward',
-    line: 'A first read of an X-ray, ECG or photo, drafted on site for a clinician to correct.',
+    line: 'A first read of an X-ray, ECG or photo, drafted on site for a clinician to correct. Switched off in every deployment.',
   },
   {
     to: '/relay', label: 'Relay', badge: 'Case rooms for the team',
@@ -74,7 +74,7 @@ export const ALL_MODULES: ModuleInfo[] = [
   },
   {
     to: '/surgical-suite', label: 'Surgical Suite', badge: 'Theatre lists and checklists',
-    blurb: 'The week’s list, the day’s theatre, and active cases moving through the WHO surgical checklist, with the risk flag beside each patient.',
+    blurb: 'The week’s list, the day’s theatre, and active cases moving through the WHO surgical checklist, with each patient’s NEWS2 band beside them.',
     keywords: ['surgery', 'operating room', 'theatre', 'or', 'checklists', 'schedules', 'perioperative', 'who checklist'],
     area: 'theatre',
     line: 'The week, the day and the active cases, checklist step by step.',
@@ -89,13 +89,13 @@ export const ALL_MODULES: ModuleInfo[] = [
   {
     to: '/forecast', label: 'Forecast', badge: 'Census and capacity ahead',
     blurb: 'Seven-day census against capacity, the discharge board and admission patterns. The forecasting model ships untrained and the screen says so; the bed arithmetic and the discharge board are live today.',
-    keywords: ['capacity', 'beds', 'length of stay', 'discharge', 'planning', 'prediction', 'availability', 'census'],
+    keywords: ['capacity', 'beds', 'length of stay', 'discharge', 'planning', 'projection', 'availability', 'census'],
     area: 'house',
     line: 'Census against capacity for the week ahead, with the model’s status stated on screen.',
   },
   {
     to: '/command-center', label: 'Command Center', badge: 'The whole house on one screen',
-    blurb: 'Census, critical patients, sepsis bundle compliance and downtime readiness, with the ward acuity map and the active deteriorations by name.',
+    blurb: 'Census, critical patients, sepsis bundle compliance and downtime readiness, with the ward acuity map and the highest NEWS2 scores by name.',
     keywords: ['command center', 'census', 'acuity', 'overview', 'operations', 'house-wide', 'dashboard', 'heatmap'],
     area: 'house',
     line: 'Census, acuity, bundle compliance and downtime readiness, one screen.',
@@ -116,10 +116,10 @@ export const ALL_MODULES: ModuleInfo[] = [
   },
   {
     to: '/appointments', label: 'Appointments', badge: 'Follow-ups and reviews',
-    blurb: 'Follow-ups, medication reviews and post-discharge checks in day columns, each with the patient’s risk band, so the critical ones are not scheduled like the rest.',
+    blurb: 'Follow-ups, medication reviews and post-discharge checks in day columns, each with the patient’s NEWS2 band, so a review for a patient with a high score is not scheduled like the rest.',
     keywords: ['scheduling', 'follow-up', 'clinic', 'slots', 'booking', 'visits', 'calendar', 'appointments', 'review'],
     area: 'patients',
-    line: 'Follow-ups and reviews by day, with the risk band beside each name.',
+    line: 'Follow-ups and reviews by day, with the NEWS2 band beside each name.',
   },
   {
     to: '/revenue-integrity', label: 'Revenue Integrity', badge: 'Coding from the notes on the chart',

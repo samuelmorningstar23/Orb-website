@@ -21,12 +21,12 @@ export default function Hero() {
   return (
     <section className="hero" ref={ref} aria-labelledby="hero-title">
       <div className="hero__copy">
-        <span className="hero__eyebrow">Orb Hospital OS</span>
+        <span className="hero__eyebrow">Orb</span>
         <h1 className="hero__title" id="hero-title">
-          The hospital,<br />running on one machine<br /><em>inside</em> the hospital.
+          Hospital software,<br />running on one computer<br /><em>inside</em> the hospital.
         </h1>
         <p className="hero__sub">
-          The record, the ward monitor, the pharmacy and the front desk on one appliance. The models run there too, so nothing about a patient leaves the building.
+          The ward record, the NEWS2 score calculated from the nurse’s observations, the drug chart and the case rooms, with the models on the same machine, so nothing about a patient leaves the building.
         </p>
         <div className="hero__actions">
           <button type="button" className="hero__btn hero__btn--primary" onClick={openDemoModal}>Request a demo</button>
@@ -42,7 +42,7 @@ export default function Hero() {
           <WorkflowStory />
         </motion.div>
         <p className="hero__stage-note">
-One patient, from the ward to the pharmacy and back to his bedside. Three modules, in the order it happens. Pick an act, or let it run.
+One demo patient, from the ward to the pharmacy and back to his bedside. Three modules, in the order it happens. Pick an act, or let it run.
         </p>
       </div>
     </section>

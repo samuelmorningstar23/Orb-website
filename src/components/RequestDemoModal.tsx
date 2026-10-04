@@ -150,7 +150,7 @@ export default function RequestDemoModal() {
             </div>
             <h3 className="demo-modal-title">Thank you</h3>
             <p className="demo-modal-subtitle">
-              Your request has been sent to our team. We’ll be in touch shortly. You can also reach us any time at <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
+              Your request has reached us. We’ll be in touch shortly. You can also reach us any time at <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
             </p>
             <button className="demo-modal-close-btn" onClick={close}>Close</button>
           </div>

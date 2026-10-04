@@ -24,7 +24,7 @@ WIDTH = 1512
 SCREENS = {
     'today-doctor-home': 'Today: the doctor home screen',
     'vigil-patient-board': 'Vigil: the ward ordered by NEWS2',
-    'vigil-patient-chart': 'Vigil: a chart with live vitals and the Sepsis Six clock',
+    'vigil-patient-chart': 'Vigil: a chart with the vitals and the Sepsis Six clock',
     'vigil-news2-explained': 'Vigil: every NEWS2 point explained',
     'vigil-patient-story': 'Patient Story: one clinical narrative',
     'vigil-medications-emar': 'Medications and eMAR from the chart',
@@ -63,7 +63,7 @@ SCREENS = {
     'admin-trust': 'Admin: Trust Center',
     'admin-flight': 'Admin: Flight Recorder',
     'admin-models': 'Admin: Model Governance',
-    'admin-scorecard': 'Admin: Pilot Scorecard',
+    'admin-scorecard': 'Admin: Evaluation scorecard',
     'admin-security': 'Admin: Security',
     'admin-audit': 'Admin: Audit logs',
     'admin-users': 'Admin: Users and roles',
@@ -85,6 +85,36 @@ SCREENS = {
     'login-staff': 'Staff sign-in',
 }
 
+# The flow captions come from the manifests in the Orb repo, which were written
+# before the site's wording rules (October 2026: say what a screen shows, never
+# "deteriorating", "by risk", "pilot", "caught", or an escalation the nurse
+# "triggers"). These overrides are applied on import so a re-run does not bring
+# the old words back. Keyed by flow id, then by step number; '' is the title and
+# 'subtitle' the subtitle.
+FLOW_TEXT = {
+    'ward-is-alive': {
+        '': 'The ward, by NEWS2 score',
+        'subtitle': 'The observations, the board ordered by NEWS2 score, and a chart that shows where each point came from',
+        1: 'Sign in as a doctor. Orb Today lists the highest NEWS2 scores by name, new results and pending signatures.',
+        2: 'Patients: the ward ordered by NEWS2 score. The vitals here are simulated demo data, and the order comes from the score, not from a hand.',
+        3: "Open a chart. The NEWS2 score is calculated from the observations by a fixed table, never by a model.",
+    },
+    'wrong-room-warning': {
+        'subtitle': 'Wrong patient, right ward: a common serious error, flagged without a modal',
+    },
+    'nurse-shift': {
+        4: 'NEWS2 is calculated as the values go in, with the RCP response sentence underneath. She sees the score and the sentence before she saves.',
+    },
+    'show-your-work': {
+        3: 'Model Governance: each model, its version, and whether it has been validated. The forecast model says "untrained". The validated one is the NEWS2 table.',
+        4: 'Evaluation scorecard: how a trial ward would be measured. Shadow-mode episodes, adjudication and outcomes, with denominators. The figures are seeded demo data; Orb has not yet run in a hospital.',
+    },
+    'scribe-note': {
+        'subtitle': 'Dictation to a structured, signed note, on the appliance',
+        3: 'Structure Note: the local model drafts a SOAP note. An optional second pass checks it against the transcript for unsupported claims and omissions before anyone signs it.',
+    },
+}
+
 def to_webp(src: Path, dst: Path, quality: int) -> int:
     im = Image.open(src).convert('RGB')
     if im.width > WIDTH:
@@ -96,6 +126,7 @@ def to_webp(src: Path, dst: Path, quality: int) -> int:
 flows = []
 for mpath in sorted((SRC / 'frames').glob('*/manifest.json')):
     m = json.loads(mpath.read_text())
+    text = FLOW_TEXT.get(m['id'], {})
     steps = []
     for s in m['steps']:
         src = mpath.parent / s['file']
@@ -103,8 +134,8 @@ for mpath in sorted((SRC / 'frames').glob('*/manifest.json')):
             continue
         dst = OUT_FLOWS / m['id'] / (Path(s['file']).stem + '.webp')
         size = to_webp(src, dst, 84)
-        steps.append({'n': s['n'], 'caption': s['caption'], 'src': f"/orb/flows/{m['id']}/{dst.name}", 'hold': s.get('hold', 3200)})
-    flows.append({'id': m['id'], 'title': m['title'], 'subtitle': m.get('subtitle', ''), 'user': m.get('user', ''), 'steps': steps})
+        steps.append({'n': s['n'], 'caption': text.get(s['n'], s['caption']), 'src': f"/orb/flows/{m['id']}/{dst.name}", 'hold': s.get('hold', 3200)})
+    flows.append({'id': m['id'], 'title': text.get('', m['title']), 'subtitle': text.get('subtitle', m.get('subtitle', '')), 'user': m.get('user', ''), 'steps': steps})
     print(f"flow {m['id']}: {len(steps)} frames")
 
 screens = {}

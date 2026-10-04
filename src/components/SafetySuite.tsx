@@ -9,7 +9,7 @@ type SafetyItem = {
 const items: SafetyItem[] = [
   {
     title: 'Medication Safety',
-    desc: 'The allergy interlock and the dose guard run on every order, typed or extracted from a note. A blocked item shows the documented reaction, and only a prescriber can override it.',
+    desc: 'The allergy interlock and the dose guard run on order sets and at the bedside, on items typed or extracted from a note. A blocked item shows the documented reaction, and only a prescriber can override it.',
     icon: (
       <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M10.5 20.5 20 11a4.95 4.95 0 1 0-7-7l-9.5 9.5a4.95 4.95 0 1 0 7 7Z" />
@@ -19,7 +19,7 @@ const items: SafetyItem[] = [
   },
   {
     title: 'Sepsis & Care Bundles',
-    desc: 'Sepsis Six starts a 60-minute clock on the chart when NEWS2 crosses the line. Each of the six items turns overdue on its own.',
+    desc: 'The clinician opens Sepsis Six on the chart: a checklist of six items with a 60-minute target, and each item shows when it is overdue.',
     icon: (
       <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <line x1="10" y1="2" x2="14" y2="2" />
@@ -56,7 +56,7 @@ const items: SafetyItem[] = [
   },
   {
     title: 'Standards-Based Interoperability',
-    desc: 'Records export as FHIR today. ABDM support is built behind a flag and is not yet certified; we say which milestone we are at.',
+    desc: 'Records export as FHIR today. Orb is not yet ABDM-certified and sends nothing to ABDM today; your hospital system stays your ABDM system.',
     icon: (
       <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />

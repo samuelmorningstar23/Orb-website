@@ -40,9 +40,9 @@ const MODULE_ENTRIES: SearchEntry[] = ALL_MODULES.map(m => ({
 
 const PAGE_ENTRIES: SearchEntry[] = [
   {
-    id: 'page-home', kind: 'page', title: 'Overview', subtitle: 'The Hospital Operating System', to: '/',
+    id: 'page-home', kind: 'page', title: 'Overview', subtitle: 'Hospital software, inside the hospital', to: '/',
     keywords: ['home', 'overview', 'orb', 'start', 'landing'],
-    body: 'The hospital operating system that runs inside the hospital: the record, the ward monitor, the pharmacy and the front desk on one appliance.',
+    body: 'Hospital software that runs on one computer inside the hospital. The ward record, the NEWS2 score calculated from the nurse’s observations, the drug chart and the case rooms, with the models on the same machine, so nothing about a patient leaves the building.',
   },
   {
     id: 'page-modules', kind: 'page', title: 'All modules', subtitle: 'Every module as a real screen', to: '/modules',
@@ -57,20 +57,20 @@ const PAGE_ENTRIES: SearchEntry[] = [
   {
     id: 'page-support', kind: 'page', title: 'Support', subtitle: 'Help, contact, and common questions', to: '/support',
     keywords: ['support', 'help', 'contact', 'faq', 'questions', 'email', 'assistance', 'troubleshooting'],
-    body: `Reach the Orb team, browse frequently asked questions, or request a walkthrough. ${CONTACT_EMAIL}`,
+    body: `Reach us, browse the common questions, or request a walkthrough. ${CONTACT_EMAIL}`,
   },
 ]
 
 const ACTION_ENTRIES: SearchEntry[] = [
   {
-    id: 'action-demo', kind: 'action', title: 'Request a Demo', subtitle: 'Book a walkthrough with the team', action: 'demo',
+    id: 'action-demo', kind: 'action', title: 'Request a Demo', subtitle: 'Book a walkthrough with us', action: 'demo',
     keywords: ['demo', 'request', 'walkthrough', 'trial', 'book', 'meeting', 'sales', 'see it'],
-    body: 'A walkthrough of the running product on demo patients.',
+    body: 'A walkthrough of the product on demo patients.',
   },
   {
-    id: 'action-mail', kind: 'action', title: `Email ${CONTACT_EMAIL}`, subtitle: 'Write to the Orb team directly', action: 'mail',
+    id: 'action-mail', kind: 'action', title: `Email ${CONTACT_EMAIL}`, subtitle: 'Write to us directly', action: 'mail',
     keywords: ['email', 'mail', 'contact', 'write', 'reach', 'message'],
-    body: 'Contact the team by email.',
+    body: 'Contact us by email.',
   },
 ]
 
@@ -80,8 +80,8 @@ const ACTION_ENTRIES: SearchEntry[] = [
 export const ANSWER_ENTRIES: SearchEntry[] = [
   {
     id: 'qa-what-is-orb', kind: 'answer', title: 'What is Orb?', to: '/',
-    answer: 'Orb is a hospital operating system that runs on an appliance inside the hospital: the patient record, the ward monitor (NEWS2 on every patient), the pharmacy, orders, notes, the front desk, billing and the admin screens, on one database. The models that answer questions and draft notes run on the same appliance, so nothing about a patient leaves the building.',
-    keywords: ['what', 'orb', 'about', 'hospital', 'operating', 'system', 'platform', 'company', 'product', 'os', 'appliance'],
+    answer: 'Orb is hospital software that runs on one computer inside the hospital: the ward record, the NEWS2 score calculated from the nurse’s observations, the drug chart and the case rooms, with the models on the same machine, so nothing about a patient leaves the building. It runs beside the hospital system you already have, and it has not yet run in a hospital.',
+    keywords: ['what', 'orb', 'about', 'hospital', 'software', 'ward', 'record', 'platform', 'company', 'product', 'appliance'],
   },
   {
     id: 'qa-privacy', kind: 'answer', title: 'Does patient data leave the hospital?', to: '/security',
@@ -89,9 +89,9 @@ export const ANSWER_ENTRIES: SearchEntry[] = [
     keywords: ['data', 'privacy', 'leave', 'cloud', 'egress', 'private', 'phi', 'patient', 'stored', 'store', 'send', 'external', 'sovereignty', 'local'],
   },
   {
-    id: 'qa-compliance', kind: 'answer', title: 'Is Orb compliant with DPDP, ABDM, NABH, HIPAA or GDPR?', to: '/security',
-    answer: 'Orb is built for India first: the technical safeguards the DPDP Act asks for, ABDM (not yet certified; Orb sends nothing to ABDM today), and the evidence NABH inspects. The same architecture, on-site processing, role-based access and a hash-chained audit log, covers what HIPAA and GDPR require. None of it substitutes for your own certification.',
-    keywords: ['hipaa', 'gdpr', 'dpdp', 'abdm', 'nabh', 'compliance', 'compliant', 'regulation', 'certified', 'legal', 'audit', 'safeguards', 'security'],
+    id: 'qa-compliance', kind: 'answer', title: 'Where does Orb stand on DPDP, ABDM and NABH?', to: '/security',
+    answer: 'Orb is built for India first: the technical safeguards the DPDP Act asks for, ABDM (not yet certified; Orb sends nothing to ABDM today), and the evidence NABH inspects, through on-site processing, role-based access and a hash-chained audit log. None of it substitutes for your own certification.',
+    keywords: ['dpdp', 'abdm', 'nabh', 'compliance', 'compliant', 'regulation', 'certified', 'legal', 'audit', 'safeguards', 'security'],
   },
   {
     id: 'qa-offline', kind: 'answer', title: 'Does Orb work during internet outages?', to: '/security',
@@ -115,13 +115,13 @@ export const ANSWER_ENTRIES: SearchEntry[] = [
   },
   {
     id: 'qa-modules-count', kind: 'answer', title: 'Which modules does Orb have?', to: '/#modules',
-    answer: `On this site: ${ALL_MODULES.map(m => m.label).join(', ')}. The same appliance also runs the front desk, billing, payments, insurance and TPA, procurement, housekeeping, workforce, equipment, diet and kitchen, NABH evidence and the admin screens (Trust Center, Flight Recorder, Model Governance, Pilot Scorecard).`,
+    answer: `On this site: ${ALL_MODULES.map(m => m.label).join(', ')}. Also on the appliance, and not part of the founding programme: the front desk, billing, payments, insurance and TPA, procurement, housekeeping, workforce, equipment, diet and kitchen, NABH evidence and the admin screens (Trust Center, Flight Recorder, Model Governance, Evaluation scorecard). In the founding programme Orb runs on one ward, beside your hospital system.`,
     keywords: ['many', 'modules', 'count', 'number', 'which', 'list', 'included', 'features', 'apps', 'billing', 'front desk'],
   },
   {
     id: 'qa-demo', kind: 'answer', title: 'How do I see Orb in action?', to: '/support',
-    answer: 'Every screen on this site is a capture of the running product on demo patients. For the live version, request a demo: a walkthrough on a call, about your wards, with the product open rather than slides.',
-    keywords: ['demo', 'see', 'try', 'trial', 'walkthrough', 'test', 'evaluate', 'poc', 'pilot', 'action'],
+    answer: 'Every screen on this site is a capture of the product running on a test computer with demo patients. To see it live, request a demo: a walkthrough on a call, about your wards, with the product open rather than slides.',
+    keywords: ['demo', 'see', 'try', 'trial', 'walkthrough', 'test', 'evaluate', 'poc', 'founding', 'action'],
   },
   {
     id: 'qa-deployment', kind: 'answer', title: 'How is Orb deployed?', to: '/plans',
@@ -130,12 +130,12 @@ export const ANSWER_ENTRIES: SearchEntry[] = [
   },
   {
     id: 'qa-who-for', kind: 'answer', title: 'Who is Orb for?', to: '/',
-    answer: 'Hospitals, starting with one ward. Nurses get the score and what is due now, doctors get the chart and a model that answers on site, pharmacists get a verification queue, administrators get the Trust Center and the audit log, and patients get Bridge.',
+    answer: 'Hospitals, starting with one ward beside the system they already run. The founding programme is the ward’s observation record and a monthly file for the quality team. The screens on this site show the rest: what nurses see (observations, the NEWS2 score, what is due now), what doctors see (the chart, the case rooms, a model that answers on site), the pharmacist’s verification queue, the admin screens and Bridge for patients.',
     keywords: ['who', 'for', 'audience', 'customers', 'hospitals', 'clinics', 'users', 'buyer', 'nurses', 'doctors', 'pharmacists', 'patients'],
   },
   {
-    id: 'qa-contact', kind: 'answer', title: 'How do I contact the Orb team?', to: '/support',
-    answer: `Email ${CONTACT_EMAIL} any time, or request a demo from any page. A person reads every message.`,
+    id: 'qa-contact', kind: 'answer', title: 'How do I contact Orb?', to: '/support',
+    answer: `Email ${CONTACT_EMAIL} any time, or request a demo from any page. One person reads every message.`,
     keywords: ['contact', 'reach', 'email', 'talk', 'human', 'team', 'phone', 'sales', 'touch'],
   },
 ]

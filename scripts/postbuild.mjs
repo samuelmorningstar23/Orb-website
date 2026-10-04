@@ -23,11 +23,11 @@ const plansLede = readFileSync('src/data/plans.ts', 'utf8').match(/PLANS_LEDE = 
 if (!plansLede) throw new Error('postbuild: PLANS_LEDE not found in src/data/plans.ts')
 
 const pages = [
-  { route: '/', title: 'Orb Hospital OS', description: 'The record, the ward monitor, the pharmacy and the front desk on one appliance inside the hospital. The models run there too, so nothing about a patient leaves the building.' },
-  { route: '/modules', title: 'The modules | Orb', description: 'Every Orb module as a real screen of the running product, each opening a page that runs its workflows.' },
+  { route: '/', title: 'Orb', description: 'Hospital software that runs on one computer inside the hospital. The ward record, the NEWS2 score calculated from the nurse\'s observations, the drug chart and the case rooms, with the models on the same machine, so nothing about a patient leaves the building.' },
+  { route: '/modules', title: 'The modules | Orb', description: 'Every Orb module as a real screen of the product running on demo patients, each opening a page that walks its workflow.' },
   { route: '/plans', title: 'Plans | Orb', description: plansLede },
   { route: '/security', title: 'Security brief | Orb', description: 'What leaves the building: nothing. The appliance, the models and the hash-chained audit log, with the admin screens they are checked on.' },
-  { route: '/support', title: 'Support | Orb', description: 'Write to the team, book a walkthrough of the running product, or find the answer below.' },
+  { route: '/support', title: 'Support | Orb', description: 'Write to us, book a walkthrough of the product on demo patients, or find the answer below.' },
   ...modules,
 ]
 

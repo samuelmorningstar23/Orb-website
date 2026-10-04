@@ -64,7 +64,7 @@ export default function Security() {
               { name: 'admin-trust', label: 'Trust Center', caption: 'Compliance posture aggregated from the running system. Amber is amber, and an all-green screen should be trusted less.' },
               { name: 'admin-flight', label: 'Flight Recorder', caption: 'A SHA-256 hash chain over every audit row, with its verification state on the page.' },
               { name: 'admin-models', label: 'Model Governance', caption: 'Every model with its version and validation state, including the one that says untrained.' },
-              { name: 'admin-scorecard', label: 'Pilot Scorecard', caption: 'How a pilot is measured: shadow-mode episodes, adjudication and outcomes, with the denominators shown.' },
+              { name: 'admin-scorecard', label: 'Evaluation scorecard', caption: 'How a trial ward would be measured: shadow-mode episodes, adjudication and outcomes, with the denominators shown. The figures here are seeded demo data; Orb has not yet run in a hospital.' },
             ]}
           />
         </section>

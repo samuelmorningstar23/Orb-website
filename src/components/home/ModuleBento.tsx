@@ -28,7 +28,7 @@ const TILES: { to: string; step: number }[] = [
   { to: '/lens', step: 2 },
 ]
 
-const OPS = ['Front Desk', 'Billing', 'Payments', 'Insurance and TPA', 'Procurement', 'Housekeeping', 'Workforce', 'Equipment', 'Diet and Kitchen', 'NABH', 'ABDM']
+const OPS = ['Front Desk', 'Billing', 'Payments', 'Insurance and TPA', 'Procurement', 'Housekeeping', 'Workforce', 'Equipment', 'Diet and Kitchen', 'NABH']
 
 export default function ModuleBento() {
   return (
@@ -63,7 +63,7 @@ export default function ModuleBento() {
         <Link to="/plans" className="wall__card wall__card--ops">
           <span className="wall__meta">
             <span className="wall__name">The rest of the house</span>
-            <span className="wall__line">Running behind the same record, on the same appliance.</span>
+            <span className="wall__line">Also on the appliance. Not part of the founding programme.</span>
             <span className="wall__ops">
               {OPS.map(o => <span key={o} className="wall__op">{o}</span>)}
             </span>

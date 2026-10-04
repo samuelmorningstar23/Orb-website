@@ -6,7 +6,7 @@ import './News2Live.css'
  *
  * This is a port of compute_news2() in the Orb server (services/vigil_service.py):
  * the RCP 2017 bands, the +2 for supplemental oxygen, the ACVPU rule, the
- * single-parameter-3 rule and the escalation responses from the nurse shift
+ * single-parameter-3 rule and the clinical response text from the nurse shift
  * service. In the product the score is computed server-side on every set of
  * observations and never re-implemented in the UI; this widget exists so a
  * visitor can see the rule work with their own numbers. It is decision support
@@ -89,11 +89,12 @@ function scoreNews2(o: Obs): Result {
 
   const level: Result['level'] = total >= 7 ? 'critical' : total >= 5 || single3 ? 'elevated' : 'stable'
 
-  // Escalation, as the nurse shift service phrases it (RCP NEWS2 responses).
+  // The clinical response for each band, in the RCP's own terms: who is
+  // informed and who reviews. The clinician decides what follows.
   let band: string, response: string, interval: number
-  if (total >= 7) { band = 'NEWS2 7 or more'; interval = 30; response = 'Continuous monitoring. Emergency assessment by a critical-care-competent team.' }
-  else if (total >= 5) { band = 'NEWS2 5 to 6'; interval = 60; response = 'Urgent review by a clinician competent in acute illness. Escalate now.' }
-  else if (single3) { band = 'Single parameter 3'; interval = 60; response = 'A single parameter scoring 3 requires urgent review. Escalate.' }
+  if (total >= 7) { band = 'NEWS2 7 or more'; interval = 30; response = 'Continuous monitoring. Emergency assessment by a team with critical-care competencies.' }
+  else if (total >= 5) { band = 'NEWS2 5 to 6'; interval = 60; response = 'The nurse informs the medical team now. Urgent review by a clinician competent in acute illness.' }
+  else if (single3) { band = 'Single parameter 3'; interval = 60; response = 'A single parameter scoring 3: the nurse informs the medical team, who review and decide.' }
   else if (total >= 1) { band = 'NEWS2 1 to 4'; interval = 240; response = 'Ward-based response: inform the registered nurse in charge.' }
   else { band = 'NEWS2 0'; interval = 720; response = 'Routine monitoring, minimum 12-hourly.' }
 
@@ -136,7 +137,7 @@ export default function News2Live() {
         <span className="news2__eyebrow">Try the rule</span>
         <h2 className="news2__title">The score the ward runs on, with your numbers.</h2>
         <p className="news2__lead">
-          NEWS2 (Royal College of Physicians, 2017), the same table Orb applies to every set of observations. No model is involved: a nurse can check any point by hand, and the escalation sentence is the one that appears on the ward.
+          NEWS2 (Royal College of Physicians, 2017), the same table Orb applies to every set of observations a nurse records. No model is involved: a nurse can check any point by hand, and the response sentence is the RCP’s own, shown for the clinician to decide on.
         </p>
         <div className="news2__presets" role="group" aria-label="Example patients">
           {PRESETS.map(p => (
@@ -217,7 +218,7 @@ export default function News2Live() {
             {result.parts.every(p => p.points === 0) && <li className="news2__driver-none">Every parameter in range.</li>}
           </ul>
           <p className="news2__foot">
-            Ported from the server's compute_news2, not re-derived for this page. In Orb the score is computed on the appliance for every observation, and the nurse sees it before saving.
+            Ported from the server's compute_news2, not re-derived for this page. In Orb the score is calculated on the appliance for every set of observations, and the nurse sees it before saving.
           </p>
         </div>
       </div>

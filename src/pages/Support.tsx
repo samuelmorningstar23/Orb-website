@@ -71,7 +71,7 @@ export default function Support() {
           <span className="module-detail__badge">Support</span>
           <h1 className="module-detail__title">How can we help?</h1>
           <p className="module-detail__tagline">
-            A person reads every message. Write to us, book a walkthrough of the running product, or find the answer below.
+            One person reads every message. Write to us, book a walkthrough of the product on demo patients, or find the answer below.
           </p>
         </section>
 
@@ -83,7 +83,7 @@ export default function Support() {
               </svg>
             </div>
             <h3 className="support-page__channel-title">Email us</h3>
-            <p className="support-page__channel-desc">Questions, issues, or feedback. Straight to the team’s inbox.</p>
+            <p className="support-page__channel-desc">Questions, issues, or feedback. Straight to my inbox.</p>
             <span className="support-page__channel-action">{CONTACT_EMAIL}</span>
           </a>
 
@@ -94,7 +94,7 @@ export default function Support() {
               </svg>
             </div>
             <h3 className="support-page__channel-title">Request a demo</h3>
-            <p className="support-page__channel-desc">A walkthrough of the running product on demo patients, about your wards.</p>
+            <p className="support-page__channel-desc">A walkthrough of the product on demo patients, about your wards.</p>
             <span className="support-page__channel-action">Book a walkthrough &rarr;</span>
           </button>
 
@@ -146,7 +146,7 @@ export default function Support() {
                 </svg>
               </div>
               <h3>Message sent</h3>
-              <p>Thanks, it’s on its way to the team. We’ll reply to your email, usually within one business day.</p>
+              <p>Thanks, it’s on its way to me. I’ll reply to your email, usually within one business day.</p>
               <button className="support-page__form-again" onClick={() => setIsSuccess(false)}>Send another message</button>
             </div>
           ) : (

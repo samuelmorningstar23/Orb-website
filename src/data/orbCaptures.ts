@@ -6,25 +6,25 @@ export interface Screen { title: string; dark: string; light: string }
 export const FLOWS: Flow[] = [
   {
     "id": "ward-is-alive",
-    "title": "The ward watches itself",
-    "subtitle": "Live vitals, NEWS2 ordering, and a chart that explains its own score",
+    "title": "The ward, by NEWS2 score",
+    "subtitle": "The observations, the board ordered by NEWS2 score, and a chart that shows where each point came from",
     "user": "DOC001",
     "steps": [
       {
         "n": 1,
-        "caption": "Sign in as a doctor. Orb Today lists what needs you first: deteriorating patients, new results, pending signatures.",
+        "caption": "Sign in as a doctor. Orb Today lists the highest NEWS2 scores by name, new results and pending signatures.",
         "src": "/orb/flows/ward-is-alive/01.webp",
         "hold": 3200
       },
       {
         "n": 2,
-        "caption": "Patients: the ward ordered by risk. Vitals move because a monitor feed is running; the order is NEWS2-derived, not hand-placed.",
+        "caption": "Patients: the ward ordered by NEWS2 score. The vitals here are simulated demo data, and the order comes from the score, not from a hand.",
         "src": "/orb/flows/ward-is-alive/02.webp",
         "hold": 3200
       },
       {
         "n": 3,
-        "caption": "Open a chart. The NEWS2 band is computed by Orb's deterministic engine, never by a model.",
+        "caption": "Open a chart. The NEWS2 score is calculated from the observations by a fixed table, never by a model.",
         "src": "/orb/flows/ward-is-alive/03.webp",
         "hold": 3200
       },
@@ -83,7 +83,7 @@ export const FLOWS: Flow[] = [
   {
     "id": "wrong-room-warning",
     "title": "The wrong-room warning",
-    "subtitle": "Wrong patient, right ward: the most common serious error, caught without a modal",
+    "subtitle": "Wrong patient, right ward: a common serious error, flagged without a modal",
     "user": "DOC001",
     "steps": [
       {
@@ -190,7 +190,7 @@ export const FLOWS: Flow[] = [
       },
       {
         "n": 4,
-        "caption": "NEWS2 computes live as the values go in, with the RCP escalation sentence underneath. She sees what she is about to trigger before she saves it.",
+        "caption": "NEWS2 is calculated as the values go in, with the RCP response sentence underneath. She sees the score and the sentence before she saves.",
         "src": "/orb/flows/nurse-shift/04.webp",
         "hold": 5000
       },
@@ -222,13 +222,13 @@ export const FLOWS: Flow[] = [
       },
       {
         "n": 3,
-        "caption": "Model Governance: each model, its version, and whether it has been validated. The forecast model says \"untrained\". The validated one is the deterministic score that drives escalation.",
+        "caption": "Model Governance: each model, its version, and whether it has been validated. The forecast model says \"untrained\". The validated one is the NEWS2 table.",
         "src": "/orb/flows/show-your-work/03.webp",
         "hold": 5000
       },
       {
         "n": 4,
-        "caption": "Pilot Scorecard: how the pilot will be measured. Shadow-mode episodes, adjudication, outcomes, denominators included.",
+        "caption": "Evaluation scorecard: how a trial ward would be measured. Shadow-mode episodes, adjudication and outcomes, with denominators. The figures are seeded demo data; Orb has not yet run in a hospital.",
         "src": "/orb/flows/show-your-work/04.webp",
         "hold": 4500
       }
@@ -237,7 +237,7 @@ export const FLOWS: Flow[] = [
   {
     "id": "scribe-note",
     "title": "Scribe",
-    "subtitle": "Dictation to a structured, verified note, on-device",
+    "subtitle": "Dictation to a structured, signed note, on the appliance",
     "user": "DOC001",
     "steps": [
       {
@@ -254,7 +254,7 @@ export const FLOWS: Flow[] = [
       },
       {
         "n": 3,
-        "caption": "Structure Note: the local model drafts a SOAP note, then a second pass checks it against the transcript for unsupported claims and omissions before anyone signs it.",
+        "caption": "Structure Note: the local model drafts a SOAP note. An optional second pass checks it against the transcript for unsupported claims and omissions before anyone signs it.",
         "src": "/orb/flows/scribe-note/03.webp",
         "hold": 6000
       },
@@ -331,7 +331,7 @@ export const SCREENS: Record<string, Screen> = {
     "light": "/orb/screens/light/vigil-patient-board.webp"
   },
   "vigil-patient-chart": {
-    "title": "Vigil: a chart with live vitals and the Sepsis Six clock",
+    "title": "Vigil: a chart with the vitals and the Sepsis Six clock",
     "dark": "/orb/screens/dark/vigil-patient-chart.webp",
     "light": "/orb/screens/light/vigil-patient-chart.webp"
   },
@@ -526,7 +526,7 @@ export const SCREENS: Record<string, Screen> = {
     "light": "/orb/screens/light/admin-models.webp"
   },
   "admin-scorecard": {
-    "title": "Admin: Pilot Scorecard",
+    "title": "Admin: Evaluation scorecard",
     "dark": "/orb/screens/dark/admin-scorecard.webp",
     "light": "/orb/screens/light/admin-scorecard.webp"
   },
