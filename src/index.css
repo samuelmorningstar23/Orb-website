@@ -67,7 +67,9 @@
   /* Status - vivid clinical indicators */
   --status-ok: #00E676;
   --status-warn: #FFB300;
+  --status-warn-text: var(--status-warn);
   --status-danger: #FF5252;
+  --status-danger-text: var(--status-danger);
 
   /* Borders - visible depth */
   --border-subtle: rgba(255, 255, 255, 0.06);
@@ -294,7 +296,9 @@ input, textarea { font-family: inherit; }
 
   --status-ok: #059669;
   --status-warn: #D97706;
+  --status-warn-text: #92400E;
   --status-danger: #DC2626;
+  --status-danger-text: #B91C1C;
 
   --border-subtle: rgba(0, 0, 0, 0.05);
   --border-glass: rgba(0, 0, 0, 0.06);
