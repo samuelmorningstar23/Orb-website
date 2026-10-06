@@ -48,10 +48,8 @@ SCREENS = {
 HELD_BACK = {
     'vigil-patient-board': 'Vigil: the ward ordered by NEWS2',
     'vigil-patient-chart': 'Vigil: a chart with the vitals and the Sepsis Six clock',
-    'vigil-news2-explained': 'Vigil: every NEWS2 point explained',
     'vigil-patient-story': 'Patient Story: one clinical narrative',
     'nurse-administer-medication': 'Nurse mode: administering a dose',
-    'pharmacy-verify-queue': 'Helix: pharmacist verification queue',
     'pharmacy-formulary': 'Helix: formulary',
     'relay-case-room': 'Relay: a case room with Vigil alerts inline',
     'admin-models': 'Admin: Model Governance',
@@ -68,6 +66,11 @@ HELD_BACK = {
 CROPS = {
     'admin-trust': (255, 944),
     'admin-flight': (174, 863),
+    # The 4 Oct 2026 capture: from the model's labelled note down to the end of
+    # the scoring card, above a section the page printed twice (bug reported).
+    'vigil-news2-explained': (158, 778),
+    # The queue holds two rows; the frame ends under the table instead of showing half a page of nothing.
+    'pharmacy-verify-queue': (0, 560),
 }
 
 def to_webp(src: Path, dst: Path, quality: int, crop=None) -> tuple[int, int]:

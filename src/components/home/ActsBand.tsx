@@ -4,9 +4,9 @@ import './ActsBand.css'
 
 const STEPS = [
   { n: '01', label: 'Read', line: 'The chart and the observations, as the ward recorded them.' },
-  { n: '02', label: 'Draft', line: 'An order, a note, or the score with every reading behind it and the guideline it used.' },
+  { n: '02', label: 'Draft', line: 'An order or a note, with the guideline it read listed under it.' },
   { n: '03', label: 'Confirm', line: 'A named clinician approves it. Or it goes nowhere.' },
-  { n: '04', label: 'Record', line: 'Order placed. Pharmacist queued. Audit row sealed.' },
+  { n: '04', label: 'Record', line: 'The order goes on the chart, the pharmacist sees it in the queue, and the log keeps who did it and when.' },
 ]
 
 /** How Orb works, in four numbered beats. */
@@ -17,7 +17,7 @@ export default function ActsBand() {
         <span className="acts__eyebrow">How it works</span>
         <h2 className="acts__title" id="acts-title">Orb drafts.<br />A clinician signs.</h2>
         <p className="acts__lead">
-          The models that read the record only draft. Nothing is filed until a named person says yes. A drafted medication still meets the allergy interlock and the dose guard, then waits for a pharmacist.
+          The models only draft. A doctor or nurse signs by name, and a drafted medicine still passes the allergy block and the dose check before a pharmacist sees it.
         </p>
       </Reveal>
       <Stagger className="acts__steps" as="ul">
@@ -30,7 +30,7 @@ export default function ActsBand() {
         ))}
       </Stagger>
       <Reveal className="acts__cta">
-        <Link to="/helix" className="acts__link">Watch the interlock stop an order <span aria-hidden="true">&rarr;</span></Link>
+        <Link to="/helix" className="acts__link">Watch the allergy block stop an order <span aria-hidden="true">&rarr;</span></Link>
       </Reveal>
     </section>
   )

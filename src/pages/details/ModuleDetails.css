@@ -328,6 +328,12 @@
 
 .mp__demo-note { margin: 12px 6px 2px; font-size: 0.88rem; color: var(--text-muted); }
 
+/* Where the module stands against the founding programme: one muted line under the button. */
+.mp__programme { margin: 22px 0 0; max-width: 46ch; font-size: 0.94rem; line-height: 1.5; color: var(--text-muted); text-wrap: pretty; }
+.mp__programme a { color: var(--accent); font-weight: 600; white-space: nowrap; }
+.mp__programme a:hover { text-decoration: underline; }
+[data-theme="light"] .mp__programme a { color: var(--accent-deep); }
+
 .mp__h2 {
   font-family: var(--font-display);
   font-weight: 700;
@@ -383,6 +389,8 @@
   margin: 0 auto;
   text-wrap: balance;
 }
+
+.mp__cta-desc { max-width: 48ch; margin: 16px auto 0; text-wrap: pretty; }
 
 .mp .news2 { margin-top: clamp(44px, 6vh, 72px); }
 

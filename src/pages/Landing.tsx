@@ -27,13 +27,13 @@ export default function Landing() {
         <Checks />
 
         <Reveal as="section" className="landing-overview__cta" amount={0.4}>
-          <h2 className="landing-overview__cta-title">See it run. On a call.</h2>
+          <h2 className="landing-overview__cta-title">See it running, on a call about your wards.</h2>
           <p className="landing-overview__cta-desc">
-            A walkthrough on demo patients, about your wards. The product is open the whole time. No slides.
+            On demo patients, with the product open the whole time. No slides. The founding programme starts smaller than this page: one ward’s observation record and a monthly file for your quality team.
           </p>
           <div className="landing-overview__cta-actions">
             <button className="landing-overview__btn-primary" onClick={openDemoModal}>Book a walkthrough</button>
-            <Link to="/plans" className="landing-overview__btn-secondary-action">Plans &nbsp;&rarr;</Link>
+            <Link to="/plans" className="landing-overview__btn-secondary-action">The founding programme &nbsp;&rarr;</Link>
           </div>
         </Reveal>
 

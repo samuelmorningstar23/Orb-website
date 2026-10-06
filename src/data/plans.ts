@@ -26,5 +26,5 @@ export const NOT_TODAY: { title: string; body: string }[] = [
   { title: 'It is not ABDM-certified', body: 'Orb sends nothing to ABDM. Whatever you do with ABDM today stays in your hospital system.' },
   { title: 'It does not replace your hospital system', body: 'Registration, billing, pharmacy and lab stay where they are. Orb runs beside them, on one ward.' },
   { title: 'It is one person today', body: 'I build Orb and I support it. That is why the programme takes three hospitals, one ward each, and no more until there is a second pair of hands.' },
-  { title: 'It is not everything on this site', body: 'The founding programme is the ward’s observation record and a monthly file for your quality team. The scoring, alerts and AI screens on other pages are not part of it.' },
+  { title: 'It is not everything on this site', body: 'The founding programme is two things. One of your ward clerks copies the observation sheet into Orb, so your nurses change nothing and no paper stops, and your quality team gets a file each month showing which observation rounds were done, late or left blank. The NEWS2 score, the alerts, the drug checks and the AI screens on other pages are not part of it.' },
 ]

@@ -86,6 +86,7 @@ p { max-width: var(--measure); }
 .landing-overview__cta-desc,
 .module-detail__cta-desc,
 .plans__cta-desc,
+.mp__cta-desc,
 .safety-suite__desc,
 .news2__lead,
 .security-page__audit-body {

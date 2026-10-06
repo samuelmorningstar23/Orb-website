@@ -34,10 +34,10 @@ export default function ModuleBento() {
   return (
     <section className="wall" id="modules" aria-label="The modules">
       <Reveal className="wall__header">
-        <span className="wall__eyebrow">{TILES.length} modules. One record.</span>
+        <span className="wall__eyebrow">Fourteen modules, one record</span>
         <h2 className="wall__title">Pick a module. Watch it work.</h2>
         <p className="wall__lead">
-          Each card is one moment from the module, drawn from its own screens. The captures, where there are any, are on its page.
+          On the ward, in theatre, across the hospital, with patients and in the back office. Open one for its workflow and the real screens.
         </p>
       </Reveal>
 
@@ -62,8 +62,8 @@ export default function ModuleBento() {
 
         <Link to="/plans" className="wall__card wall__card--ops">
           <span className="wall__meta">
-            <span className="wall__name">The rest of the house</span>
-            <span className="wall__line">On the appliance too. Outside the founding programme.</span>
+            <span className="wall__name">The rest of the hospital</span>
+            <span className="wall__line">Also on the computer, and outside the founding programme.</span>
             <span className="wall__ops">
               {OPS.map(o => <span key={o} className="wall__op">{o}</span>)}
             </span>

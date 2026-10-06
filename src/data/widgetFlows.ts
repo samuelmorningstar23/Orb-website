@@ -233,9 +233,9 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
       id: 'ask', label: 'Ask Sage', app: 'Orb Sage', who: 'General Medicine',
       steps: [
         {
-          caption: 'Sage runs on the appliance. No question, and no chart, leaves the building.',
+          caption: 'Sage runs on the computer. No question, and no chart, leaves the building.',
           scene: {
-            head: 'Sage', sub: 'Clinical AI · on this appliance',
+            head: 'Sage', sub: 'Clinical AI · on this computer',
             blocks: [
               { id: 'chips', k: 'chips', chips: [{ text: '27B careful', tone: 'ok' }, { text: '4B fast', tone: 'ok' }, { text: 'No egress', tone: 'muted' }] },
               { id: 'cards', k: 'rows', label: 'Start with', rows: [
@@ -249,7 +249,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
         {
           caption: 'Fast mode sends general questions to the small model. Patient, medication and dose questions always go to the careful one. That floor is not a toggle.',
           scene: {
-            head: 'Sage', sub: 'Clinical AI · on this appliance',
+            head: 'Sage', sub: 'Clinical AI · on this computer',
             blocks: [
               { id: 'chips', k: 'chips', chips: [{ text: '4B fast · on', tone: 'accent' }, { text: 'Patient and dose questions still route to 27B', tone: 'muted' }] },
               { id: 'cards', k: 'rows', label: 'Start with', rows: [
@@ -263,7 +263,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
         {
           caption: 'A question a registrar asks at two in the morning.',
           scene: {
-            head: 'Sage', sub: 'Clinical AI · on this appliance',
+            head: 'Sage', sub: 'Clinical AI · on this computer',
             blocks: [
               { id: 'chips', k: 'chips', chips: [{ text: '4B fast · on', tone: 'accent' }] },
               { id: 'chat', k: 'chat', msgs: [
@@ -276,12 +276,12 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
         {
           caption: 'The answer arrives with its safety line before the first sentence.',
           scene: {
-            head: 'Sage', sub: 'Clinical AI · on this appliance',
+            head: 'Sage', sub: 'Clinical AI · on this computer',
             blocks: [
               { id: 'chips', k: 'chips', chips: [{ text: '4B fast · on', tone: 'accent' }] },
               { id: 'chat', k: 'chat', msgs: [
                 { from: 'you', text: 'What are the classic ECG findings in hyperkalaemia?' },
-                { from: 'orb', badge: 'Confirm against your local protocol', text: 'Peaked T waves are the earliest change, followed by a flattened P wave, a widened QRS, and finally a sine-wave pattern.', meta: 'Answered on the appliance' },
+                { from: 'orb', badge: 'Confirm against your local protocol', text: 'Peaked T waves are the earliest change, followed by a flattened P wave, a widened QRS, and finally a sine-wave pattern.', meta: 'Answered on the computer' },
               ] },
             ],
           },
@@ -289,13 +289,13 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
         {
           caption: 'Show details lists the guidance the model read. An answer you cannot check is no answer at all.',
           scene: {
-            head: 'Sage', sub: 'Clinical AI · on this appliance',
+            head: 'Sage', sub: 'Clinical AI · on this computer',
             blocks: [
               { id: 'chat', k: 'chat', msgs: [
                 { from: 'orb', badge: 'Confirm against your local protocol', text: 'Peaked T waves are the earliest change, followed by a flattened P wave, a widened QRS, and finally a sine-wave pattern.' },
               ] },
               { id: 'lines', k: 'lines', label: 'Show details', lines: [
-                { text: 'Retrieved from the guideline set loaded on the appliance', strong: true },
+                { text: 'Retrieved from the guideline set loaded on the computer', strong: true },
                 { text: 'Passages listed with the answer, each one openable' },
                 { text: 'Model, mode and timing recorded in the audit log' },
               ] },
@@ -352,7 +352,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
       id: 'note', label: 'A note, signed', app: 'Orb Scribe', who: 'General Medicine',
       steps: [
         {
-          caption: 'Dictate or type the consultation. Speech becomes text on the appliance. No cloud service hears it.',
+          caption: 'Dictate or type the consultation. Speech becomes text on the computer. No cloud service hears it.',
           scene: {
             head: 'Scribe', sub: 'New consultation',
             blocks: [
@@ -408,7 +408,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
             blocks: [
               { id: 'banner', k: 'banner', tone: 'ok', tag: 'Signed', title: 'Note filed on the chart', body: 'Signature, time and verification state stored with the note.' },
               { id: 'rows', k: 'rows', label: 'Sent to the pharmacist’s queue', rows: [
-                { id: 'p1', title: 'Prednisolone 40 mg oral, once daily', sub: 'From the signed note', tag: 'AI extracted', tagTone: 'warn' },
+                { id: 'p1', title: 'Prednisolone 40 mg oral, once daily', sub: 'From the signed note', tag: 'Sage, from notes', tagTone: 'warn' },
               ] },
             ],
           },
@@ -419,7 +419,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
 
   '/helix': [
     {
-      id: 'interlock', label: 'The interlock', app: 'Orb Helix', who: 'General Medicine',
+      id: 'interlock', label: 'The allergy block', app: 'Orb Helix', who: 'General Medicine',
       steps: [
         {
           caption: 'An order set is always chosen for a named patient. There is nothing to show until Orb knows whose chart this is.',
@@ -496,13 +496,13 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
       id: 'verify', label: 'Verification', app: 'Orb Helix', who: 'Pharmacist',
       steps: [
         {
-          caption: 'Medications a model pulled out of a signed note land here first, marked as extracted.',
+          caption: 'Medications a model pulled out of a signed note land here first, with their source on the row.',
           scene: {
             head: 'Verification queue', sub: '3 waiting',
             blocks: [
               { id: 'rows', k: 'rows', label: 'Waiting', rows: [
-                { id: 'p1', title: 'Prednisolone 40 mg oral', sub: 'Rajesh Iyer · from a signed note', tag: 'AI extracted', tagTone: 'warn', active: true },
-                { id: 'p2', title: 'Salbutamol nebuliser', sub: 'Rajesh Iyer · from a signed note', tag: 'AI extracted', tagTone: 'warn' },
+                { id: 'p1', title: 'Prednisolone 40 mg oral', sub: 'Rajesh Iyer · from a signed note', tag: 'Sage, from notes', tagTone: 'warn', active: true },
+                { id: 'p2', title: 'Salbutamol nebuliser', sub: 'Rajesh Iyer · from a signed note', tag: 'Sage, from notes', tagTone: 'warn' },
                 { id: 'p3', title: 'Amoxicillin 500 mg', sub: 'Ananya Kapoor · typed by a prescriber', tag: 'Prescribed', tagTone: 'muted' },
               ] },
             ],
@@ -590,7 +590,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
           },
         },
         {
-          caption: 'Orb delivers it, then says so. A nurse mid-emergency gets no modal in the way, and the message is never silently lost.',
+          caption: 'Orb delivers it, then says so. A nurse mid-emergency gets no pop-up in the way, and the message is never silently lost.',
           scene: {
             head: 'Suresh Reddy', sub: 'GM-104 · case room',
             blocks: [
@@ -615,15 +615,15 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
             head: 'Lens', sub: 'New image',
             blocks: [
               { id: 'rows', k: 'rows', rows: [
-                { id: 'img', title: 'chest-ap-rajesh.jpg', sub: 'Uploaded from the ward tablet', tag: 'On the appliance', tagTone: 'ok', active: true },
+                { id: 'img', title: 'chest-ap-rajesh.jpg', sub: 'Uploaded from the ward tablet', tag: 'On the computer', tagTone: 'ok', active: true },
               ] },
             ],
           },
         },
         {
-          caption: 'The model that reads it runs on the appliance. The image stays in the building, and so does every word about it.',
+          caption: 'The model that reads it runs on the computer. The image stays in the building, and so does every word about it.',
           scene: {
-            head: 'Lens', sub: 'Reading · on this appliance',
+            head: 'Lens', sub: 'Reading · on this computer',
             blocks: [
               { id: 'rows', k: 'rows', rows: [{ id: 'img', title: 'chest-ap-rajesh.jpg', sub: 'Reading', tag: 'No egress', tagTone: 'muted', active: true }] },
               { id: 'chat', k: 'chat', msgs: [{ from: 'orb', text: '', typing: true }] },
@@ -825,10 +825,10 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
 
   '/command-center': [
     {
-      id: 'command', label: 'The whole house', app: 'Orb Command Center', who: 'General Medicine',
+      id: 'command', label: 'The whole hospital', app: 'Orb Command Center', who: 'General Medicine',
       steps: [
         {
-          caption: 'Four numbers the house runs on, each printed with its denominator.',
+          caption: 'Four numbers the hospital runs on, each printed with its denominator.',
           scene: {
             head: 'Command Center', sub: 'Live',
             blocks: [
@@ -1081,7 +1081,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
         {
           caption: 'It reads the notes already on the chart. The model runs inside the hospital, and no chart goes to a coding vendor.',
           scene: {
-            head: 'Reading the chart', sub: 'On this appliance',
+            head: 'Reading the chart', sub: 'On this computer',
             blocks: [
               { id: 'chat', k: 'chat', msgs: [{ from: 'orb', text: '', typing: true }] },
               { id: 'lines', k: 'lines', lines: [{ text: '4 signed notes and the results on file' }] },
@@ -1135,7 +1135,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
           },
         },
         {
-          caption: 'The Flight Recorder is a SHA-256 hash chain over every audit row.',
+          caption: 'The Flight Recorder is a SHA-256 hash chain over every audit entry.',
           scene: {
             head: 'Flight Recorder', sub: 'Audit log',
             blocks: [
@@ -1166,8 +1166,8 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
             head: 'Model Governance', sub: 'Registered models',
             blocks: [
               { id: 'rows', k: 'rows', rows: [
-                { id: 'm1', title: 'NEWS2 engine', sub: 'Deterministic · RCP 2017 table', tag: 'Validated', tagTone: 'ok' },
-                { id: 'm2', title: 'Clinical model, 27B', sub: 'Runs on the appliance', tag: 'In use', tagTone: 'muted' },
+                { id: 'm1', title: 'NEWS2 engine', sub: 'A rule · RCP 2017 table', tag: 'Validated', tagTone: 'ok' },
+                { id: 'm2', title: 'Clinical model, 27B', sub: 'Runs on the computer', tag: 'In use', tagTone: 'muted' },
                 { id: 'm3', title: 'Forecast', sub: 'Not trained on real data', tag: 'Untrained', tagTone: 'warn', active: true },
               ] },
             ],
@@ -1342,7 +1342,7 @@ export const STORY_FLOWS: WidgetFlow[] = [
         },
       },
       {
-        caption: 'A model on the appliance reads the sentence and turns it into a drug card, checked against his chart. Saying it is not prescribing it. Someone has to approve.',
+        caption: 'A model on the computer reads the sentence and turns it into a drug card, checked against his chart. Saying it is not prescribing it. Someone has to approve.',
         scene: {
           head: 'Order from a message', sub: 'Read by the local model',
           blocks: [
@@ -1369,8 +1369,8 @@ export const STORY_FLOWS: WidgetFlow[] = [
           head: 'Verification queue', sub: 'Pharmacy · 3 waiting',
           blocks: [
             { id: 'rows', k: 'rows', rows: [
-              { id: 'p1', title: 'Prednisolone 40 mg oral', sub: 'Rajesh Iyer · GM-102 · from a Relay message', tag: 'AI extracted', tagTone: 'warn', active: true },
-              { id: 'p2', title: 'Salbutamol nebuliser', sub: 'Rajesh Iyer · from a signed note', tag: 'AI extracted', tagTone: 'warn' },
+              { id: 'p1', title: 'Prednisolone 40 mg oral', sub: 'Rajesh Iyer · GM-102 · from a Relay message', tag: 'Sage, from notes', tagTone: 'warn', active: true },
+              { id: 'p2', title: 'Salbutamol nebuliser', sub: 'Rajesh Iyer · from a signed note', tag: 'Sage, from notes', tagTone: 'warn' },
               { id: 'p3', title: 'Amoxicillin 500 mg', sub: 'Ananya Kapoor · typed by a prescriber', tag: 'Prescribed', tagTone: 'muted' },
             ] },
             { id: 'note', k: 'lines', lines: [

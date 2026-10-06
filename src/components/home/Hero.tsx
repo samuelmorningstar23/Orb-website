@@ -26,7 +26,7 @@ export default function Hero() {
           Hospital software<br />that <em>never</em> leaves<br />your building.
         </h1>
         <p className="hero__sub">
-          One computer in your hospital runs the ward record, the NEWS2 score, the drug chart and the case rooms.
+          One computer in your hospital holds the ward’s observations, the NEWS2 score, the drug chart and a room for each patient’s team.
         </p>
         <div className="hero__actions">
           <button type="button" className="hero__btn hero__btn--primary" onClick={openDemoModal}>Book a walkthrough</button>
