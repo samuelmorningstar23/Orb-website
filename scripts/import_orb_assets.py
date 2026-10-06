@@ -47,7 +47,6 @@ SCREENS = {
 # move each line back into SCREENS and restore its shot line in modulePages.ts.
 HELD_BACK = {
     'vigil-patient-board': 'Vigil: the ward ordered by NEWS2',
-    'vigil-patient-chart': 'Vigil: a chart with the vitals and the Sepsis Six clock',
     'vigil-patient-story': 'Patient Story: one clinical narrative',
     'nurse-administer-medication': 'Nurse mode: administering a dose',
     'pharmacy-formulary': 'Helix: formulary',
@@ -71,6 +70,9 @@ CROPS = {
     'vigil-news2-explained': (158, 778),
     # The queue holds two rows; the frame ends under the table instead of showing half a page of nothing.
     'pharmacy-verify-queue': (0, 560),
+    # Below the admin tab strip, which names a scorecard the site does not claim.
+    'admin-data': (180, 790),
+    'admin-audit': (112, 930),
 }
 
 def to_webp(src: Path, dst: Path, quality: int, crop=None) -> tuple[int, int]:

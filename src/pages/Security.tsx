@@ -16,6 +16,15 @@ import './Security.css'
  * The security brief - written for the CISO and procurement reader. Everything
  * here is ported from claims the homepage used to make; nothing is new.
  */
+const CONTROLS = [
+  { title: 'Who can sign in', body: 'Staff sign in with an ID and a password, and each role sees only its own screens and its own department’s patients. Any role can be set to need a code from an authenticator app too, and a ward tablet can be bound so a nurse unlocks it with a PIN mid-shift.' },
+  { title: 'Accounts on one screen', body: 'An administrator creates accounts, changes roles, resets passwords and switches accounts off, each change written to the audit log.' },
+  { title: 'Encrypted on disk', body: 'The database is encrypted on the computer’s disk with the key set at installation, and the Trust Center shows whether it is.' },
+  { title: 'Backups you can see', body: 'An administrator takes a backup from the Data screen and sees every one listed, with its size and time. A restore is done with Orb stopped, never from a button.' },
+  { title: 'Erasure requests', body: 'A patient’s request to erase their data is recorded, each kind of record is checked against what the hospital must keep by law, and nothing is erased until someone confirms it as a separate step.' },
+  { title: 'The log is a screen', body: 'Filter the audit log by patient, kind, action or outcome, follow one request from start to end, and see every refused or failed action in one place.' },
+]
+
 const FACTS = [
   {
     title: 'Where it runs',
@@ -23,7 +32,7 @@ const FACTS = [
   },
   {
     title: 'What leaves the building',
-    body: 'Nothing clinical. Audio, images and text are processed on the computer by models that live there. There is no cloud model and no AI vendor in the loop. The one outbound call is Pulse, which sends a map coordinate to public weather, air-quality, flu and drug-recall feeds. It carries no patient, every call is logged, and the firewall can block it with no loss of clinical function.',
+    body: 'Nothing. Audio, images and text are processed on the computer by models that live there. There is no cloud model, no AI vendor and no outbound call of any kind. Pulse reads a seasonal calendar built into Orb, not a weather service.',
   },
   {
     title: 'When the network drops',
@@ -31,7 +40,7 @@ const FACTS = [
   },
   {
     title: 'Beside your hospital system',
-    body: 'The ward’s record lives on Orb’s own database inside your hospital and exports as a standard file (FHIR). Orb does not import from your hospital system yet, and sends nothing to ABDM.',
+    body: 'The ward’s record lives on Orb’s own database inside your hospital and exports as a standard file (FHIR). Observations and results can be sent in over HL7 or FHIR on your own network, with a key your IT holds. Orb has no connector to your hospital system and sends nothing to ABDM.',
   },
 ]
 
@@ -75,6 +84,8 @@ export default function Security() {
             shots={[
               { name: 'admin-trust', label: 'Trust Center', caption: 'Compliance posture, built from the running system each time the page opens. Nine controls passing, five warnings, none failing on this build.' },
               { name: 'admin-flight', label: 'Flight Recorder', caption: 'A SHA-256 hash chain over every audit entry, with its verification state on the page.' },
+              { name: 'admin-audit', label: 'Audit log', caption: 'The audit log as a screen: every event with its category, outcome and actor, filtered by patient or by request.' },
+              { name: 'admin-data', label: 'Data and backups', caption: 'Backups listed with their size and time, and a patient’s erasure request, which erases nothing until it is confirmed separately.' },
             ]}
           />
         </section>
@@ -87,6 +98,21 @@ export default function Security() {
             </StaggerItem>
           ))}
         </Stagger>
+
+        <section className="security-page__controls" aria-labelledby="controls-title">
+          <Reveal className="security-page__controls-head">
+            <span className="module-detail__badge">For your IT person</span>
+            <h2 className="security-page__audit-title" id="controls-title">Six controls to check.</h2>
+          </Reveal>
+          <Stagger className="security-page__facts" as="div" amount={0.2}>
+            {CONTROLS.map(c => (
+              <StaggerItem className="security-page__fact" key={c.title}>
+                <h3 className="security-page__fact-title">{c.title}</h3>
+                <p className="security-page__fact-body">{c.body}</p>
+              </StaggerItem>
+            ))}
+          </Stagger>
+        </section>
 
         <SafetySuite />
         <TrustPosture />

@@ -4,7 +4,7 @@ import './Checks.css'
 
 const CHECKS = [
   { label: 'Approved by name', line: 'The log shows who approved each order and when, by name.' },
-  { label: 'On your own computer', line: 'The computer and the models sit in your hospital. The only thing it ever sends out is a map coordinate for the weather and public feeds, and your IT can block even that.' },
+  { label: 'On your own computer', line: 'The computer and the models sit in your hospital, and Orb makes no call to the internet at all, not even for the weather.' },
   { label: 'A log that shows tampering', line: 'Each entry is locked to the one before it. Change or delete any entry and the admin screens show the break. How it works is on the security page.' },
   { label: 'Rules before models', line: 'The NEWS2 score, the Sepsis Six checklist, the handover draft and the WHO surgical checklist are fixed rules a nurse can check by hand. A model is used only where there is no rule.' },
 ]

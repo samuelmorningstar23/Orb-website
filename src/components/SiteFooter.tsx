@@ -34,6 +34,7 @@ export default function SiteFooter() {
           <div className="landing-overview__footer-col">
             <span className="landing-overview__footer-col-title">Company</span>
             <Link to="/modules" className="landing-overview__footer-link">Modules</Link>
+            <Link to="/back-office" className="landing-overview__footer-link">Back office</Link>
             <Link to="/plans" className="landing-overview__footer-link">Plans</Link>
             <Link to="/security" className="landing-overview__footer-link">Security</Link>
             <Link to="/support" className="landing-overview__footer-link">Support</Link>

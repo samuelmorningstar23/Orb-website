@@ -3,6 +3,102 @@
 // Only the captures the pages show are here; the held-back ones return after recapture.
 export interface Screen { title: string; dark: string; light: string; height: number }
 export const SCREENS: Record<string, Screen> = {
+  "module-frontdesk": {
+    "title": "Front Desk: OPD visits and tokens",
+    "dark": "/orb/screens/dark/module-frontdesk.webp",
+    "light": "/orb/screens/light/module-frontdesk.webp",
+    "height": 1024
+  },
+  "module-billing": {
+    "title": "Billing: invoices",
+    "dark": "/orb/screens/dark/module-billing.webp",
+    "light": "/orb/screens/light/module-billing.webp",
+    "height": 1024
+  },
+  "module-payments": {
+    "title": "Payments: the counter and the till",
+    "dark": "/orb/screens/dark/module-payments.webp",
+    "light": "/orb/screens/light/module-payments.webp",
+    "height": 1024
+  },
+  "module-payer": {
+    "title": "Insurance and claims: the TPA desk",
+    "dark": "/orb/screens/dark/module-payer.webp",
+    "light": "/orb/screens/light/module-payer.webp",
+    "height": 1024
+  },
+  "module-procurement": {
+    "title": "Procurement and stores",
+    "dark": "/orb/screens/dark/module-procurement.webp",
+    "light": "/orb/screens/light/module-procurement.webp",
+    "height": 1024
+  },
+  "module-housekeeping": {
+    "title": "Housekeeping: the cleaning board",
+    "dark": "/orb/screens/dark/module-housekeeping.webp",
+    "light": "/orb/screens/light/module-housekeeping.webp",
+    "height": 1024
+  },
+  "module-workforce": {
+    "title": "Workforce: the duty roster",
+    "dark": "/orb/screens/dark/module-workforce.webp",
+    "light": "/orb/screens/light/module-workforce.webp",
+    "height": 1024
+  },
+  "module-biomedical": {
+    "title": "Biomedical equipment",
+    "dark": "/orb/screens/dark/module-biomedical.webp",
+    "light": "/orb/screens/light/module-biomedical.webp",
+    "height": 1024
+  },
+  "dietary": {
+    "title": "Diet and kitchen",
+    "dark": "/orb/screens/dark/dietary.webp",
+    "light": "/orb/screens/light/dietary.webp",
+    "height": 1024
+  },
+  "module-nabh": {
+    "title": "NABH accreditation evidence",
+    "dark": "/orb/screens/dark/module-nabh.webp",
+    "light": "/orb/screens/light/module-nabh.webp",
+    "height": 1024
+  },
+  "module-abdm": {
+    "title": "ABDM records",
+    "dark": "/orb/screens/dark/module-abdm.webp",
+    "light": "/orb/screens/light/module-abdm.webp",
+    "height": 1024
+  },
+  "today-doctor-home": {
+    "title": "Today: the doctor’s home screen",
+    "dark": "/orb/screens/dark/today-doctor-home.webp",
+    "light": "/orb/screens/light/today-doctor-home.webp",
+    "height": 1024
+  },
+  "ward-round": {
+    "title": "Ward round",
+    "dark": "/orb/screens/dark/ward-round.webp",
+    "light": "/orb/screens/light/ward-round.webp",
+    "height": 1024
+  },
+  "vigil-patient-chart": {
+    "title": "Vigil: a patient’s chart",
+    "dark": "/orb/screens/dark/vigil-patient-chart.webp",
+    "light": "/orb/screens/light/vigil-patient-chart.webp",
+    "height": 1024
+  },
+  "admin-data": {
+    "title": "Admin: data and backups",
+    "dark": "/orb/screens/dark/admin-data.webp",
+    "light": "/orb/screens/light/admin-data.webp",
+    "height": 610
+  },
+  "admin-audit": {
+    "title": "Admin: the audit log",
+    "dark": "/orb/screens/dark/admin-audit.webp",
+    "light": "/orb/screens/light/admin-audit.webp",
+    "height": 818
+  },
   "nurse-my-shift": {
     "title": "Nurse mode: what is due now",
     "dark": "/orb/screens/dark/nurse-my-shift.webp",

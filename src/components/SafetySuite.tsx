@@ -19,7 +19,7 @@ const items: SafetyItem[] = [
   },
   {
     title: 'Sepsis Six',
-    desc: 'The clinician opens it on the chart: a checklist of six items with a 60-minute target. Each item shows when it is overdue.',
+    desc: 'Orb opens it at NEWS2 7 or above, and a clinician can open it from the chart at any score: six items, a 60-minute target, each showing when it is overdue. A hospital can switch the automatic start off.',
     icon: (
       <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <line x1="10" y1="2" x2="14" y2="2" />

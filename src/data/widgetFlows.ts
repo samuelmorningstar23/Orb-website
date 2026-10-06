@@ -140,11 +140,11 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
           },
         },
         {
-          caption: 'The doctor opens Sepsis Six from the chart. Six items, a 60-minute target, and each one shows when it is overdue.',
+          caption: 'At NEWS2 7 or above Orb opens Sepsis Six, and a doctor can open it from the chart at any score. Six items, a 60-minute target, and each one shows when it is overdue.',
           scene: {
             head: 'Rajesh Iyer', sub: 'GM-102 · 67Y · COPD exacerbation',
             blocks: [
-              { id: 'banner', k: 'banner', tone: 'critical', tag: 'NEWS2 13', title: 'Critical', body: 'Sepsis Six opened by Dr Meera Sharma.' },
+              { id: 'banner', k: 'banner', tone: 'critical', tag: 'NEWS2 13', title: 'Critical', body: 'Sepsis Six opened by Orb at NEWS2 13.' },
               { id: 'meter', k: 'meter', label: 'Sepsis Six', value: '02:38', pct: 4, tone: 'ok', note: '0 of 6 done · 60m target · on track' },
               { id: 'checks', k: 'checks', items: [
                 { text: 'High-flow oxygen', state: 'now' },
@@ -296,8 +296,8 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
               ] },
               { id: 'lines', k: 'lines', label: 'Show details', lines: [
                 { text: 'Retrieved from the guideline set loaded on the computer', strong: true },
-                { text: 'Passages listed with the answer, each one openable' },
-                { text: 'Model, mode and timing recorded in the audit log' },
+                { text: 'Each source listed with its title and how far to trust it' },
+                { text: 'Model, mode and timing kept with every answer, for an auditor to replay' },
               ] },
             ],
           },
@@ -338,7 +338,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
               ] },
               { id: 'lines', k: 'lines', label: 'Underneath', lines: [
                 { text: 'A direct API call for that chart returns 404', strong: true },
-                { text: 'The refusal is written to the audit log like any other question' },
+                { text: 'The refusal is written to the audit log' },
               ] },
             ],
           },
@@ -379,7 +379,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
           },
         },
         {
-          caption: 'An optional second pass reads the draft against the transcript and lists what the transcript does not support.',
+          caption: 'Where the hospital switches it on, a second pass reads the draft against the transcript and lists what the transcript does not support.',
           scene: {
             head: 'Structured note', sub: 'SOAP · verification',
             blocks: [
@@ -392,17 +392,17 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
           },
         },
         {
-          caption: 'A note never verified against audio makes the clinician type SIGN. Accepting an unverified draft is recorded in their own name.',
+          caption: 'A note the automatic check did not pass, or never ran on, makes the clinician type SIGN. Accepting it is recorded in their own name.',
           scene: {
             head: 'Sign and finalize', sub: 'Rajesh Iyer · GM-102',
             blocks: [
-              { id: 'banner', k: 'banner', tone: 'warn', tag: 'Unverified', title: 'This note was typed, not verified against audio', body: 'Type SIGN to accept it.' },
+              { id: 'banner', k: 'banner', tone: 'warn', tag: 'Unverified', title: 'This note was not checked against the transcript', body: 'Type SIGN to accept it.' },
               { id: 'fields', k: 'fields', fields: [{ label: 'Confirm', value: 'SIGN' }] },
             ],
           },
         },
         {
-          caption: 'Signing is the trigger. The medications the note names are extracted, screened and queued for a pharmacist. They are not orders yet.',
+          caption: 'Signing is the trigger. The medicines the note names are charted as unverified and queued for a pharmacist. A nurse cannot give one until it is verified.',
           scene: {
             head: 'Signed', sub: 'Dr Meera Sharma · General Medicine',
             blocks: [
@@ -485,7 +485,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
               { id: 'lines', k: 'lines', label: 'What is written down', lines: [
                 { text: 'Who overrode the block, and when', strong: true },
                 { text: 'The reaction that was on the chart at the time' },
-                { text: 'The allergy also prints on the administration sheet at the bedside' },
+                { text: 'The allergy also heads every printed medication list' },
               ] },
             ],
           },
@@ -498,13 +498,12 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
         {
           caption: 'Medications a model pulled out of a signed note land here first, with their source on the row.',
           scene: {
-            head: 'Verification queue', sub: '3 waiting',
+            head: 'Verification queue', sub: '2 waiting',
             blocks: [
               { id: 'rows', k: 'rows', label: 'Waiting', rows: [
                 { id: 'p1', title: 'Prednisolone 40 mg oral', sub: 'Rajesh Iyer · from a signed note', tag: 'Sage, from notes', tagTone: 'warn', active: true },
                 { id: 'p2', title: 'Salbutamol nebuliser', sub: 'Rajesh Iyer · from a signed note', tag: 'Sage, from notes', tagTone: 'warn' },
-                { id: 'p3', title: 'Amoxicillin 500 mg', sub: 'Ananya Kapoor · typed by a prescriber', tag: 'Prescribed', tagTone: 'muted' },
-              ] },
+                              ] },
             ],
           },
         },
@@ -717,52 +716,47 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
 
   '/pulse': [
     {
-      id: 'pulse', label: 'Outside signals', app: 'Orb Pulse', who: 'General Medicine',
+      id: 'pulse', label: 'The season', app: 'Orb Pulse', who: 'General Medicine',
       steps: [
         {
-          caption: 'Four public feeds, each named on the screen with the time it was read.',
+          caption: 'Pulse says what season your part of India is in, from a calendar built into Orb. It asks nothing of the internet.',
           scene: {
-            head: 'Pulse', sub: 'Outside signals',
+            head: 'Pulse', sub: 'Telangana · Central India and Telangana',
+            blocks: [
+              { id: 'banner', k: 'banner', tone: 'info', tag: 'Now', title: 'South-west monsoon', body: 'Mid-June to mid-October in this part of India.' },
+              { id: 'chips', k: 'chips', chips: [{ text: 'Dengue and chikungunya', tone: 'warn' }, { text: 'Malaria', tone: 'warn' }, { text: 'Japanese encephalitis', tone: 'warn' }] },
+            ],
+          },
+        },
+        {
+          caption: 'Each season says what usually rises in it, with the source it came from. It never says how many patients that means.',
+          scene: {
+            head: 'Dengue and chikungunya', sub: 'July to November · peak September and October',
+            blocks: [
+              { id: 'lines', k: 'lines', label: 'What usually rises', lines: [
+                { text: 'Dengue and chikungunya', strong: true },
+                { text: 'Source: national dengue guidelines, MoHFW, 2023. Named, not linked: there is no internet to follow it to.' },
+              ] },
+            ],
+          },
+        },
+        {
+          caption: 'What starts in the next 60 days is listed too, so the ward can plan for it.',
+          scene: {
+            head: 'Coming up', sub: 'Next 60 days',
             blocks: [
               { id: 'rows', k: 'rows', rows: [
-                { id: 'w', title: 'Weather and air quality', sub: 'Open-Meteo', tag: 'Read 09:05', tagTone: 'muted' },
-                { id: 'f', title: 'Flu activity', sub: 'CDC FluView', tag: 'Read 08:00', tagTone: 'muted' },
-                { id: 'r', title: 'Drug recalls', sub: 'openFDA', tag: 'Read 08:00', tagTone: 'muted' },
+                { id: 'u1', title: 'Winter and cold waves', sub: 'Starts 1 December · hypothermia, flu-like illness', tag: 'In 56 days', tagTone: 'muted' },
               ] },
             ],
           },
         },
         {
-          caption: 'The only place Orb calls out. The request carries a map coordinate and no patient, every call is logged, and the firewall can block it.',
+          caption: 'Forecast shows the season beside its numbers as context. It never multiplies by it, and no patient score reads it.',
           scene: {
-            head: 'Pulse', sub: 'The only outbound call',
+            head: 'Forecast', sub: 'Seven-day census',
             blocks: [
-              { id: 'lines', k: 'lines', label: 'What leaves the building', lines: [
-                { text: 'A latitude and a longitude', strong: true },
-                { text: 'No patient, no chart, no identifier' },
-                { text: 'Blockable at the firewall. Everything clinical keeps working.' },
-              ] },
-            ],
-          },
-        },
-        {
-          caption: 'A heat wave or a bad air day becomes a note on the ward’s day. It changes nobody’s score.',
-          scene: {
-            head: 'Today’s signals', sub: 'Read against the ward',
-            blocks: [
-              { id: 'banner', k: 'banner', tone: 'warn', tag: 'Air quality', title: 'AQI 168 · unhealthy', body: 'Noted for respiratory admissions. No score is changed by this.' },
-              { id: 'chips', k: 'chips', chips: [{ text: 'Flu activity rising', tone: 'warn' }, { text: 'Heat advisory', tone: 'warn' }] },
-            ],
-          },
-        },
-        {
-          caption: 'A recall arrives with its class and reason, so the pharmacy can check the formulary the same morning.',
-          scene: {
-            head: 'Recalls', sub: 'openFDA',
-            blocks: [
-              { id: 'rows', k: 'rows', rows: [
-                { id: 'rc', title: 'Class II recall', sub: 'Reason and affected lots listed in full', tag: 'Check formulary', tagTone: 'warn', active: true },
-              ] },
+              { id: 'banner', k: 'banner', tone: 'info', tag: 'Season', title: 'Monsoon, dengue and malaria season', body: 'Shown beside the forecast. The numbers are not changed by it.' },
             ],
           },
         },
@@ -789,33 +783,24 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
           },
         },
         {
-          caption: 'The model behind that projection has not been trained on your data yet.',
+          caption: 'Today’s census and each ward’s occupancy come from the record. The rest is a projection from a model that has not been trained on your data.',
           scene: {
-            head: 'Forecast', sub: 'Seven-day census',
-            blocks: [
-              { id: 'meter', k: 'meter', label: 'Projected occupancy at peak', value: '94%', pct: 94, tone: 'warn' },
-              { id: 'banner', k: 'banner', tone: 'warn', tag: 'AI untrained', title: 'model_trained = false', body: 'The badge sits on the page header, and every figure the model produced carries it.' },
-            ],
-          },
-        },
-        {
-          caption: 'So the page says so, in the header, until the numbers earn the badge coming off.',
-          scene: {
-            head: 'Forecast', sub: 'AI untrained',
-            blocks: [
-              { id: 'banner', k: 'banner', tone: 'warn', tag: 'AI untrained', title: 'Registered in Model Governance', body: 'Listed with its version and validation state, next to the NEWS2 table.' },
-            ],
-          },
-        },
-        {
-          caption: 'The bed arithmetic comes from the record, with no model involved. That part is live today.',
-          scene: {
-            head: 'Bed arithmetic', sub: 'Computed from the record',
+            head: 'Forecast', sub: 'Where each number comes from',
             blocks: [
               { id: 'rows', k: 'rows', rows: [
-                { id: 'd1', title: 'Beds free in 48 hours', sub: '6 of 60', tag: 'From the record', tagTone: 'ok' },
-                { id: 'd2', title: 'Discharges this week', sub: '14 planned', tag: 'From the record', tagTone: 'ok' },
+                { id: 'd0', title: 'Census now', sub: '48 admitted', tag: 'From the record', tagTone: 'ok' },
+                { id: 'd1', title: 'Beds free in 48 hours', sub: '6 of 60', tag: 'Untrained model', tagTone: 'warn' },
+                { id: 'd2', title: 'Discharges this week', sub: '14 projected', tag: 'Untrained model', tagTone: 'warn' },
               ] },
+            ],
+          },
+        },
+        {
+          caption: 'So every projected figure carries the label, until the numbers earn it coming off.',
+          scene: {
+            head: 'Forecast', sub: 'Untrained model',
+            blocks: [
+              { id: 'banner', k: 'banner', tone: 'warn', tag: 'Untrained model', title: 'Registered in Model Governance', body: 'Listed with its version and validation state, next to the NEWS2 table.' },
             ],
           },
         },
@@ -945,16 +930,16 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
       id: 'bridge', label: 'The patient’s view', app: 'Orb Bridge', who: 'Patient',
       steps: [
         {
-          caption: 'A patient signs in with the code issued at admission. No app store, and no account to create.',
+          caption: 'At admission the ward prints a login and a one-time password for the patient. No app store, and no account to create.',
           scene: {
             head: 'Bridge', sub: 'Sign in',
             blocks: [
               { id: 'fields', k: 'fields', fields: [
-                { label: 'Registration', value: 'P001' },
-                { label: 'Date of birth', value: '••/••/••••' },
+                { label: 'Patient ID', value: 'P001' },
+                { label: 'Password', value: '••••••••••••' },
               ] },
               { id: 'lines', k: 'lines', label: 'What the patient gets', lines: [
-                { text: 'A code issued at admission, and a browser', strong: true },
+                { text: 'A login printed at admission, and a browser', strong: true },
                 { text: 'No app to install, and no account to create' },
                 { text: 'The same record the ward is looking at' },
               ] },
@@ -974,7 +959,7 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
           },
         },
         {
-          caption: 'Vitals in plain words, with a trend and a sentence about what the team is watching.',
+          caption: 'Each observation as the ward charted it, with when it was taken and its recent trend. No verdicts: questions go to the nurse.',
           scene: {
             head: 'Your observations', sub: 'Updated this morning',
             blocks: [
@@ -983,23 +968,23 @@ export const WIDGET_FLOWS: Record<string, WidgetFlow[]> = {
                 { label: 'Breathing', value: '24', tone: 'warn' },
                 { label: 'Temperature', value: '38.4', tone: 'warn' },
               ] },
-              { id: 'banner', k: 'banner', tone: 'info', tag: 'In plain words', title: 'Your oxygen is a little below the normal range', body: 'The team is watching it, and you are on oxygen to help.' },
+              { id: 'banner', k: 'banner', tone: 'info', tag: 'In plain words', title: 'Taken at 07:40 this morning', body: 'Ask your nurse what these numbers mean for you.' },
             ],
           },
         },
         {
-          caption: 'Medications and documents to read, and their record to download as FHIR. It is their record.',
+          caption: 'Medications and documents to read, and their record to download as a standard file. It is their record.',
           scene: {
             head: 'Your record', sub: 'Yours to take',
             blocks: [
               { id: 'chips', k: 'chips', chips: [
                 { text: 'Medications', tone: 'muted' },
                 { text: 'Documents', tone: 'muted' },
-                { text: 'Download as FHIR', tone: 'accent' },
+                { text: 'Download (FHIR)', tone: 'accent' },
               ] },
               { id: 'lines', k: 'lines', label: 'Asking a question', lines: [
                 { text: 'A plain answer that points you to your nurse or doctor', strong: true },
-                { text: 'It does not give medical advice, and the text says so' },
+                { text: 'It points them to their nurse or doctor and gives no medical advice' },
               ] },
             ],
           },
@@ -1306,7 +1291,7 @@ export const STORY_FLOWS: WidgetFlow[] = [
           blocks: [
             { id: 'chat', k: 'chat', msgs: [
               { from: 'orb', badge: 'Vigil alert', text: 'NEWS2 13, critical. RR 32, SpO2 80% on air, SBP 74.', meta: 'Posted by Vigil · 12:55' },
-              { from: 'orb', text: 'Standing guidance: ensure continuous monitoring and prepare for possible intervention.', meta: 'A fixed line on every alert, not an assessment of this patient' },
+              { from: 'orb', text: 'Standing guidance: ensure continuous monitoring and prepare for possible intervention.', meta: 'Posted when the model has nothing patient-specific to add. Not an assessment of this patient.' },
             ] },
             { id: 'who', k: 'chips', chips: [
               { text: 'Dr Meera Sharma', tone: 'muted' },
@@ -1342,18 +1327,17 @@ export const STORY_FLOWS: WidgetFlow[] = [
         },
       },
       {
-        caption: 'A model on the computer reads the sentence and turns it into a drug card, checked against his chart. Saying it is not prescribing it. Someone has to approve.',
+        caption: 'A model on the computer reads the sentence and drafts a card with the drug and the reason. Saying it is not prescribing it. The doctor types the dose and frequency to confirm, and only then is it checked against his chart.',
         scene: {
           head: 'Order from a message', sub: 'Read by the local model',
           blocks: [
             { id: 'card', k: 'fields', label: 'Prednisolone', fields: [
-              { label: 'Dose', value: '40 mg' },
-              { label: 'Route', value: 'Oral' },
-              { label: 'Freq', value: 'Once daily' },
-              { label: 'Days', value: '5' },
+              { label: 'Why', value: 'Wheeze, from the message' },
+              { label: 'Dose', value: 'Typed by the doctor' },
+              { label: 'Freq', value: 'Typed by the doctor' },
             ] },
-            { id: 'banner', k: 'banner', tone: 'info', tag: 'Checked', title: 'No allergy match, no dose flag', body: 'Screened against his chart before the card was offered.' },
-            { id: 'chips', k: 'chips', chips: [{ text: 'Approve', tone: 'accent' }, { text: 'Edit', tone: 'muted' }, { text: 'Discard', tone: 'muted' }] },
+            { id: 'banner', k: 'banner', tone: 'info', tag: 'On confirm', title: 'Allergy and dose checks run', body: 'Against his chart, when the doctor confirms the dose.' },
+            { id: 'chips', k: 'chips', chips: [{ text: 'Confirm', tone: 'accent' }, { text: 'Edit', tone: 'muted' }, { text: 'Discard', tone: 'muted' }] },
           ],
         },
       },
@@ -1366,13 +1350,12 @@ export const STORY_FLOWS: WidgetFlow[] = [
       {
         caption: 'Approved, it lands in the pharmacist’s queue, marked as something a model pulled out of a sentence.',
         scene: {
-          head: 'Verification queue', sub: 'Pharmacy · 3 waiting',
+          head: 'Verification queue', sub: 'Pharmacy · 2 waiting',
           blocks: [
             { id: 'rows', k: 'rows', rows: [
               { id: 'p1', title: 'Prednisolone 40 mg oral', sub: 'Rajesh Iyer · GM-102 · from a Relay message', tag: 'Sage, from notes', tagTone: 'warn', active: true },
               { id: 'p2', title: 'Salbutamol nebuliser', sub: 'Rajesh Iyer · from a signed note', tag: 'Sage, from notes', tagTone: 'warn' },
-              { id: 'p3', title: 'Amoxicillin 500 mg', sub: 'Ananya Kapoor · typed by a prescriber', tag: 'Prescribed', tagTone: 'muted' },
-            ] },
+                          ] },
             { id: 'note', k: 'lines', lines: [
               { text: 'Nothing in this queue is an order yet. The ward cannot give any of it.', strong: true },
             ] },
@@ -1418,14 +1401,14 @@ export const STORY_FLOWS: WidgetFlow[] = [
         },
       },
       {
-        caption: 'It lands on the nurse’s shift as due, with the allergy printed on the sheet she gives it from.',
+        caption: 'It lands on the nurse’s shift as due, with the allergy on the screen she gives it from and at the top of the printed medication list.',
         scene: {
           head: 'My Shift', sub: 'Due now · GM-102',
           blocks: [
             { id: 'rows', k: 'rows', rows: [
               { id: 'd1', score: 'now', tone: 'warn', title: 'Prednisolone 40 mg oral', sub: 'Rajesh Iyer · first dose', tag: 'Due', tagTone: 'warn', active: true },
             ] },
-            { id: 'banner', k: 'banner', tone: 'critical', tag: 'On the sheet', title: 'Allergy: ceftriaxone, anaphylaxis', body: 'Printed on the administration sheet at the bedside, every time.' },
+            { id: 'banner', k: 'banner', tone: 'critical', tag: 'Allergy', title: 'Ceftriaxone, anaphylaxis', body: 'On the screen she gives it from, and at the top of every printed medication list.' },
           ],
         },
       },

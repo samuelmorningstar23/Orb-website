@@ -6,6 +6,7 @@
 // Node 22.18 or later (type stripping); the deploy workflow pins Node 22.
 import { MODULE_PAGES } from './modulePages.ts'
 import { PLANS_LEDE } from './plans.ts'
+import { BACK_OFFICE_LEDE } from './backOffice.ts'
 
 export interface PageMeta { route: string; title: string; description: string }
 
@@ -13,6 +14,7 @@ export const PAGES: PageMeta[] = [
   // The home tab is the bare brand; the one-line claim lives in the description.
   { route: '/', title: 'Orb', description: 'Hospital software that never leaves the building. One computer in your hospital holds the ward’s observations, the NEWS2 score, the drug chart, a room for each patient’s team and the models. Nothing about a patient leaves it.' },
   { route: '/modules', title: 'The modules | Orb', description: 'Fourteen modules, each with a page that walks its workflow, and the real screens of the product where they have been captured.' },
+  { route: '/back-office', title: 'The rest of the hospital | Orb', description: BACK_OFFICE_LEDE },
   // The Plans page description is the page's own lede, so the two cannot drift.
   { route: '/plans', title: 'Plans | Orb', description: PLANS_LEDE },
   { route: '/security', title: 'Security brief | Orb', description: 'Nothing leaves the building. The computer, the models and the hash-chained audit log, with the admin screens they are checked on.' },
