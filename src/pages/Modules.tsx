@@ -17,7 +17,8 @@ export default function Modules() {
       <main className="landing-overview__content">
         <ModuleBento />
         <Reveal as="section" className="mp__cta" amount={0.4}>
-          <h2 className="mp__cta-title">Fourteen modules. One record. One computer.</h2>
+          <h2 className="mp__cta-title">All fourteen share one record and one computer.</h2>
+          <p className="mp__cta-desc">The founding programme starts smaller than this page: one ward’s observation record and a monthly file for the quality team.</p>
           <div className="mp__actions mp__actions--center">
             <button type="button" className="hero__btn hero__btn--primary" onClick={openDemoModal}>Book a walkthrough</button>
             <Link to="/plans" className="hero__btn hero__btn--ghost">Plans <span aria-hidden="true">&rarr;</span></Link>

@@ -7,7 +7,7 @@ import ScreenGallery from '../../components/captures/ScreenGallery'
 import SiteFooter from '../../components/SiteFooter'
 import { Reveal, Stagger, StaggerItem } from '../../components/motion/Reveal'
 import { WIDGET_FLOWS } from '../../data/widgetFlows'
-import { modulePage } from '../../data/modulePages'
+import { modulePage, PROGRAMME_NOTE } from '../../data/modulePages'
 import { openDemoModal } from '../../data/siteContent'
 import './ModuleDetails.css'
 
@@ -51,18 +51,19 @@ export default function ModulePage({ route }: { route: string }) {
             <div className="mp__actions">
               <button type="button" className="hero__btn hero__btn--primary" onClick={openDemoModal}>Book a walkthrough</button>
             </div>
+            <p className="mp__programme">{page.programmeNote ?? PROGRAMME_NOTE} <Link to="/plans">The programme <span aria-hidden="true">&rarr;</span></Link></p>
           </div>
           {flows && (
             <div className="mp__hero-demo">
               <Widget flows={flows} label={`${page.title}, one workflow`} />
-              <p className="mp__demo-note">{page.captureNote ?? (shots.length ? 'The workflow, animated. The real screens are below.' : 'The workflow, animated, on seeded demo patients.')}</p>
+              <p className="mp__demo-note">{page.captureNote ?? (shots.length ? 'The workflow, animated. The real screens are below.' : 'The workflow, animated, on demo patients.')}</p>
             </div>
           )}
         </section>
 
         <section className="mp__facts" aria-label={`What ${page.title} does`}>
           <Reveal className="mp__facts-head">
-            <span className="mp__eyebrow">What you can check</span>
+            <span className="mp__eyebrow">What to look for</span>
           </Reveal>
           <Stagger className="mp__facts-list" as="ul" amount={0.2}>
             {page.cards.map((c, i) => (

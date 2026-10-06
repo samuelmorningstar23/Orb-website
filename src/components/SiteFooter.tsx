@@ -44,7 +44,7 @@ export default function SiteFooter() {
 
       <div className="landing-overview__footer-bottom">
         <p>© 2026 Orb. All rights reserved.</p>
-        <p className="landing-overview__footer-fineprint">The workflows on this site are animations of the product and the screenshots are captures of it running, both on seeded demo patients. No real patient appears here.</p>
+        <p className="landing-overview__footer-fineprint">The animations on this site are drawn from the product, and the screenshots are the product running on a test computer with made-up patients. No real patient appears here, and Orb has not yet run in a hospital.</p>
       </div>
     </footer>
   )

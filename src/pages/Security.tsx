@@ -19,15 +19,19 @@ import './Security.css'
 const FACTS = [
   {
     title: 'Where it runs',
-    body: 'On one appliance inside your hospital, on hardware you control. The database, the models and the audit log are all on it.',
+    body: 'On one computer inside your hospital, on hardware you control. The database, the models and the audit log are all on it.',
   },
   {
     title: 'What leaves the building',
-    body: 'Nothing clinical. Audio, images and text are processed on the appliance by models that live there. There is no cloud model and no AI vendor in the loop. The one outbound call is Pulse, which sends a map coordinate to public weather, air-quality, flu and drug-recall feeds. It carries no patient, every call is logged, and the firewall can block it with no loss of clinical function.',
+    body: 'Nothing clinical. Audio, images and text are processed on the computer by models that live there. There is no cloud model and no AI vendor in the loop. The one outbound call is Pulse, which sends a map coordinate to public weather, air-quality, flu and drug-recall feeds. It carries no patient, every call is logged, and the firewall can block it with no loss of clinical function.',
   },
   {
     title: 'When the network drops',
-    body: 'Care continues. Orb needs no internet connection to run. A printable downtime pack per patient is refreshed on the appliance for the ward to print on its schedule, and the Command Center shows how many packs are current.',
+    body: 'Care continues. Orb needs no internet connection to run. A printable downtime pack per patient is refreshed on the computer for the ward to print on its schedule, and the Command Center shows how many packs are current.',
+  },
+  {
+    title: 'Beside your hospital system',
+    body: 'The ward’s record lives on Orb’s own database inside your hospital and exports as a standard file (FHIR). Orb does not import from your hospital system yet, and sends nothing to ABDM.',
   },
 ]
 
@@ -49,7 +53,7 @@ export default function Security() {
           <span className="module-detail__badge">Security brief</span>
           <h1 className="module-detail__title">Nothing leaves the building.</h1>
           <p className="module-detail__tagline">
-            Everything Orb does happens on one appliance inside your hospital. Here is that claim as your security and procurement teams can check it, screen by screen.
+            Everything Orb does happens on one computer inside your hospital. Below is how the person who looks after your IT can check that, screen by screen.
           </p>
         </section>
 
@@ -70,7 +74,7 @@ export default function Security() {
             label="The admin screens"
             shots={[
               { name: 'admin-trust', label: 'Trust Center', caption: 'Compliance posture, built from the running system each time the page opens. Nine controls passing, five warnings, none failing on this build.' },
-              { name: 'admin-flight', label: 'Flight Recorder', caption: 'A SHA-256 hash chain over every audit row, with its verification state on the page.' },
+              { name: 'admin-flight', label: 'Flight Recorder', caption: 'A SHA-256 hash chain over every audit entry, with its verification state on the page.' },
             ]}
           />
         </section>
@@ -90,7 +94,7 @@ export default function Security() {
         <Reveal as="section" className="security-page__audit" amount={0.4}>
           <h2 className="security-page__audit-title">What Orb writes down.</h2>
           <p className="security-page__audit-body">
-            Every model answer, every refusal and every confirmed action is written to an audit log sealed by a SHA-256 hash chain.
+            Model answers, refusals and confirmed actions all go into the audit log, which is hash-chained with SHA-256.
           </p>
           <p className="security-page__audit-detail">
             A reviewer can see what was proposed, who confirmed it and when, and whether any row has been altered since. The Flight Recorder in the admin screens is that log.
@@ -98,9 +102,9 @@ export default function Security() {
         </Reveal>
 
         <section className="module-detail__cta-section">
-          <h2 className="module-detail__cta-title">Bring your security team.</h2>
+          <h2 className="module-detail__cta-title">Bring whoever runs your IT.</h2>
           <p className="module-detail__cta-desc">
-            I walk them through the appliance, the data flow and the access controls on a call, with the admin screens open.
+            I walk them through the computer, the data flow and the access controls on a call, with the admin screens open.
           </p>
           <div className="module-detail__buttons">
             <button className="module-detail__btn-primary" onClick={openDemoModal}>Book a walkthrough</button>

@@ -218,7 +218,7 @@ export default function News2Live() {
             {result.parts.every(p => p.points === 0) && <li className="news2__driver-none">Every parameter in range.</li>}
           </ul>
           <p className="news2__foot">
-            Ported from the server’s compute_news2, with nothing re-derived for this page. In Orb the score is calculated on the appliance for every set of observations, and the nurse sees it before saving.
+            Ported from the server’s compute_news2, with nothing re-derived for this page. In Orb the score is calculated on the computer for every set of observations, and the nurse sees it before saving.
           </p>
         </div>
       </div>

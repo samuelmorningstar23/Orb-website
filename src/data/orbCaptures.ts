@@ -15,6 +15,18 @@ export const SCREENS: Record<string, Screen> = {
     "light": "/orb/screens/light/nurse-observations-news2-live.webp",
     "height": 1024
   },
+  "vigil-news2-explained": {
+    "title": "Vigil: every NEWS2 point explained",
+    "dark": "/orb/screens/dark/vigil-news2-explained.webp",
+    "light": "/orb/screens/light/vigil-news2-explained.webp",
+    "height": 620
+  },
+  "pharmacy-verify-queue": {
+    "title": "Helix: pharmacist verification queue",
+    "dark": "/orb/screens/dark/pharmacy-verify-queue.webp",
+    "light": "/orb/screens/light/pharmacy-verify-queue.webp",
+    "height": 560
+  },
   "orders-sepsis-six": {
     "title": "Orders: Sepsis Six with the allergy interlock",
     "dark": "/orb/screens/dark/orders-sepsis-six.webp",

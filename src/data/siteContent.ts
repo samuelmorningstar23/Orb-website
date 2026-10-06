@@ -11,7 +11,7 @@ export type ModuleArea = 'ward' | 'theatre' | 'house' | 'patients' | 'office'
 export const AREA_LABELS: Record<ModuleArea, string> = {
   ward: 'On the ward',
   theatre: 'In theatre',
-  house: 'Across the house',
+  house: 'Across the hospital',
   patients: 'With patients',
   office: 'Back office',
 }
@@ -49,14 +49,14 @@ export const ALL_MODULES: ModuleInfo[] = [
     blurb: 'Type or dictate the consultation. The local model drafts a SOAP note, an optional second pass checks it against what was said, and the clinician signs by name. Signing queues the medications for a pharmacist.',
     keywords: ['documentation', 'notes', 'dictation', 'transcription', 'voice', 'soap', 'sign'],
     area: 'ward',
-    line: 'Speak the consultation. Sign the note. All of it on the appliance.',
+    line: 'Speak the consultation, sign the note, and none of it leaves the computer.',
   },
   {
-    to: '/lens', label: 'Lens', badge: 'A first read of an image, switched off today',
-    blurb: 'Drop in an X-ray, an ECG or a photo of a wound. The local model drafts a first read for the clinician to correct, keep or discard, and the image never leaves the building. Lens is switched off in every deployment.',
+    to: '/lens', label: 'Lens', badge: 'A model’s first read of an X-ray or an ECG. Switched off today.',
+    blurb: 'Drop in an X-ray, an ECG or a photo of a wound. The local model drafts a first read for the clinician to correct, keep or discard, and the image never leaves the building. Lens is switched off today.',
     keywords: ['imaging', 'x-ray', 'xray', 'ecg', 'scans', 'radiology', 'image review', 'photo', 'wound'],
     area: 'ward',
-    line: 'A first read, drafted on site for a clinician to correct. Switched off in every deployment.',
+    line: 'A first read, drafted on site for a clinician to correct. Switched off today.',
   },
   {
     to: '/relay', label: 'Relay', badge: 'One room per patient',
@@ -66,11 +66,11 @@ export const ALL_MODULES: ModuleInfo[] = [
     line: 'One room per patient. Alerts posted inline. A wrong-patient message delivered, then flagged.',
   },
   {
-    to: '/helix', label: 'Helix', badge: 'Medication safety, order to bedside',
-    blurb: 'The allergy interlock stops an order set at the one item that would harm the patient. Anything a model extracted from a note waits in the pharmacist’s queue until a named pharmacist verifies it.',
+    to: '/helix', label: 'Helix', badge: 'Three gates between the order and the bed',
+    blurb: 'The allergy block stops an order set at the one item that would harm the patient. Anything a model pulled from a note waits in the pharmacist’s queue until a named pharmacist verifies it.',
     keywords: ['medication', 'pharmacy', 'drugs', 'prescriptions', 'allergy', 'interactions', 'administration', 'emar', 'pharmacist'],
     area: 'ward',
-    line: 'An allergy interlock on every order set. A pharmacist’s queue for anything a model extracted.',
+    line: 'An allergy block on every order set. A pharmacist’s queue for anything a model pulled from a note.',
   },
   {
     to: '/surgical-suite', label: 'Surgical Suite', badge: 'The theatre, on the ward’s record',
@@ -80,7 +80,7 @@ export const ALL_MODULES: ModuleInfo[] = [
     line: 'The week’s list, today’s theatre, and the WHO checklist step by step.',
   },
   {
-    to: '/pulse', label: 'Pulse', badge: 'Outside signals, read against the ward',
+    to: '/pulse', label: 'Pulse', badge: 'A heat wave becomes a note on the ward’s day',
     blurb: 'Weather, air quality, flu surveillance and drug recalls from public feeds, read against the ward. The only outbound call Orb makes carries a map coordinate and no patient.',
     keywords: ['environment', 'air quality', 'weather', 'population', 'community illness', 'signals', 'recalls', 'flu'],
     area: 'house',
@@ -94,29 +94,29 @@ export const ALL_MODULES: ModuleInfo[] = [
     line: 'Census against capacity for the week ahead, with the model’s status printed on the screen.',
   },
   {
-    to: '/command-center', label: 'Command Center', badge: 'The whole house. One screen.',
-    blurb: 'Occupancy, the critical count, sepsis bundles on track and downtime readiness, each with its denominator. The ward acuity map, and the highest NEWS2 scores by name.',
+    to: '/command-center', label: 'Command Center', badge: 'The whole hospital on one screen',
+    blurb: 'Occupancy, the critical count, sepsis bundles on track and downtime packs that are current, each with its denominator. The ward acuity map, and the highest NEWS2 scores by name.',
     keywords: ['command center', 'census', 'acuity', 'overview', 'operations', 'house-wide', 'dashboard', 'heatmap'],
     area: 'house',
-    line: 'Census, acuity, bundles and downtime readiness. One screen, with denominators.',
+    line: 'Census, acuity, bundles and downtime packs. One screen, with denominators.',
   },
   {
-    to: '/surge-simulator', label: 'Surge Simulator', badge: 'What if, on tonight’s census',
+    to: '/surge-simulator', label: 'Surge Simulator', badge: 'Rehearse the surge on tonight’s census',
     blurb: 'Twenty admissions tonight, eight beds closed, flu at 1.5x. The simulator answers with peak occupancy, hours to overflow, beds short and the nurses you would need, with its assumptions listed.',
     keywords: ['surge', 'simulation', 'capacity', 'overflow', 'staffing', 'scenario', 'what-if', 'planning'],
     area: 'house',
     line: 'A surge or a closure, modelled on the live census: hours to overflow and nurses needed.',
   },
   {
-    to: '/bridge', label: 'Bridge', badge: 'For the patient. In plain words.',
-    blurb: 'A patient signs in with the code issued at admission and sees their care team, their vitals in plain words, their medications and their documents. Their record downloads as FHIR.',
+    to: '/bridge', label: 'Bridge', badge: 'Written for the person in the bed',
+    blurb: 'A patient signs in with the code issued at admission and sees their care team, their vitals in plain words, their medications and their documents. Their record downloads as a standard file (FHIR).',
     keywords: ['patients', 'families', 'plain language', 'portal', 'explanations', 'next steps', 'fhir', 'record'],
     area: 'patients',
-    line: 'The patient’s own portal: vitals in plain words, medications, documents, and a FHIR download.',
+    line: 'The patient’s own portal: vitals in plain words, medications, documents, and their record as a file.',
   },
   {
-    to: '/appointments', label: 'Appointments', badge: 'Follow-ups, with the score in view',
-    blurb: 'Follow-ups, medication reviews and post-discharge checks in day columns, each with the patient’s NEWS2 band, so a review for a patient with a high score is never scheduled like the rest.',
+    to: '/appointments', label: 'Appointments', badge: 'Follow-ups with the NEWS2 band beside the name',
+    blurb: 'Follow-ups, medication reviews and post-discharge checks in day columns, each with the patient’s NEWS2 band beside the name.',
     keywords: ['scheduling', 'follow-up', 'clinic', 'slots', 'booking', 'visits', 'calendar', 'appointments', 'review'],
     area: 'patients',
     line: 'The week’s follow-ups by day, each with the patient’s NEWS2 band beside the name.',
@@ -144,12 +144,12 @@ const byPath = (to: string): ModuleInfo => {
 }
 
 export const FEATURED_MODULES: FeaturedModule[] = [
-  { ...byPath('/vigil'), navLabel: 'Vigil', summary: 'Every patient scored. Every point shown.' },
+  { ...byPath('/vigil'), navLabel: 'Vigil', summary: 'NEWS2 from the nurse’s observations, point by point.' },
   { ...byPath('/sage'), navLabel: 'Sage', summary: 'Clinical answers, inside the building.' },
-  { ...byPath('/helix'), navLabel: 'Helix', summary: 'Allergy interlock. Pharmacist’s queue.' },
-  { ...byPath('/scribe'), navLabel: 'Scribe', summary: 'Speak it. Sign it. On site.' },
+  { ...byPath('/helix'), navLabel: 'Helix', summary: 'Three gates between the order and the bed.' },
+  { ...byPath('/scribe'), navLabel: 'Scribe', summary: 'A dictated consultation becomes a note you sign by name.' },
   { ...byPath('/bridge'), navLabel: 'Bridge', summary: 'Their care, in plain words.' },
-  { ...byPath('/command-center'), navLabel: 'Command', summary: 'The whole house. One screen.' },
+  { ...byPath('/command-center'), navLabel: 'Command', summary: 'The whole hospital on one screen.' },
 ]
 
 // ─── Plans ───

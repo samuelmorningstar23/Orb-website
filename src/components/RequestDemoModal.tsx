@@ -99,7 +99,7 @@ export default function RequestDemoModal() {
         {!isSuccess ? (
           <>
             <h3 className="demo-modal-title" id="demo-modal-title">Book a walkthrough</h3>
-            <p className="demo-modal-subtitle">A walkthrough of the product on demo patients, on a call. Tell us about your wards and the software you run today.</p>
+            <p className="demo-modal-subtitle">A walkthrough of the product on demo patients, on a call. Tell me about your wards and the software you run today. I take the call myself.</p>
 
             {error && <div className="demo-modal-error" role="alert">{error}</div>}
 
