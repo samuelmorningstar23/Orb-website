@@ -76,6 +76,23 @@ export default function ModulePage({ route }: { route: string }) {
           </Stagger>
         </section>
 
+        {page.more && page.more.length > 0 && (
+          <section className="mp__facts mp__more" aria-label={`Also in Orb, with ${page.title}`}>
+            <Reveal className="mp__facts-head">
+              <span className="mp__eyebrow">Also in Orb</span>
+            </Reveal>
+            <Stagger className="mp__facts-list" as="ul" amount={0.2}>
+              {page.more.map((c, i) => (
+                <StaggerItem key={c.title} as="li" className="mp__fact">
+                  <span className="mp__fact-num">{String(page.cards.length + i + 1).padStart(2, '0')}</span>
+                  <span className="mp__fact-title">{c.title}</span>
+                  <span className="mp__fact-desc">{c.desc}</span>
+                </StaggerItem>
+              ))}
+            </Stagger>
+          </section>
+        )}
+
         {page.tryNews2 && <News2Live />}
 
         {shots.length > 0 && (

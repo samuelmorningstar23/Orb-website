@@ -1,5 +1,9 @@
 /* ─── Security brief page ─── */
 
+.security-page__controls { padding-top: calc(var(--section-pad) * 0.6); }
+.security-page__controls-head { margin-bottom: 22px; }
+.security-page__controls-head .security-page__audit-title { margin: 0; }
+
 .security-page__facts {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

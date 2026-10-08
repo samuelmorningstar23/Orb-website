@@ -441,3 +441,7 @@
 
 /* The strip note under the eyebrow. */
 .mp__strip-note { margin: 6px 0 0; color: var(--text-muted); }
+
+/* A hero with no animated widget beside it: the copy takes the width. */
+.mp__hero--single { grid-template-columns: minmax(0, 1fr); max-width: 860px; }
+.mp__building { margin-top: 18px; }

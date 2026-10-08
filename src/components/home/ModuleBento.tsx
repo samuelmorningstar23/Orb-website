@@ -60,14 +60,14 @@ export default function ModuleBento() {
           )
         })}
 
-        <Link to="/plans" className="wall__card wall__card--ops">
+        <Link to="/back-office" className="wall__card wall__card--ops">
           <span className="wall__meta">
             <span className="wall__name">The rest of the hospital</span>
             <span className="wall__line">Also on the computer, and outside the founding programme.</span>
             <span className="wall__ops">
               {OPS.map(o => <span key={o} className="wall__op">{o}</span>)}
             </span>
-            <span className="wall__go" aria-hidden="true">Plans<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg></span>
+            <span className="wall__go" aria-hidden="true">Open<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg></span>
           </span>
         </Link>
       </div>

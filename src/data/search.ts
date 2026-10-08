@@ -1,5 +1,6 @@
 import { ALL_MODULES, CONTACT_EMAIL } from './siteContent'
 import { PLANS_LEDE } from './plans'
+import { BACK_OFFICE, BACK_OFFICE_LEDE } from './backOffice'
 
 // ─── Site search: keyword lookup + lightweight question answering ───
 // Everything is indexed client-side (the site is static), so search works
@@ -50,6 +51,11 @@ const PAGE_ENTRIES: SearchEntry[] = [
     body: ALL_MODULES.map(m => m.label).join(' '),
   },
   {
+    id: 'page-back-office', kind: 'page', title: 'The rest of the hospital', subtitle: 'Front desk, billing, stores, rosters, NABH and more', to: '/back-office',
+    keywords: ['back office', 'billing', 'payments', 'insurance', 'tpa', 'claims', 'procurement', 'stores', 'housekeeping', 'workforce', 'roster', 'payroll', 'equipment', 'biomedical', 'diet', 'kitchen', 'nabh', 'abdm', 'abha', 'front desk', 'opd', 'token'],
+    body: `${BACK_OFFICE_LEDE} ${BACK_OFFICE.map(m => `${m.name}: ${m.line}`).join(' ')}`,
+  },
+  {
     id: 'page-plans', kind: 'page', title: 'Plans', subtitle: 'Founding programme: three places in Hyderabad', to: '/plans',
     keywords: ['plans', 'plan', 'founding', 'programme', 'program', 'hyderabad', 'pricing', 'price', 'cost', 'terms', 'buy', 'start'],
     body: PLANS_LEDE,
@@ -85,7 +91,7 @@ export const ANSWER_ENTRIES: SearchEntry[] = [
   },
   {
     id: 'qa-privacy', kind: 'answer', title: 'Does patient data leave the hospital?', to: '/security',
-    answer: 'No. The database, the models and the audit log sit on the computer, and no cloud model is in the loop. The one outbound call is Pulse, which sends a map coordinate to public weather, air-quality, flu and drug-recall feeds. It carries no patient, every call is logged, and the firewall can block it.',
+    answer: 'No. The database, the models and the audit log sit on the computer, and no cloud model is in the loop. Orb makes no call to the internet at all: Pulse reads a seasonal calendar built into Orb, not a weather service.',
     keywords: ['data', 'privacy', 'leave', 'cloud', 'egress', 'private', 'phi', 'patient', 'stored', 'store', 'send', 'external', 'sovereignty', 'local'],
   },
   {
@@ -100,7 +106,7 @@ export const ANSWER_ENTRIES: SearchEntry[] = [
   },
   {
     id: 'qa-integration', kind: 'answer', title: 'Does Orb replace our hospital system?', to: '/plans',
-    answer: 'No. Orb runs beside your hospital system on one ward. Registration, billing, pharmacy and lab stay where they are. Orb exports its own records as a standard file (FHIR), and does not import from your system yet.',
+    answer: 'No. Orb runs beside your hospital system on one ward. Registration, billing, pharmacy and lab stay where they are. Orb exports its records as a standard file (FHIR). Observations and results can be sent to it over HL7 or FHIR on your network with a key your IT holds, and a ward’s patient list can be imported from a file, with a dry run first. It has no connector to your hospital system.',
     keywords: ['ehr', 'emr', 'his', 'integrate', 'integration', 'replace', 'stack', 'systems', 'interoperability', 'hl7', 'fhir', 'record'],
   },
   {
@@ -115,7 +121,7 @@ export const ANSWER_ENTRIES: SearchEntry[] = [
   },
   {
     id: 'qa-modules-count', kind: 'answer', title: 'Which modules does Orb have?', to: '/modules',
-    answer: `On this site: ${ALL_MODULES.map(m => m.label).join(', ')}. Also on the computer, outside the founding programme: front desk, billing, payments, insurance and TPA, procurement, housekeeping, workforce, equipment, diet and kitchen, NABH evidence, and the admin screens. In the founding programme Orb runs on one ward, beside your hospital system.`,
+    answer: `On this site: ${ALL_MODULES.map(m => m.label).join(', ')}. Also on the computer, outside the founding programme: front desk, billing, payments, insurance and TPA, procurement and stores, housekeeping, workforce, biomedical equipment, diet and kitchen, NABH evidence and ABDM records, each on the back-office page, and the admin screens. In the founding programme Orb runs on one ward, beside your hospital system.`,
     keywords: ['many', 'modules', 'count', 'number', 'which', 'list', 'included', 'features', 'apps', 'billing', 'front desk'],
   },
   {
@@ -132,6 +138,26 @@ export const ANSWER_ENTRIES: SearchEntry[] = [
     id: 'qa-who-for', kind: 'answer', title: 'Who is Orb for?', to: '/',
     answer: 'Hospitals, starting with one ward beside the system they already run. The founding programme is the ward’s observation record and a monthly file for the quality team. This site shows what nurses see (observations, the NEWS2 score, what is due now), what doctors see (the chart, the case rooms, a model that answers on site), the pharmacist’s queue, the admin screens and Bridge for patients.',
     keywords: ['who', 'for', 'audience', 'customers', 'hospitals', 'clinics', 'users', 'buyer', 'nurses', 'doctors', 'pharmacists', 'patients'],
+  },
+  {
+    id: 'qa-print', kind: 'answer', title: 'What can Orb print?', to: '/vigil',
+    answer: 'The inpatient record, the medication list with the allergies at the top, the orders list, the I-PASS handover, the discharge summary, invoices, and a downtime pack per patient for the hour the computer is down.',
+    keywords: ['print', 'printout', 'paper', 'printed', 'sheet', 'discharge', 'summary', 'handover', 'invoice', 'downtime', 'record'],
+  },
+  {
+    id: 'qa-sign-in', kind: 'answer', title: 'Who can sign in, and how?', to: '/security',
+    answer: 'Staff sign in with an ID and a password, each role sees only its own screens, and doctors, nurses and ward clerks see only their own department’s patients. Any role can be set to need a code from an authenticator app as well, a ward tablet can be bound so a nurse unlocks it with a PIN mid-shift, and an administrator manages every account on one screen.',
+    keywords: ['login', 'sign in', 'password', 'mfa', 'two-factor', '2fa', 'authenticator', 'pin', 'tablet', 'roles', 'access', 'accounts', 'users'],
+  },
+  {
+    id: 'qa-language', kind: 'answer', title: 'Does Orb work in Hindi?', to: '/support',
+    answer: 'Partly. The menus and the main labels switch between English and Hindi with one button. The clinical screens, notes and Sage’s answers are in English today.',
+    keywords: ['hindi', 'telugu', 'language', 'languages', 'translation', 'english', 'local language'],
+  },
+  {
+    id: 'qa-ward-list', kind: 'answer', title: 'How do our current patients get into Orb?', to: '/plans',
+    answer: 'A ward’s patient list can be imported from a file. Orb shows a preview, then a dry run of what it would write, and writes nothing until an administrator confirms.',
+    keywords: ['import', 'patients', 'go-live', 'go live', 'migration', 'ward list', 'existing', 'census', 'file', 'csv', 'start'],
   },
   {
     id: 'qa-contact', kind: 'answer', title: 'How do I contact Orb?', to: '/support',

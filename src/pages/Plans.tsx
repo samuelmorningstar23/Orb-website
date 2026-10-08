@@ -3,7 +3,7 @@ import { motion, useReducedMotion } from 'framer-motion'
 import Aurora from '../components/Aurora'
 import MarketingHeader from '../components/MarketingHeader'
 import SiteFooter from '../components/SiteFooter'
-import { AT_A_GLANCE, NOT_TODAY, PLANS_LEDE } from '../data/plans'
+import { AT_A_GLANCE, NOT_TODAY, PLANS_LEDE, WARD_RECORD } from '../data/plans'
 import { openDemoModal } from '../data/siteContent'
 import './Plans.css'
 
@@ -56,6 +56,24 @@ export default function Plans() {
               </div>
             ))}
           </motion.div>
+        </section>
+
+        {/* ─── What one ward gets ─── */}
+        <section className="plans__plain" aria-labelledby="ward-record">
+          <div className="plans__plain-head">
+            <span className="plans__eyebrow">Orb Ward Record</span>
+            <h2 className="plans__h2" id="ward-record">What one ward gets.</h2>
+          </div>
+
+          <ol className="plans__proof">
+            {WARD_RECORD.map((n, i) => (
+              <li key={n.title} className="plans__proof-item">
+                <span className="plans__proof-num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+                <span className="plans__item-title">{n.title}</span>
+                <span className="plans__item-body">{n.body}</span>
+              </li>
+            ))}
+          </ol>
         </section>
 
         {/* ─── Where Orb stands today ─── */}

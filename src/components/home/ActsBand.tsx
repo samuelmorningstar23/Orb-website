@@ -4,7 +4,7 @@ import './ActsBand.css'
 
 const STEPS = [
   { n: '01', label: 'Read', line: 'The chart and the observations, as the ward recorded them.' },
-  { n: '02', label: 'Draft', line: 'An order or a note, with the guideline it read listed under it.' },
+  { n: '02', label: 'Draft', line: 'An order or a note. An order set names the guideline it follows, and Sage lists the sources behind its answer.' },
   { n: '03', label: 'Confirm', line: 'A named clinician approves it. Or it goes nowhere.' },
   { n: '04', label: 'Record', line: 'The order goes on the chart, the pharmacist sees it in the queue, and the log keeps who did it and when.' },
 ]
