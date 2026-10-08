@@ -23,11 +23,11 @@ export const AT_A_GLANCE: { label: string; value: string; sub: string }[] = [
 /** What a founding ward gets, as built on 9 October 2026. Shown as a numbered list. */
 export const WARD_RECORD: { title: string; body: string }[] = [
   { title: 'A screen for the clerk', body: 'She copies each round at the time written on the sheet. A reading she cannot read is marked unreadable, and a box left blank stays blank, never filled in as alert or on air.' },
-  { title: 'Mistakes leave a trail', body: 'A set copied wrong is struck out with a reason. It stays on the record, and nothing reads it as current.' },
+  { title: 'Mistakes leave a trail', body: 'The clerk strikes out a set she copied wrong, with a reason, from her own screen. It stays on the record, and nothing reads it as current. She can only strike out her own copies.' },
   { title: 'Your interval, in writing', body: 'The nursing superintendent sets how often rounds are due on the ward, and every change is logged with the old and new values. With no interval set, Orb produces no file rather than guess one.' },
   { title: 'The monthly file', body: 'Rounds due, done, late and missed by shift, readings left blank or unreadable, and the clerk’s typing delay on a line of its own, never counted as late. As a spreadsheet or a readable document.' },
   { title: 'Proof it is the same file', body: 'Each file produced is logged with a fingerprint of the exact document, so the file the assessor saw can be checked against the one on record.' },
-  { title: 'Nothing else switched on', body: 'On a founding ward’s computer every other screen is off the menu, and no score, alert or AI model runs.' },
+  { title: 'Nothing else switched on', body: 'On a founding ward’s computer every other screen is off the menu. No score, alert or AI model runs, and there is no medication round.' },
 ]
 
 /** Where Orb stands today. Shown as a numbered list. */
