@@ -6,10 +6,10 @@
 
 export interface BackOfficeModule { name: string; line: string; shot: string }
 
-export const BACK_OFFICE_LEDE = 'Front desk, billing, payments, insurance, stores, housekeeping, rosters, equipment, the kitchen, NABH evidence and ABDM records run on the same computer and the same record as the ward. Each one is switched on hospital by hospital, and none is part of the founding programme, where your own systems stay in charge.'
+export const BACK_OFFICE_LEDE = 'Front desk, billing, payments, insurance, stores, housekeeping, rosters, equipment, the kitchen, NABH evidence and ABDM records run on the same computer and the same record as the ward. Each one can be switched off hospital by hospital, and none is part of the founding programme, where your own systems stay in charge.'
 
 export const BACK_OFFICE: BackOfficeModule[] = [
-  { name: 'Front desk', shot: 'module-frontdesk', line: 'Register an outpatient visit and issue a token, call, skip and recall the queue, and move patients between wards.' },
+  { name: 'Front desk', shot: 'module-frontdesk', line: 'Register an outpatient visit and issue a token, and move patients between wards. With outpatient consultations switched on, the doctor calls, skips and recalls the queue.' },
   { name: 'Billing', shot: 'module-billing', line: 'A price list, charges captured from the ward, interim and final invoices, and credit notes, all printable.' },
   { name: 'Payments', shot: 'module-payments', line: 'Receipts, advances and refunds at a counter whose cash is counted at the end of each shift. A difference is recorded, never absorbed.' },
   { name: 'Insurance and TPA', shot: 'module-payer', line: 'Cover on file, pre-authorisations, claims and denials, with what is stuck and for how long. Orb sends nothing to a payer; the desk records what it did on the payer’s portal.' },

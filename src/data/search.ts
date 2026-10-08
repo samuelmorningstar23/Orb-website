@@ -146,7 +146,7 @@ export const ANSWER_ENTRIES: SearchEntry[] = [
   },
   {
     id: 'qa-sign-in', kind: 'answer', title: 'Who can sign in, and how?', to: '/security',
-    answer: 'Staff sign in with an ID and a password, and each role sees only its own screens and its own department’s patients. Any role can be set to need a code from an authenticator app as well, a ward tablet can be bound so a nurse unlocks it with a PIN mid-shift, and an administrator manages every account on one screen.',
+    answer: 'Staff sign in with an ID and a password, each role sees only its own screens, and doctors, nurses and ward clerks see only their own department’s patients. Any role can be set to need a code from an authenticator app as well, a ward tablet can be bound so a nurse unlocks it with a PIN mid-shift, and an administrator manages every account on one screen.',
     keywords: ['login', 'sign in', 'password', 'mfa', 'two-factor', '2fa', 'authenticator', 'pin', 'tablet', 'roles', 'access', 'accounts', 'users'],
   },
   {

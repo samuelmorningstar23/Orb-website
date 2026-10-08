@@ -46,7 +46,7 @@ export const ALL_MODULES: ModuleInfo[] = [
   },
   {
     to: '/scribe', label: 'Scribe', badge: 'From dictation to a signed note',
-    blurb: 'Type or dictate the consultation. The local model drafts a SOAP note, a second pass checks it against the transcript where the hospital has switched that on, and the clinician signs by name. Signing charts the medicines as unverified until a pharmacist verifies them.',
+    blurb: 'Type or dictate the consultation. The local model drafts a SOAP note, a second pass checks it against the transcript where the hospital has switched that on, and the clinician signs by name. After signing, a model charts the medicines the note names as unverified until a pharmacist verifies them.',
     keywords: ['documentation', 'notes', 'dictation', 'transcription', 'voice', 'soap', 'sign'],
     area: 'ward',
     line: 'Speak the consultation, sign the note, and none of it leaves the computer.',
@@ -88,7 +88,7 @@ export const ALL_MODULES: ModuleInfo[] = [
   },
   {
     to: '/forecast', label: 'Forecast', badge: 'The week ahead, in beds',
-    blurb: 'Seven days of census against capacity, the discharge board and admission patterns. Today’s census comes from the record, and every projection carries an untrained label.',
+    blurb: 'Seven days of census against capacity, and the discharge board. Today’s census comes from the record, and every projection carries an untrained label.',
     keywords: ['capacity', 'beds', 'length of stay', 'discharge', 'planning', 'projection', 'availability', 'census'],
     area: 'house',
     line: 'Census against capacity for the week ahead, with the model’s status printed on the screen.',
@@ -109,7 +109,7 @@ export const ALL_MODULES: ModuleInfo[] = [
   },
   {
     to: '/bridge', label: 'Bridge', badge: 'Written for the person in the bed',
-    blurb: 'A patient signs in with the login the ward prints at admission and sees their care team, their observations as charted, their medications and their documents. Their record downloads as a standard file (FHIR), and the login ends on the day they go home.',
+    blurb: 'A patient signs in with the login the ward hands over at admission and sees their care team, their observations as charted, their medications and their documents. Their record downloads as a standard file (FHIR), and the login ends on the day they go home.',
     keywords: ['patients', 'families', 'plain language', 'portal', 'explanations', 'next steps', 'fhir', 'record'],
     area: 'patients',
     line: 'The patient’s own portal: observations as charted, medications, documents, and their record as a file.',
@@ -123,7 +123,7 @@ export const ALL_MODULES: ModuleInfo[] = [
   },
   {
     to: '/revenue-integrity', label: 'Revenue Integrity', badge: 'Codes the chart already supports',
-    blurb: 'Pick a patient. Press Analyze. Orb reads the notes on the chart and lists the codes they support and the gaps that block them, each with the sentence behind it.',
+    blurb: 'Pick a patient. Press Analyse. Orb reads the notes on the chart and lists the codes they support and the gaps that block them, each with the sentence behind it.',
     keywords: ['revenue', 'coding', 'billing', 'reimbursement', 'claims', 'finance', 'back office', 'documentation'],
     area: 'office',
     line: 'The codes the chart supports and the gaps that block them, each with its sentence.',

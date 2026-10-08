@@ -137,7 +137,7 @@ export default function News2Live() {
         <span className="news2__eyebrow">Try the rule</span>
         <h2 className="news2__title">Put your own numbers through it.</h2>
         <p className="news2__lead">
-          The same table Orb applies to every set of observations a nurse records, with the response line in the RCP’s own words.
+          The same RCP table Orb applies to each set of observations a nurse records where scoring is switched on, here on whole numbers, with shortened response lines.
         </p>
         <div className="news2__presets" role="group" aria-label="Example patients">
           {PRESETS.map(p => (
@@ -218,7 +218,7 @@ export default function News2Live() {
             {result.parts.every(p => p.points === 0) && <li className="news2__driver-none">Every parameter in range.</li>}
           </ul>
           <p className="news2__foot">
-            The same RCP points table the server’s compute_news2 uses, on oxygen saturation scale 1; the response lines here are shortened. In Orb the score is calculated on the computer for every set of observations, and the nurse sees it before saving.
+            The same RCP points table the server’s compute_news2 uses, on whole numbers and oxygen saturation scale 1; the response lines here are shortened. In Orb the score is calculated on the computer for every set of observations, and the nurse sees it before saving.
           </p>
         </div>
       </div>

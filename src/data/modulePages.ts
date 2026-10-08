@@ -54,9 +54,10 @@ export const MODULE_PAGES: ModulePageData[] = [
     more: [
       { title: 'Today', desc: 'A doctor’s home screen: the highest scores on the ward, new results since they last looked, and what is waiting on them.' },
       { title: 'Ward round', desc: 'A round queue bed by bed, one screen per patient, and the plan typed or dictated onto the chart before moving on.' },
-      { title: 'Patient story', desc: 'Admission, alerts, medicines, notes and bundles on one timeline, filtered by kind, with what is new since the doctor last looked.' },
+      { title: 'Patient story', desc: 'Admission, alerts, medicines, notes and bundles on one timeline, filtered by kind, with what is new since the doctor last marked the chart reviewed.' },
       { title: 'Discharge summary', desc: 'Drafted from the record, reviewed by a clinician, and printed for the patient to take home.' },
       { title: 'Print on demand', desc: 'The inpatient record, the medication list with the allergies at the top, the orders and the handover.' },
+      { title: 'Scale 2 where it applies', desc: 'A patient flagged with chronic type 2 respiratory failure is scored on the RCP’s second oxygen scale, and a set with a box left blank is labelled an incomplete score.' },
       { title: 'A downtime pack', desc: 'A read-only copy of each patient’s chart, refreshed on the computer, to print for the hour the computer is down.' },
     ],
     shots: [
@@ -77,14 +78,14 @@ export const MODULE_PAGES: ModulePageData[] = [
     badge: 'Clinical answers, inside the hospital',
     tagline: 'Ask about a guideline. Ask about a patient. The answer comes from a model in the building, and it lists the guidance it read.',
     cards: [
-      { icon: 'building', title: 'Two models. Both in the building.', desc: 'In fast mode the smaller model takes general questions. Questions about a patient, a medicine or a dose always go to the larger medical model, and no switch on the screen changes that.' },
+      { icon: 'building', title: 'Two models. Both in the building.', desc: 'In fast mode the smaller model takes general questions. It is never sent a question about a patient, a medicine or a dose, and if the larger model is not loaded, the answer says which model replied.' },
       { icon: 'search', title: 'It shows what it read', desc: 'Show details lists the guidance retrieved, with a limited-evidence or high-risk badge before the first sentence.' },
       { icon: 'lock', title: 'The computer enforces who sees what', desc: 'A General Medicine login gets nothing for a cardiology bed, however the chart is asked for. Even a direct request to the server comes back empty.' },
       { icon: 'check', title: 'It drafts. You sign.', desc: 'Sage never places an order or files a note. Nothing it drafts happens until a clinician confirms it, and a confirmed medicine cannot be given until a pharmacist verifies it.' },
     ],
     ctaLine: 'Ask it a guideline question on the walkthrough and read what it cites.',
     more: [
-      { title: 'Every answer can be replayed', desc: 'For each answer Orb keeps the question, the model, the mode, the sources and the timing, for an administrator to review later.' },
+      { title: 'Every answer can be replayed', desc: 'For each answer, refused ones included, Orb keeps the question, the model, the mode, the sources, the timing and the chart the model was shown, for an administrator to replay. Kept for 400 days by default.' },
     ],
     shots: [
       { name: 'sage-panel', label: 'Sage', caption: 'Sage on open: recent conversations, the quick starts and the modes an answer can come back in.' },
@@ -99,9 +100,13 @@ export const MODULE_PAGES: ModulePageData[] = [
       { icon: 'mic', title: 'Transcribed in the building', desc: 'Speech is transcribed on the computer. No cloud service hears it.' },
       { icon: 'file', title: 'Structured, and checked where switched on', desc: 'A SOAP note, an I-PASS handover or a discharge summary. Where the hospital switches on the second pass, unsupported claims and omissions are listed against the transcript.' },
       { icon: 'check', title: 'Signing is on the record', desc: 'A note the automatic check did not pass, or never ran on, makes you type SIGN. The signature and the check’s result are stored with it.' },
-      { icon: 'pill', title: 'A signed note feeds the pharmacy', desc: 'Signing charts the medicines the note names as unverified. A nurse cannot give one until a pharmacist verifies it.' },
+      { icon: 'pill', title: 'A signed note feeds the pharmacy', desc: 'After signing, a model reads the note and charts the medicines it finds as unverified. A nurse cannot give one until a pharmacist verifies it.' },
     ],
     ctaLine: 'From a dictated consultation to a signed note, without the note leaving the building.',
+    more: [
+      { title: 'Revise a signed note', desc: 'A signed note can be revised. The new version takes its place and the old one stays on the record.' },
+      { title: 'Discharge summaries', desc: 'The same local model drafts a discharge summary from the record for a clinician to review and print.' },
+    ],
     // The I-PASS capture is held back until it is recaptured: the one on file
     // prints NKDA for a patient whose chart carries an anaphylaxis.
   },
@@ -114,9 +119,9 @@ export const MODULE_PAGES: ModulePageData[] = [
       { icon: 'image', title: 'Any image the ward has', desc: 'A chest film, an ECG strip or a clinical photo, dragged in from a phone or a workstation.' },
       { icon: 'search', title: 'A draft, labelled as one', desc: 'Marked as a model draft on the screen, for a clinician to correct, keep or discard.' },
       { icon: 'building', title: 'Nothing is uploaded anywhere', desc: 'The model runs on the computer. No image, and no text about it, leaves the hospital.' },
-      { icon: 'alert', title: 'Switched off today', desc: 'Lens is not a certified diagnostic device, and the screen says so. It stays off.' },
+      { icon: 'alert', title: 'Switched off today', desc: 'Lens is not a certified diagnostic device, and the screen says so. It is off by default and in the founding programme, and only an operator setting turns it on.' },
     ],
-    ctaLine: 'It is switched off today, and the screen says why.',
+    ctaLine: 'Switched off by default, and the screen says why.',
   },
   {
     route: '/relay',
@@ -124,14 +129,14 @@ export const MODULE_PAGES: ModulePageData[] = [
     badge: 'One room per patient',
     // No tagline: it opened by repeating the claim, and cards 01 to 03 carry the rest.
     cards: [
-      { icon: 'users', title: 'The team is already in it', desc: 'Every admitted patient has a case room with the team in it, listed with their NEWS2 band.' },
+      { icon: 'users', title: 'Open to the department', desc: 'Every admitted patient gets a case room that the staff of their department can read and write, listed with the patient’s NEWS2 band.' },
       { icon: 'alert', title: 'Alerts land where the talk is', desc: 'Vigil posts each alert into the room with the vitals that caused it.' },
       { icon: 'check', title: 'Wrong patient, right ward', desc: 'Orb delivers the message, then asks whether it belongs to the other patient. Nobody mid-emergency gets a pop-up.' },
-      { icon: 'pill', title: 'A medicine in chat becomes a card', desc: 'A clinician confirms it and types the dose, Orb screens it against the chart, and it cannot be given until a pharmacist verifies it.' },
+      { icon: 'pill', title: 'A medicine in chat becomes a card', desc: 'A clinician confirms the card, Orb screens it against the chart, and the medicine is charted as unverified with its dose left for review, so it cannot be given until a pharmacist verifies it.' },
     ],
     ctaLine: 'The team’s conversation, with the ward’s alerts and safeguards inside it.',
     more: [
-      { title: 'Direct messages', desc: 'Staff can also message each other directly, outside a patient’s room.' },
+      { title: 'A room for each department', desc: 'Each department also has a staff room of its own, outside the patients’ rooms.' },
     ],
     shots: [
       { name: 'relay-case-rooms', label: 'Case rooms', caption: 'The department’s rooms, by recency or urgency, each with the patient’s NEWS2 band.' },
@@ -151,9 +156,10 @@ export const MODULE_PAGES: ModulePageData[] = [
     ],
     ctaLine: 'The allergy block, the dose check, then a pharmacist.',
     more: [
-      { title: 'The drug round', desc: 'The nurse types the drug’s name as charted before Given unlocks, and a medicine no pharmacist has verified is refused at the bedside.' },
+      { title: 'The drug round', desc: 'The nurse types the drug’s name as charted before Given unlocks, and a medicine a model drafted is refused at the bedside until a pharmacist verifies it.' },
       { title: 'Signed for on the ward', desc: 'A medicine sent from the pharmacy is received on the ward by a nurse in her own name. The account that dispensed it cannot also receive it.' },
       { title: 'Order sets with their sources', desc: 'Protocol sets such as Sepsis Six and diabetic ketoacidosis, each citing the guideline it follows, applied to one named patient at a time.' },
+      { title: 'The note behind the medicine', desc: 'Beside a medicine a model drafted, the pharmacist can open the signed note it came from, with who signed it and when.' },
       { title: 'Formulary and stock', desc: 'The pharmacy’s catalogue, with stock by lot and expiry date.' },
     ],
     shots: [
@@ -174,10 +180,10 @@ export const MODULE_PAGES: ModulePageData[] = [
       { icon: 'alert', title: 'The NEWS2 band on the list', desc: 'Each patient carries their NEWS2 band onto the theatre list, so the surgeon sees the number the ward sees.' },
       { icon: 'users', title: 'One record', desc: 'The ward and the theatre read one chart, so nothing is copied across by hand.' },
     ],
-    ctaLine: 'The allergy the ward charted is the allergy the anaesthetist sees.',
+    ctaLine: 'The allergies typed at admission show on the theatre case.',
     more: [
-      { title: 'Emergency cases', desc: 'An emergency case is listed at once and the theatre team is called in Relay, where each person confirms or declines.' },
-      { title: 'Start, finish and turnaround', desc: 'Each case’s start and finish are recorded, and the minutes between cases are shown.' },
+      { title: 'Emergency cases', desc: 'An emergency case is listed at once, and the people alerted from it confirm or decline in Relay. The case cannot start until everyone alerted has answered.' },
+      { title: 'Start and finish', desc: 'Each case’s start and finish are recorded, and an empty allergy list reads Allergies not recorded, never none.' },
     ],
   },
   {
@@ -189,7 +195,7 @@ export const MODULE_PAGES: ModulePageData[] = [
       { icon: 'chart', title: 'Built for each part of India', desc: 'Fifty-six seasons, weather conditions and disease seasons across nine regions of India, chosen by the state your hospital is in.' },
       { icon: 'file', title: 'Each card names its source', desc: 'National guidelines and published surveillance, named on the card. Named, not linked, because there is no internet to follow a link to.' },
       { icon: 'alert', title: 'Context, not a number', desc: 'It says dengue season has started. It never says how many patients that means, and no patient score reads it.' },
-      { icon: 'lock', title: 'Marked as a draft', desc: 'Until a clinician at your hospital has reviewed the calendar, the screen says so above every card.' },
+      { icon: 'lock', title: 'Marked as a draft', desc: 'Until a clinician has reviewed the calendar, the screen says it is a draft above the cards.' },
     ],
     ctaLine: 'The season on the ward’s screen. Nothing fetched from outside.',
   },
@@ -197,11 +203,11 @@ export const MODULE_PAGES: ModulePageData[] = [
     route: '/forecast',
     title: 'Forecast',
     badge: 'The week ahead, in beds',
-    tagline: 'Seven days of census against capacity, the discharge board and admission patterns. The forecasting model ships untrained, and the screen says so.',
+    tagline: 'Seven days of census against capacity, and the discharge board. The forecasting model has not been trained, so projections come from simple rules, and the screen says so.',
     cards: [
       { icon: 'chart', title: 'Census against capacity', desc: 'Current census, beds free in 48 hours, discharges this week and the peak day.' },
-      { icon: 'alert', title: 'The model has not been trained yet', desc: 'Each figure from the model carries an untrained label on the screen. The label comes off when the numbers earn it.' },
-      { icon: 'bed', title: 'What comes from the record', desc: 'Today’s census and each ward’s occupancy come from the record. Beds free in 48 hours and the week’s discharges are the untrained model’s projection, and each carries the label.' },
+      { icon: 'alert', title: 'The model has not been trained yet', desc: 'Each projected figure carries an Untrained model label on the screen, and the label stays until a trained, validated model replaces the rules.' },
+      { icon: 'bed', title: 'What comes from the record', desc: 'Today’s census and each ward’s occupancy come from the record. Beds free in 48 hours and the week’s discharges are projected by simple rules while the model is untrained, and each carries the label.' },
       { icon: 'shield', title: 'Registered in Model Governance', desc: 'Listed with its version and validation state, next to the NEWS2 table.' },
     ],
     ctaLine: 'The week ahead, with the model’s status printed on the page.',
@@ -215,9 +221,12 @@ export const MODULE_PAGES: ModulePageData[] = [
       { icon: 'building', title: 'Four numbers the hospital runs on', desc: 'Occupancy, the critical count, sepsis bundles on track and downtime packs that are current.' },
       { icon: 'chart', title: 'The acuity map', desc: 'Every ward as a tile, with its critical, elevated and stable counts.' },
       { icon: 'alert', title: 'Highest scores by name', desc: 'The patient, the bed and the NEWS2 score, in the order Vigil uses on the ward.' },
-      { icon: 'offline', title: 'How many downtime packs are current', desc: 'The count of printable packs that are up to date, and a button to refresh the rest.' },
+      { icon: 'offline', title: 'How many downtime packs are current', desc: 'The count of printable packs made in the last 24 hours, and a button that makes a fresh pack for every patient.' },
     ],
-    ctaLine: 'Each number on it shows the count it was made from.',
+    ctaLine: 'Each headline number shows the count it was made from.',
+    more: [
+      { title: 'Today’s theatre list', desc: 'The day’s operating list with time, procedure, patient, theatre and status, on the same screen.' },
+    ],
   },
   {
     route: '/surge-simulator',
@@ -225,30 +234,33 @@ export const MODULE_PAGES: ModulePageData[] = [
     badge: 'Rehearse the surge on tonight’s census',
     tagline: 'Twenty admissions tonight. Eight beds closed. Flu at 1.5x. The simulator answers on your own census, with its assumptions listed under the chart.',
     cards: [
-      { icon: 'chart', title: 'Starts from the real census', desc: 'Today’s census and the last 30 days of admissions come from the record, and beds per ward are a site setting. No spreadsheet typed up for the meeting.' },
+      { icon: 'chart', title: 'Starts from the real census', desc: 'Today’s census comes from the record, the admission rate is a set default until Orb has its own history to fit, and beds per ward are a site setting. No spreadsheet typed up for the meeting.' },
       { icon: 'list', title: 'Six presets, or your own', desc: 'Six scenarios, or move admissions, beds, admission rate and length of stay yourself.' },
       { icon: 'clock', title: 'Answers you can act on tonight', desc: 'Peak occupancy, hours to overflow, beds short, discharges needed and extra nurses.' },
       { icon: 'file', title: 'Assumptions on the page', desc: 'The assumptions and their citations sit under the chart, so the number can be argued with.' },
     ],
     ctaLine: 'Hours to overflow and nurses needed, with the assumptions under the chart.',
+    more: [
+      { title: 'The same answer twice', desc: 'The projection has no randomness, so the same scenario always gives the same numbers, and the nurse-to-patient ratio can be changed for each one.' },
+    ],
   },
   {
     route: '/bridge',
     title: 'Bridge',
     badge: 'Written for the person in the bed',
-    tagline: 'A patient signs in with the login the ward prints at admission and sees their team, their observations as charted and their record, theirs to download as a standard file (FHIR).',
+    tagline: 'A patient signs in with the login the ward hands over at admission and sees their team, their observations as charted and their record, theirs to download as a standard file (FHIR).',
     cards: [
-      { icon: 'users', title: 'The care team, by name', desc: 'Who is looking after them and how they are doing, in sentences a patient can read.' },
+      { icon: 'users', title: 'The care team', desc: 'Their doctor by name, the ward’s nursing team, and how they are doing, in sentences a patient can read.' },
       { icon: 'pulse', title: 'Their observations, as charted', desc: 'Each observation with when it was taken and its recent trend. No verdicts: what it means is a question for their nurse.' },
       { icon: 'file', title: 'Their record, in their hands', desc: 'Medications and documents to read on screen, and their record to download as a standard file (FHIR).' },
-      { icon: 'chat', title: 'Questions get a plain answer', desc: 'It points them to their nurse or doctor and gives no medical advice.' },
+      { icon: 'chat', title: 'Questions get a plain answer', desc: 'A model on the hospital’s computer answers in plain words and is told to send clinical questions to their nurse or doctor. Emergency or self-harm words skip the model and go straight to the care team.' },
     ],
     ctaLine: 'The patient sees their own care, in plain language.',
     more: [
       { title: 'Ends on the day they go home', desc: 'The login works while the patient is admitted, and until the end of the day they are discharged.' },
       { title: 'Drafts stay with the team', desc: 'A discharge summary still in draft, and an image read nobody has reviewed, are not shown to the patient.' },
       { title: 'Emergency words reach the team', desc: 'If a patient writes about an emergency or self-harm, the message is posted to their care team’s room, and the reply only says the team was told once it has been stored.' },
-      { title: 'Follow-up requests', desc: 'A patient can ask for a follow-up time, and the request waits on the staff list to be confirmed.' },
+      { title: 'Follow-up requests', desc: 'A patient can ask for a follow-up time or cancel one of their own, and a request is labelled as not yet agreed until staff confirm it.' },
     ],
     shots: [
       { name: 'bridge-patient-portal', label: 'The portal', caption: 'What the patient sees: their team, their status, their vitals and their follow-up.' },
@@ -265,18 +277,18 @@ export const MODULE_PAGES: ModulePageData[] = [
       { icon: 'calendar', title: 'A week in columns', desc: 'Today, the week, the patients with high scores among them and the post-discharge reviews.' },
       { icon: 'alert', title: 'The band on the slot', desc: 'The band sits on the slot, so whoever books the follow-up sees the score beside the name.' },
       { icon: 'link', title: 'On the same record', desc: 'The appointment is a row on the record the ward uses.' },
-      { icon: 'users', title: 'Visible to the patient', desc: 'The same appointment shows in Bridge, with the date and the reason in the patient’s words.' },
+      { icon: 'users', title: 'Visible to the patient', desc: 'The same appointment shows in Bridge, with its date, time and the reason as the care team wrote it.' },
     ],
-    ctaLine: 'A follow-up for a high score is not booked like a wound check.',
+    ctaLine: 'Within each day, a follow-up for a high score is listed above a routine wound check.',
   },
   {
     route: '/revenue-integrity',
     title: 'Revenue Integrity',
     badge: 'Codes the chart already supports',
-    tagline: 'Pick a patient and press Analyze. Orb reads the notes on the chart and lists the codes they support and the gaps that block them, each with the sentence behind it.',
+    tagline: 'Pick a patient and press Analyse. Orb reads the notes on the chart and lists the codes they support and the gaps that block them, each with the sentence behind it.',
     cards: [
       { icon: 'search', title: 'It reads what is already written', desc: 'The analysis runs over the notes and documents on the chart, against a starter set of 22 ICD-10 codes today.' },
-      { icon: 'file', title: 'The evidence sentence', desc: 'Every suggested code carries the note and the sentence behind it.' },
+      { icon: 'file', title: 'The evidence sentence', desc: 'Every suggested code carries the sentence behind it and where it was found: a note, the admission diagnosis or the comorbidity list.' },
       { icon: 'alert', title: 'Gaps, named', desc: 'A condition treated and not documented is listed as a query for the clinician, never as a code.' },
       { icon: 'building', title: 'Rules, on the computer', desc: 'A rules engine reads the notes inside the hospital. No model guesses a code, and no chart goes to a coding vendor.' },
     ],

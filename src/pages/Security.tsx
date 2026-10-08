@@ -17,7 +17,7 @@ import './Security.css'
  * here is ported from claims the homepage used to make; nothing is new.
  */
 const CONTROLS = [
-  { title: 'Who can sign in', body: 'Staff sign in with an ID and a password, and each role sees only its own screens and its own department’s patients. Any role can be set to need a code from an authenticator app too, and a ward tablet can be bound so a nurse unlocks it with a PIN mid-shift.' },
+  { title: 'Who can sign in', body: 'Staff sign in with an ID and a password, each role sees only its own screens, and doctors, nurses and ward clerks see only their own department’s patients. Any role can be set to need a code from an authenticator app too, and a ward tablet can be bound so a nurse unlocks it with a PIN mid-shift.' },
   { title: 'Accounts on one screen', body: 'An administrator creates accounts, changes roles, resets passwords and switches accounts off, each change written to the audit log.' },
   { title: 'Encrypted on disk', body: 'The database is encrypted on the computer’s disk with the key set at installation, and the Trust Center shows whether it is.' },
   { title: 'Backups you can see', body: 'An administrator takes a backup from the Data screen and sees every one listed, with its size and time. A restore is done with Orb stopped, never from a button.' },
