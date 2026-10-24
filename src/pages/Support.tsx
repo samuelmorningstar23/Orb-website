@@ -70,9 +70,9 @@ export default function Support() {
 
         <section className="module-detail__hero animate-slide-up">
           <span className="module-detail__badge">Support</span>
-          <h1 className="module-detail__title">How can I help?</h1>
+          <h1 className="module-detail__title">How can we help?</h1>
           <p className="module-detail__tagline">
-            One person reads every message. Write to me, book a walkthrough on demo patients, or find the answer below.
+            Questions, issues or feedback. Write to us, request a walkthrough on synthetic records, or browse the answers below.
           </p>
         </section>
 
@@ -84,7 +84,7 @@ export default function Support() {
               </svg>
             </div>
             <h3 className="support-page__channel-title">Email</h3>
-            <p className="support-page__channel-desc">Questions, issues, feedback. Straight to my inbox.</p>
+            <p className="support-page__channel-desc">Questions, issues and feedback.</p>
             <span className="support-page__channel-action">{CONTACT_EMAIL}</span>
           </a>
 
@@ -134,9 +134,9 @@ export default function Support() {
         </section>
 
         <section className="support-page__form-section animate-slide-up stagger-3" id="write-to-us">
-          <h2 className="support-page__form-title">Still stuck? Write to me</h2>
+          <h2 className="support-page__form-title">Write to us</h2>
           <p className="support-page__form-desc">
-            Send it here. I reply to your email, usually within one business day.
+            Tell us what you need help with. Please leave out patient information.
           </p>
 
           {isSuccess ? (
@@ -146,12 +146,12 @@ export default function Support() {
                   <polyline points="20 6 9 17 4 12" />
                 </svg>
               </div>
-              <h3>Message sent</h3>
-              <p>Thanks. It is on its way to me, and I will reply to your email, usually within one business day.</p>
+              <h3>Your message was submitted.</h3>
+              <p>We use the details you provided to review your enquiry. You can also email <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.</p>
               <button className="support-page__form-again" onClick={() => setIsSuccess(false)}>Send another message</button>
             </div>
           ) : (
-            <form className="support-page__form" onSubmit={handleSubmit} noValidate>
+            <form className="support-page__form" onSubmit={handleSubmit} aria-describedby="support-privacy-note" noValidate>
               {error && <div className="support-page__form-error" role="alert">{error}</div>}
 
               <div className="support-page__form-row">
@@ -181,6 +181,11 @@ export default function Support() {
                 value={website}
                 onChange={e => setWebsite(e.target.value)}
               />
+
+              <p className="support-page__privacy" id="support-privacy-note">
+                Please leave out patient names, records and other sensitive health information.{' '}
+                <Link to="/privacy">Privacy notice</Link>.
+              </p>
 
               <button type="submit" className="support-page__form-submit" disabled={isSubmitting}>
                 {isSubmitting ? 'Sending…' : 'Send message'}

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { ALL_MODULES, CONTACT_EMAIL } from '../data/siteContent'
+import { ALL_MODULES, CONTACT_EMAIL, PRIVACY_EMAIL } from '../data/siteContent'
 import './SiteFooter.css'
 
 /**
@@ -16,6 +16,10 @@ export default function SiteFooter() {
         <div className="landing-overview__footer-brand">
           <span className="landing-overview__footer-wordmark">Orb</span>
           <p className="landing-overview__footer-tagline">Hospital software that never leaves the building.</p>
+          <p className="landing-overview__footer-privacy">
+            Privacy and complaints<br />
+            <a href={`mailto:${PRIVACY_EMAIL}`}>{PRIVACY_EMAIL}</a>
+          </p>
         </div>
 
         <nav className="landing-overview__footer-cols">
@@ -38,6 +42,8 @@ export default function SiteFooter() {
             <Link to="/plans" className="landing-overview__footer-link">Plans</Link>
             <Link to="/security" className="landing-overview__footer-link">Security</Link>
             <Link to="/support" className="landing-overview__footer-link">Support</Link>
+            <Link to="/privacy" className="landing-overview__footer-link">Privacy</Link>
+            <Link to="/privacy#complaints" className="landing-overview__footer-link">Complaints</Link>
             <a href={`mailto:${CONTACT_EMAIL}`} className="landing-overview__footer-link">Contact</a>
           </div>
         </nav>

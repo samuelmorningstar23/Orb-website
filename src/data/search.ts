@@ -1,4 +1,4 @@
-import { ALL_MODULES, CONTACT_EMAIL } from './siteContent'
+import { ALL_MODULES, CONTACT_EMAIL, PRIVACY_EMAIL } from './siteContent'
 import { PLANS_LEDE } from './plans'
 import { BACK_OFFICE, BACK_OFFICE_LEDE } from './backOffice'
 
@@ -61,9 +61,19 @@ const PAGE_ENTRIES: SearchEntry[] = [
     body: PLANS_LEDE,
   },
   {
-    id: 'page-support', kind: 'page', title: 'Support', subtitle: 'Write to me, book a walkthrough, or find the answer', to: '/support',
+    id: 'page-support', kind: 'page', title: 'Support', subtitle: 'Questions, feedback and walkthrough requests', to: '/support',
     keywords: ['support', 'help', 'contact', 'faq', 'questions', 'email', 'assistance', 'troubleshooting'],
-    body: `Reach me, read the common questions, or book a walkthrough. ${CONTACT_EMAIL}`,
+    body: `Contact Orb, read the common questions, or request a walkthrough. ${CONTACT_EMAIL}`,
+  },
+  {
+    id: 'page-privacy', kind: 'page', title: 'Privacy and complaints', subtitle: 'Website, enquiries and professional outreach', to: '/privacy',
+    keywords: ['privacy', 'notice', 'personal information', 'data', 'enquiries', 'outreach', 'retention', 'correction', 'deletion'],
+    body: `How Orb handles website visits and professional correspondence. Privacy requests: ${PRIVACY_EMAIL}`,
+  },
+  {
+    id: 'page-complaints', kind: 'page', title: 'Privacy complaints', subtitle: 'Privacy concerns and unwanted outreach', to: '/privacy#complaints',
+    keywords: ['complaint', 'complaints', 'unwanted', 'opt out', 'stop contacting', 'unsubscribe', 'objection'],
+    body: `Privacy questions, complaints or requests for no further contact: ${PRIVACY_EMAIL}`,
   },
 ]
 
@@ -161,7 +171,7 @@ export const ANSWER_ENTRIES: SearchEntry[] = [
   },
   {
     id: 'qa-contact', kind: 'answer', title: 'How do I contact Orb?', to: '/support',
-    answer: `Email ${CONTACT_EMAIL} any time, or book a walkthrough from any page. One person reads every message.`,
+    answer: `Email ${CONTACT_EMAIL}, or request a walkthrough from any page.`,
     keywords: ['contact', 'reach', 'email', 'talk', 'human', 'team', 'phone', 'sales', 'touch'],
   },
 ]

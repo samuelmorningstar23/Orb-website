@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import { Link } from 'react-router-dom'
 // Lead delivery and the contact address live in siteContent.ts, and the send
 // itself in sendForm.ts, so every form on the site behaves the same way.
 import { CONTACT_EMAIL } from '../data/siteContent'
@@ -103,7 +104,7 @@ export default function RequestDemoModal() {
 
             {error && <div className="demo-modal-error" role="alert">{error}</div>}
 
-            <form className="demo-modal-form" onSubmit={handleSubmit} noValidate>
+            <form className="demo-modal-form" onSubmit={handleSubmit} aria-describedby="demo-privacy-note" noValidate>
               <div className="demo-modal-field">
                 <label htmlFor="dm-name">Full name</label>
                 <input ref={firstFieldRef} id="dm-name" name="name" type="text" autoComplete="name" placeholder="Your name" value={name} onChange={e => setName(e.target.value)} required />
@@ -136,6 +137,11 @@ export default function RequestDemoModal() {
                 onChange={e => setWebsite(e.target.value)}
               />
 
+              <p className="demo-modal-privacy" id="demo-privacy-note">
+                Please leave out patient names, records and other sensitive health information.{' '}
+                <Link to="/privacy" onClick={close}>Privacy notice</Link>.
+              </p>
+
               <button type="submit" className="demo-modal-submit" disabled={isSubmitting}>
                 {isSubmitting ? 'Sending…' : 'Book a walkthrough'}
               </button>
@@ -148,9 +154,9 @@ export default function RequestDemoModal() {
                 <polyline points="20 6 9 17 4 12" />
               </svg>
             </div>
-            <h3 className="demo-modal-title">Got it.</h3>
+            <h3 className="demo-modal-title">Your request was submitted.</h3>
             <p className="demo-modal-subtitle">
-              Your request has reached me. I will be in touch shortly. You can also write any time to <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
+              You can also write to <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
             </p>
             <button className="demo-modal-close-btn" onClick={close}>Close</button>
           </div>

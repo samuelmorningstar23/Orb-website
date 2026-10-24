@@ -5,6 +5,7 @@ import Landing from './pages/Landing'
 import Plans from './pages/Plans'
 import Support from './pages/Support'
 import Security from './pages/Security'
+import Privacy from './pages/Privacy'
 import Modules from './pages/Modules'
 import BackOffice from './pages/BackOffice'
 import ModulePage from './pages/details/ModulePage'
@@ -61,6 +62,8 @@ function AnimatedRoutes() {
         <Route path="/plans" element={<Page><Plans /></Page>} />
         <Route path="/support" element={<Page><Support /></Page>} />
         <Route path="/security" element={<Page><Security /></Page>} />
+        <Route path="/privacy" element={<Page><Privacy /></Page>} />
+        <Route path="/complaints" element={<Navigate to="/privacy#complaints" replace />} />
         <Route path="/modules" element={<Page><Modules /></Page>} />
         <Route path="/back-office" element={<Page><BackOffice /></Page>} />
         {/* Every module page is the same layout over its own data and its own captures. */}

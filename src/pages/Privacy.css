@@ -1,0 +1,111 @@
+.privacy-page__reading {
+  max-width: 760px;
+  margin: 0 auto 88px;
+}
+
+.privacy-page__header {
+  margin-bottom: 40px;
+}
+
+.privacy-page__title {
+  font-family: var(--font-display);
+  font-size: var(--text-title);
+  line-height: var(--leading-title);
+  letter-spacing: var(--tracking-title);
+  font-weight: 700;
+  text-wrap: balance;
+  margin-bottom: 18px;
+}
+
+.privacy-page__updated {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-bottom: 22px;
+}
+
+.privacy-page__intro {
+  font-size: var(--text-deck);
+  line-height: var(--leading-deck);
+  color: var(--text-secondary);
+  margin-bottom: 22px;
+}
+
+.privacy-page__contact {
+  color: var(--text-primary);
+}
+
+.privacy-page__reading a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  overflow-wrap: anywhere;
+}
+
+.privacy-page__reading a:hover {
+  color: var(--accent-strong);
+}
+
+.privacy-page__reading a:focus-visible,
+.privacy-page__section:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 5px;
+}
+
+.privacy-page__contents {
+  padding: 28px 0;
+  margin-bottom: 40px;
+  border-block: 1px solid var(--border-glass);
+}
+
+.privacy-page__contents h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.privacy-page__contents ol {
+  padding-left: 1.4rem;
+}
+
+.privacy-page__contents li + li {
+  margin-top: 8px;
+}
+
+.privacy-page__section {
+  margin-top: 40px;
+  scroll-margin-top: 112px;
+}
+
+.privacy-page__section h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 3vw, 1.6rem);
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.privacy-page__section p {
+  max-width: 70ch;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.privacy-page__section p + p {
+  margin-top: 16px;
+}
+
+.privacy-page__sources {
+  padding-left: 1.3rem;
+  margin-top: 16px;
+}
+
+.privacy-page__sources li + li {
+  margin-top: 8px;
+}
+
+@media (max-width: 560px) {
+  .privacy-page__reading { margin-bottom: 60px; }
+  .privacy-page__section { scroll-margin-top: 88px; }
+  .privacy-page__section p { line-height: 1.65; }
+}

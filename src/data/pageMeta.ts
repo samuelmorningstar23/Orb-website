@@ -18,7 +18,9 @@ export const PAGES: PageMeta[] = [
   // The Plans page description is the page's own lede, so the two cannot drift.
   { route: '/plans', title: 'Plans | Orb', description: PLANS_LEDE },
   { route: '/security', title: 'Security brief | Orb', description: 'Nothing leaves the building. The computer, the models and the hash-chained audit log, with the admin screens they are checked on.' },
-  { route: '/support', title: 'Support | Orb', description: 'Write to me, book a walkthrough of the product on demo patients, or find the answer below.' },
+  { route: '/support', title: 'Support | Orb', description: 'Questions, issues or feedback. Write to Orb, request a walkthrough on synthetic records, or browse the common questions.' },
+  { route: '/privacy', title: 'Privacy and complaints | Orb', description: 'How Orb handles website visits, enquiries and professional outreach. Contact founder@orbsuite.com for privacy requests or complaints.' },
+  { route: '/complaints', title: 'Privacy complaints | Orb', description: 'Contact Orb about privacy, unwanted outreach or a complaint at founder@orbsuite.com.' },
   // Module pages read their copy from the data file. A page with no tagline
   // describes itself by its claim and its first fact card.
   ...MODULE_PAGES.map(p => ({ route: p.route, title: `${p.title}: ${p.badge.replace(/\.$/, '')} | Orb`, description: p.tagline ?? `${p.badge}. ${p.cards[0].desc}` })),
